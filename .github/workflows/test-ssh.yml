@@ -1,0 +1,19 @@
+name: Test SSH Connection
+
+on:
+  workflow_dispatch: # Allows you to manually trigger this workflow
+
+jobs:
+  test-ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test SSH Connection
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: ${{ secrets.DO_USER }}
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: |
+            echo "✅ SSH connection successful!"
+            uname -a # Check server OS details
+
