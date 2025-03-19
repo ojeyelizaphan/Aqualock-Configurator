@@ -33,12 +33,12 @@ Route::middleware('auth')->group(function () {
 
 
 // Routes for Configurations
-Route::middleware(['auth'])->group(function () {
+
     Route::get('/configurations/create', [ConfigurationController::class, 'create'])->name('configurations.create');
     Route::post('/configurations', [ConfigurationController::class, 'store'])->name('configurations.store');
     Route::get('/configurations', [ConfigurationController::class, 'index'])->name('configurations.index');
     Route::get('/configurations/{configuration}', [ConfigurationController::class, 'show'])->name('configurations.show');
-});
+
 
 // Routes for Orders
 Route::middleware(['auth'])->group(function () {
