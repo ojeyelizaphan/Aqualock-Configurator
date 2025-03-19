@@ -41,13 +41,13 @@ Route::middleware('auth')->group(function () {
 
 
 // Routes for Orders
-Route::middleware(['auth'])->group(function () {
+
     Route::get('/orders/create', [OrderController::class, 'create'])->name('orders.create');
     Route::get('/order-confirmation', [OrderController::class, 'confirmation'])->name('order.confirmation');
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');      
-});
+
 
 
 // Route::get('/debug-url', function () {

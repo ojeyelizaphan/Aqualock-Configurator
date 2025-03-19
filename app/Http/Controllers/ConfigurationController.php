@@ -58,7 +58,7 @@ class ConfigurationController extends Controller
             ]);
 
             $configuration = Configuration::create([
-                'user_id' => auth()->id(),
+                'user_id' => auth()->id() ?? null,
                 'product_id' => $validated['product_id'],
                 'config_options' => json_encode($validated['config_options']),
                 'total_price' => $validated['total_price'],
