@@ -51,6 +51,8 @@ class ConfigurationController extends Controller
     public function store(StoreConfigurationRequest $request)
     {
         try {
+            // dd($request->all());
+
             $validated = $request->validate([
                 'product_id' => 'required|exists:products,id',
                 'config_options' => 'required|array',
