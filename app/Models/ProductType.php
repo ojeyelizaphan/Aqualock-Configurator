@@ -15,7 +15,7 @@ class ProductType extends Model
 
     public function configurationSteps()
     {
-        return $this->hasMany(ConfigurationStep::class);
+        return $this->hasMany(ConfigurationStep::class)->orderBy('order');
     }
 
     public function products()

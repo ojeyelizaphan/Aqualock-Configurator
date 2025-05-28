@@ -1,169 +1,113 @@
 <template>
-  <div class="max-w-2xl mx-auto p-6">
+  <Navbar />
+
+  <div class="w-full max-w-screen-xl mx-auto p-6">
     <h1 class="text-3xl font-bold text-center mb-4">Step {{ step }} of {{ configurationSteps.length + 1 }}</h1>
 
-    <div class="text-lg font-semibold text-center mb-4 bg-gray-100 p-3 rounded-lg shadow">
-      <span class="text-gray-700">Current Price: </span>
-      <span class="text-green-500 text-xl font-bold">${{ calculatePrice }}</span>
+    <div class="text-center mb-6">
+      <div class="inline-block bg-gray-50 border border-gray-200 shadow-sm px-6 py-4 rounded-xl">
+        <span class="text-gray-600 text-lg font-medium">Current Price:</span>
+        <span class="text-brand-orange text-2xl font-bold ml-2">€{{ finalPrice }}</span>
+      </div>
     </div>
 
-    <div v-if="form.errors" class="bg-red-100 text-red-700 p-3 rounded-lg mb-4">
-      <ul>
+    <div v-if="Object.keys(form.errors).length" class="bg-red-100 text-red-700 p-4 rounded-lg mb-4 border border-red-300">
+      <ul class="space-y-1 text-sm list-disc list-inside">
         <li v-for="(error, field) in form.errors" :key="field">{{ error }}</li>
       </ul>
     </div>
 
+
     <!-- Step 1: Product selection -->
     <div v-if="step === 1">
-      <h2 class="text-xl font-semibold mb-2">Choose Your Product</h2>
-      <div class="grid grid-cols-2 gap-4">
+      <h2 class="text-2xl font-semibold mb-4 text-center text-gray-800">Choose Your Product</h2>
+      
+      <!-- Responsive 1–4 column grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         <button
           v-for="product in products"
           :key="product.id"
           @click="selectProduct(product)"
-          :class="{ 'border-blue-500 border-2': form.product_id === product.id }"
-          class="border p-3 rounded-lg text-left"
+          :class="[
+            'rounded-2xl overflow-hidden border transition-shadow hover:shadow-lg text-left',
+            form.product_id === product.id ? 'border-brand-orange ring-2 ring-brand-orange' : 'border-gray-200'
+          ]"
         >
-          <p class="font-bold">{{ product.name }}</p>
-          <p class="text-sm text-gray-500">${{ product.price }}</p>
+          <img
+            :src="product.image"
+            :alt="product.name"
+            class="w-full h-40 object-cover"
+          />
+          <div class="p-4">
+            <h3 class="text-lg font-bold text-gray-800 mb-1">{{ product.name }}</h3>
+            <p class="text-sm text-gray-600 mb-2">{{ product.description }}</p>
+            <p class="text-brand-orange font-semibold text-md">${{ product.price }}</p>
+          </div>
         </button>
       </div>
     </div>
 
-    <!-- Step 2: Protection Height -->
-    <div v-else-if="configurationSteps[step - 2]?.name === 'Protection Height'" class="grid grid-cols-2 gap-4">
-      <label v-for="option in protectionHeightOptions" :key="option.value" class="border p-3 rounded-lg text-left cursor-pointer">
-        <input
-          type="radio"
-          :value="option.value"
-          v-model="form.config_options['protection_height']"
-          class="hidden"
-          @change="updateProtectionHeightCost(option.cost)"
-        />
-        <div :class="{ 'border-blue-500 border-2': form.config_options['protection_height'] === option.value }" class="p-3 rounded-lg">
-          <img :src="option.image" alt="Option image" class="w-full h-32 object-cover rounded-lg mb-2" />
-          <p class="font-bold">{{ option.label }}</p>
-          <p class="text-sm text-gray-500">{{ option.description }}</p>
-        </div>
-      </label>
-    </div>
-
-    <!-- Step 3: Size & Installation Type -->
-<div v-else-if="configurationSteps[step - 2]?.name === 'Size & Installation Type'">
-  <div class="mb-4">
-    <h2 class="text-xl font-semibold mb-2">Enter Size of Wall Opening</h2>
-    <label class="block mb-2">Width (mm)</label>
-    <input
-      v-model="form.config_options['width']"
-      type="number"
-      placeholder="Enter width"
-      class="border p-2 rounded w-full"
-      @input="updateSizeCost"
+    <component
+      :is="currentStepComponent"
+      v-bind="filteredStepProps"
+      v-model:selectedWidth="selectedWidth"
+      v-model:selectedHeight="selectedHeight"
+      v-if="currentStepComponent"
     />
-    <label class="block mb-2 mt-4">Height (mm)</label>
-    <input
-      v-model="form.config_options['height']"
-      type="number"
-      placeholder="Enter height"
-      class="border p-2 rounded w-full"
-      @input="updateSizeCost"
-    />
-  </div>
-  <div>
-    <h2 class="text-xl font-semibold mb-2">Choose Installation Type</h2>
-    <div class="grid grid-cols-2 gap-4">
-      <label
-        v-for="option in installationTypeOptions"
-        :key="option.value"
-        class="border p-3 rounded-lg text-left cursor-pointer"
-      >
-        <input
-          type="radio"
-          :value="option.value"
-          v-model="form.config_options['installation_type']"
-          class="hidden"
-        />
-        <div
-          :class="{ 'border-blue-500 border-2': form.config_options['installation_type'] === option.value }"
-          class="p-3 rounded-lg"
-        >
-          <img :src="option.image" alt="Installation option" class="w-full h-32 object-cover rounded-lg mb-2" />
-          <p class="font-bold">{{ option.label }}</p>
-          <p class="text-sm text-gray-500">{{ option.description }}</p>
-        </div>
-      </label>
-    </div>
-  </div>
-</div>
+
+
+    <!-- <Component :is="currentStepComponent" v-bind="currentStepProps" v-if="currentStepComponent" /> -->
 
 
 
-   <!-- Step 4: Color & Material -->
-   <div v-else-if="configurationSteps[step - 2]?.name === 'Color & Material'">
-      <div class="mb-4">
-        <h2 class="text-xl font-semibold mb-2">Choose Color</h2>
-        <div class="grid grid-cols-4 gap-4">
-          <label v-for="option in colorOptions" :key="option.value" class="text-center cursor-pointer">
-            <input type="radio" :value="option.value" v-model="form.config_options['color']" class="hidden" @change="updateColorCost(option.value)" />
-            <div :class="{ 'ring-2 ring-blue-500': form.config_options['color'] === option.value }" class="w-12 h-12 rounded-full mx-auto" :style="{ backgroundColor: option.color }"></div>
-            <p class="text-sm mt-1">{{ option.label }}</p>
-          </label>
-          <label class="text-center cursor-pointer">
-            <input type="radio" value="custom" v-model="form.config_options['color']" class="hidden" @change="updateColorCost('custom')" />
-            <div :class="{ 'ring-2 ring-blue-500': form.config_options['color'] === 'custom' }" class="w-12 h-12 rounded-full mx-auto bg-gray-300 flex items-center justify-center">
-              🎨
-            </div>
-            <p class="text-sm mt-1">Custom Color (€35/m²)</p>
-          </label>
-        </div>
-      </div>
-      <div>
-        <h2 class="text-xl font-semibold mb-2">Choose Material</h2>
-        <div class="grid grid-cols-2 gap-4">
-          <label v-for="option in materialOptions" :key="option.value" class="border p-3 rounded-lg text-left cursor-pointer">
-            <input type="radio" :value="option.value" v-model="form.config_options['material']" class="hidden" @change="updateMaterialCost(option.value)" />
-            <div :class="{ 'border-blue-500 border-2': form.config_options['material'] === option.value }" class="p-3 rounded-lg">
-              <img :src="option.image" alt="Material option" class="w-full h-32 object-cover rounded-lg mb-2" />
-              <p class="font-bold">{{ option.label }}</p>
-              <p class="text-sm text-gray-500">{{ option.description }}</p>
-            </div>
-          </label>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Step 5: Insulation & Hand Transmitter -->
-    <div v-else-if="configurationSteps[step - 2]?.name === 'Insulation & Hand Transmitter'">
-      <div class="grid grid-cols-3 gap-4 mb-4">
-        <label v-for="option in insulationOptions" :key="option.value" class="border p-3 rounded-lg text-left cursor-pointer">
-          <input type="radio" :value="option.value" v-model="form.config_options['insulation']" class="hidden" @change="updateInsulationCost(option.value)" />
-          <div :class="{ 'border-blue-500 border-2': form.config_options['insulation'] === option.value }" class="p-3 rounded-lg">
-            <img :src="option.image" alt="Insulation option" class="w-full h-32 object-cover rounded-lg mb-2" />
-            <p class="font-bold">{{ option.label }}</p>
-            <p class="text-sm text-gray-500">{{ option.description }}</p>
-          </div>
-        </label>
-      </div>
-      <div>
-        <h2 class="text-xl font-semibold mb-2">Choose Number of Hand Transmitters</h2>
-        <input type="number" v-model="form.config_options['hand_transmitter_count']" min="0" placeholder="Enter quantity" class="border p-2 rounded w-full" @input="updateTransmitterCost(form.config_options['hand_transmitter_count'])" />
-      </div>
-    </div>
 
     <!-- Navigation buttons -->
-    <div class="mt-4 flex justify-between">
-      <button v-if="step > 1" @click="prevStep" class="bg-gray-500 text-white px-4 py-2 rounded">Back</button>
-      <button v-if="step < configurationSteps.length + 1 && form.product_id" @click="nextStep" class="bg-green-500 text-white px-4 py-2 rounded">Next</button>
-      <button v-if="step === configurationSteps.length + 1" @click="submitConfiguration" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+    <div class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <button
+        v-if="step > 1"
+        @click="prevStep"
+        class="bg-gray-700 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
+      >
+        ← Back
+      </button>
+
+      <button
+        v-if="step < configurationSteps.length + 1 && form.product_id"
+        @click="nextStep"
+        class="bg-[#f39200] hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
+      >
+        Next →
+      </button>
+
+      <button
+        v-if="step === configurationSteps.length + 1"
+        @click="submitConfiguration"
+        class="bg-[#f39200] hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
+      >
+        Submit
+      </button>
     </div>
+
   </div>
+
+  <Footer />
 </template>
 
 
 <script setup>
-import { ref, computed, defineProps } from "vue";
+import { ref, computed, defineProps, watch, defineAsyncComponent} from "vue";
 import { useForm } from "@inertiajs/vue3";
+import { colorOptions } from '@/Data/colorOptions';
+import { glazingOptions } from '@/Data/glazingOptions';
+import { materialOptions } from "@/Data/materialOptions";
+import { insulationOptions } from "@/Data/insulationOptions";
+import { useDynamicPriceCalculator } from "@/Composables/useDynamicPriceCalculator";
+import Navbar from '@/Components/Navbar.vue';
+import Footer from '@/Components/Footer.vue';
+
+
+
+
 
 const props = defineProps({
   products: Array,
@@ -172,6 +116,10 @@ const props = defineProps({
 const step = ref(1);
 const selectedProduct = ref(null);
 const configurationSteps = ref([]);
+const selectedWidth = ref(null);
+const selectedHeight = ref(null);
+
+
 
 const form = useForm({
   product_id: "",
@@ -179,111 +127,174 @@ const form = useForm({
   total_price: 0,
 });
 
-const protectionHeightOptions = [
-  {
-    value: "up-to-500mm",
-    label: "Protection height up to 500mm",
-    description: "Manual locking devices are used in addition to the operating pressure for a safety height of up to 500 mm.",
-    image: "/images/product-placeholder.jpg",
-    cost: 0
+// Setup default structure
+form.config_options = {
+  width: null,
+  height: null,
+  accessories: {
+    panelling: null,
+    glazing: {
+      windows: [],
+      stripe: {
+        type: null,
+        length: null,
+        insulated: false
+      }
+    },
+    driveOverPlate: null,
+    handTransmitters: 0,
   },
-  {
-    value: "over-500mm",
-    label: "Protection height over 500mm",
-    description: "At a safety height of over 500 mm, the door is maintained firmly latched by the pressure of the special garage door drive.",
-    image: "/images/product-placeholder.jpg",
-    cost: 300
-  },
-];
-
-const updateProtectionHeightCost = (cost) => {
-  console.log('Updating protection height cost:', cost); // Debugging
-  form.config_options['protection_height_cost'] = Number(cost) || 0; // Ensure it's a number
-};
+  panic_features: [],
+  flood_protection: false,
+  fittings_version: '',
+  knob_type: '',
+  kaba_upgrade: false,
+}
 
 
-const updateSizeCost = () => {
-  const width = Number(form.config_options['width'] || 0);
-  const height = Number(form.config_options['height'] || 0);
+const productSlug = computed(() => {
+  if (!selectedProduct.value || !selectedProduct.value.product_type) return '';
+  return selectedProduct.value.product_type.slug
+    || selectedProduct.value.product_type.name?.toLowerCase().replace(/\s+/g, '-');
+});
 
-  // Only add cost if either width or height exceeds 2100mm
-  form.config_options['size_cost'] = (width > 2100 || height > 2100) ? 300 : 0;
+const currentStepComponent = computed(() => {
+  if (!productSlug.value) return null;
 
-  console.log('Size cost updated:', form.config_options['size_cost']);
-};
+  const folderName = toPascalCase(productSlug.value);
+  const stepData = configurationSteps.value[step.value - 2];
+  if (!stepData) return null;
 
-const updateColorCost = (color) => {
-  // Custom color adds €35/m², standard colors are free
-  form.config_options['color_cost'] = (color === 'custom') ? 35 : 0;
-  console.log('Color cost updated:', form.config_options['color_cost']);
-};
+  const formattedStepName = stepData.name
+    .replace(/\s|&/g, '')
+    .replace(/[^a-zA-Z]/g, '');
 
-const updateMaterialCost = (material) => {
-  // Stainless steel adds €700, galvanized steel is free
-  form.config_options['material_cost'] = (material === 'stainless_steel') ? 700 : 0;
-  console.log('Material cost updated:', form.config_options['material_cost']);
-};
-
-
-const updateInsulationCost = (insulation) => {
-  switch(insulation) {
-    case 'with-casing-no-insulation':
-      form.config_options['insulation_cost'] = 300;
-      break;
-    case 'with-casing-and-insulation':
-      form.config_options['insulation_cost'] = 400;
-      break;
-    default:
-      form.config_options['insulation_cost'] = 0;
+  try {
+    return defineAsyncComponent(() =>
+      import(`@/Steps/${folderName}/${formattedStepName}Step.vue`)
+    );
+  } catch (e) {
+    console.warn(`Missing component for ${folderName}/${formattedStepName}Step.vue`);
+    return null;
   }
-};
+});
 
-const updateTransmitterCost = (count) => {
-  form.config_options['transmitter_cost'] = Number(count) * 60;
-};
 
-const installationTypeOptions = [
-  {
-    value: "behind-reveal",
-    label: "Behind the reveal",
-    description: "Mounted on the interior wall.",
-    image: "/images/product-placeholder.jpg",
-  },
-  {
-    value: "between-reveal",
-    label: "Between the reveal",
-    description: "Installed in the wall opening.",
-    image: "/images/product-placeholder.jpg",
-  },
-];
 
-const colorOptions = [
-  { value: 'white', label: 'White', color: '#FFFFFF' },
-  { value: 'grey1', label: 'Light Grey', color: '#D3D3D3' },
-  { value: 'grey2', label: 'Slate Grey', color: '#708090' },
-  { value: 'grey3', label: 'Anthracite Grey', color: '#36454F' },
-  { value: 'grey4', label: 'Basalt Grey', color: '#4B4B4B' },
-  { value: 'grey5', label: 'Quartz Grey', color: '#6D6D6D' },
-  { value: 'grey6', label: 'Graphite Grey', color: '#3B3B3B' }
-];
 
-const materialOptions = [
-  { value: 'galvanized_steel', label: 'Galvanized Steel', description: 'Sturdy and cost-effective.', image: '/images/product-placeholder.jpg' },
-  { value: 'stainless_steel', label: 'Stainless Steel', description: 'High-end, corrosion-resistant finish.', image: '/images/product-placeholder.jpg' }
-];
 
-const insulationOptions = [
-  { value: 'without-casing', label: 'Without casing', description: 'Basic installation without any casing.', image: '/images/product-placeholder.jpg' },
-  { value: 'with-casing-no-insulation', label: 'With casing but without insulation', description: 'Casing installed but no additional insulation.', image: '/images/product-placeholder.jpg' },
-  { value: 'with-casing-and-insulation', label: 'With casing and insulation', description: 'Complete casing with added insulation for maximum efficiency.', image: '/images/product-placeholder.jpg' }
-];
+
+// Helper to format slug to PascalCase
+function toPascalCase(slug) {
+  return slug
+    .toLowerCase()
+    .replace(/[_\s]+/g, '-') // replace spaces/underscores with dashes
+    .split('-')
+    .filter(Boolean)         // remove any empty parts
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join('');
+}
+
+
+// Props to pass to each step
+// const currentStepProps = computed(() => ({
+//   form,
+//   colorOptions,
+//   materialOptions,
+//   insulationOptions,
+//   glazingOptions,
+//   accessoryExtraCost: accessoryExtraCost?.value ?? 0,
+//   colorExtraCost: colorExtraCost?.value ?? 0,
+//   handTransmitterImage1,
+//   handTransmitterImage2,
+//   widthOptions: widthOptions.value,
+//   heightOptions, // This is a plain array already
+//   selectedWidth: form.config_options['width'],
+//   selectedHeight: form.config_options['height'],
+// }));
+
+const currentStep = computed(() => configurationSteps.value?.[step.value - 2]);
+
+
+const filteredStepProps = computed(() => {
+  const base = { form, colorOptions};
+
+  switch (currentStep.value?.name) {
+    case 'Accessories':
+      return {
+        ...base,
+        // Only pass what's actually used in AccessoriesStep.vue for this product
+        widthOptions: widthOptions.value,
+        heightOptions,
+        selectedWidth,
+        selectedHeight,
+        accessoryExtraCost,
+        colorExtraCost,
+        finalPrice,
+      };
+
+    case 'Insulation & Hand Transmitter':
+      return {
+        ...base,
+        handTransmitterImage1,
+        handTransmitterImage2,
+        casingInsulationOptions,
+      };
+
+    case 'Thermal Insulation and Window':
+      return {
+        ...base,
+        insulationOptions,
+        glazingOptions,
+        windowTypeImage1,
+        windowTypeImage2,
+      };
+
+    default:
+      return base;
+  }
+});
+
+
+
+
+const handTransmitterImage2 = 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745484950/transmitters-2_jiobff.jpg'
+const handTransmitterImage1 = 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745485281/transmitters_kty3fk.jpg';
+
+
+const widthOptions = computed(() => {
+  const selectedVersion = form.config_options['version'];
+  if (selectedVersion === 'V500') {
+    return [
+      2000, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000,
+      3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000,
+      4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000,
+      5100, 5200
+    ];
+  }
+
+  return [2000, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
+});
+const heightOptions = [2120, 2220, 2320, 2420, 2520];
+
+
+
+watch([selectedWidth, selectedHeight], ([newWidth, newHeight]) => {
+  form.config_options['width'] = newWidth;
+  form.config_options['height'] = newHeight;
+});
+
+
+
 
 const selectProduct = (product) => {
+  // console.log('Selected product:', product);
   form.product_id = product.id;
   selectedProduct.value = product;
 
   if (product.product_type) {
     configurationSteps.value = product.product_type.configuration_steps || [];
+    // console.log("Steps: ",  configurationSteps.value);
     step.value = 2;
   } else {
     configurationSteps.value = [];
@@ -291,23 +302,34 @@ const selectProduct = (product) => {
 };
 
 
-const calculatePrice = computed(() => {
-  let basePrice = Number(selectedProduct.value?.price || 0);
 
-  // Only sum up costs, not input values like width or height
-  let additionalCost = Object.entries(form.config_options)
-    .filter(([key]) => key.endsWith('_cost')) // Only sum cost fields
-    .reduce((sum, [_, cost]) => sum + Number(cost || 0), 0);
+const calculator = computed(() =>
+  useDynamicPriceCalculator(productSlug.value, form, configurationSteps, step)
+);
 
-  form.total_price = basePrice + additionalCost;
+const baseCalculatedPrice = computed(() =>
+  calculator.value?.baseCalculatedPrice?.value ?? 0
+);
 
-  console.log('Base price:', basePrice);
-  console.log('Additional cost:', additionalCost);
-  console.log('Total price:', form.total_price);
+const colorExtraCost = computed(() =>
+  calculator.value?.colorExtraCost?.value ?? 0
+);
 
-  return form.total_price;
+const accessoryExtraCost = computed(() =>
+  calculator.value?.accessoryExtraCost?.value ?? 0
+);
+
+const finalPrice = computed(() =>
+  calculator.value?.finalPrice?.value ?? 0
+);
+
+
+
+watch(finalPrice, (newPrice) => {
+  if (newPrice !== null) {
+    form.total_price = newPrice;
+  }
 });
-
 
 
 
