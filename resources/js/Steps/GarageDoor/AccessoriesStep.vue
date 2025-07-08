@@ -1,5 +1,5 @@
 <template>
-    <div class="space-y-10 max-w-5xl mx-auto">
+    <div v-if="form.config_options?.accessories" class="space-y-10 max-w-5xl mx-auto">
       <!-- Panelling -->
       <div>
         <h2 class="text-2xl font-semibold mb-4 text-gray-800">Panelling (inside of the door)</h2>
@@ -114,86 +114,83 @@
   
   
   <script setup>
-  import { ref, watch, onMounted } from 'vue'
-  
-  const props = defineProps({
-    form: Object,
-    glazingOptions: Array,
-    accessoryExtraCost: Number
-  })
-  
-  const enableWindows = ref(false)
-  const enableStripe = ref(false)
-  
-  const selectedWindow = ref(null)
-  const selectedStripe = ref(null)
-  
-  function ensureGlazingStructure() {
-    if (!props.form.config_options.accessories) {
-      props.form.config_options.accessories = {}
-    }
-    if (!props.form.config_options.accessories.glazing) {
-      props.form.config_options.accessories.glazing = {
-        windows: [],
-        stripe: { type: '', length: 0, insulated: false }
-      }
-    }
+import { ref, watch, onMounted } from 'vue'
+import { glazingOptions } from '@/Data/glazingOptions'
+
+const props = defineProps({
+  form: Object,
+  accessoryExtraCost: Number
+})
+
+const enableWindows = ref(false)
+const enableStripe = ref(false)
+
+const selectedWindow = ref(null)
+const selectedStripe = ref(null)
+
+// Helper to initialize nested structure
+function ensureGlazingStructure() {
+  const accessories = props.form.config_options.accessories ||= {}
+  const glazing = accessories.glazing ||= {
+    windows: [],
+    stripe: { type: '', length: 0, insulated: false }
   }
-  
-  // --- Window selection handlers ---
-  function toggleWindow(option) {
-    ensureGlazingStructure()
-    const windows = props.form.config_options.accessories.glazing.windows;
-    const exists = windows.find(w => w.value === option.value);
-    if (exists) {
-      props.form.config_options.accessories.glazing.windows = windows.filter(w => w.value !== option.value);
-    } else {
-      props.form.config_options.accessories.glazing.windows.push(option);
-    }
+}
+
+function toggleWindow(option) {
+  ensureGlazingStructure()
+  const windows = props.form.config_options.accessories.glazing.windows
+  const exists = windows.find(w => w.value === option.value)
+  if (exists) {
+    props.form.config_options.accessories.glazing.windows = windows.filter(w => w.value !== option.value)
+  } else {
+    windows.push(option)
   }
-  
-  function isWindowSelected(option) {
-    ensureGlazingStructure()
-    return props.form.config_options.accessories.glazing.windows.some(w => w.value === option.value);
+}
+
+function isWindowSelected(option) {
+  ensureGlazingStructure()
+  return props.form.config_options.accessories.glazing.windows.some(w => w.value === option.value)
+}
+
+watch(selectedStripe, (val) => {
+  ensureGlazingStructure()
+  const stripe = props.form.config_options.accessories.glazing.stripe
+  if (val) {
+    stripe.type = val.label
+    stripe.insulated = val.insulation
+    stripe.unit = val.unit
+    stripe.value = val.value
+    stripe.price = val.price
+  } else {
+    stripe.type = null
+    stripe.length = null
+    stripe.insulated = false
   }
-  
-  // --- Stripe syncing ---
-  watch(selectedStripe, (val) => {
-    ensureGlazingStructure()
-    if (val) {
-      props.form.config_options.accessories.glazing.stripe.type = val.label;
-      props.form.config_options.accessories.glazing.stripe.insulated = val.insulation;
-      props.form.config_options.accessories.glazing.stripe.unit = val.unit;
-      props.form.config_options.accessories.glazing.stripe.value = val.value;
-      props.form.config_options.accessories.glazing.stripe.price = val.price;
-    } else {
-      props.form.config_options.accessories.glazing.stripe = {
-        type: null,
-        length: null,
-        insulated: false
-      };
+})
+
+
+onMounted(() => {
+  ensureGlazingStructure()
+
+  const glazing = props.form.config_options.accessories.glazing
+
+  if (glazing.windows?.length) {
+    enableWindows.value = true
+  }
+
+  if (glazing.stripe?.type) {
+    selectedStripe.value = {
+      label: glazing.stripe.type,
+      insulation: glazing.stripe.insulated,
+      unit: glazing.stripe.unit,
+      value: glazing.stripe.value,
+      price: glazing.stripe.price
     }
-  })
-  
-  // --- Initialize when step loads ---
-  onMounted(() => {
-    ensureGlazingStructure()
-  
-    if (props.form.config_options.accessories.glazing.windows?.length) {
-      enableWindows.value = true;
-    }
-  
-    if (props.form.config_options.accessories.glazing.stripe?.type) {
-      selectedStripe.value = {
-        label: props.form.config_options.accessories.glazing.stripe.type,
-        insulation: props.form.config_options.accessories.glazing.stripe.insulated,
-        unit: props.form.config_options.accessories.glazing.stripe.unit,
-        value: props.form.config_options.accessories.glazing.stripe.value,
-        price: props.form.config_options.accessories.glazing.stripe.price
-      };
-      enableStripe.value = true;
-    }
-  })
-  </script>
+    enableStripe.value = true
+  }
+})
+</script>
+
   
   

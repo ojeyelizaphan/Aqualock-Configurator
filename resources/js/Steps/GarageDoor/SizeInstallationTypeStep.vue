@@ -63,30 +63,33 @@
   </template>
   
   <script setup>
-import { computed, watch } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { installationTypeOptions } from '@/Data/installationTypeOptions';
 
 const props = defineProps({
   form: Object,
-  selectedWidth: Number,
-  selectedHeight: Number,
-  widthOptions: Array,
-  heightOptions: Array
 });
 
-const emit = defineEmits(['update:selectedWidth', 'update:selectedHeight']);
+const selectedWidth = ref(props.form.config_options.width || null);
+const selectedHeight = ref(props.form.config_options.height || null);
 
-const selectedWidth = computed({
-  get: () => props.selectedWidth,
-  set: val => emit('update:selectedWidth', val)
+const widthOptions = computed(() => {
+  const selectedVersion = props.form.config_options['version'];
+  if (selectedVersion === 'V500') {
+    return [
+      2000, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000,
+      3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000,
+      4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000,
+      5100, 5200
+    ];
+  }
+
+  return [2000, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
 });
 
-const selectedHeight = computed({
-  get: () => props.selectedHeight,
-  set: val => emit('update:selectedHeight', val)
-});
+const heightOptions = ref([2120, 2220, 2320, 2420, 2520]);
 
-// Sync selected values to form.config_options (for usePriceCalculator)
+// Sync to form
 watch(selectedWidth, (newVal) => {
   props.form.config_options.width = newVal;
 });
@@ -95,5 +98,6 @@ watch(selectedHeight, (newVal) => {
   props.form.config_options.height = newVal;
 });
 </script>
+
 
   

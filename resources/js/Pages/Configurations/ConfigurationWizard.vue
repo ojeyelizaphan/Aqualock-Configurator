@@ -49,14 +49,11 @@
 
     <component
       :is="currentStepComponent"
-      v-bind="filteredStepProps"
+      v-bind="currentStepProps"
       v-model:selectedWidth="selectedWidth"
       v-model:selectedHeight="selectedHeight"
       v-if="currentStepComponent"
     />
-
-
-    <!-- <Component :is="currentStepComponent" v-bind="currentStepProps" v-if="currentStepComponent" /> -->
 
 
 
@@ -97,10 +94,6 @@
 <script setup>
 import { ref, computed, defineProps, watch, defineAsyncComponent} from "vue";
 import { useForm } from "@inertiajs/vue3";
-import { colorOptions } from '@/Data/colorOptions';
-import { glazingOptions } from '@/Data/glazingOptions';
-import { materialOptions } from "@/Data/materialOptions";
-import { insulationOptions } from "@/Data/insulationOptions";
 import { useDynamicPriceCalculator } from "@/Composables/useDynamicPriceCalculator";
 import Navbar from '@/Components/Navbar.vue';
 import Footer from '@/Components/Footer.vue';
@@ -126,30 +119,30 @@ const form = useForm({
   config_options: {},
   total_price: 0,
 });
-
+// form.config_options = {}
 // Setup default structure
-form.config_options = {
-  width: null,
-  height: null,
-  accessories: {
-    panelling: null,
-    glazing: {
-      windows: [],
-      stripe: {
-        type: null,
-        length: null,
-        insulated: false
-      }
-    },
-    driveOverPlate: null,
-    handTransmitters: 0,
-  },
-  panic_features: [],
-  flood_protection: false,
-  fittings_version: '',
-  knob_type: '',
-  kaba_upgrade: false,
-}
+// form.config_options = {
+//   width: null,
+//   height: null,
+//   accessories: {
+//     panelling: null,
+//     glazing: {
+//       windows: [],
+//       stripe: {
+//         type: null,
+//         length: null,
+//         insulated: false
+//       }
+//     },
+//     driveOverPlate: null,
+//     handTransmitters: 0,
+//   },
+//   panic_features: [],
+//   flood_protection: false,
+//   fittings_version: '',
+//   knob_type: '',
+//   kaba_upgrade: false,
+// }
 
 
 const productSlug = computed(() => {
@@ -181,9 +174,6 @@ const currentStepComponent = computed(() => {
 
 
 
-
-
-
 // Helper to format slug to PascalCase
 function toPascalCase(slug) {
   return slug
@@ -197,92 +187,14 @@ function toPascalCase(slug) {
 
 
 // Props to pass to each step
-// const currentStepProps = computed(() => ({
-//   form,
-//   colorOptions,
-//   materialOptions,
-//   insulationOptions,
-//   glazingOptions,
-//   accessoryExtraCost: accessoryExtraCost?.value ?? 0,
-//   colorExtraCost: colorExtraCost?.value ?? 0,
-//   handTransmitterImage1,
-//   handTransmitterImage2,
-//   widthOptions: widthOptions.value,
-//   heightOptions, // This is a plain array already
-//   selectedWidth: form.config_options['width'],
-//   selectedHeight: form.config_options['height'],
-// }));
+const currentStepProps = computed(() => ({
+  form,
+  accessoryExtraCost: accessoryExtraCost?.value ?? 0,
+  colorExtraCost: colorExtraCost?.value ?? 0,
+}));
 
 const currentStep = computed(() => configurationSteps.value?.[step.value - 2]);
 
-
-const filteredStepProps = computed(() => {
-  const base = { form, colorOptions};
-
-  switch (currentStep.value?.name) {
-    case 'Accessories':
-      return {
-        ...base,
-        // Only pass what's actually used in AccessoriesStep.vue for this product
-        widthOptions: widthOptions.value,
-        heightOptions,
-        selectedWidth,
-        selectedHeight,
-        accessoryExtraCost,
-        colorExtraCost,
-        finalPrice,
-      };
-
-    case 'Insulation & Hand Transmitter':
-      return {
-        ...base,
-        handTransmitterImage1,
-        handTransmitterImage2,
-        casingInsulationOptions,
-      };
-
-    case 'Thermal Insulation and Window':
-      return {
-        ...base,
-        insulationOptions,
-        glazingOptions,
-        windowTypeImage1,
-        windowTypeImage2,
-      };
-
-    default:
-      return base;
-  }
-});
-
-
-
-
-const handTransmitterImage2 = 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745484950/transmitters-2_jiobff.jpg'
-const handTransmitterImage1 = 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745485281/transmitters_kty3fk.jpg';
-
-
-const widthOptions = computed(() => {
-  const selectedVersion = form.config_options['version'];
-  if (selectedVersion === 'V500') {
-    return [
-      2000, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000,
-      3100, 3200, 3300, 3400, 3500, 3600, 3700, 3800, 3900, 4000,
-      4100, 4200, 4300, 4400, 4500, 4600, 4700, 4800, 4900, 5000,
-      5100, 5200
-    ];
-  }
-
-  return [2000, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000];
-});
-const heightOptions = [2120, 2220, 2320, 2420, 2520];
-
-
-
-watch([selectedWidth, selectedHeight], ([newWidth, newHeight]) => {
-  form.config_options['width'] = newWidth;
-  form.config_options['height'] = newHeight;
-});
 
 
 

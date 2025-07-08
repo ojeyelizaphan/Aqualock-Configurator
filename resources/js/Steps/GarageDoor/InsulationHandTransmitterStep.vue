@@ -103,11 +103,13 @@
   </template>
   
   <script setup>
+  import { insulationOptions } from '@/Data/insulationOptions';
+
   defineProps({
     form: Object,
-    insulationOptions: Array,
-    handTransmitterImage1: String,
-    handTransmitterImage2: String
   });
+
+  const handTransmitterImage2 = 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745484950/transmitters-2_jiobff.jpg'
+  const handTransmitterImage1 = 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745485281/transmitters_kty3fk.jpg';
   </script>
   

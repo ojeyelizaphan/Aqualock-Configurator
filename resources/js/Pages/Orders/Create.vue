@@ -1,11 +1,11 @@
 <script setup>
 import { useForm, usePage } from "@inertiajs/vue3";
-import { computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import Navbar from '@/Components/Navbar.vue';
 import Footer from '@/Components/Footer.vue';
+import { formatAccessories } from '@/utils/formatAccessories';
 
-
-defineProps({
+const props = defineProps({
   configuration: Object,
   config_options: Array
 });
@@ -14,44 +14,56 @@ const page = usePage();
 const configuration = computed(() => page.props.configuration || null);
 
 const form = useForm({
-  configuration_id: configuration.value?.id || "",
+  configuration_id: "",
   customer_name: "",
   email: "",
   phone: "",
   address: "",
+  accessories_summary: []
 });
+
+onMounted(() => {
+  if (configuration.value?.id) {
+    form.configuration_id = configuration.value.id;
+  }
+});
+
+const accessoriesSummary = computed(() => {
+  const accessoriesOption = props.config_options.find(option =>
+    option.label.toLowerCase() === 'accessories'
+  );
+  if (!accessoriesOption || typeof accessoriesOption.value !== 'object') return [];
+  return formatAccessories(accessoriesOption.value);
+});
+
+const showSuccessModal = ref(false);
+
+const closeModal = () => {
+  showSuccessModal.value = false;
+  window.location.href = route("home"); // Redirect after closing
+};
+
 
 const submitOrder = async () => {
   try {
+    form.accessories_summary = accessoriesSummary.value;
     await form.post(route("orders.store"), {
       onSuccess: () => {
-        window.location.href = route("order.confirmation"); // Redirect to confirmation page
+        console.log("✅ Order submitted successfully");
+        showSuccessModal.value = true;
       },
       onError: (errors) => {
-        console.error("Failed to submit order:", errors);
+        console.error("Failed to submit order(validation or server error):", errors);
         alert("Something went wrong! Please check your details and try again.");
       },
     });
   } catch (error) {
-    console.error("Unexpected error:", error);
+    console.error("Unexpected error:", error.response?.data || error);
     alert("An unexpected error occurred. Please try again later.");
   }
 };
-
-
-// // Submit order
-// const submitOrder = () => {
-//   if (confirm("Are you sure you want to submit this order?")) {
-//     form.post(route("orders.store"), {
-//       onSuccess: () => {
-//         alert("Order submitted successfully!"); // ✅ Success Message
-//         router.visit('/orders'); // ✅ Redirect to orders list
-//       }
-//     });
-//   }
-// };
-
 </script>
+
 
 <template>
   <Navbar />
@@ -71,13 +83,25 @@ const submitOrder = async () => {
 
     <!-- Configuration Details -->
     <div class="bg-gray-50 shadow rounded-lg p-6 border border-gray-200">
-      <h2 class="text-xl font-semibold mb-4 text-[#f39200]">Configuration Details</h2>
-      <ul class="space-y-4">
-        <li v-for="(option, index) in config_options" :key="index" class="flex justify-between border-b pb-2 text-gray-700">
-          <span class="font-medium">{{ option.label }}:</span>
-          <span>{{ option.value }}</span>
-        </li>
-      </ul>
+      <div>
+
+        <h2 class="text-xl font-semibold mb-4 text-[#f39200]">Configuration Details</h2>
+        <ul class="space-y-4">
+          <li v-for="(option, index) in config_options.filter(opt => opt.label.toLowerCase() !== 'accessories')" :key="index" class="flex justify-between border-b pb-2 text-gray-700">
+            <span class="font-medium">{{ option.label }}:</span>
+            <span>{{ option.value }}</span>
+          </li>
+        </ul>
+      </div>
+      
+
+        <!-- Accessories Summary -->
+      <div v-if="accessoriesSummary.length" class="bg-white shadow rounded-lg p-6 border border-gray-200 mt-6">
+        <h2 class="text-xl font-semibold mb-4 text-[#f39200]">Accessories</h2>
+        <ul class="list-disc list-inside text-gray-700 space-y-1">
+          <li v-for="(line, i) in accessoriesSummary" :key="i">{{ line }}</li>
+        </ul>
+      </div>
     </div>
 
     <!-- Order Form -->
@@ -111,6 +135,37 @@ const submitOrder = async () => {
     </form>
   </div>
   <Footer />
+
+
+  <!-- Success Modal -->
+  <transition name="fade">
+    <div
+      v-if="showSuccessModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+    >
+      <div class="bg-white rounded-2xl shadow-xl max-w-md p-6 text-center">
+        <h2 class="text-2xl font-bold text-green-600 mb-3">Order Received 🎉</h2>
+        <p class="text-gray-700 mb-5">Thank you! A confirmation email has been sent to your inbox.</p>
+        <button
+          @click="closeModal"
+          class="bg-[#f39200] hover:bg-[#d87e00] text-white py-2 px-6 rounded-lg transition"
+        >
+          Go to Homepage
+        </button>
+      </div>
+    </div>
+  </transition>
+
 </template>
+
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+</style>
+
 
 

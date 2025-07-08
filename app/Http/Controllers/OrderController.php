@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Models\Configuration;
+use App\Mail\OrderSubmitted;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -83,6 +85,7 @@ class OrderController extends Controller
             'phone' => 'required|string',
             'address' => 'required|string',
             'message' => 'nullable|string',
+            'accessories_summary' => 'array'
         ]);
 
         $order = Order::create([
@@ -95,7 +98,10 @@ class OrderController extends Controller
             'message' => $validated['message'] ?? '',
         ]);
 
-        return redirect()->route('orders.index')->with('success', 'Order placed successfully.');
+        // Send email to admin or sales team
+        Mail::to('elizaphanojey@gmail.com')->send(new OrderSubmitted($order));
+
+        return response()->json(['success' => true]); 
         // return redirect()->route('orders.confirmation', ['order_id' => $order->id]);
     }
 

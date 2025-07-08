@@ -62,10 +62,10 @@
   </template>
   
   <script setup>
+  import { colorOptions } from '@/Data/colorOptions';
+  import { materialOptions } from '@/Data/materialOptions';
   const props = defineProps({
     form: Object,
-    colorOptions: Array,
-    materialOptions: Array,
     colorExtraCost: Number
   });
   </script>

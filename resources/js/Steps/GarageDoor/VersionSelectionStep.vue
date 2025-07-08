@@ -31,8 +31,8 @@
   <script setup>
   import { versionOptions } from '@/Data/versionOptions';
   
-  defineProps({
-    form: Object
-  });
+ const { form } = defineProps({
+  form: Object
+});
   </script>
   
