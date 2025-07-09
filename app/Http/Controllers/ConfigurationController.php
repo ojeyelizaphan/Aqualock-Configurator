@@ -40,7 +40,7 @@ class ConfigurationController extends Controller
 
         // logger($products->toArray());
 
-        return Inertia::render('Configurations/ConfigurationWizard', [
+        return Inertia::render('Configurations/Wizard', [
             'products' => $products,
         ]);
     }
