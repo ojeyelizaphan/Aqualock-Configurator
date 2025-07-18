@@ -95,6 +95,7 @@
 import { ref, computed, defineProps, watch, defineAsyncComponent} from "vue";
 import { useForm } from "@inertiajs/vue3";
 import { useDynamicPriceCalculator } from "@/Composables/useDynamicPriceCalculator";
+import { colorOptions } from '@/Data/colorOptions';
 import Navbar from '@/Components/Navbar.vue';
 import Footer from '@/Components/Footer.vue';
 
@@ -189,6 +190,7 @@ function toPascalCase(slug) {
 // Props to pass to each step
 const currentStepProps = computed(() => ({
   form,
+  colorOptions,
   accessoryExtraCost: accessoryExtraCost?.value ?? 0,
   colorExtraCost: colorExtraCost?.value ?? 0,
 }));
