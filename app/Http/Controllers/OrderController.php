@@ -101,7 +101,7 @@ class OrderController extends Controller
         // Send email to admin or sales team
         Mail::to('elizaphanojey@gmail.com')->send(new OrderSubmitted($order));
 
-        return response()->json(['success' => true]); 
+        return redirect()->back()->with('success', true);
         // return redirect()->route('orders.confirmation', ['order_id' => $order->id]);
     }
 

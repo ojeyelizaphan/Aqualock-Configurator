@@ -12,6 +12,7 @@ const props = defineProps({
 
 const page = usePage();
 const configuration = computed(() => page.props.configuration || null);
+const showSuccessModal = ref(false);
 
 const form = useForm({
   configuration_id: "",
@@ -28,6 +29,12 @@ onMounted(() => {
   }
 });
 
+onMounted(() => {
+  if (page.props?.flash?.success) {
+    showSuccessModal.value = true;
+  }
+});
+
 const accessoriesSummary = computed(() => {
   const accessoriesOption = props.config_options.find(option =>
     option.label.toLowerCase() === 'accessories'
@@ -36,11 +43,11 @@ const accessoriesSummary = computed(() => {
   return formatAccessories(accessoriesOption.value);
 });
 
-const showSuccessModal = ref(false);
+
 
 const closeModal = () => {
   showSuccessModal.value = false;
-  window.location.href = route("home"); // Redirect after closing
+  window.location.href = route("configurations.create"); // Redirect after closing
 };
 
 
