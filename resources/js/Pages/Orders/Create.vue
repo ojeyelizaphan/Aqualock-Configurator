@@ -4,6 +4,8 @@ import { ref, computed, onMounted } from "vue";
 import Navbar from '@/Components/Navbar.vue';
 import Footer from '@/Components/Footer.vue';
 import { formatAccessories } from '@/utils/formatAccessories';
+import ConfigurationWizard from '@/Pages/Configurations/ConfigurationWizard.vue';
+
 
 const props = defineProps({
   configuration: Object,

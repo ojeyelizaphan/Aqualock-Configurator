@@ -11,14 +11,11 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
-    resolve: (name) =>{
-        if (name === 'Configurations/ConfigurationWizard') {
-            return import('./Pages/Configurations/ConfigurationWizard.vue'); // eager static import
-        }
-
-        const pages = import.meta.glob('./Pages/**/*.vue'); // lazy load others
-        return resolvePageComponent(`./Pages/${name}.vue`, pages);
-    },
+    resolve: (name) =>
+        resolvePageComponent(
+            `./Pages/${name}.vue`,
+            import.meta.glob('./Pages/**/*.vue'),
+        ),
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .use(plugin)

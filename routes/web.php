@@ -17,11 +17,11 @@ use Illuminate\Http\Request;
 //     ]);
 // });
 
-Route::get('/', function () {
-    return Inertia::render('Landing'); // ✅ Show the landing page on "/"
-})->name('landing');
+// Route::get('/', function () {
+//     return Inertia::render('Landing'); // ✅ Show the landing page on "/"
+// })->name('landing');
 
-// Route::get('/', [ConfigurationController::class, 'create'])->name('configurations.create');
+Route::get('/', [ConfigurationController::class, 'create'])->name('configurations.create');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
