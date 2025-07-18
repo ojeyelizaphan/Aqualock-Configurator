@@ -1,5 +1,5 @@
 <script setup>
-import { useForm, usePage } from "@inertiajs/vue3";
+import { useForm, usePage, router } from "@inertiajs/vue3";
 import { ref, computed, onMounted } from "vue";
 import Navbar from '@/Components/Navbar.vue';
 import Footer from '@/Components/Footer.vue';
@@ -47,7 +47,7 @@ const accessoriesSummary = computed(() => {
 
 const closeModal = () => {
   showSuccessModal.value = false;
-  window.location.href = route("configurations.create"); // Redirect after closing
+  router.visit('/configurations/create');
 };
 
 
