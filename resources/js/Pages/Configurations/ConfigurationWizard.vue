@@ -40,8 +40,9 @@
           />
           <div class="p-4">
             <h3 class="text-lg font-bold text-gray-800 mb-1">{{ product.name }}</h3>
-            <p class="text-sm text-gray-600 mb-2">{{ product.description }}</p>
-            <p class="text-brand-orange font-semibold text-md">${{ product.price }}</p>
+            <p class="text-sm text-brand-orange mb-2">{{ product.description }}</p>
+            <!-- <p class="text-sm text-gray-600 mb-2">{{ product.description }}</p> -->
+            <!-- <p class="text-brand-orange font-semibold text-md">${{ product.price }}</p> -->
           </div>
         </button>
       </div>

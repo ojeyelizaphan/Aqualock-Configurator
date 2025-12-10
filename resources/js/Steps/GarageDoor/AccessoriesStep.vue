@@ -20,6 +20,7 @@
       </div>
   
       <!-- Glazing -->
+       
       <div>
         <h2 class="text-2xl font-semibold mb-4 text-gray-800">Choose Glazing</h2>
   
