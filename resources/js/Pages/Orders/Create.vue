@@ -215,7 +215,7 @@ const submitOrder = async () => {
       <div class="bg-white rounded-2xl shadow-xl max-w-md p-6 text-center">
         <h2 class="text-2xl font-bold text-green-600 mb-3">Congrats! 🎉</h2>
         <p class="text-gray-700 mb-5">
-          You successfully configured your customized AquaLOCK® garage door.
+          You successfully configured your customized AquaLOCK® product.
           We'll get in touch.
         </p>
         <button
