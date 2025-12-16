@@ -1,97 +1,169 @@
 <template>
-  <div class="space-y-10">
-    <!-- Flood Protection Height -->
-    <div>
-      <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Water Protection Level</h2>
-      <div class="max-w-xl mx-auto space-y-4">
-        <p class="text-gray-700 text-center">
-          AquaLOCK® gates provide protection up to a height of <strong>1,200 mm</strong>, keeping out 99.9% of water.
-        </p>
+  <div class="max-w-6xl mx-auto space-y-8">
 
-        <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Protection Height (in mm)</label>
-        <input
-          type="number"
-          v-model.number="form.config_options.protection_height"
-          min="0"
-          max="1200"
-          placeholder="Max 1200 mm"
-          class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-        />
-      </div>
+    <!-- Intro -->
+    <div class="text-center space-y-3">
+      <h2 class="text-2xl font-semibold text-gray-800">
+        Selection of Water-Protection Level
+      </h2>
+      <p class="text-sm text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        The AquaLOCK® gate offers protection for your driveway with a maximum width
+        of 5,000 mm and a water protection height of up to 1,200 mm, keeping out
+        99.9% of the water. The gate may be higher, but the maximum water protection
+        height remains 1,200 mm.
+      </p>
     </div>
 
-    <!-- Upper Design -->
-    <div>
-      <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Upper Area Design (Above Protection Height)</h2>
-      <div class="flex flex-wrap justify-center gap-6">
-        <label
-          v-for="option in upperDesignOptions"
-          :key="option.value"
-          class="cursor-pointer transition-shadow hover:shadow-md rounded-2xl border overflow-hidden w-64 text-center p-4"
-          :class="form.config_options.upper_design === option.value ? 'border-brand-orange ring-2 ring-brand-orange' : 'border-gray-200'"
-        >
-          <input
-            type="radio"
-            :value="option.value"
-            v-model="form.config_options.upper_design"
-            class="hidden"
-          />
-          <p class="text-lg font-semibold text-gray-800">{{ option.label }}</p>
-        </label>
-      </div>
-    </div>
+    <!-- Split Screen -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-    <!-- Gate Size -->
-    <div>
-      <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Gate Size</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-        <!-- Width Dropdown -->
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Desired Width (in mm)</label>
-          <select
-            v-model.number="form.config_options.width"
-            class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-          >
-            <option :value="null" disabled>Select width</option>
-            <option v-for="w in availableWidths" :key="w" :value="w">
-              {{ w }} mm
-            </option>
-          </select>
-        </div>
+      <!-- Options / Inputs -->
+      <section class="space-y-6">
 
-        <!-- Height Dropdown -->
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Desired Height (in mm)</label>
-          <select
-            v-model.number="form.config_options.height"
-            class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-          >
-            <option :value="null" disabled>Select height</option>
-            <option v-for="h in availableHeights" :key="h" :value="h">
-              {{ h }} mm
-            </option>
-          </select>
-        </div>
-
-        <!-- Additional Non-Protected Height -->
-        <div class="sm:col-span-2">
-          <label class="block text-sm font-medium text-gray-700 mb-1">Additional Non-Protected Height (optional, in mm)</label>
+        <!-- Protection Height -->
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700">
+            Preferred Protection Height (mm)
+          </label>
           <input
             type="number"
-            v-model.number="form.config_options.extra_height"
+            v-model.number="form.config_options.protection_height"
             min="0"
-            placeholder="e.g. 100 mm"
-            class="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+            max="1200"
+            placeholder="Max 1200 mm"
+            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
           />
         </div>
-      </div>
+
+        <!-- Upper Area Design -->
+        <div class="space-y-3">
+          <p class="text-sm font-medium text-gray-700">
+            Options for designing the upper area (above the desired protective height)
+          </p>
+
+          <label
+            v-for="option in upperDesignOptions"
+            :key="option.value"
+            class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition"
+            :class="form.config_options.upper_design === option.value
+              ? 'border-brand-orange bg-orange-50'
+              : 'border-gray-200 hover:border-gray-300'"
+          >
+            <input
+              type="radio"
+              class="mt-1"
+              :value="option.value"
+              v-model="form.config_options.upper_design"
+            />
+            <span class="text-sm text-gray-800">
+              {{ option.label }}
+            </span>
+          </label>
+        </div>
+
+        <!-- Gate Size -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-gray-800">
+            Gate Size
+          </h3>
+
+          <p class="text-sm text-gray-600">
+            Please note the permissible width and height of the gate.
+          </p>
+
+          <!-- Width -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Desired Width (800 – 5,000 mm)
+            </label>
+            <input
+              type="number"
+              v-model.number="form.config_options.width"
+              min="800"
+              max="5000"
+              placeholder="e.g. 3500"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+            />
+          </div>
+
+          <!-- Height -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Desired Height (500 – 1,200 mm)
+            </label>
+            <input
+              type="number"
+              v-model.number="form.config_options.height"
+              min="500"
+              max="1200"
+              placeholder="e.g. 1000"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+            />
+          </div>
+
+          <!-- Additional Height -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Additional height without protective function (optional)
+            </label>
+            <input
+              type="number"
+              v-model.number="form.config_options.extra_height"
+              min="0"
+              placeholder="e.g. 200 mm"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Images -->
+      <section class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <figure class="space-y-2 text-center">
+            <img
+              :src="img1"
+              alt="Wood panel design"
+              class="rounded-lg border"
+            />
+            <figcaption class="text-xs text-gray-600">
+              Wood paneling above protection height
+            </figcaption>
+          </figure>
+
+          <figure class="space-y-2 text-center">
+            <img
+              :src="img2"
+              alt="Upper area lattice design"
+              class="rounded-lg border"
+            />
+            <figcaption class="text-xs text-gray-600">
+              Portal with lattice bars
+            </figcaption>
+          </figure>
+        </div>
+
+        <figure class="space-y-2 text-center">
+          <img
+            :src="img3"
+            alt="Gate height and flood protection diagram"
+            class="rounded-lg border w-full"
+          />
+          <figcaption class="text-xs text-gray-600">
+            Maximum flood protection height (up to 1,200 mm)
+          </figcaption>
+        </figure>
+      </section>
+
     </div>
   </div>
 </template>
 
+
 <script setup>
-import { computed } from 'vue';
-import { gateInwardPrices, gateOutwardPrices } from '@/Data/gatePrices';
+  import img1 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2a.jpg"
+  import img2 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2b.jpg"
+  import img3 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2c.jpg"
 
 defineProps({
   form: Object,
@@ -102,13 +174,4 @@ const upperDesignOptions = [
   { value: 'wood', label: 'Wood Paneling' },
 ];
 
-// Extract available heights and widths from gate prices
-const availableHeights = Object.keys(gateInwardPrices).map(Number);
-
-const availableWidths = Array.from(
-  new Set(
-    Object.values(gateInwardPrices)
-      .flatMap(row => Object.keys(row).map(Number))
-  )
-).sort((a, b) => a - b);
 </script>

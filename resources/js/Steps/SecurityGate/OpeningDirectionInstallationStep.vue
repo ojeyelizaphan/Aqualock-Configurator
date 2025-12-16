@@ -1,60 +1,119 @@
 <template>
-    <div class="space-y-10">
-      <!-- Gate Opening Direction and Angle -->
-      <div>
-        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Select Gate Opening Direction & Angle</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+  <div class="max-w-6xl mx-auto space-y-8">
+
+    <h2 class="text-2xl font-semibold text-center text-gray-800">
+      Gate Configuration
+    </h2>
+
+    <!-- Split Screen -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      <!-- Opening Direction -->
+      <section class="space-y-5">
+        <h3 class="text-xl font-semibold text-gray-800">
+          Opening Direction
+        </h3>
+
+        <p class="text-sm text-gray-600 leading-relaxed">
+          The AquaLOCK® gate can be opened inwards or outwards.
+          With the inward-opening version, the locks must withstand
+          the water pressure; with the outward-opening version,
+          they should clamp the door shut.
+        </p>
+
+        <p class="text-sm font-medium text-gray-700">
+          Opening direction and opening angle
+        </p>
+
+        <div class="space-y-3">
           <label
             v-for="option in openingOptions"
             :key="option.value"
-            class="cursor-pointer transition-shadow hover:shadow-md rounded-2xl border overflow-hidden"
-            :class="form.config_options['gate_opening'] === option.value ? 'border-brand-orange ring-2 ring-brand-orange' : 'border-gray-200'"
+            class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition"
+            :class="form.config_options.gate_opening === option.value
+              ? 'border-brand-orange bg-orange-50'
+              : 'border-gray-200 hover:border-gray-300'"
           >
             <input
               type="radio"
+              class="mt-1"
               :value="option.value"
-              v-model="form.config_options['gate_opening']"
-              class="hidden"
+              v-model="form.config_options.gate_opening"
             />
-            <img
-              :src="option.image"
-              :alt="option.label"
-              class="w-full h-32 object-cover"
-            />
-            <div class="p-4 text-center">
-              <p class="text-lg font-semibold text-gray-800 mb-1">{{ option.label }}</p>
-              <p class="text-sm text-gray-600">{{ option.description }}</p>
-            </div>
+            <span class="text-sm text-gray-800">
+              {{ option.label }}
+            </span>
           </label>
         </div>
-      </div>
-  
-      <!-- Fitting Method -->
-      <div>
-        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Select Fitting Method</h2>
-        <div class="flex flex-wrap justify-center gap-6">
+      </section>
+
+      <!-- Installation Method -->
+      <section class="space-y-5">
+        <h3 class="text-xl font-semibold text-gray-800">
+          Installation Method
+        </h3>
+
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Fitting methods: in front, behind or between the reveal.
+          If you are unsure which fitting method is suitable for your
+          building, our authorized technicians will clarify this on site.
+        </p>
+
+        <div class="space-y-3">
           <label
             v-for="method in fittingMethods"
             :key="method.value"
-            class="cursor-pointer transition-shadow hover:shadow-md rounded-2xl border overflow-hidden w-64"
-            :class="form.config_options['fitting_method'] === method.value ? 'border-brand-orange ring-2 ring-brand-orange' : 'border-gray-200'"
+            class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition"
+            :class="form.config_options.fitting_method === method.value
+              ? 'border-brand-orange bg-orange-50'
+              : 'border-gray-200 hover:border-gray-300'"
           >
             <input
               type="radio"
+              class="mt-1"
               :value="method.value"
-              v-model="form.config_options['fitting_method']"
-              class="hidden"
+              v-model="form.config_options.fitting_method"
             />
-            <div class="p-4 text-center">
-              <p class="text-lg font-semibold text-gray-800">{{ method.label }}</p>
-            </div>
+            <span class="text-sm text-gray-800">
+              {{ method.label }}
+            </span>
           </label>
         </div>
-      </div>
+
+        <!-- Reference Images -->
+        <div class="grid grid-cols-2 gap-4 pt-4">
+          <figure class="text-center space-y-2">
+            <img
+              :src="imgInwards"
+              alt="Reveal fitting diagram"
+              class="rounded-lg border"
+            />
+            <figcaption class="text-xs text-gray-600">
+              Portal opens inwards at 95°
+            </figcaption>
+          </figure>
+
+          <figure class="text-center space-y-2">
+            <img
+              :src="imgOutwards"
+              alt="Front fitting diagram"
+              class="rounded-lg border"
+            />
+            <figcaption class="text-xs text-gray-600">
+              Portal opens outwards at 180°
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
     </div>
-  </template>
+  </div>
+</template>
+
   
   <script setup>
+    import imgInwards from "@/Assets/4-AquaLOCK Gate/Step-1/inwards.jpg"
+    import imgOutwards from "@/Assets/4-AquaLOCK Gate/Step-1/outwards.jpg"
   const props = defineProps({
     form: Object
   });

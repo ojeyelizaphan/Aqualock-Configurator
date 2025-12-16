@@ -1,84 +1,182 @@
 <template>
-    <div class="space-y-12">
+  <div class="max-w-6xl mx-auto space-y-8">
+
+    <h2 class="text-2xl font-semibold text-center text-gray-800">
+      Colour & Material, Gate Fittings
+    </h2>
+
+    <!-- Split Screen -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
       <!-- Colour Selection -->
-      <div>
-        <!-- <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Choose a Colour</h2> -->
-        <ColorSelector
-          title="Choose a Colour"
-          :options="colorOptions"
-          v-model="form.config_options['color']"
-        />
-      </div>
-  
-      <!-- Gate Fittings -->
-      <div>
-        <h2 class="text-2xl font-semibold text-center text-gray-800 mb-6">Gate Fittings</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <section class="space-y-6">
+        <h3 class="text-xl font-semibold text-gray-800 text-center">
+          Choose Colour
+        </h3>
+
+        <p class="text-sm text-gray-600 text-center leading-relaxed">
+          To perfectly match your AquaLOCK® gate to your building, you have a choice
+          of 213 RAL colours. There are seven standard colours (white and six shades
+          of grey) available at no extra charge.
+          <br /><br />
+          Please note: Colour shades displayed on the website may differ from the
+          actual colour due to monitor settings; therefore, no guarantee for an
+          exact match can be given.
+        </p>
+
+        <!-- Horizontally scrollable palette -->
+        <div class="flex overflow-x-auto gap-4 py-2 px-1">
           <label
-            v-for="option in gateFittingOptions"
+            v-for="option in colorOptions"
             :key="option.value"
-            class="cursor-pointer transition-shadow hover:shadow-md rounded-2xl border overflow-hidden"
-            :class="form.config_options.gate_fittings === option.value ? 'border-brand-orange ring-2 ring-brand-orange' : 'border-gray-200'"
+            class="flex flex-col items-center cursor-pointer flex-shrink-0"
           >
             <input
               type="radio"
               :value="option.value"
-              v-model="form.config_options.gate_fittings"
+              v-model="form.config_options.color"
               class="hidden"
             />
-            <img
-              :src="option.image"
-              :alt="option.label"
-              class="w-full h-40 object-cover"
-            />
-            <div class="p-4">
-              <p class="text-lg font-semibold text-gray-800 mb-1">{{ option.label }}</p>
-            </div>
+            <div
+              :class="[
+                'w-12 h-12 rounded-full transition-all duration-300 hover:ring-2 hover:ring-brand-orange',
+                form.config_options.color === option.value ? 'ring-2 ring-brand-orange' : ''
+              ]"
+              :style="{ backgroundColor: option.color }"
+            ></div>
+            <p class="text-xs mt-1 text-gray-700 text-center">
+              {{ option.label }}
+            </p>
           </label>
         </div>
-      </div>
+
+        <div
+          v-if="colorExtraCost > 0"
+          class="mt-2 text-sm text-red-500 text-center"
+        >
+          Extra charge for custom colour: €{{ colorExtraCost }}
+        </div>
+
+        <!-- Reference Images (moved here) -->
+        <div class="grid grid-cols-3 gap-4 pt-6">
+          <figure class="space-y-2 text-center">
+            <img
+              :src="img1"
+              alt="Gate fitting aluminum"
+              class="rounded-lg border"
+            />
+            <figcaption class="text-xs text-gray-600">
+              <!-- Aluminum F1 handle set -->
+            </figcaption>
+          </figure>
+
+          <figure class="space-y-2 text-center">
+            <img
+              :src="img2"
+              alt="Gate fitting stainless steel"
+              class="rounded-lg border"
+            />
+            <figcaption class="text-xs text-gray-600">
+              <!-- Stainless steel handle set -->
+            </figcaption>
+          </figure>
+
+          <figure class="space-y-2 text-center">
+            <img
+              :src="img3"
+              alt="Gate fitting knob outside"
+              class="rounded-lg border"
+            />
+            <figcaption class="text-xs text-gray-600">
+              <!-- Fixed knob outside option -->
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Gate Fittings -->
+      <section class="space-y-5">
+        <h3 class="text-xl font-semibold text-gray-800">
+          Gate Fittings
+        </h3>
+
+        <p class="text-sm text-gray-600 leading-relaxed">
+          Are you looking to open and close the gate with an additional door handle
+          for everyday use? Choose from the following options.
+          <br /><br />
+          If no further information is provided, the gate will be manufactured
+          without a lock and handle.
+        </p>
+
+        <!-- Options -->
+        <div class="space-y-3">
+          <label
+            v-for="option in gateFittingOptions"
+            :key="option.value"
+            class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition"
+            :class="form.config_options.gate_fittings === option.value
+              ? 'border-brand-orange bg-orange-50'
+              : 'border-gray-200 hover:border-gray-300'"
+          >
+            <input
+              type="radio"
+              class="mt-1"
+              :value="option.value"
+              v-model="form.config_options.gate_fittings"
+            />
+            <span class="text-sm text-gray-800">
+              {{ option.label }}
+            </span>
+          </label>
+        </div>
+      </section>
+
     </div>
-  </template>
+  </div>
+</template>
+
+
   
   <script setup>
-  import ColorSelector from '@/Components/ColorSector.vue' 
-  
-  defineProps({
-    form: Object,
-    colorOptions: Array
-  });
-  
-  const gateFittingOptions = [
-    {
-      value: 'aluminum_both',
-      label: 'Lever handle set inside and outside – Aluminum F1',
-      image: 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745919197/gate-fittings-1_yug48g.jpg'
-    },
-    {
-      value: 'stainless_both',
-      label: 'Lever handle set inside and outside – Stainless Steel',
-      image: 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745919208/gate-fittings-2_aeoy4b.jpg'
-    },
-    {
-      value: 'aluminum_inside',
-      label: 'Lever handle set only inside – Aluminum F1',
-      image: 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745919221/gate-fittings-3_ycrubb.jpg'
-    },
-    {
-      value: 'stainless_inside',
-      label: 'Lever handle set only inside – Stainless Steel',
-      image: 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745919208/gate-fittings-2_aeoy4b.jpg'
-    },
-    {
-      value: 'aluminum_knob',
-      label: 'Lever handle inside, fixed knob outside – Aluminum F1',
-      image: 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745919221/gate-fittings-3_ycrubb.jpg'
-    },
-    {
-      value: 'stainless_knob',
-      label: 'Lever handle inside, fixed knob outside – Stainless Steel',
-      image: 'https://res.cloudinary.com/ducskpmnn/image/upload/v1745919208/gate-fittings-2_aeoy4b.jpg'
-    }
-  ];
-  </script>
+
+    import img1 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-1.jpg"
+    import img2 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-2.jpg"
+    import img3 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-3.jpg"
+defineProps({
+  form: Object,
+  colorOptions: Array,
+  colorExtraCost: {
+    type: Number,
+    default: 0
+  }
+});
+
+const gateFittingOptions = [
+  {
+    value: 'aluminum_both',
+    label: 'Lever handle set inside and outside – Aluminum F1'
+  },
+  {
+    value: 'stainless_both',
+    label: 'Lever handle set inside and outside – Stainless steel'
+  },
+  {
+    value: 'aluminum_inside',
+    label: 'Lever handle set only inside – Aluminum F1'
+  },
+  {
+    value: 'stainless_inside',
+    label: 'Lever handle set only inside – Stainless steel'
+  },
+  {
+    value: 'aluminum_knob',
+    label: 'Lever handle inside, fixed knob outside – Aluminum F1'
+  },
+  {
+    value: 'stainless_knob',
+    label: 'Lever handle inside, fixed knob outside – Stainless steel'
+  }
+];
+</script>
+
   
