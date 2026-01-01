@@ -1,78 +1,127 @@
 <template>
-    <div>
-      <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">
-        Installation Method & Locking Lever Position
-      </h2>
-  
-      <!-- Locking Lever Position -->
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Locking Lever Position (viewed from outside)</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <label
-            class="border rounded-xl p-4 text-center cursor-pointer transition hover:shadow-md"
-            :class="form.config_options.locking_lever_position === 'right' ? 'border-brand-orange ring-2 ring-brand-orange' : 'border-gray-200'"
-          >
-            <input
-              type="radio"
-              value="right"
-              v-model="form.config_options.locking_lever_position"
-              class="sr-only"
+  <div class="max-w-6xl mx-auto space-y-8">
+    <!-- Title -->
+    <h2 class="text-2xl font-semibold text-center text-gray-800">
+      Installation Method & Locking Lever
+    </h2>
+
+    <!-- Two-column layout -->
+    <div class="bg-white rounded-2xl shadow-md p-6 md:p-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+        <!-- LEFT: Installation Method -->
+        <div class="space-y-5">
+          <h3 class="text-lg font-semibold text-gray-800">
+            Installation type
+          </h3>
+
+          <p class="text-gray-700 leading-relaxed">
+            The <span class="font-medium">AquaLOCK® Quickwall</span> panel can be installed
+            either <span class="font-medium">in front of</span> or
+            <span class="font-medium">between</span> the reveal, depending on the structural situation.
+          </p>
+
+          <!-- Images -->
+          <div class="grid grid-cols-2 gap-4">
+            <img
+              :src=frontImg
+              alt="In front of the reveal"
+              class="w-full h-40 object-contain rounded-xl bg-gray-50"
             />
-            Right Side
-          </label>
-  
-          <label
-            class="border rounded-xl p-4 text-center cursor-pointer transition hover:shadow-md"
-            :class="form.config_options.locking_lever_position === 'left' ? 'border-brand-orange ring-2 ring-brand-orange' : 'border-gray-200'"
-          >
-            <input
-              type="radio"
-              value="left"
-              v-model="form.config_options.locking_lever_position"
-              class="sr-only"
+            <img
+              :src=betweenImg
+              alt="Between the reveal"
+              class="w-full h-40 object-contain rounded-xl bg-gray-50"
             />
-            Left Side
-          </label>
+          </div>
+
+          <!-- Radio options -->
+          <div class="space-y-3">
+            <label class="flex items-center gap-3">
+              <input
+                type="radio"
+                value="in_front"
+                v-model="form.config_options.installation_method"
+                class="accent-brand-orange"
+              />
+              <span class="text-gray-700 font-medium">
+                In front of the reveal
+              </span>
+            </label>
+
+            <label class="flex items-center gap-3">
+              <input
+                type="radio"
+                value="between"
+                v-model="form.config_options.installation_method"
+                class="accent-brand-orange"
+              />
+              <span class="text-gray-700 font-medium">
+                Between the reveal
+              </span>
+            </label>
+          </div>
         </div>
-      </div>
-  
-      <!-- Installation Method -->
-      <div>
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Installation Method</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-          <label
-            class="border rounded-xl cursor-pointer overflow-hidden hover:shadow-md transition"
-            :class="form.config_options.installation_method === 'in_front' ? 'border-brand-orange ring-2 ring-brand-orange' : 'border-gray-200'"
-          >
-            <input
-              type="radio"
-              value="in_front"
-              v-model="form.config_options.installation_method"
-              class="sr-only"
-            />
-            <img src="https://res.cloudinary.com/ducskpmnn/image/upload/v1745930785/front-of-the-reveal_nkitxo.jpg" alt="In Front of Reveal" class="w-full h-40 object-cover" />
-            <div class="p-4 text-center font-medium text-gray-700">In Front of the Reveal</div>
-          </label>
-  
-          <label
-            class="border rounded-xl cursor-pointer overflow-hidden hover:shadow-md transition"
-            :class="form.config_options.installation_method === 'between' ? 'border-brand-orange ring-2 ring-brand-orange' : 'border-gray-200'"
-          >
-            <input
-              type="radio"
-              value="between"
-              v-model="form.config_options.installation_method"
-              class="sr-only"
-            />
-            <img src="https://res.cloudinary.com/ducskpmnn/image/upload/v1745930774/between-of-the-reveal_yhujwz.jpg" alt="Between Reveal" class="w-full h-40 object-cover" />
-            <div class="p-4 text-center font-medium text-gray-700">Between the Reveal</div>
-          </label>
+
+        <!-- RIGHT: Locking Lever -->
+        <div class="space-y-5">
+          <h3 class="text-lg font-semibold text-gray-800">
+            Locking lever layout
+          </h3>
+
+          <p class="text-gray-700 leading-relaxed">
+            The removable locking lever can be positioned either on the
+            <span class="font-medium">left or right side</span> of the door
+            <span class="font-medium">without extra cost</span>.
+            <br />
+            <span class="text-sm text-gray-500">(Viewed from outside)</span>
+          </p>
+
+          <!-- Image -->
+          <img
+            :src=lockingImg
+            alt="Locking lever position"
+            class="w-full h-48 object-contain rounded-xl bg-gray-50"
+          />
+
+          <!-- Radio options -->
+          <div class="space-y-3">
+            <label class="flex items-center gap-3">
+              <input
+                type="radio"
+                value="right"
+                v-model="form.config_options.locking_lever_position"
+                class="accent-brand-orange"
+              />
+              <span class="text-gray-700 font-medium">
+                Right from the outside
+              </span>
+            </label>
+
+            <label class="flex items-center gap-3">
+              <input
+                type="radio"
+                value="left"
+                v-model="form.config_options.locking_lever_position"
+                class="accent-brand-orange"
+              />
+              <span class="text-gray-700 font-medium">
+                Left from the outside
+              </span>
+            </label>
+          </div>
         </div>
+
       </div>
     </div>
-  </template>
+  </div>
+</template>
+
   
   <script setup>
+    import lockingImg from "@/Assets/5-Quickwall/Step-2/locking-lever-layout.jpg";
+    import betweenImg from "@/Assets/5-Quickwall/Step-2/between-of-the-reveal.jpg";
+    import frontImg from "@/Assets/5-Quickwall/Step-2/front-of-the-reveal.jpg";
   defineProps({
     form: Object
   });
