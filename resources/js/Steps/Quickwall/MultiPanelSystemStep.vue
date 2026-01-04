@@ -84,7 +84,7 @@
           <img
             :src=img1
             alt="Center post configuration"
-            class="w-full h-40 object-contain rounded-xl "
+            class="mx-auto max-h-48 object-contain"
           />
           <p class="text-sm text-gray-600 mt-2 text-center">
             Center post configuration
@@ -95,7 +95,7 @@
           <img
             :src=img2
             alt="Corner post configuration"
-            class="w-full h-40 object-contain rounded-xl "
+            class="mx-auto max-h-48 object-contain "
           />
           <p class="text-sm text-gray-600 mt-2 text-center">
             Corner post configuration

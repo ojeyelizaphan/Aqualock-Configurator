@@ -26,12 +26,12 @@
             <img
               :src=frontImg
               alt="In front of the reveal"
-              class="w-full h-40 object-contain rounded-xl bg-gray-50"
+              class="mx-auto max-h-48 object-contain"
             />
             <img
               :src=betweenImg
               alt="Between the reveal"
-              class="w-full h-40 object-contain rounded-xl bg-gray-50"
+              class="mx-auto max-h-48 object-contain"
             />
           </div>
 
@@ -81,7 +81,7 @@
           <img
             :src=lockingImg
             alt="Locking lever position"
-            class="w-full h-48 object-contain rounded-xl bg-gray-50"
+            class="mx-auto max-h-48 object-contain"
           />
 
           <!-- Radio options -->

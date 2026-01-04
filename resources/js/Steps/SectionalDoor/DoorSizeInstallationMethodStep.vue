@@ -1,144 +1,167 @@
 <template>
-    <div>
-      <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">
-        Door Size & Installation Method
-      </h2>
+  <div class="max-w-6xl mx-auto space-y-8">
+    <h2 class="text-2xl font-semibold text-center text-gray-800">
+      Door Size & Installation Method
+    </h2>
 
-      <!-- Motor Option -->
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Motor Option</h3>
+    <!-- Split Screen -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+      <!-- LEFT: Door Size -->
+      <section>
+        <h3 class="text-lg font-semibold text-gray-800 mb-3">
+          Door Size
+        </h3>
+
         <p class="text-sm text-gray-600 mb-4">
-          Please choose whether the sectional door includes a motor.
+          Please note the maximum size of the wall opening for the sectional door.
+          The minimum reveal size inside is <strong>90 mm</strong>, otherwise additional tubes are required.
         </p>
-        <div class="flex gap-6">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              :value="true"
-              v-model="form.config_options['motor']"
-              class="form-radio"
-            />
-            <span class="text-gray-800 font-medium">With Motor</span>
-          </label>
 
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              :value="false"
-              v-model="form.config_options['motor']"
-              class="form-radio"
-            />
-            <span class="text-gray-800 font-medium">Without Motor</span>
-          </label>
-        </div>
-      </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+          <!-- Fields -->
+          <div class="space-y-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-800 mb-1">
+                Width of the wall opening
+              </label>
+              <select
+                v-model="form.config_options.width"
+                class="w-full border rounded-lg p-2"
+              >
+                <option disabled value="">Select width (mm)</option>
+                <option v-for="w in availableWidths" :key="w" :value="w">
+                  {{ w }} mm
+                </option>
+              </select>
+            </div>
 
-  
-      <!-- Door Size -->
-    <div class="mb-8">
-      <h3 class="text-lg font-semibold text-gray-800 mb-4">Door Size</h3>
-      <p class="text-sm text-gray-600 mb-4">
-        Please note the maximum size of the wall opening for the sectional door! The minimum reveal size inside is 90 mm, otherwise additional tubes are required.
-      </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div>
-          <label for="width" class="block text-sm font-semibold text-gray-800 mb-2">Width of the Wall Opening:</label>
-          <select
-            id="width"
-            v-model="form.config_options['width']"
-            class="w-full p-2 border rounded-lg"
-          >
-            <option disabled value="">Select width (mm)</option>
-            <option v-for="w in availableWidths" :key="w" :value="w">{{ w }} mm</option>
-          </select>
+            <div>
+              <label class="block text-sm font-medium text-gray-800 mb-1">
+                Height of the wall opening
+              </label>
+              <select
+                v-model="form.config_options.height"
+                class="w-full border rounded-lg p-2"
+              >
+                <option disabled value="">Select height (mm)</option>
+                <option v-for="h in availableHeights" :key="h" :value="h">
+                  {{ h }} mm
+                </option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-gray-800 mb-1">
+                Water protection height
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="500"
+                placeholder="Up to 500 mm"
+                v-model="form.config_options.waterProtectionHeight"
+                class="w-full border rounded-lg p-2"
+              />
+            </div>
+          </div>
+
+          <!-- Image (no background) -->
+          <div class="flex justify-center">
+            <img
+              :src="img1"
+              alt="Door size illustration"
+              class="max-h-64 object-contain"
+            />
+          </div>
         </div>
-        <div>
-          <label for="height" class="block text-sm font-semibold text-gray-800 mb-2">Height of the Wall Opening:</label>
-          <select
-            id="height"
-            v-model="form.config_options['height']"
-            class="w-full p-2 border rounded-lg"
-          >
-            <option disabled value="">Select height (mm)</option>
-            <option v-for="h in availableHeights" :key="h" :value="h">{{ h }} mm</option>
-          </select>
-        </div>
-        <div>
-          <label for="waterProtectionHeight" class="block text-sm font-semibold text-gray-800 mb-2">Water Protection Height:</label>
-          <input
-            type="number"
-            id="waterProtectionHeight"
-            v-model="form.config_options['waterProtectionHeight']"
-            min="0"
-            max="500"
-            class="w-full p-2 border rounded-lg"
-            placeholder="Up to 500 mm"
-          />
-        </div>
-      </div>
-    </div>
-  
-      <!-- Installation Method -->
-      <div class="mb-8">
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Installation Method</h3>
-        <p class="text-sm text-gray-600 mb-4">
-          Choose the method for installing the sectional door.
+      </section>
+
+      <!-- RIGHT: Installation Method -->
+      <section>
+        <h3 class="text-lg font-semibold text-gray-800 mb-3">
+          Installation Method
+        </h3>
+
+        <p class="text-sm text-gray-600 mb-6">
+          Installation method: behind or between the reveal.
+          Our authorized technicians will clarify the installation method on site
+          if you are uncertain about the appropriate option to go with.
         </p>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <label class="cursor-pointer transition-shadow hover:shadow-md rounded-2xl border overflow-hidden">
-            <input
-              type="radio"
-              :value="'behind'"
-              v-model="form.config_options['installationMethod']"
-              class="hidden"
-            />
-            <img
-              src="https://res.cloudinary.com/ducskpmnn/image/upload/v1745932515/sectional-1c_rlx64p.jpg"
-              alt="Behind the Reveal"
-              class="w-full h-48 object-contain bg-white"
-            />
-            <div class="p-4">
-              <p class="text-lg font-semibold text-gray-800">Behind the Reveal</p>
-            </div>
-          </label>
-  
-          <label class="cursor-pointer transition-shadow hover:shadow-md rounded-2xl border overflow-hidden">
-            <input
-              type="radio"
-              :value="'between'"
-              v-model="form.config_options['installationMethod']"
-              class="hidden"
-            />
-            <img
-              src="https://res.cloudinary.com/ducskpmnn/image/upload/v1745932506/sectional-1b_jfshft.jpg"
-              alt="Between the Reveal"
-              class="w-full h-48 object-contain bg-white"
-            />
-            <div class="p-4">
-              <p class="text-lg font-semibold text-gray-800">Between the Reveal</p>
-              <p class="text-sm text-gray-600">Tubes may be required</p>
-            </div>
-          </label>
-        </div>
-      </div>
-    </div>
-  </template>
-  
-  <script setup>
-  defineProps({
-    form: Object
-  });
 
-  const availableWidths = [
-  2000, 2125, 2250, 2375, 2500, 2625, 2750, 2875, 3000, 
-  3125, 3250, 3375, 3500, 3625, 3750, 3875, 4000, 
-  4125, 4250, 4375, 4500, 4625, 4750, 4875, 5000, 
+        <!-- Images with captions + radios -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+
+          <!-- Behind the reveal -->
+          <div class="text-center space-y-3">
+            <img
+              :src="img3"
+              alt="Behind the reveal"
+              class="mx-auto max-h-48 object-contain"
+            />
+
+            <label class="flex items-start justify-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                value="behind"
+                v-model="form.config_options.installationMethod"
+                class="form-radio mt-1"
+              />
+              <span class="text-sm text-gray-800 text-left">
+                Installation on the interior wall<br />
+                <strong>Behind the reveal</strong>
+              </span>
+            </label>
+          </div>
+
+          <!-- Between the reveal -->
+          <div class="text-center space-y-3">
+            <img
+              :src="img2"
+              alt="Between the reveal"
+              class="mx-auto max-h-48 object-contain"
+            />
+
+            <label class="flex items-start justify-center gap-2 cursor-pointer">
+              <input
+                type="radio"
+                value="between"
+                v-model="form.config_options.installationMethod"
+                class="form-radio mt-1"
+              />
+              <span class="text-sm text-gray-800 text-left">
+                Installation on the reveal<br />
+                <strong>Between the reveal</strong><br />
+                <span class="text-xs text-gray-500">(tubes may be required)</span>
+              </span>
+            </label>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </div>
+</template>
+
+
+<script setup>
+  import img1 from "@/Assets/6-Sectional/Step-1/sectional-1.jpg"
+  import img2 from "@/Assets/6-Sectional/Step-1/sectional-1b.jpg"
+  import img3 from "@/Assets/6-Sectional/Step-1/sectional-1c.jpg"
+defineProps({
+  form: Object
+})
+
+const availableWidths = [
+  2000, 2125, 2250, 2375, 2500, 2625, 2750, 2875, 3000,
+  3125, 3250, 3375, 3500, 3625, 3750, 3875, 4000,
+  4125, 4250, 4375, 4500, 4625, 4750, 4875, 5000,
   5125, 5250, 5375, 5500, 5625, 5750, 5875, 6000
-  ];
+]
 
-  const availableHeights = [
-    2000, 2125, 2250, 2375,
-    2500, 2625, 2750, 2875, 3000
-  ];
-  </script>
-  
+const availableHeights = [
+  2000, 2125, 2250, 2375,
+  2500, 2625, 2750, 2875, 3000
+]
+</script>

@@ -1,39 +1,55 @@
 <template>
-    <div>
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">{{ title }}</h2>
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-6xl mx-auto">
-        <label
-          v-for="option in options"
-          :key="option.value"
-          class="cursor-pointer flex flex-col items-center"
-        >
-          <input
-            type="radio"
-            class="hidden"
-            :value="option.value"
-            :checked="modelValue === option.value"
-            @change="$emit('update:modelValue', option.value)"
-          />
-          <div
-            :class="[
-              'w-24 h-24 rounded-lg border-2 transition-all duration-300',
-              modelValue === option.value ? 'border-brand-orange ring-2 ring-brand-orange' : 'border-gray-200'
-            ]"
-            :style="{ backgroundColor: option.color }"
-          ></div>
-          <p class="mt-2 text-sm text-gray-700 font-medium text-center">{{ option.label }}</p>
-        </label>
-      </div>
+  <div class="space-y-3">
+    <!-- Optional title (smaller, left-aligned) -->
+    <h4 v-if="title" class="text-sm font-semibold text-gray-800">
+      {{ title }}
+    </h4>
+
+    <!-- Scrollable color grid -->
+    <div
+      class="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-3
+             max-h-64 overflow-y-auto pr-1"
+    >
+      <label
+        v-for="option in options"
+        :key="option.value"
+        class="cursor-pointer flex flex-col items-center gap-1"
+      >
+        <input
+          type="radio"
+          class="sr-only"
+          :value="option.value"
+          :checked="modelValue === option.value"
+          @change="$emit('update:modelValue', option.value)"
+        />
+
+        <!-- Color Swatch -->
+        <div
+          :class="[
+            'w-12 h-12 rounded border transition',
+            modelValue === option.value
+              ? 'border-brand-orange ring-2 ring-brand-orange'
+              : 'border-gray-300 hover:border-gray-500'
+          ]"
+          :style="{ backgroundColor: option.color }"
+          :title="option.label"
+        ></div>
+
+        <!-- Label -->
+        <span class="text-[11px] text-gray-600 text-center leading-tight">
+          {{ option.label }}
+        </span>
+      </label>
     </div>
-  </template>
-  
-  <script setup>
-  defineProps({
-    title: { type: String, default: 'Choose a Colour' },
-    options: Array,
-    modelValue: String
-  });
-  
-  defineEmits(['update:modelValue']);
-  </script>
-  
+  </div>
+</template>
+
+<script setup>
+defineProps({
+  title: { type: String, default: '' },
+  options: { type: Array, required: true },
+  modelValue: String
+})
+
+defineEmits(['update:modelValue'])
+</script>

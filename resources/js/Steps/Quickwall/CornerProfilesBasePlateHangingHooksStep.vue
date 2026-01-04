@@ -51,7 +51,7 @@
         <img
           :src=plateImg
           alt="Base plate example"
-          class="w-full h-44 object-contain rounded-xl bg-gray-50"
+          class="mx-auto max-h-48 object-contain"
         />
       </div>
     </div>
