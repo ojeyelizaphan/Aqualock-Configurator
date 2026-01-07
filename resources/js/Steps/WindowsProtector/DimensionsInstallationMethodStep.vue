@@ -1,83 +1,133 @@
 <template>
-  <div class="max-w-4xl mx-auto">
-    <h2 class="text-2xl font-semibold mb-6 text-center text-gray-800">
+  <div class="space-y-10 max-w-6xl mx-auto">
+    <!-- Title -->
+    <h2 class="text-2xl font-semibold text-center text-gray-800">
       Dimensions & Installation Method
     </h2>
 
-    <!-- Width & Height Dropdowns + Installation Method All in One Row -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-      <!-- Width Dropdown -->
-      <div>
-        <label class="block font-medium text-gray-700 mb-1">Opening Width (mm)</label>
-        <select
-          v-model="form.config_options.width"
-          class="w-full p-3 border border-gray-300 rounded-xl focus:ring-brand-orange focus:border-brand-orange"
-        >
-          <option disabled value="">Select a width</option>
-          <option v-for="w in availableWidths" :key="w" :value="w">{{ w }} mm</option>
-        </select>
+    <!-- Split layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <!-- LEFT: Dimensions -->
+      <div class="space-y-6">
+        <h3 class="text-lg font-semibold text-gray-800">
+          Dimensions of the WindowsProtector
+        </h3>
+
+        <!-- Description -->
+        <div class="space-y-2 text-sm text-gray-600 leading-relaxed">
+          <p>
+            Please note the maximum size of the wall opening for the
+            <strong>WindowsProtector</strong> is
+            <strong>1800 × 1800 mm</strong>.
+          </p>
+
+          <p>
+            <strong>Width of the wall opening:</strong><br />
+            Between 300 and 1.800 mm
+          </p>
+
+          <p>
+            <strong>Height of the wall opening:</strong><br />
+            Between 400 and 1.800 mm
+          </p>
+        </div>
+
+        <!-- Illustration -->
+        <div class="flex justify-center pt-2">
+          <img
+            :src="img1"
+            alt="WindowsProtector dimensions illustration"
+            class="max-h-48 object-contain"
+          />
+        </div>
+
+        <!-- Inputs -->
+        <div class="grid grid-cols-2 gap-6 pt-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Width (mm)
+            </label>
+            <input
+              type="number"
+              min="300"
+              max="1800"
+              v-model="form.config_options.width"
+              class="w-full border-gray-300 rounded-md focus:ring-[#f39200] focus:border-[#f39200]"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Height (mm)
+            </label>
+            <input
+              type="number"
+              min="400"
+              max="1800"
+              v-model="form.config_options.height"
+              class="w-full border-gray-300 rounded-md focus:ring-[#f39200] focus:border-[#f39200]"
+            />
+          </div>
+        </div>
       </div>
 
-      <!-- Height Dropdown -->
-      <div>
-        <label class="block font-medium text-gray-700 mb-1">Opening Height (mm)</label>
-        <select
-          v-model="form.config_options.height"
-          class="w-full p-3 border border-gray-300 rounded-xl focus:ring-brand-orange focus:border-brand-orange"
-        >
-          <option disabled value="">Select a height</option>
-          <option v-for="h in availableHeights" :key="h" :value="h">{{ h }} mm</option>
-        </select>
-      </div>
+      <!-- RIGHT: Installation Method -->
+      <div class="space-y-6">
+        <h3 class="text-lg font-semibold text-gray-800">
+          Installation method
+        </h3>
 
-      <!-- Installation Method -->
-      <div>
-        <label class="block font-medium text-gray-700 mb-1">Installation Method</label>
-        <div class="flex flex-col space-y-2">
-          <label class="flex items-center space-x-2">
+        <!-- Description -->
+        <p class="text-sm text-gray-600 leading-relaxed">
+          The acrylic partition for easy retrofitting is the perfect
+          solution for sealing basement and building windows.
+          <br /><br />
+          Installation can be carried out either on the window frame or
+          directly onto the building wall. In both cases, the acrylic
+          partition is adhered and sealed using a special acrylic adhesive.
+        </p>
+
+        <!-- Illustration -->
+        <div class="flex justify-center pt-2">
+          <img
+            :src="img2"
+            alt="WindowsProtector installation illustration"
+            class="max-h-40 object-contain"
+          />
+        </div>
+
+        <!-- Native radio buttons -->
+        <div class="space-y-3 pt-4">
+          <label class="flex items-center gap-3 text-sm text-gray-700">
             <input
               type="radio"
-              class="form-radio text-brand-orange"
-              v-model="form.config_options.installation_method"
               value="on_window_frame"
+              v-model="form.config_options.installation_method"
+              class="text-[#f39200] focus:ring-[#f39200]"
             />
-            <span>On the window frame</span>
+            On the window frame
           </label>
-          <label class="flex items-center space-x-2">
+
+          <label class="flex items-center gap-3 text-sm text-gray-700">
             <input
               type="radio"
-              class="form-radio text-brand-orange"
-              v-model="form.config_options.installation_method"
               value="on_opening_wall"
+              v-model="form.config_options.installation_method"
+              class="text-[#f39200] focus:ring-[#f39200]"
             />
-            <span>On the opening wall</span>
+            On the opening wall
           </label>
         </div>
       </div>
     </div>
-
   </div>
 </template>
 
-
-
 <script setup>
-import OptionRadioGroup from '@/Components/OptionRadioGroup.vue';
+import img1 from '@/Assets/8-Windows Protector/Step-1/windows-1a.jpg';
+import img2 from '@/Assets/8-Windows Protector/Step-1/windows-1b.jpg';
 
 defineProps({
   form: Object
 });
-
-// Widths and heights from the price tables
-const availableWidths = [
-  400, 500, 600, 700, 800, 900, 1000,
-  1100, 1200, 1300, 1400, 1500, 1600,
-  1700, 1800
-];
-
-const availableHeights = [
-  400, 500, 600, 700, 800, 900, 1000,
-  1100, 1200, 1300, 1400, 1500, 1600,
-  1700, 1800
-];
 </script>
