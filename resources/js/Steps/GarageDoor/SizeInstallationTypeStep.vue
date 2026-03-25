@@ -98,10 +98,14 @@ const selectedHeight = ref(props.form.config_options.height || null);
 
 const widthOptions = computed(() => {
   const selectedVersion = props.form.config_options['version'];
+
   if (selectedVersion === 'V500') {
-    return Array.from({ length: 31 }, (_, i) => 2000 + i * 100); // 2000 to 5200
+    // Start at 2200, go up to 5200, step 100
+    return Array.from({ length: Math.floor((5200 - 2200) / 100) + 1 }, (_, i) => 2200 + i * 100);
   }
-  return Array.from({ length: 11 }, (_, i) => 2000 + i * 100); // 2000 to 3000
+
+  // Other versions: 2200 → 3100
+  return Array.from({ length: Math.floor((3100 - 2200) / 100) + 1 }, (_, i) => 2200 + i * 100);
 });
 
 const heightOptions = ref([1920, 2020, 2120, 2220, 2320, 2420, 2520]);

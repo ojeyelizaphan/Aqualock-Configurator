@@ -1,61 +1,75 @@
 <template>
-    <footer class="bg-gray-100 text-gray-700">
-      <div class="w-full max-w-screen-xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Contact Information -->
+  <footer class="bg-[#111827] text-gray-300 mt-16">
+    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- Opening Hours -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Contact</h3>
-          <p>Torbau Schwaben GmbH</p>
-          <p>Enzianstraße 14</p>
-          <p>D-88436 Oberessendorf</p>
-          <p class="mt-2">Phone: +49 (0)7355/9310-0</p>
-          <p>Email: info@torbau-schwaben.de</p>
-        </div>
-  
-        <!-- Navigation Links -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
-          <ul class="space-y-2">
-            <li><a href="#" class="hover:text-brand-orange">Products</a></li>
-            <li><a href="#" class="hover:text-brand-orange">Configurator</a></li>
-            <li><a href="#" class="hover:text-brand-orange">Gallery</a></li>
-            <li><a href="#" class="hover:text-brand-orange">Contact</a></li>
+          <h4 class="text-white font-semibold mb-4">Showroom Opening Hours</h4>
+          <ul class="space-y-3 text-sm">
+            <li>Monday – Friday:</li>
+            <li>08:00 AM – 12:00 PM</li>
+            <li>01:00 PM – 05:00 PM</li>
+            <br> <br>
+            <li>Every first Saturday:</li>
+            <li>09:00 AM – 12:00 PM</li>
           </ul>
         </div>
-  
-        <!-- Social Media -->
+
+        <!-- Products -->
         <div>
-          <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
-          <div class="flex space-x-4">
-            <a href="#" class="text-gray-500 hover:text-brand-orange">
-              <!-- Facebook Icon -->
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <!-- SVG path for Facebook icon -->
-              </svg>
-            </a>
-            <a href="#" class="text-gray-500 hover:text-brand-orange">
-              <!-- LinkedIn Icon -->
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <!-- SVG path for LinkedIn icon -->
-              </svg>
-            </a>
-            <a href="#" class="text-gray-500 hover:text-brand-orange">
-              <!-- Instagram Icon -->
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                <!-- SVG path for Instagram icon -->
-              </svg>
-            </a>
-          </div>
+          <h4 class="text-white font-semibold mb-4">Products</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Garage Door</a></li>
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Flap</a></li>
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Accessories</a></li>
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Configurator</a></li>
+          </ul>
+        </div>
+
+        <!-- Company -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Company</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="#" class="hover:text-brand-orange transition-colors">About</a></li>
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Gallery</a></li>
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Support</a></li>
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h4 class="text-white font-semibold mb-4">Contact</h4>
+          <ul class="space-y-3 text-sm text-gray-400">
+            <li>Torbau Schwaben GmbH</li>
+            <li>Enzianstraße 14</li>
+            <li>D-88436 Oberessendorf</li>
+            <li>
+              <a href="tel:+49735593100" class="hover:text-brand-orange transition-colors">
+                +49 (0)7355 / 9310-0
+              </a>
+            </li>
+            <li>
+              <a href="mailto:info@torbau-schwaben.de" class="hover:text-brand-orange transition-colors">
+                info@torbau-schwaben.de
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="bg-gray-200 text-center py-4 text-sm">
-        © 2025 AquaLOCK. All rights reserved.
+
+      <div class="border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-gray-400">
+        <p>© 2026 AquaLOCK. All rights reserved.</p>
+
+        <div class="flex items-center gap-5">
+          <a href="#" class="hover:text-brand-orange transition-colors">Privacy</a>
+          <a href="#" class="hover:text-brand-orange transition-colors">Terms</a>
+          <a href="#" class="hover:text-brand-orange transition-colors">Imprint</a>
+        </div>
       </div>
-    </footer>
-  </template>
-  
-  <script>
-//   export default {
-//     name: 'Footer',
-//   };
-  </script>
-  
+    </div>
+  </footer>
+</template>
+
+<script setup>
+</script>

@@ -17,6 +17,7 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
     return heightRow ? heightRow[selectedWidth] || null : null;
   });
 
+  // ✅ UPDATED: Custom RAL price (39 €/m²)
   const colorExtraCost = computed(() => {
     const color = form.config_options?.color;
     const width = form.config_options?.width;
@@ -28,7 +29,7 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
     if (standardColors.includes(color)) return 0;
 
     const squareMeters = (width / 1000) * (height / 1000);
-    return Math.ceil(squareMeters * 47);
+    return Math.ceil(squareMeters * 39);
   });
 
   const accessoryExtraCost = computed(() => {
@@ -42,38 +43,39 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
 
     const accessories = form.config_options?.accessories ?? {};
 
-    // Panelling
+    // ✅ UPDATED: Panelling
     const panelling = accessories.panelling;
-    if (panelling === 'uninsulated') total += Math.ceil(m2 * 142);
-    else if (panelling === 'insulated') total += Math.ceil(m2 * 174);
+    if (panelling === 'uninsulated') total += Math.ceil(m2 * 121);
+    else if (panelling === 'insulated') total += Math.ceil(m2 * 148);
 
-    // Glazing
+    // ✅ UPDATED: Glazing
     const glazing = accessories.glazing ?? {};
     const windowItems = glazing.windows ?? [];
     windowItems.forEach(win => {
-      total += win.insulated ? 601 : 493;
+      total += win.insulated ? 545 : 418;
     });
 
     const stripe = glazing.stripe ?? {};
     if (stripe?.type && stripe?.length) {
       const stripeArea = stripe.length * 0.4;
-      const rate = stripe.insulated ? 453 : 444;
+      const rate = stripe.insulated ? 509 : 376;
       total += Math.ceil(stripeArea * rate);
     }
 
-    // Drive-over plate
+    // ✅ UPDATED: Drive-over plate
     const plate = accessories.driveOverPlate;
-    if (plate === 'stainless') total += Math.ceil(rmt * 194);
-    else if (plate === 'aluminium') total += Math.ceil(rmt * 148);
+    if (plate === 'stainless') total += Math.ceil(rmt * 165);
+    else if (plate === 'aluminium') total += Math.ceil(rmt * 125);
 
-    // Hand Transmitters and motor-related additions
+    // ✅ UPDATED: Motor + Assembly + Transmitters
     const motorStepIndex = configurationSteps.value?.findIndex?.(
       stepObj => stepObj.name === 'Insulation & Hand Transmitter'
     );
+
     if (step.value > (motorStepIndex ?? -1) + 1) {
-      total += 866 + 394; // Motor + Assembly Kit
+      total += 651 + 334; // Motor + Assembly Kit
       const transmitters = parseInt(accessories.handTransmitters || 0);
-      total += transmitters * 80;
+      total += transmitters * 60;
     }
 
     return total;

@@ -29,54 +29,74 @@ export function useGatePriceCalculator(form, configurationSteps, step) {
     if (standardColors.includes(color)) return 0;
 
     const squareMeters = (selectedWidth / 1000) * (selectedHeight / 1000);
-    return Math.ceil(squareMeters * 92); // RAL price per m²
+    return Math.ceil(squareMeters * 78); // RAL price per m²
   });
 
   // Accessory extra cost
   // Accessory extra cost
 const accessoryExtraCost = computed(() => {
-    let total = 0;
-    const selectedWidth = form.config_options['width'];
-    const selectedHeight = form.config_options['height'];
-  
-    if (!selectedWidth || !selectedHeight) return 0;
-  
-    const m2 = (selectedWidth / 1000) * (selectedHeight / 1000);
-  
-    // Optional accessories
-    const opening180Option = form.config_options.accessories?.opening180;
-    if (opening180Option) total += 427;
-  
-    const centralLockingSystem = form.config_options.accessories?.centralLocking;
-    if (centralLockingSystem) total += 645;
-  
-    const durchgriffOption = form.config_options.accessories?.durchgriff;
-    if (durchgriffOption) total += 479;
-  
-    const padlockPreparation = form.config_options.accessories?.padlockPreparation;
-    if (padlockPreparation) total += 88;
-  
-    const latticeBars = form.config_options.accessories?.latticeBars;
-    if (latticeBars) {
-      const latticeType = latticeBars.type;
-      if (latticeType === 'round') total += Math.ceil(m2 * 638);
-      if (latticeType === 'angular') total += Math.ceil(m2 * 638);
-      if (latticeType === 'forged_round') total += Math.ceil(m2 * 771);
-      if (latticeType === 'forged_angular') total += Math.ceil(m2 * 771);
-    }
-  
-    // Assembly kit: include only when on or past the AccessoriesStep
-    const accessoriesStepIndex = configurationSteps.value.findIndex(s => s.name === 'Accessories');
-    if (step.value > accessoriesStepIndex) {
-    if (selectedWidth <= 1500) total += 154;
-    else if (selectedWidth <= 5000) total += 223;
-    else total += 347;
-    }
+  let total = 0;
+  const selectedWidth = form.config_options['width'];
+  const selectedHeight = form.config_options['height'];
 
-  
-    return total;
-  });
-  
+  if (!selectedWidth || !selectedHeight) return 0;
+
+  const m2 = (selectedWidth / 1000) * (selectedHeight / 1000);
+
+  const accessories = form.config_options.accessories ?? {};
+
+  // Opening 180°
+  if (accessories.opening180) total += 362;
+
+  // Central locking
+  if (accessories.centralLocking) total += 303;
+
+  // Durchgriff
+  if (accessories.durchgriff) total += 479;
+
+  //Padlock
+  if (accessories.padlockPreparation) total += 88;
+
+  //Lattice bars
+  const latticeBars = accessories.latticeBars;
+  if (latticeBars) {
+    const type = latticeBars.type;
+    if (type === 'round' || type === 'angular') {
+      total += Math.ceil(m2 * 638);
+    } else if (type === 'forged_round' || type === 'forged_angular') {
+      total += Math.ceil(m2 * 771);
+    }
+  }
+
+  //Gate fittings (NEW)
+  const fitting = form.config_options.gate_fittings;
+
+  const fittingPrices = {
+    aluminum_both: 423,
+    stainless_both: 559,
+    aluminum_knob: 441,
+    stainless_knob: 580,
+    aluminum_inside: 379,
+    stainless_inside: 423
+  };
+
+  if (fitting && fittingPrices[fitting]) {
+    total += fittingPrices[fitting];
+  }
+
+  // Assembly kit
+  const accessoriesStepIndex = configurationSteps.value.findIndex(
+    s => s.name === 'Accessories'
+  );
+
+  if (step.value > accessoriesStepIndex) {
+    if (selectedWidth <= 1500) total += 131;
+    else if (selectedWidth <= 5000) total += 189;
+    else total += 294;
+  }
+
+  return total;
+});
 
   // Final price calculation
   const finalPrice = computed(() => {

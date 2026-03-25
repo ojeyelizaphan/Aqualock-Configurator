@@ -1,14 +1,10 @@
 <template>
   <div class="space-y-10 max-w-6xl mx-auto">
-
     <h2 class="text-2xl font-semibold text-center text-gray-800">Select Accessories</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-
       <!-- LEFT SIDE -->
       <div class="space-y-6">
-
-        <!-- Panic Function -->
         <div>
           <h3 class="text-lg font-semibold text-gray-700 mb-2">Panic Function</h3>
           <div class="space-y-2">
@@ -26,16 +22,6 @@
           </div>
         </div>
 
-        <!-- KABA Lock -->
-        <div>
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">KABA Lock</h3>
-          <label class="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" v-model="form.config_options.kaba_lock" />
-            <span class="text-gray-800">Add KABA lock (Swiss locking cylinder, no cylinder included)</span>
-          </label>
-        </div>
-
-        <!-- Drip Cap -->
         <div>
           <h3 class="text-lg font-semibold text-gray-700 mb-2">Drip Cap</h3>
           <label class="flex items-center gap-3 cursor-pointer">
@@ -44,7 +30,6 @@
           </label>
         </div>
 
-        <!-- Fixed Side Panels -->
         <div>
           <h3 class="text-lg font-semibold text-gray-700 mb-2">Fixed Side Panels</h3>
           <div class="space-y-2">
@@ -56,14 +41,13 @@
               <input type="checkbox" v-model="form.config_options.fixed_panel_right" />
               <span class="text-gray-800">Right side panel (100–400 mm)</span>
             </label>
-            <label class="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" v-model="form.config_options.fixed_panel_top" />
-            <span class="text-gray-800">Top panel above door (100–400 mm)</span>
-          </label>
+            <!-- <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" v-model="form.config_options.fixed_panel_top" />
+              <span class="text-gray-800">Top panel above door (100–400 mm)</span>
+            </label> -->
           </div>
         </div>
 
-        <!-- Window Options -->
         <div>
           <h3 class="text-lg font-semibold text-gray-700 mb-2">Window Type</h3>
           <div class="space-y-2">
@@ -80,15 +64,10 @@
             </label>
           </div>
         </div>
-
-        
-
       </div>
 
       <!-- RIGHT SIDE -->
       <div class="space-y-6">
-
-        <!-- Window Options continued -->
         <div>
           <div class="space-y-2">
             <label
@@ -103,11 +82,6 @@
               </div>
             </label>
           </div>
-        </div>
-
-        <!-- Top Panel & Flood Protection -->
-        <div>
-          
         </div>
 
         <div>
@@ -143,53 +117,15 @@
             <span class="text-gray-800">Heavy duty version with flood protection up to 5m</span>
           </label>
         </div>
-
-        <!-- Door Fittings -->
-        <div>
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">Door Fittings</h3>
-
-          <!-- Version -->
-          <div class="mb-4">
-            <label class="block font-medium text-gray-700 mb-1">Version</label>
-            <select v-model="form.config_options.fittings_version" class="w-full rounded-lg border-gray-300 px-4 py-2">
-              <option disabled value="">-- Select Fittings Version --</option>
-              <option value="V1">V1 – Inside handle only</option>
-              <option value="V2">V2 – Inside & outside handle</option>
-              <option value="V6">V6 – Inside & outside handle (V6)</option>
-            </select>
-          </div>
-
-          <!-- Knob Type -->
-          <div v-if="form.config_options.fittings_version === 'V2' || form.config_options.fittings_version === 'V6'" class="mb-4">
-            <label class="block font-medium text-gray-700 mb-1">Knob Type</label>
-            <select v-model="form.config_options.knob_type" class="w-full rounded-lg border-gray-300 px-4 py-2">
-              <option disabled value="">-- Select Knob Type --</option>
-              <option value="aluminium">Fixed Aluminium Knob</option>
-              <option value="stainless">Fixed Stainless Steel Knob</option>
-            </select>
-          </div>
-
-          <!-- KABA Upgrade -->
-          <div>
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" v-model="form.config_options.kaba_upgrade" />
-              <span class="text-gray-800">KABA version upgrade</span>
-            </label>
-          </div>
-        </div>
-
       </div>
-
     </div>
   </div>
 </template>
-
 
 <script setup>
 const props = defineProps({ form: Object });
 const form = props.form;
 
-// Safely initialize arrays if not present
 if (!form.config_options.panic_features) form.config_options.panic_features = [];
 
 const panicOptions = [
