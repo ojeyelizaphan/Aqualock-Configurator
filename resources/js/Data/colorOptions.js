@@ -36,7 +36,7 @@ export const colorOptions = [
     },
     {
       value: 'custom',
-      label: 'Other RAL (Custom +€47/m²)',
+      label: 'Other RAL (Custom +€39/m²)',
       color: null
     }
   ];

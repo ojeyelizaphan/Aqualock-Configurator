@@ -62,12 +62,12 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
       total += Math.ceil(stripeArea * rate);
     }
 
-    // ✅ UPDATED: Drive-over plate
+    // UPDATED: Drive-over plate
     const plate = accessories.driveOverPlate;
     if (plate === 'stainless') total += Math.ceil(rmt * 165);
     else if (plate === 'aluminium') total += Math.ceil(rmt * 125);
 
-    // ✅ UPDATED: Motor + Assembly + Transmitters
+    // UPDATED: Motor + Assembly + Transmitters
     const motorStepIndex = configurationSteps.value?.findIndex?.(
       stepObj => stepObj.name === 'Insulation & Hand Transmitter'
     );

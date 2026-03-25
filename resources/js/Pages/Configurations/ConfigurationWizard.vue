@@ -4,21 +4,7 @@
   
 
   <div class="min-h-screen bg-[#f8f8f8]">
-    <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
-      <!-- Header -->
-      <!-- <div class="mb-8 md:mb-10">
-        <div class="max-w-3xl">
-          <p class="text-sm uppercase tracking-[0.2em] text-brand-orange font-semibold mb-3">
-            AquaLOCK Configurator
-          </p>
-          <h1 class="text-3xl md:text-5xl font-bold text-gray-900 leading-tight mb-3">
-            Configure Your Flood Protection Product
-          </h1>
-          <p class="text-gray-600 text-base md:text-lg">
-            Choose a product to begin your configuration and see your current price update as you go.
-          </p>
-        </div>
-      </div> -->
+    <div ref="stepContainer" class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
 
       <!-- Progress / Price -->
       <div class="mb-8">
@@ -116,7 +102,7 @@
 </template>
 
 <script setup>
-import { ref, computed, defineProps, watch, defineAsyncComponent } from "vue";
+import { ref, computed, defineProps, watch, defineAsyncComponent, nextTick} from "vue";
 import { useForm } from "@inertiajs/vue3";
 import { useDynamicPriceCalculator } from "@/Composables/useDynamicPriceCalculator";
 import { colorOptions } from "@/Data/colorOptions";
@@ -143,6 +129,25 @@ const form = useForm({
   total_price: 0,
 });
 
+const stepContainer = ref(null);
+
+const scrollToStepTop = async () => {
+  await nextTick();
+
+  if (stepContainer.value) {
+    const y = stepContainer.value.getBoundingClientRect().top + window.pageYOffset - 20;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
+  } else {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+};
 const productSlug = computed(() => {
   if (!selectedProduct.value || !selectedProduct.value.product_type) return "";
   return (
@@ -198,24 +203,31 @@ watch(finalPrice, (newPrice) => {
   }
 });
 
-const selectProduct = (product) => {
+const selectProduct = async (product) => {
   form.product_id = product.id;
   selectedProduct.value = product;
 
   if (product.product_type) {
     configurationSteps.value = product.product_type.configuration_steps || [];
     step.value = 2;
+    await scrollToStepTop();
   } else {
     configurationSteps.value = [];
   }
 };
 
-const nextStep = () => {
-  if (step.value < configurationSteps.value.length + 1) step.value++;
+const nextStep = async () => {
+  if (step.value < configurationSteps.value.length + 1) {
+    step.value++;
+    await scrollToStepTop();
+  }
 };
 
-const prevStep = () => {
-  if (step.value > 1) step.value--;
+const prevStep = async () => {
+  if (step.value > 1) {
+    step.value--;
+    await scrollToStepTop();
+  }
 };
 
 const submitConfiguration = () => {

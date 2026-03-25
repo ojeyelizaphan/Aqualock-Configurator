@@ -1,6 +1,39 @@
 <template>
   <div v-if="form.config_options?.accessories" class="max-w-6xl mx-auto space-y-10">
 
+    <!-- Included by default -->
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+        <h2 class="text-lg font-semibold text-amber-900 mb-2">
+          Included by default
+        </h2>
+        <p class="text-sm text-amber-800 mb-4">
+          For this door configuration, the following items are automatically included and added to the total price.
+        </p>
+
+        <div class="space-y-3">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="font-medium text-gray-900">Motor</p>
+              <p class="text-sm text-gray-600">No option required — always included.</p>
+            </div>
+            <p class="font-semibold text-gray-900 whitespace-nowrap">€651 / piece</p>
+          </div>
+
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p class="font-medium text-gray-900">Assembly kit with sealing</p>
+              <p class="text-sm text-gray-600">No option required — always included.</p>
+            </div>
+            <p class="font-semibold text-gray-900 whitespace-nowrap">€334 / piece</p>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-4 border-t border-amber-200 flex items-center justify-between">
+          <p class="text-sm font-medium text-amber-900">Automatically added total</p>
+          <p class="text-lg font-bold text-amber-900">€985</p>
+        </div>
+      </div>
+
     <!-- Casing & Hand Transmitters Section -->
     <div class="flex flex-col sm:flex-row gap-6">
 

@@ -41,6 +41,13 @@
               <option v-for="height in heightOptions" :key="height" :value="height">{{ height }}</option>
             </select>
           </div>
+
+          <div
+            v-if="selectedWidth && selectedHeight && selectedVersion == null"
+            class="sm:col-span-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm text-amber-800"
+          >
+            You’ve selected your door size. Estimated price will appear after you choose the material in the next step.
+          </div>
         </div>
       </div>
 
@@ -108,7 +115,7 @@ const widthOptions = computed(() => {
   return Array.from({ length: Math.floor((3100 - 2200) / 100) + 1 }, (_, i) => 2200 + i * 100);
 });
 
-const heightOptions = ref([1920, 2020, 2120, 2220, 2320, 2420, 2520]);
+const heightOptions = ref([2120, 2220, 2320, 2420, 2520]);
 
 // Sync to form
 watch(selectedWidth, (val) => props.form.config_options.width = val);
