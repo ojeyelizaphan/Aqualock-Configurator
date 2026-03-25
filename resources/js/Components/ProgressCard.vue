@@ -51,7 +51,7 @@ const progressWidth = computed(() => {
 });
 
 const formattedPrice = computed(() =>
-  Number(props.currentPrice || 0).toLocaleString('de-DE', {
+  Number(props.currentPrice || 0).toLocaleString('en-US', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })
