@@ -1,6 +1,28 @@
 <template>
   <div class="max-w-6xl mx-auto px-4 space-y-20">
 
+    <!-- Included by default -->
+    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 max-w-4xl mx-auto">
+      <h3 class="text-lg font-semibold text-amber-900 mb-2">
+        Included by default
+      </h3>
+      <p class="text-sm text-amber-800 mb-4">
+        Assembly kit with sealing is a standard option and is automatically added to the total price.
+      </p>
+
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="font-medium text-gray-900">Assembly kit with sealing</p>
+          <p class="text-sm text-gray-600">
+            Standard option — automatically included.
+          </p>
+        </div>
+        <p class="font-semibold text-gray-900 whitespace-nowrap">
+          €398 / piece
+        </p>
+      </div>
+    </div>
+
     <!-- ============================= -->
     <!--  SPLIT: INSULATION | WINDOWS -->
     <!-- ============================= -->

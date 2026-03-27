@@ -9,8 +9,7 @@
       <p class="text-sm text-gray-600 max-w-3xl mx-auto leading-relaxed">
         The AquaLOCK® gate offers protection for your driveway with a maximum width
         of 5,000 mm and a water protection height of up to 1,200 mm, keeping out
-        99.9% of the water. The gate may be higher, but the maximum water protection
-        height remains 1,200 mm.
+        99.9% of the water.
       </p>
     </div>
 
@@ -20,25 +19,10 @@
       <!-- Options / Inputs -->
       <section class="space-y-6">
 
-        <!-- Protection Height -->
-        <div class="space-y-2">
-          <label class="block text-sm font-medium text-gray-700">
-            Preferred Protection Height (mm)
-          </label>
-          <input
-            type="number"
-            v-model.number="form.config_options.protection_height"
-            min="0"
-            max="1200"
-            placeholder="Max 1200 mm"
-            class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-          />
-        </div>
-
         <!-- Upper Area Design -->
         <div class="space-y-3">
           <p class="text-sm font-medium text-gray-700">
-            Options for designing the upper area (above the desired protective height)
+            Options for designing the upper area
           </p>
 
           <label
@@ -67,20 +51,17 @@
             Gate Size
           </h3>
 
-          <p class="text-sm text-gray-600">
-            Please note the permissible width and height of the gate.
-          </p>
-
           <!-- Width -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
               Desired Width (800 – 5,000 mm)
             </label>
             <input
+              v-model="enteredWidth"
               type="number"
-              v-model.number="form.config_options.width"
               min="800"
               max="5000"
+              step="1"
               placeholder="e.g. 3500"
               class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
             />
@@ -89,30 +70,49 @@
           <!-- Height -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Desired Height (500 – 1,200 mm)
+              Desired Water-Protection Height (500 – 1,200 mm)
             </label>
             <input
+              v-model="enteredHeight"
               type="number"
-              v-model.number="form.config_options.height"
               min="500"
               max="1200"
+              step="1"
               placeholder="e.g. 1000"
               class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
             />
           </div>
 
-          <!-- Additional Height -->
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Additional height without protective function (optional)
-            </label>
-            <input
-              type="number"
-              v-model.number="form.config_options.extra_height"
-              min="0"
-              placeholder="e.g. 200 mm"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-            />
+          <div
+            v-if="(enteredWidth || enteredHeight) && !isSizeValid"
+            class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
+          >
+            Please enter a valid width between 800 and 5000 mm and a valid height between 500 and 1200 mm.
+          </div>
+
+          <!-- Assembly Kit -->
+          <div
+            v-if="assemblyKitPrice"
+            class="bg-amber-50 border border-amber-200 rounded-2xl p-5"
+          >
+            <h3 class="text-lg font-semibold text-amber-900 mb-2">
+              Included by default
+            </h3>
+            <p class="text-sm text-amber-800 mb-4">
+              Assembly kit with sealing is a standard option and is automatically added to the total price.
+            </p>
+
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <p class="font-medium text-gray-900">Assembly kit with sealing</p>
+                <p class="text-sm text-gray-600">
+                  Standard option — automatically included.
+                </p>
+              </div>
+              <p class="font-semibold text-gray-900 whitespace-nowrap">
+                €{{ assemblyKitPrice }} / piece
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -150,7 +150,7 @@
             class="rounded-lg border w-full"
           />
           <figcaption class="text-xs text-gray-600">
-            Maximum flood protection height (up to 1,200 mm)
+            Maximum flood protection height: 1,200 mm
           </figcaption>
         </figure>
       </section>
@@ -159,13 +159,13 @@
   </div>
 </template>
 
-
 <script setup>
-  import img1 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2a.jpg"
-  import img2 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2b.jpg"
-  import img3 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2c.jpg"
+import { ref, computed, watch } from 'vue';
+import img1 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2a.jpg";
+import img2 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2b.jpg";
+import img3 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2c.jpg";
 
-defineProps({
+const props = defineProps({
   form: Object,
 });
 
@@ -174,4 +174,74 @@ const upperDesignOptions = [
   { value: 'wood', label: 'Wood Paneling' },
 ];
 
+const enteredWidth = ref(
+  props.form.config_options.entered_width ||
+  props.form.config_options.width ||
+  ''
+);
+
+const enteredHeight = ref(
+  props.form.config_options.entered_height ||
+  props.form.config_options.height ||
+  ''
+);
+
+const minWidth = 800;
+const maxWidth = 5000;
+const minHeight = 500;
+const maxHeight = 1200;
+
+const mappedWidth = computed(() => {
+  const width = Number(enteredWidth.value);
+
+  if (!width || width < minWidth || width > maxWidth) {
+    return null;
+  }
+
+  return Math.floor((width - 800) / 200) * 200 + 800;
+});
+
+const mappedHeight = computed(() => {
+  const height = Number(enteredHeight.value);
+
+  if (!height || height < minHeight || height > maxHeight) {
+    return null;
+  }
+
+  return Math.floor((height - 500) / 100) * 100 + 500;
+});
+
+const isSizeValid = computed(() => {
+  return !!mappedWidth.value && !!mappedHeight.value;
+});
+
+const assemblyKitPrice = computed(() => {
+  const width = props.form.config_options.width;
+
+  if (!width) return null;
+
+  if (width <= 1500) return 131;
+  if (width <= 5000) return 189;
+  return 294;
+});
+
+watch(enteredWidth, (val) => {
+  props.form.config_options.entered_width = val ? Number(val) : null;
+  props.form.config_options.width = mappedWidth.value;
+});
+
+watch(enteredHeight, (val) => {
+  props.form.config_options.entered_height = val ? Number(val) : null;
+  props.form.config_options.height = mappedHeight.value;
+  props.form.config_options.protection_height = mappedHeight.value;
+});
+
+watch(mappedWidth, (val) => {
+  props.form.config_options.width = val;
+});
+
+watch(mappedHeight, (val) => {
+  props.form.config_options.height = val;
+  props.form.config_options.protection_height = val;
+});
 </script>

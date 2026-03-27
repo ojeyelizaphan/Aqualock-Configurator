@@ -25,48 +25,41 @@
               <label class="block text-sm font-medium text-gray-800 mb-1">
                 Width of the wall opening
               </label>
-              <select
-                v-model="form.config_options.width"
+              <input
+                v-model="enteredWidth"
+                type="number"
+                min="2000"
+                max="6000"
+                step="1"
+                placeholder="Enter width (mm)"
                 class="w-full border rounded-lg p-2"
-              >
-                <option disabled value="">Select width (mm)</option>
-                <option v-for="w in availableWidths" :key="w" :value="w">
-                  {{ w }} mm
-                </option>
-              </select>
+              />
             </div>
 
             <div>
               <label class="block text-sm font-medium text-gray-800 mb-1">
                 Height of the wall opening
               </label>
-              <select
-                v-model="form.config_options.height"
-                class="w-full border rounded-lg p-2"
-              >
-                <option disabled value="">Select height (mm)</option>
-                <option v-for="h in availableHeights" :key="h" :value="h">
-                  {{ h }} mm
-                </option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium text-gray-800 mb-1">
-                Water protection height
-              </label>
               <input
+                v-model="enteredHeight"
                 type="number"
-                min="0"
-                max="500"
-                placeholder="Up to 500 mm"
-                v-model="form.config_options.waterProtectionHeight"
+                min="2000"
+                max="3000"
+                step="1"
+                placeholder="Enter height (mm)"
                 class="w-full border rounded-lg p-2"
               />
             </div>
+
+            <div
+              v-if="(enteredWidth || enteredHeight) && !isSizeValid"
+              class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
+            >
+              Please enter a valid width between 2000 and 6000 mm and a valid height between 2000 and 3000 mm.
+            </div>
           </div>
 
-          <!-- Image (no background) -->
+          <!-- Image -->
           <div class="flex justify-center">
             <img
               :src="img1"
@@ -89,9 +82,7 @@
           if you are uncertain about the appropriate option to go with.
         </p>
 
-        <!-- Images with captions + radios -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
-
           <!-- Behind the reveal -->
           <div class="text-center space-y-3">
             <img
@@ -136,7 +127,6 @@
               </span>
             </label>
           </div>
-
         </div>
       </section>
 
@@ -144,24 +134,73 @@
   </div>
 </template>
 
-
 <script setup>
-  import img1 from "@/Assets/6-Sectional/Step-1/sectional-1.jpg"
-  import img2 from "@/Assets/6-Sectional/Step-1/sectional-1b.jpg"
-  import img3 from "@/Assets/6-Sectional/Step-1/sectional-1c.jpg"
-defineProps({
+import { ref, computed, watch } from "vue";
+import img1 from "@/Assets/6-Sectional/Step-1/sectional-1.jpg";
+import img2 from "@/Assets/6-Sectional/Step-1/sectional-1b.jpg";
+import img3 from "@/Assets/6-Sectional/Step-1/sectional-1c.jpg";
+
+const props = defineProps({
   form: Object
-})
+});
 
-const availableWidths = [
-  2000, 2125, 2250, 2375, 2500, 2625, 2750, 2875, 3000,
-  3125, 3250, 3375, 3500, 3625, 3750, 3875, 4000,
-  4125, 4250, 4375, 4500, 4625, 4750, 4875, 5000,
-  5125, 5250, 5375, 5500, 5625, 5750, 5875, 6000
-]
+const minWidth = 2000;
+const maxWidth = 6000;
+const minHeight = 2000;
+const maxHeight = 3000;
+const stepSize = 125;
 
-const availableHeights = [
-  2000, 2125, 2250, 2375,
-  2500, 2625, 2750, 2875, 3000
-]
+const enteredWidth = ref(
+  props.form.config_options.entered_width ||
+  props.form.config_options.width ||
+  ""
+);
+
+const enteredHeight = ref(
+  props.form.config_options.entered_height ||
+  props.form.config_options.height ||
+  ""
+);
+
+const mappedWidth = computed(() => {
+  const width = Number(enteredWidth.value);
+
+  if (!width || width < minWidth || width > maxWidth) {
+    return null;
+  }
+
+  return Math.floor((width - minWidth) / stepSize) * stepSize + minWidth;
+});
+
+const mappedHeight = computed(() => {
+  const height = Number(enteredHeight.value);
+
+  if (!height || height < minHeight || height > maxHeight) {
+    return null;
+  }
+
+  return Math.floor((height - minHeight) / stepSize) * stepSize + minHeight;
+});
+
+const isSizeValid = computed(() => {
+  return !!mappedWidth.value && !!mappedHeight.value;
+});
+
+watch(enteredWidth, (val) => {
+  props.form.config_options.entered_width = val ? Number(val) : null;
+  props.form.config_options.width = mappedWidth.value;
+});
+
+watch(enteredHeight, (val) => {
+  props.form.config_options.entered_height = val ? Number(val) : null;
+  props.form.config_options.height = mappedHeight.value;
+});
+
+watch(mappedWidth, (val) => {
+  props.form.config_options.width = val;
+});
+
+watch(mappedHeight, (val) => {
+  props.form.config_options.height = val;
+});
 </script>

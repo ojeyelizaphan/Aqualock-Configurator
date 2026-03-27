@@ -25,13 +25,31 @@
             />
             <div
               :class="[
-                'w-12 h-12 rounded-full transition-all duration-300 hover:ring-2 hover:ring-brand-orange',
-                form.config_options.color === option.value ? 'ring-2 ring-brand-orange' : ''
+                'w-12 h-12 rounded-full border-2 transition-all duration-300 hover:ring-2 hover:ring-brand-orange',
+                form.config_options['color'] === option.value
+                  ? 'ring-2 ring-brand-orange border-brand-orange'
+                  : 'border-gray-400'
               ]"
               :style="{ backgroundColor: option.color }"
             ></div>
             <p class="text-xs mt-1 text-gray-700 text-center">{{ option.label }}</p>
           </label>
+        </div>
+
+        <!-- Custom RAL input -->
+        <div v-if="form.config_options['color'] === 'custom'" class="mt-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            Enter preferred RAL color
+          </label>
+          <input
+            type="text"
+            v-model="form.config_options['custom_ral_color']"
+            placeholder="e.g. RAL 1001 Beige"
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-brand-orange"
+          />
+          <p class="text-xs text-gray-500 mt-1">
+            Example: RAL 1001 Beige
+          </p>
         </div>
       </div>
 
@@ -86,11 +104,22 @@
 
 <script setup>
 import imgStep4 from "@/Assets/3-AquaLOCK Door/Step-4/step-4.jpg";
+import { watch } from 'vue';
 
 defineProps({
   form: Object,
   colorOptions: Array
 });
+
+// Clear custom RAL input if user moves away from custom color
+// watch(
+//   () => form.config_options['color'],
+//   (newColor) => {
+//     if (newColor !== 'custom') {
+//       form.config_options.custom_ral_color = '';
+//     }
+//   }
+// );
 
 const imgDoor = imgStep4;
 </script>

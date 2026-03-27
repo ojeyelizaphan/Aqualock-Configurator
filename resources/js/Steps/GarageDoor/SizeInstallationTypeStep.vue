@@ -10,43 +10,66 @@
             Please note the different maximum widths of your garage door depending on the protection height you have selected.
           </p>
           <ul class="list-disc list-inside text-sm mb-2">
-            <li>Protection height up to 0.5 m: width between 2,000 and 5,200 mm</li>
-            <li>Protection height up to 1.6 m: width between 2,000 and 3,100 mm</li>
+            <li>Protection height up to 0.5 m: width between 2,200 and 5,200 mm</li>
+            <li>Protection height up to 1.6 m: width between 2,200 and 3,100 mm</li>
           </ul>
           <p class="text-sm">
-            Height of the wall opening: between 1,920 and 2,520 mm
+            Height of the wall opening: between 2,120 and 2,520 mm
           </p>
         </div>
 
-        <!-- Width & Height Selection -->
+        <!-- Width & Height Input -->
         <div class="grid sm:grid-cols-2 gap-6">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Width (mm)</label>
-            <select
-              v-model="selectedWidth"
+            <input
+              v-model="enteredWidth"
+              type="number"
+              min="2200"
+              :max="maxAllowedWidth"
+              step="1"
+              placeholder="Enter width"
               class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-            >
-              <option disabled value="">-- Select Width --</option>
-              <option v-for="width in widthOptions" :key="width" :value="width">{{ width }}</option>
-            </select>
+            />
+            <p class="text-xs text-gray-500 mt-1">
+              Allowed range: 2200 - {{ maxAllowedWidth }} mm
+            </p>
+            <!-- <p v-if="enteredWidth && mappedWidth" class="text-xs text-amber-700 mt-1">
+              Price will be calculated using width: <strong>{{ mappedWidth }} mm</strong>
+            </p> -->
           </div>
 
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Height (mm)</label>
-            <select
-              v-model="selectedHeight"
+            <input
+              v-model="enteredHeight"
+              type="number"
+              min="2120"
+              max="2520"
+              step="1"
+              placeholder="Enter height"
               class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-            >
-              <option disabled value="">-- Select Height --</option>
-              <option v-for="height in heightOptions" :key="height" :value="height">{{ height }}</option>
-            </select>
+            />
+            <p class="text-xs text-gray-500 mt-1">
+              Allowed range: 2120 - 2520 mm
+            </p>
+            <!-- <p v-if="enteredHeight && mappedHeight" class="text-xs text-amber-700 mt-1">
+              Price will be calculated using height: <strong>{{ mappedHeight }} mm</strong>
+            </p> -->
           </div>
 
           <div
-            v-if="selectedWidth && selectedHeight && selectedVersion == null"
+            v-if="enteredWidth && enteredHeight && !props.form.config_options['version'] && isSizeValid"
             class="sm:col-span-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm text-amber-800"
           >
             You’ve selected your door size. Estimated price will appear after you choose the material in the next step.
+          </div>
+
+          <div
+            v-if="(enteredWidth || enteredHeight) && !isSizeValid"
+            class="sm:col-span-2 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
+          >
+            Please enter a valid size within the allowed range.
           </div>
         </div>
       </div>
@@ -86,11 +109,9 @@
         </div>
       </div>
 
-
     </div>
   </div>
 </template>
-
 
 <script setup>
 import { ref, computed, watch } from 'vue';
@@ -100,24 +121,75 @@ const props = defineProps({
   form: Object,
 });
 
-const selectedWidth = ref(props.form.config_options.width || null);
-const selectedHeight = ref(props.form.config_options.height || null);
+// store raw user input
+const enteredWidth = ref(props.form.config_options.entered_width || props.form.config_options.width || '');
+const enteredHeight = ref(props.form.config_options.entered_height || props.form.config_options.height || '');
 
-const widthOptions = computed(() => {
-  const selectedVersion = props.form.config_options['version'];
+const selectedVersion = computed(() => props.form.config_options['version']);
 
-  if (selectedVersion === 'V500') {
-    // Start at 2200, go up to 5200, step 100
-    return Array.from({ length: Math.floor((5200 - 2200) / 100) + 1 }, (_, i) => 2200 + i * 100);
-  }
-
-  // Other versions: 2200 → 3100
-  return Array.from({ length: Math.floor((3100 - 2200) / 100) + 1 }, (_, i) => 2200 + i * 100);
+// width limit depends on version
+const maxAllowedWidth = computed(() => {
+  return selectedVersion.value === 'V500' ? 5200 : 3100;
 });
 
-const heightOptions = ref([2120, 2220, 2320, 2420, 2520]);
+const minAllowedWidth = 2200;
+const minAllowedHeight = 2120;
+const maxAllowedHeight = 2520;
 
-// Sync to form
-watch(selectedWidth, (val) => props.form.config_options.width = val);
-watch(selectedHeight, (val) => props.form.config_options.height = val);
+// round width down to nearest 100
+const mappedWidth = computed(() => {
+  const width = Number(enteredWidth.value);
+
+  if (!width || width < minAllowedWidth || width > maxAllowedWidth.value) {
+    return null;
+  }
+
+  return Math.floor(width / 100) * 100;
+});
+
+// heights are 2120, 2220, 2320, 2420, 2520
+const heightBreakpoints = [2120, 2220, 2320, 2420, 2520];
+
+const mappedHeight = computed(() => {
+  const height = Number(enteredHeight.value);
+
+  if (!height || height < minAllowedHeight || height > maxAllowedHeight) {
+    return null;
+  }
+
+  let result = heightBreakpoints[0];
+
+  for (const breakpoint of heightBreakpoints) {
+    if (height >= breakpoint) {
+      result = breakpoint;
+    } else {
+      break;
+    }
+  }
+
+  return result;
+});
+
+const isSizeValid = computed(() => {
+  return !!mappedWidth.value && !!mappedHeight.value;
+});
+
+// sync raw values + mapped values into form
+watch(enteredWidth, (val) => {
+  props.form.config_options.entered_width = val ? Number(val) : null;
+  props.form.config_options.width = mappedWidth.value;
+});
+
+watch(enteredHeight, (val) => {
+  props.form.config_options.entered_height = val ? Number(val) : null;
+  props.form.config_options.height = mappedHeight.value;
+});
+
+watch(mappedWidth, (val) => {
+  props.form.config_options.width = val;
+});
+
+watch(mappedHeight, (val) => {
+  props.form.config_options.height = val;
+});
 </script>

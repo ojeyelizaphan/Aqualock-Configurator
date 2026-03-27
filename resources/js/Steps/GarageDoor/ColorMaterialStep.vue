@@ -8,7 +8,7 @@
       <div class="md:w-1/2 space-y-4">
         <h2 class="text-2xl font-semibold mb-2 text-gray-900 text-center">Choose Color</h2>
         <p class="text-sm text-gray-600 text-center leading-relaxed">
-          213 colors to choose from. You have a choice of 213 RAL colors to give your AquaLOCK® garage door the perfect look for your building.  
+          213 colors to choose from. You have a choice of 213 RAL colors to give your AquaLOCK® garage door the perfect look for your building.
           This includes seven standard colors (white and 6 shades of grey), which are available at no extra charges.
           Please note: The display of colors on the website may differ from the actual color due to the monitor display. Specifications are therefore without guarantee.
         </p>
@@ -28,13 +28,31 @@
             />
             <div
               :class="[
-                'w-12 h-12 rounded-full transition-all duration-300 hover:ring-2 hover:ring-brand-orange',
-                form.config_options['color'] === option.value ? 'ring-2 ring-brand-orange' : ''
+                'w-12 h-12 rounded-full border-2 transition-all duration-300 hover:ring-2 hover:ring-brand-orange',
+                form.config_options['color'] === option.value
+                  ? 'ring-2 ring-brand-orange border-brand-orange'
+                  : 'border-gray-400'
               ]"
               :style="{ backgroundColor: option.color }"
             ></div>
             <p class="text-xs mt-1 text-gray-700 text-center">{{ option.label }}</p>
           </label>
+        </div>
+
+        <!-- Custom RAL input -->
+        <div v-if="form.config_options['color'] === 'custom'" class="mt-4">
+          <label class="block text-sm font-medium text-gray-700 mb-1">
+            Enter preferred RAL color
+          </label>
+          <input
+            type="text"
+            v-model="form.config_options['custom_ral_color']"
+            placeholder="e.g. RAL 1001 Beige"
+            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-brand-orange"
+          />
+          <p class="text-xs text-gray-500 mt-1">
+            Example: RAL 1001 Beige
+          </p>
         </div>
 
         <div v-if="colorExtraCost > 0" class="mt-2 text-sm text-red-500 text-center">
@@ -83,7 +101,6 @@
   </div>
 </template>
 
-
 <script setup>
 import { watch } from 'vue';
 import { colorOptions } from '@/Data/colorOptions';
@@ -93,6 +110,16 @@ const { form, colorExtraCost } = defineProps({
   form: Object,
   colorExtraCost: Number
 });
+
+// Clear custom RAL input if user moves away from custom color
+watch(
+  () => form.config_options['color'],
+  (newColor) => {
+    if (newColor !== 'custom') {
+      form.config_options.custom_ral_color = '';
+    }
+  }
+);
 
 // AUTO-DETERMINE VERSION BASED ON MATERIAL (only if height > 500mm)
 watch(
