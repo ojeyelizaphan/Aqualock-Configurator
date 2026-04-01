@@ -114,11 +114,25 @@ const submitOrder = async () => {
 
           <ul class="space-y-3">
             <li
-              v-for="(option, index) in config_options.filter(opt => opt.label.toLowerCase() !== 'accessories')"
+              v-for="(option, index) in config_options
+                .filter(opt =>
+                  opt.label.toLowerCase() !== 'accessories' &&
+                  opt.label.toLowerCase() !== 'width (mm)' &&
+                  opt.label.toLowerCase() !== 'height (mm)'
+                )"
               :key="index"
               class="flex justify-between border-b pb-2 text-gray-700"
             >
-              <span class="font-medium">{{ option.label }}:</span>
+              <span class="font-medium">
+                {{
+                  option.label.toLowerCase() === 'entered width'
+                    ? 'Width (mm)'
+                    : option.label.toLowerCase() === 'entered height'
+                    ? 'Height (mm)'
+                    : option.label
+                }}:
+              </span>
+
               <span>{{ option.value }}</span>
             </li>
           </ul>
@@ -133,7 +147,10 @@ const submitOrder = async () => {
               </li>
             </ul>
           </div>
+
         </div>
+
+
       </div>
 
       <!-- RIGHT: Contact Form -->

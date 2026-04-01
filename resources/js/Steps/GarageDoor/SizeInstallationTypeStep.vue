@@ -53,16 +53,6 @@
             <p class="text-xs text-gray-500 mt-1">
               Allowed range: 2120 - 2520 mm
             </p>
-            <!-- <p v-if="enteredHeight && mappedHeight" class="text-xs text-amber-700 mt-1">
-              Price will be calculated using height: <strong>{{ mappedHeight }} mm</strong>
-            </p> -->
-          </div>
-
-          <div
-            v-if="enteredWidth && enteredHeight && !props.form.config_options['version'] && isSizeValid"
-            class="sm:col-span-2 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-sm text-amber-800"
-          >
-            You’ve selected your door size. Estimated price will appear after you choose the material in the next step.
           </div>
 
           <div

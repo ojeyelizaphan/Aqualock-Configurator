@@ -1,7 +1,6 @@
 <template>
   <div class="max-w-5xl mx-auto space-y-10">
 
-    <!-- Color & Material Side by Side -->
     <div class="flex flex-col md:flex-row gap-10">
 
       <!-- Color Selection -->
@@ -13,7 +12,6 @@
           Please note: The display of colors on the website may differ from the actual color due to the monitor display. Specifications are therefore without guarantee.
         </p>
 
-        <!-- Horizontally scrollable palette -->
         <div class="flex overflow-x-auto gap-4 py-2 px-1">
           <label
             v-for="option in colorOptions"
@@ -39,7 +37,6 @@
           </label>
         </div>
 
-        <!-- Custom RAL input -->
         <div v-if="form.config_options['color'] === 'custom'" class="mt-4">
           <label class="block text-sm font-medium text-gray-700 mb-1">
             Enter preferred RAL color
@@ -60,41 +57,35 @@
         </div>
       </div>
 
-      <!-- Material Selection -->
+      <!-- Material Information -->
       <div class="md:w-1/2 space-y-4">
-        <h2 class="text-2xl font-semibold mb-2 text-gray-900 text-center">Choose Material</h2>
-        <p class="text-sm text-gray-600 text-center leading-relaxed">
-          Material: Galvanized steel or stainless steel. As a rule, galvanizing is completely sufficient for rust protection,
-          especially as each door is also primed and painted. We give a 5-year guarantee against rusting through.
-          However, if your garage door comes into contact with salt water or your house is located near the sea, we recommend stainless steel.
-        </p>
+        <h2 class="text-2xl font-semibold mb-2 text-gray-900 text-center">Material</h2>
 
-        <div class="flex flex-col sm:flex-row justify-center gap-8 mt-4">
-          <label
-            v-for="option in materialOptions"
-            :key="option.value"
-            class="flex flex-col items-center cursor-pointer"
-          >
-            <input
-              type="radio"
-              :value="option.value"
-              v-model="form.config_options['material']"
-              class="hidden"
-            />
-            <div
-              :class="[
-                'w-40 h-40 rounded-lg overflow-hidden border-2 transition-shadow duration-300 hover:shadow-lg',
-                form.config_options['material'] === option.value
-                  ? 'border-brand-orange ring-2 ring-brand-orange'
-                  : 'border-gray-300'
-              ]"
-            >
-              <img :src="option.image" alt="Material option" class="w-full h-full object-cover" />
-            </div>
-            <p class="mt-2 font-semibold text-gray-800 text-center">{{ option.label }}</p>
-            <p class="text-xs text-gray-500 text-center">{{ option.description }}</p>
-          </label>
+        <!-- Text content -->
+        <div class="text-center">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            Galvanized Steel
+          </h3>
+
+          <p class="text-sm text-gray-600 leading-relaxed max-w-md mx-auto">
+            Galvanized steel is the only available material option for the
+            AquaLOCK® garage door at the moment. As a rule, galvanizing is completely
+            sufficient for rust protection, especially as each door is also primed
+            and painted. We give a 5-year guarantee against rusting through.
+          </p>
+
         </div>
+
+
+        <!-- Image wrapper -->
+        
+          <img
+            :src="imgGalvanized"
+            alt="Galvanized Steel"
+            class="w-full h-56 object-contain rounded-xl"
+          />
+        
+
       </div>
 
     </div>
@@ -102,16 +93,29 @@
 </template>
 
 <script setup>
-import { watch } from 'vue';
+import { watch, onMounted } from 'vue';
 import { colorOptions } from '@/Data/colorOptions';
-import { materialOptions } from '@/Data/materialOptions';
+import imgGalvanized from "@/Assets/2-Up-and-over door - Steps/Step-3/galvanized steel.jpeg";
 
 const { form, colorExtraCost } = defineProps({
   form: Object,
   colorExtraCost: Number
 });
 
-// Clear custom RAL input if user moves away from custom color
+const ensureMaterialDefaults = () => {
+  form.config_options.material = 'galvanized_steel';
+
+  if (form.config_options.protection_height === 'up-to-500mm') {
+    form.config_options.version = 'V500';
+  } else if (form.config_options.protection_height === 'over-500mm') {
+    form.config_options.version = 'V';
+  }
+};
+
+onMounted(() => {
+  ensureMaterialDefaults();
+});
+
 watch(
   () => form.config_options['color'],
   (newColor) => {
@@ -121,25 +125,10 @@ watch(
   }
 );
 
-// AUTO-DETERMINE VERSION BASED ON MATERIAL (only if height > 500mm)
 watch(
-  () => form.config_options['material'],
-  (newMaterial) => {
-    if (!newMaterial) return;
-
-    // If protection height is up to 500mm, version is already v500 and cannot change
-    if (form.config_options['protection_height'] === "up-to-500mm") {
-      return;
-    }
-
-    // Otherwise assign V or E based on material
-    if (newMaterial === 'galvanized_steel') {
-      form.config_options.version = 'V';
-    }
-
-    if (newMaterial === 'stainless_steel') {
-      form.config_options.version = 'E';
-    }
+  () => form.config_options['protection_height'],
+  () => {
+    ensureMaterialDefaults();
   }
 );
 </script>

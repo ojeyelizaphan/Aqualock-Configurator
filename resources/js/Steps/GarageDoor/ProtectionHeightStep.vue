@@ -78,28 +78,29 @@
   </div>
 </template>
   
-  <script setup>
-  import { watch } from 'vue';
-  import { protectionHeightOptions } from '@/Data/protectionHeightOptions';
+<script setup>
+import { watch } from 'vue';
+import { protectionHeightOptions } from '@/Data/protectionHeightOptions';
 
-  const { form } = defineProps({
-    form: Object
-  });
+const { form } = defineProps({
+  form: Object
+});
 
-  // AUTO-DETERMINE VERSION BASED ON PROTECTION HEIGHT
-  watch(
-    () => form.config_options['protection_height'],
-    (newValue) => {
-      if (!newValue) return;
+watch(
+  () => form.config_options['protection_height'],
+  (newValue) => {
+    if (!newValue) return;
 
-      if (newValue === "up-to-500mm") {
-        form.config_options.version = "V500";
-      } else if (newValue === "over-500mm") {
-        // version will be determined later in the material step
-        form.config_options.version = null;
-      }
+    if (newValue === "up-to-500mm") {
+      form.config_options.version = "V500";
+      form.config_options.material = "galvanized_steel";
+    } else if (newValue === "over-500mm") {
+      form.config_options.version = "V";
+      form.config_options.material = "galvanized_steel";
     }
-  );
-  </script>
+  },
+  { immediate: true }
+);
+</script>
 
   

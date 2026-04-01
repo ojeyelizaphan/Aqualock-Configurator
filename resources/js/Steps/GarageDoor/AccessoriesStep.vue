@@ -166,25 +166,11 @@ function ensureGlazingStructure() {
   const accessories = props.form.config_options.accessories ||= {}
   const glazing = accessories.glazing ||= {
     windows: [],
-    stripe: { type: '', length: 0, insulated: false }
+    stripe: { type: null, length: null, insulated: false }
   }
 }
 
-function toggleWindow(option) {
-  ensureGlazingStructure()
-  const windows = props.form.config_options.accessories.glazing.windows
-  const exists = windows.find(w => w.value === option.value)
-  if (exists) {
-    props.form.config_options.accessories.glazing.windows = windows.filter(w => w.value !== option.value)
-  } else {
-    windows.push(option)
-  }
-}
 
-function isWindowSelected(option) {
-  ensureGlazingStructure()
-  return props.form.config_options.accessories.glazing.windows.some(w => w.value === option.value)
-}
 
 watch(selectedStripe, (val) => {
   ensureGlazingStructure()

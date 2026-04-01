@@ -1,8 +1,8 @@
 function formatKey(key) {
   return key
-    .replace(/([a-z])([A-Z])/g, '$1 $2') // camelCase to spaced
-    .replace(/_/g, ' ')                 // snake_case to spaced
-    .replace(/\b\w/g, l => l.toUpperCase()); // Capitalize
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/_/g, ' ')
+    .replace(/\b\w/g, l => l.toUpperCase());
 }
 
 function flattenObject(obj, parentKey = '') {
@@ -12,8 +12,13 @@ function flattenObject(obj, parentKey = '') {
     const value = obj[key];
     const fullKey = parentKey ? `${parentKey}.${key}` : key;
 
-    if (value === null || value === '' || value === false || (Array.isArray(value) && value.length === 0)) {
-      continue; // skip empty/null/false/empty arrays
+    if (
+      value === null ||
+      value === '' ||
+      value === false ||
+      (Array.isArray(value) && value.length === 0)
+    ) {
+      continue;
     }
 
     if (typeof value === 'object' && !Array.isArray(value)) {
@@ -36,10 +41,37 @@ function flattenObject(obj, parentKey = '') {
 
 export function formatAccessories(accessories = {}) {
   const flatEntries = flattenObject(accessories);
+  const stripeType = accessories?.glazing?.stripe?.type;
 
-  return flatEntries.map(([path, value]) => {
-    const label = formatKey(path.split('.').pop());
-    const displayValue = typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value;
-    return `${label}: ${displayValue}`;
-  });
+  return flatEntries
+    .filter(([path, value]) => {
+      // Hide stripe length unless a stripe type has actually been selected
+      if (path === 'glazing.stripe.length' && !stripeType) {
+        return false;
+      }
+
+      // Also hide zero/empty stripe length even if somehow present
+      if (
+        path === 'glazing.stripe.length' &&
+        (value === 0 || value === '0' || value === null || value === '')
+      ) {
+        return false;
+      }
+
+      return true;
+    })
+    .map(([path, value]) => {
+      let label;
+
+      if (path === 'glazing.stripe.length') {
+        label = 'Stripe Length';
+      } else {
+        label = formatKey(path.split('.').pop().replace(/\[\d+\]/g, ''));
+      }
+
+      const displayValue =
+        typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value;
+
+      return `${label}: ${displayValue}`;
+    });
 }
