@@ -104,6 +104,18 @@ const submitOrder = async () => {
               €{{ parseFloat(configuration.total_price).toFixed(2) }}
             </span>
           </p>
+
+          <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
+            <p class="text-sm text-amber-900 leading-relaxed">
+              <span class="font-semibold">Important pricing note:</span>
+              All prices shown are <span class="font-semibold">net prices</span>.
+              VAT is <span class="font-semibold">not included</span> and must be added
+              according to the VAT rate applicable in your country.
+              <span class="block mt-2">
+                Transport and installation are also <span class="font-semibold">not included</span>.
+              </span>
+            </p>
+          </div>
         </div>
 
         <!-- Configuration Details -->
