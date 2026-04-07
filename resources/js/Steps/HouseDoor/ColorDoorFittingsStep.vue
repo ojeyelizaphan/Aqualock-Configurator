@@ -5,36 +5,16 @@
       <div>
         <h2 class="text-2xl font-semibold text-gray-800 mb-2">Plenty of Colours</h2>
         <p class="text-sm text-gray-600 mb-4">
-          In order for your AquaLOCK® door to perfectly match your building, you have a choice of 213 RAL colours.
+          In order for your AquaLOCK® door to perfectly match your building, you have a choice of 216 RAL colours.
           Seven standard colours (white, black and several shades of grey) are available at no extra charge.
           <br>Please Note: The colour shades on the website may differ from the actual colour due to monitor display
           and therefore, we offer no guarantee for an exact match.
         </p>
 
-        <div class="flex overflow-x-auto gap-4 py-2 px-1">
-          <label
-            v-for="option in colorOptions"
-            :key="option.value"
-            class="flex flex-col items-center cursor-pointer flex-shrink-0"
-          >
-            <input
-              type="radio"
-              :value="option.value"
-              v-model="form.config_options.color"
-              class="hidden"
-            />
-            <div
-              :class="[
-                'w-12 h-12 rounded-full border-2 transition-all duration-300 hover:ring-2 hover:ring-brand-orange',
-                form.config_options['color'] === option.value
-                  ? 'ring-2 ring-brand-orange border-brand-orange'
-                  : 'border-gray-400'
-              ]"
-              :style="{ backgroundColor: option.color }"
-            ></div>
-            <p class="text-xs mt-1 text-gray-700 text-center">{{ option.label }}</p>
-          </label>
-        </div>
+        <ColorSelector
+          :options="colorOptions"
+          v-model="form.config_options.color"
+        />
 
         <!-- Custom RAL input -->
         <div v-if="form.config_options['color'] === 'custom'" class="mt-4">
@@ -104,6 +84,7 @@
 
 <script setup>
 import imgStep4 from "@/Assets/3-AquaLOCK Door/Step-4/step-4.jpg";
+import ColorSelector from '@/Components/ColorSector.vue'
 import { watch } from 'vue';
 
 defineProps({

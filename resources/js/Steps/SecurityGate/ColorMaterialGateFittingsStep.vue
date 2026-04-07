@@ -16,7 +16,7 @@
 
         <p class="text-sm text-gray-600 text-center leading-relaxed">
           To perfectly match your AquaLOCK® gate to your building, you have a choice
-          of 213 RAL colours. There are seven standard colours (white and six shades
+          of 216 RAL colours. There are seven standard colours (white and six shades
           of grey) available at no extra charge.
           <br /><br />
           Please note: Colour shades displayed on the website may differ from the
@@ -24,33 +24,11 @@
           exact match can be given.
         </p>
 
-        <!-- Horizontally scrollable palette -->
-        <div class="flex overflow-x-auto gap-4 py-2 px-1">
-          <label
-            v-for="option in colorOptions"
-            :key="option.value"
-            class="flex flex-col items-center cursor-pointer flex-shrink-0"
-          >
-            <input
-              type="radio"
-              :value="option.value"
-              v-model="form.config_options.color"
-              class="hidden"
-            />
-            <div
-              :class="[
-                'w-12 h-12 rounded-full border-2 transition-all duration-300 hover:ring-2 hover:ring-brand-orange',
-                form.config_options['color'] === option.value
-                  ? 'ring-2 ring-brand-orange border-brand-orange'
-                  : 'border-gray-400'
-              ]"
-              :style="{ backgroundColor: option.color }"
-            ></div>
-            <p class="text-xs mt-1 text-gray-700 text-center">
-              {{ option.label }}
-            </p>
-          </label>
-        </div>
+        <!-- Compact scroll container -->
+        <ColorSelector
+          :options="colorOptions"
+          v-model="form.config_options.color"
+        />
 
         <!-- Custom RAL input -->
         <div v-if="form.config_options['color'] === 'custom'" class="mt-4">
@@ -157,6 +135,7 @@
   
 <script setup>
 import { watch } from 'vue';
+import ColorSelector from '@/Components/ColorSector.vue'
 import img1 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-1.jpg"
 import img2 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-2.jpg"
 import img3 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-3.jpg"

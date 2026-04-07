@@ -6,15 +6,11 @@
       <div class="md:w-1/2 space-y-6">
         <div class="bg-gray-50 border border-gray-200 rounded-2xl p-6 shadow-sm text-gray-700 leading-relaxed">
           <h2 class="text-2xl font-semibold mb-3 text-gray-900 text-center">Garage Door Size</h2>
-          <p class="mb-2">
-            Please note the different maximum widths of your garage door depending on the protection height you have selected.
-          </p>
-          <ul class="list-disc list-inside text-sm mb-2">
-            <li>Protection height up to 0.5 m: width between 2,200 and 5,200 mm</li>
-            <li>Protection height up to 1.6 m: width between 2,200 and 3,100 mm</li>
-          </ul>
           <p class="text-sm">
-            Height of the wall opening: between 2,120 and 2,520 mm
+            Width of the wall opening: between 2,200 and 5,200 mm.
+          </p>
+          <p class="text-sm">
+            Height of the wall opening: between 1,920 and 2,520 mm
           </p>
         </div>
 
@@ -34,9 +30,6 @@
             <p class="text-xs text-gray-500 mt-1">
               Allowed range: 2200 - {{ maxAllowedWidth }} mm
             </p>
-            <!-- <p v-if="enteredWidth && mappedWidth" class="text-xs text-amber-700 mt-1">
-              Price will be calculated using width: <strong>{{ mappedWidth }} mm</strong>
-            </p> -->
           </div>
 
           <div>
@@ -44,14 +37,14 @@
             <input
               v-model="enteredHeight"
               type="number"
-              min="2120"
+              min="1920"
               max="2520"
               step="1"
               placeholder="Enter height"
               class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange"
             />
             <p class="text-xs text-gray-500 mt-1">
-              Allowed range: 2120 - 2520 mm
+              Allowed range: 1920 - 2520 mm
             </p>
           </div>
 
@@ -111,19 +104,17 @@ const props = defineProps({
   form: Object,
 });
 
-// store raw user input
 const enteredWidth = ref(props.form.config_options.entered_width || props.form.config_options.width || '');
 const enteredHeight = ref(props.form.config_options.entered_height || props.form.config_options.height || '');
 
 const selectedVersion = computed(() => props.form.config_options['version']);
 
-// width limit depends on version
 const maxAllowedWidth = computed(() => {
-  return selectedVersion.value === 'V500' ? 5200 : 3100;
+  return 5200;
 });
 
 const minAllowedWidth = 2200;
-const minAllowedHeight = 2120;
+const minAllowedHeight = 1920;
 const maxAllowedHeight = 2520;
 
 // round width down to nearest 100
@@ -164,7 +155,6 @@ const isSizeValid = computed(() => {
   return !!mappedWidth.value && !!mappedHeight.value;
 });
 
-// sync raw values + mapped values into form
 watch(enteredWidth, (val) => {
   props.form.config_options.entered_width = val ? Number(val) : null;
   props.form.config_options.width = mappedWidth.value;

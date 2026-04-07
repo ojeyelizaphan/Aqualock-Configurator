@@ -8,24 +8,41 @@
     <!-- Explanation -->
     <div class="space-y-4 text-gray-700 leading-relaxed">
       <p class="font-medium">
-        Solutions for wide openings with a center post or corner mounting.
+        Solutions for wide openings with a center post or corner mounting
       </p>
 
       <p>
-        Multiple <span class="font-medium">AquaLOCK® Quickwall</span> panels can be connected using a
-        fixed central post (width: <span class="font-medium">60 mm</span>) where a higher level of
-        protection is required, e.g. <span class="font-medium">2.5 m wide × 1 m high</span>.
+        Multiple <span class="font-medium">AquaLOCK® Quickwall</span> panels can be connected using a fixed central post
+        (width: <span class="font-medium">60 mm</span>) where a higher level of protection is required,
+        e.g. <span class="font-medium">2.5 m wide × 1 m high</span>. The central post is inserted into a
+        stainless steel sleeve embedded in concrete and fixed with an integrated screw. Quickwall panels are
+        then mounted on each side of the post to create a stable and secure barrier.
       </p>
 
       <p>
-        The central post is inserted into a stainless steel sleeve embedded in concrete.
-        Quickwall panels are then mounted on each side of the post to create a stable and secure barrier.
+        For corner applications, a special corner post can be used to join two Quickwall panels at an angle,
+        providing a seamless and strong corner installation.
       </p>
 
-      <p>
-        For corner applications, a special corner post can be used to join two Quickwall panels at an
-        angle, providing a seamless and strong corner installation.
-      </p>
+      <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4">
+        <p class="font-medium text-gray-800 mb-2">
+          Example how to calculate the correct width of the Quickwall panels
+        </p>
+
+        <p class="mb-3">
+          You want to protect a <span class="font-medium">2,400 mm</span> wide garage door at a height of
+          <span class="font-medium">1,500 mm</span>. The maximum width at that protection height is
+          <span class="font-medium">1,100 mm</span>, which is not enough to use only 2 panels — so you have
+          to take <span class="font-medium">3 panels</span> and <span class="font-medium">2 center posts</span>.
+        </p>
+
+        <p class="font-mono text-sm text-gray-800">
+          2,400 mm − 120 mm (2 center posts) = 2,280 mm
+        </p>
+        <p class="font-mono text-sm text-gray-800">
+          2,280 ÷ 3 = 760 mm per panel
+        </p>
+      </div>
     </div>
 
     <!-- Subtle divider -->

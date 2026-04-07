@@ -1,17 +1,14 @@
 <template>
   <div class="max-w-6xl mx-auto space-y-8">
-    <!-- Title -->
     <h2 class="text-2xl font-semibold text-center text-gray-800">
       Protection Level & Measurements
     </h2>
 
-    <!-- Main Card -->
     <div class="bg-white rounded-2xl shadow-md p-6 md:p-8">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
 
         <!-- LEFT: Description + Inputs -->
         <div class="space-y-6">
-          <!-- Intro text -->
           <div class="space-y-3 text-gray-700 leading-relaxed">
             <h3 class="text-lg font-semibold text-gray-800">
               Select water protection level
@@ -53,7 +50,7 @@
           <!-- Protection Height -->
           <div v-if="isWidthValid">
             <label class="block font-medium text-gray-800 mb-3">
-              Protection height (mm)
+              Protection height (mm) <span class="text-red-600">*</span>
             </label>
 
             <div
@@ -83,6 +80,13 @@
               class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
             >
               No protection heights are available for this width.
+            </div>
+
+            <div
+              v-if="availableProtectionHeights.length && !form.config_options.height"
+              class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700 mt-3"
+            >
+              Please select a protection height before continuing.
             </div>
           </div>
         </div>
@@ -145,8 +149,6 @@ const mappedWidth = computed(() => {
   return Math.floor((width - minWidth) / stepSize) * stepSize + minWidth;
 });
 
-// Decide which price table to use.
-// Adjust this field name if your config uses a different one.
 const selectedPriceTable = computed(() => {
   const installationMethod = props.form.config_options.installation_method;
 
@@ -158,8 +160,6 @@ const selectedPriceTable = computed(() => {
     return quickwallFrontReveal;
   }
 
-  // If not selected yet, use either table just to determine availability shape.
-  // Both tables have the same available width/height structure.
   return quickwallBetweenReveal;
 });
 
@@ -176,20 +176,17 @@ const availableProtectionHeights = computed(() => {
   });
 });
 
-// keep rounded width in form
 watch(enteredWidth, (val) => {
   props.form.config_options.entered_width = val ? Number(val) : null;
   props.form.config_options.width = mappedWidth.value;
 });
 
-// if selected height becomes invalid for new width, clear it
 watch(availableProtectionHeights, (heights) => {
   if (!heights.includes(props.form.config_options.height)) {
     props.form.config_options.height = null;
   }
 });
 
-// also keep width synced if mapped width changes
 watch(mappedWidth, (val) => {
   props.form.config_options.width = val;
 });

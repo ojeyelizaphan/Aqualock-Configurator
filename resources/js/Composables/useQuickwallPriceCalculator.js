@@ -14,9 +14,10 @@ export function useQuickwallPriceCalculator(form) {
 
     if (!width || !height || !installType) return null;
 
-    const priceTable = installType === 'in_front'
-      ? quickwallFrontReveal
-      : quickwallBetweenReveal;
+    const priceTable =
+      installType === 'in_front'
+        ? quickwallFrontReveal
+        : quickwallBetweenReveal;
 
     const heightRow = priceTable[height];
     if (!heightRow) return null;
@@ -27,16 +28,14 @@ export function useQuickwallPriceCalculator(form) {
     return heightRow[widthIndex] || null;
   });
 
-
-
   const multiPanelSystemCost = computed(() => {
     const panelQty = parseInt(form.config_options?.quickwall_panels || 0);
     const centerQty = parseInt(form.config_options?.center_posts || 0);
     const cornerQty = parseInt(form.config_options?.corner_posts || 0);
     const height = form.config_options?.height;
-  
+
     if (!height) return 0;
-  
+
     const heightPriceMap = {
       1340: 820,
       1210: 782,
@@ -48,44 +47,62 @@ export function useQuickwallPriceCalculator(form) {
       410: 641,
       280: 572
     };
-  
+
     const unitPrice = heightPriceMap[height] || 0;
-  
+
     return unitPrice * (panelQty + centerQty + cornerQty);
   });
-  
+
+  const bottomPlateCost = computed(() => {
+    const panelQty = parseInt(form.config_options?.quickwall_panels || 0);
+    const width = parseInt(form.config_options?.width || 0);
+
+    if (!panelQty || !width) return 0;
+
+    const widthInMeters = width / 1000;
+
+    // number of panels × width × €71
+    return panelQty * widthInMeters * 71;
+  });
+
+  const colourCoatingCost = computed(() => {
+    const cornerQty = parseInt(form.config_options?.corner_posts || 0);
+    const hasColourCoating =
+      form.config_options?.corner_profiles_coloring === 'with';
+
+    if (!hasColourCoating) return 0;
+
+    // colour coating applies to the profiles only
+    return cornerQty * 86;
+  });
+
+  const hooksCost = computed(() => {
+    const hookQty = parseInt(
+      form.config_options?.accessory_quantities?.quickwall_hooks || 0
+    );
+
+    return hookQty * 11;
+  });
 
   const accessoryExtraCost = computed(() => {
-    let total = 0;
-    const width = parseInt(form.config_options?.width || 0);
-    const quantities = form.config_options?.accessory_quantities || {};
-
-    // Bottom Plate — price per RMT
-    if (quantities.bottom_plate > 0 && width > 0) {
-      const rmt = width / 1000;
-      total += Math.ceil(rmt * 71);
-    }
-
-    // Colour Coating for Corner Profiles — per piece
-    total += (quantities.colour_coating || 0) * 86;
-
-    // Hooks for storing the Quickwall — per piece
-    total += (quantities.quickwall_hooks || 0) * 11;
-
-    // Assembly Kit with Sealing — fixed per set
-    total += (quantities.assembly_kit || 0) * 132;
-
-    return total;
+    return bottomPlateCost.value + colourCoatingCost.value + hooksCost.value;
   });
 
   const finalPrice = computed(() => {
-    return (baseCalculatedPrice.value || 0) + accessoryExtraCost.value + multiPanelSystemCost.value;
+    return (
+      (baseCalculatedPrice.value || 0) +
+      multiPanelSystemCost.value +
+      accessoryExtraCost.value
+    );
   });
 
   return {
     baseCalculatedPrice,
-    accessoryExtraCost,
     multiPanelSystemCost,
+    bottomPlateCost,
+    colourCoatingCost,
+    hooksCost,
+    accessoryExtraCost,
     finalPrice
   };
 }

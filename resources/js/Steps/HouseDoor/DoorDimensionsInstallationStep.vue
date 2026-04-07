@@ -21,12 +21,12 @@
                 type="number"
                 v-model.number="form.config_options.width"
                 :min="500"
-                :max="1200"
+                :max="1210"
                 class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-                placeholder="500 - 1200"
+                placeholder="500 - 1210"
                 :class="{'border-red-500': isWidthInvalid, 'border-gray-300': !isWidthInvalid}"
               />
-              <p v-if="isWidthInvalid" class="text-xs text-red-500">Width must be between 500 and 1200 mm</p>
+              <p v-if="isWidthInvalid" class="text-xs text-red-500">Width must be between 500 and 1210 mm</p>
             </div>
 
             <div>
@@ -157,7 +157,7 @@ const rightInstallationOptions = installationOptions.slice(2, 4);
 // Input validation
 const isWidthInvalid = computed(() => {
   const w = props.form.config_options.width;
-  return w < 500 || w > 1200;
+  return w < 500 || w > 1210;
 });
 const isHeightInvalid = computed(() => {
   const h = props.form.config_options.height;

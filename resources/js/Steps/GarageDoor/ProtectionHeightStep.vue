@@ -62,15 +62,15 @@
           <!-- Extra Information (based on value) -->
           <template v-if="option.value === 'up-to-500mm'">
             <p class="text-xs text-gray-500 mt-2">
-              For doors from 3,100 mm width, manual locking must be closed to achieve full protection.
+              For doors from 3,100 mm width, manual locking must be closed to achieve full protection. Maximum width is 5,200 mm.
             </p>
           </template>
 
-          <template v-else>
+          <!-- <template v-else>
             <p class="text-xs text-gray-500 mt-2">
               Door width is limited to 3,100 mm.
             </p>
-          </template>
+          </template> -->
         </div>
       </label>
     </div>

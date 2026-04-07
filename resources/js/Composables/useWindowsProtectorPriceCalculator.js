@@ -27,13 +27,19 @@ export function useWindowsProtectorPriceCalculator(form) {
     if (hatchType === 'removable') {
       const rw = parseInt(config.removable_hatch_width);
       const rh = parseInt(config.removable_hatch_height);
-      hatchPrice = removableHatchPrices[rw]?.[rh] || 0;
+
+      if (rw && rh) {
+        hatchPrice = removableHatchPrices[rw]?.[rh] || 0;
+      }
     }
 
     if (hatchType === 'tilt-up') {
       const tw = parseInt(config.tilt_up_hatch_width);
       const th = parseInt(config.tilt_up_hatch_height);
-      hatchPrice = tiltUpHatchPrices[tw]?.[th] || 0;
+
+      if (tw && th) {
+        hatchPrice = tiltUpHatchPrices[tw]?.[th] || 0;
+      }
     }
 
     return baseWindowPrice + hatchPrice + ASSEMBLY_KIT_PRICE;

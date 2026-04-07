@@ -41,16 +41,46 @@ function flattenObject(obj, parentKey = '') {
 
 export function formatAccessories(accessories = {}) {
   const flatEntries = flattenObject(accessories);
-  const stripeType = accessories?.glazing?.stripe?.type;
 
   return flatEntries
     .filter(([path, value]) => {
-      // Hide stripe length unless a stripe type has actually been selected
-      if (path === 'glazing.stripe.length' && !stripeType) {
+      const lastKey = path.split('.').pop().replace(/\[\d+\]/g, '');
+
+      // Hide internal/helper fields everywhere
+      if (['value', 'price', 'unit', 'insulated'].includes(lastKey)) {
         return false;
       }
 
-      // Also hide zero/empty stripe length even if somehow present
+      // Hide empty drive-over "none" if you don't want it shown in summary
+      if (path === 'driveOverPlate' && value === 'none') {
+        return false;
+      }
+
+      // Hide window quantity if no window selected
+      if (
+        path === 'glazing.windows.quantity' &&
+        !accessories?.glazing?.windows?.type
+      ) {
+        return false;
+      }
+
+      // Hide empty or zero window quantity
+      if (
+        path === 'glazing.windows.quantity' &&
+        (value === 0 || value === '0' || value === null || value === '')
+      ) {
+        return false;
+      }
+
+      // Hide stripe length if no stripe selected
+      if (
+        path === 'glazing.stripe.length' &&
+        !accessories?.glazing?.stripe?.type
+      ) {
+        return false;
+      }
+
+      // Hide empty or zero stripe length
       if (
         path === 'glazing.stripe.length' &&
         (value === 0 || value === '0' || value === null || value === '')
@@ -61,16 +91,43 @@ export function formatAccessories(accessories = {}) {
       return true;
     })
     .map(([path, value]) => {
-      let label;
+      let label = '';
+      let displayValue = value;
 
-      if (path === 'glazing.stripe.length') {
+      // Drive-over plate formatting
+      if (path === 'driveOverPlate') {
+        label = 'Drive-over Plate';
+        displayValue =
+          value === 'stainless'
+            ? 'Stainless Steel'
+            : value === 'aluminium'
+            ? 'Aluminium'
+            : value;
+      }
+
+      // Window formatting
+      else if (path === 'glazing.windows.type') {
+        label = 'Window';
+      } else if (path === 'glazing.windows.quantity') {
+        label = 'Number of Windows';
+      }
+
+      // Stripe formatting
+      else if (path === 'glazing.stripe.type') {
+        label = 'Glass Stripe';
+      } else if (path === 'glazing.stripe.length') {
         label = 'Stripe Length';
-      } else {
+        displayValue = `${value} mm`;
+      }
+
+      // Generic fallback
+      else {
         label = formatKey(path.split('.').pop().replace(/\[\d+\]/g, ''));
       }
 
-      const displayValue =
-        typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value;
+      if (typeof displayValue === 'boolean') {
+        displayValue = displayValue ? 'Yes' : 'No';
+      }
 
       return `${label}: ${displayValue}`;
     });

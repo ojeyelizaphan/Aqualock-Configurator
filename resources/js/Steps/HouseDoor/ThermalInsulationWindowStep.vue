@@ -126,6 +126,41 @@
           <span class="font-medium text-gray-900">With Window</span>
         </label>
       </div>
+
+      <!-- FLOOD PROTECTION OPTION-->
+      <div class="mt-6 border-t pt-6">
+        <h3 class="text-xl font-semibold text-gray-800 mb-3">
+          Flood Protection
+        </h3>
+
+        <p class="text-sm text-gray-600 mb-3">
+          The heavy duty version provides flood protection up to 5 m.
+        </p>
+
+        <label class="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            v-model="form.config_options.heavy_duty"
+            :disabled="form.config_options.window_type === 'with'"
+            class="mt-1"
+          />
+          <div>
+            <p class="font-medium text-gray-900">
+              Heavy duty version with flood protection up to 5 m
+            </p>
+            <p class="text-sm text-gray-600">
+              Not available when a window is selected.
+            </p>
+          </div>
+        </label>
+
+        <p
+          v-if="form.config_options.window_type === 'with'"
+          class="text-sm text-red-600 mt-2"
+        >
+          Flood protection is not available with windows.
+        </p>
+      </div>
     </div>
  <!-- END DESCRIPTION GRID -->
 
@@ -194,12 +229,16 @@
 
 
 <script setup>
+import { watch } from 'vue';
 import imgDoor1 from "@/Assets/3-AquaLOCK Door/Step-1/aqualock-1a.jpg";
 import imgDoor2 from "@/Assets/3-AquaLOCK Door/Step-1/aqualock-1b.jpg";
 import imgDoor3 from "@/Assets/3-AquaLOCK Door/Step-1/aqualock-1c.jpg";
+
 const props = defineProps({
   form: Object
 });
+
+const form = props.form;
 
 const insulationOptions = [
   { value: "thermally_insulated", label: "Thermally Insulated", description: "High thermal efficiency for energy savings." },
@@ -226,4 +265,27 @@ const windowVersions = [
     image: imgDoor3
   }
 ];
+
+watch(
+  () => form.config_options.window_type,
+  (value) => {
+    if (value === 'with') {
+      form.config_options.heavy_duty = false;
+    }
+
+    if (value !== 'with') {
+      form.config_options.window_version = null;
+    }
+  }
+);
+
+watch(
+  () => form.config_options.heavy_duty,
+  (value) => {
+    if (value) {
+      form.config_options.window_type = 'without';
+      form.config_options.window_version = null;
+    }
+  }
+);
 </script>

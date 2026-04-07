@@ -10,19 +10,33 @@
         Included by default
       </h3>
       <p class="text-sm text-amber-800 mb-4">
-        Assembly kit with sealing is a standard option and is automatically added to the total price.
+        Motor and assembly kit with sealing are standard options and are automatically added to the total price.
       </p>
 
-      <div class="flex items-start justify-between gap-4">
-        <div>
-          <p class="font-medium text-gray-900">Assembly kit with sealing</p>
-          <p class="text-sm text-gray-600">
-            Standard option — automatically included.
+      <div class="space-y-4">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="font-medium text-gray-900">Motor</p>
+            <p class="text-sm text-gray-600">
+              Standard option — automatically included.
+            </p>
+          </div>
+          <p class="font-semibold text-gray-900 whitespace-nowrap">
+            €651 / piece
           </p>
         </div>
-        <p class="font-semibold text-gray-900 whitespace-nowrap">
-          €246 / piece
-        </p>
+
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="font-medium text-gray-900">Assembly kit with sealing</p>
+            <p class="text-sm text-gray-600">
+              Standard option — automatically included.
+            </p>
+          </div>
+          <p class="font-semibold text-gray-900 whitespace-nowrap">
+            €246 / piece
+          </p>
+        </div>
       </div>
     </div>
 
@@ -42,20 +56,8 @@
             <label class="flex items-start gap-3 cursor-pointer">
               <input
                 type="radio"
-                value=""
-                v-model="upgradeKitSelection"
-                class="mt-1"
-              />
-              <div>
-                <p class="font-medium text-gray-900">No upgrade kit</p>
-              </div>
-            </label>
-
-            <label class="flex items-start gap-3 cursor-pointer">
-              <input
-                type="radio"
                 value="upTo3m"
-                v-model="upgradeKitSelection"
+                v-model="form.config_options.upgradeKit"
                 class="mt-1"
               />
               <div>
@@ -68,7 +70,7 @@
               <input
                 type="radio"
                 value="upTo6m"
-                v-model="upgradeKitSelection"
+                v-model="form.config_options.upgradeKit"
                 class="mt-1"
               />
               <div>
@@ -77,6 +79,13 @@
               </div>
             </label>
           </div>
+
+          <p
+            v-if="!form.config_options.upgradeKit"
+            class="text-sm text-red-600"
+          >
+            Please select an upgrade kit.
+          </p>
         </div>
 
         <!-- Stainless steel tracks -->
@@ -97,28 +106,16 @@
 
       <!-- RIGHT -->
       <div class="space-y-6">
-        <!-- Motor -->
+        <!-- Hand transmitters -->
         <div class="bg-white border border-gray-200 rounded-2xl p-5 space-y-4">
           <div>
-            <h3 class="text-lg font-semibold text-gray-800">Motor</h3>
+            <h3 class="text-lg font-semibold text-gray-800">Hand Transmitters</h3>
             <p class="text-sm text-gray-600 mt-1">
-              Add a motorized opening system for the sectional door.
+              Since the motor is included by default, you can add hand transmitters here.
             </p>
           </div>
 
-          <label class="flex items-start gap-3 cursor-pointer">
-            <input
-              type="checkbox"
-              v-model="form.config_options.motor"
-              class="mt-1"
-            />
-            <div>
-              <p class="font-medium text-gray-900">Motor</p>
-              <p class="text-sm text-gray-600">€651 / piece</p>
-            </div>
-          </label>
-
-          <div v-if="form.config_options.motor" class="pt-2">
+          <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
               Hand transmitter quantity
             </label>
@@ -140,18 +137,23 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { onMounted } from 'vue';
 
 const props = defineProps({
   form: Object
 });
 
-const upgradeKitSelection = computed({
-  get() {
-    return props.form.config_options.upgradeKit || '';
-  },
-  set(value) {
-    props.form.config_options.upgradeKit = value || null;
+onMounted(() => {
+  if (props.form?.config_options) {
+    props.form.config_options.motor = true;
+    props.form.config_options.assemblyKit = true;
+
+    if (
+      props.form.config_options.handTransmitterQty === null ||
+      props.form.config_options.handTransmitterQty === undefined
+    ) {
+      props.form.config_options.handTransmitterQty = 0;
+    }
   }
 });
 </script>

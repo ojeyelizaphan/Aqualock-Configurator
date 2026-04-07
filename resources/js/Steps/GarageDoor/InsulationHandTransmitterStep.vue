@@ -115,10 +115,17 @@
 
       <!-- Drive-over Plate -->
       <div class="sm:w-1/2 border rounded-2xl p-6 shadow-sm space-y-4">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-2 text-center">Drive-over Plate for Threshold</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-2 text-center">
+          Drive-over Plate for Threshold
+        </h2>
+
         <div class="space-y-3 pl-2">
           <label
-            v-for="(label, value) in { stainless: 'Stainless Steel', aluminium: 'Aluminium' }"
+            v-for="(label, value) in {
+              none: 'Without',
+              stainless: 'Stainless Steel',
+              aluminium: 'Aluminium'
+            }"
             :key="value"
             class="flex items-center text-gray-700 cursor-pointer"
           >
@@ -130,7 +137,15 @@
             />
             <div>
               <p class="font-semibold">{{ label }}</p>
-              <p class="text-sm text-green-600 mt-1">{{ value === 'stainless' ? '€194 per RMT' : '€148 per RMT' }}</p>
+              <p class="text-sm text-green-600 mt-1">
+                {{
+                  value === 'stainless'
+                    ? '€165 per RMT'
+                    : value === 'aluminium'
+                    ? '€125 per RMT'
+                    : 'No extra cost'
+                }}
+              </p>
             </div>
           </label>
         </div>
@@ -138,14 +153,17 @@
 
       <!-- Glazing Options -->
       <div class="sm:w-1/2 border rounded-2xl p-6 shadow-sm space-y-4">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-2 text-center">Choose Glazing</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-2 text-center">
+          Choose Glazing
+        </h2>
 
         <!-- Windows -->
         <label class="flex items-center gap-2 text-gray-700 font-medium">
           <input type="checkbox" v-model="enableWindows" class="accent-brand-orange" />
           Add Windows (650x450 mm)
         </label>
-        <div v-if="enableWindows" class="space-y-3 pl-2">
+
+        <div v-if="enableWindows" class="space-y-4 pl-2">
           <label
             v-for="option in glazingOptions.filter(opt => opt.type === 'window')"
             :key="option.value"
@@ -159,6 +177,19 @@
             />
             {{ option.label }} - €{{ option.price }} / piece
           </label>
+
+          <div class="mt-2">
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Number of windows
+            </label>
+            <input
+              type="number"
+              min="1"
+              v-model.number="form.config_options.accessories.glazing.windows.quantity"
+              class="w-48 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+              placeholder="Enter quantity"
+            />
+          </div>
         </div>
 
         <!-- Glass Stripes -->
@@ -166,6 +197,7 @@
           <input type="checkbox" v-model="enableStripe" class="accent-brand-orange" />
           Add Glass Stripes (height 400 mm)
         </label>
+
         <div v-if="enableStripe" class="space-y-3 pl-2">
           <label
             v-for="option in glazingOptions.filter(opt => opt.type === 'stripe')"
@@ -182,10 +214,11 @@
           </label>
 
           <div class="mt-2">
-            <label class="block text-sm font-medium text-gray-700 mb-1">Stripe Length (m)</label>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Stripe Length (mm)
+            </label>
             <input
               type="number"
-              step="0.1"
               min="0"
               v-model.number="form.config_options.accessories.glazing.stripe.length"
               class="w-48 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
@@ -203,39 +236,94 @@
 import { ref, watch, onMounted } from 'vue'
 import { glazingOptions } from '@/Data/glazingOptions'
 import { insulationOptions } from '@/Data/insulationOptions'
-import imgTransmitters from '@/Assets/2-Up-and-over door - Steps/step-4/transmitters.jpg';
-import imgTransmitters2 from '@/Assets/2-Up-and-over door - Steps/step-4/transmitters-2.jpg';
-import imgCasing from '@/Assets/2-Up-and-over door - Steps/step-4/casing.jpg';
-
+import imgTransmitters from '@/Assets/2-Up-and-over door - Steps/step-4/transmitters.jpg'
+import imgTransmitters2 from '@/Assets/2-Up-and-over door - Steps/step-4/transmitters-2.jpg'
+import imgCasing from '@/Assets/2-Up-and-over door - Steps/step-4/casing.jpg'
 
 const props = defineProps({
   form: Object,
   accessoryExtraCost: Number
 })
 
-
 const enableWindows = ref(false)
 const enableStripe = ref(false)
 const selectedWindow = ref(null)
 const selectedStripe = ref(null)
 
-const handTransmitterImage2 = imgTransmitters2;
-const handTransmitterImage1 = imgTransmitters;
-const casing = imgCasing;
+const handTransmitterImage2 = imgTransmitters2
+const handTransmitterImage1 = imgTransmitters
+const casing = imgCasing
 
-// Initialize glazing structure
 function ensureGlazingStructure() {
   const accessories = props.form.config_options.accessories ||= {}
+
+  if (!accessories.driveOverPlate) {
+    accessories.driveOverPlate = 'none'
+  }
+
   const glazing = accessories.glazing ||= {
-    windows: [],
-    stripe: { type: '', length: 0, insulated: false }
+    windows: {
+      type: null,
+      quantity: 0,
+      insulated: false,
+      unit: null,
+      value: null,
+      price: null
+    },
+    stripe: {
+      type: null,
+      length: 0,
+      insulated: false,
+      unit: null,
+      value: null,
+      price: null
+    }
   }
 }
 
-// Stripe selection watcher
+watch(selectedWindow, (val) => {
+  ensureGlazingStructure()
+  const windows = props.form.config_options.accessories.glazing.windows
+
+  if (val) {
+    windows.type = val.label
+    windows.insulated = val.insulation
+    windows.unit = val.unit
+    windows.value = val.value
+    windows.price = val.price
+
+    if (!windows.quantity || windows.quantity < 1) {
+      windows.quantity = 1
+    }
+  } else {
+    windows.type = null
+    windows.quantity = 0
+    windows.insulated = false
+    windows.unit = null
+    windows.value = null
+    windows.price = null
+  }
+})
+
+watch(enableWindows, (enabled) => {
+  ensureGlazingStructure()
+  const windows = props.form.config_options.accessories.glazing.windows
+
+  if (!enabled) {
+    selectedWindow.value = null
+    windows.type = null
+    windows.quantity = 0
+    windows.insulated = false
+    windows.unit = null
+    windows.value = null
+    windows.price = null
+  }
+})
+
 watch(selectedStripe, (val) => {
   ensureGlazingStructure()
   const stripe = props.form.config_options.accessories.glazing.stripe
+
   if (val) {
     stripe.type = val.label
     stripe.insulated = val.insulation
@@ -244,16 +332,47 @@ watch(selectedStripe, (val) => {
     stripe.price = val.price
   } else {
     stripe.type = null
-    stripe.length = null
+    stripe.length = 0
     stripe.insulated = false
+    stripe.unit = null
+    stripe.value = null
+    stripe.price = null
+  }
+})
+
+watch(enableStripe, (enabled) => {
+  ensureGlazingStructure()
+  const stripe = props.form.config_options.accessories.glazing.stripe
+
+  if (!enabled) {
+    selectedStripe.value = null
+    stripe.type = null
+    stripe.length = 0
+    stripe.insulated = false
+    stripe.unit = null
+    stripe.value = null
+    stripe.price = null
   }
 })
 
 onMounted(() => {
   ensureGlazingStructure()
+
   const glazing = props.form.config_options.accessories.glazing
-  if (glazing.windows?.length) enableWindows.value = true
+
+  if (glazing.windows?.type) {
+    enableWindows.value = true
+    selectedWindow.value = {
+      label: glazing.windows.type,
+      insulation: glazing.windows.insulated,
+      unit: glazing.windows.unit,
+      value: glazing.windows.value,
+      price: glazing.windows.price
+    }
+  }
+
   if (glazing.stripe?.type) {
+    enableStripe.value = true
     selectedStripe.value = {
       label: glazing.stripe.type,
       insulation: glazing.stripe.insulated,
@@ -261,7 +380,6 @@ onMounted(() => {
       value: glazing.stripe.value,
       price: glazing.stripe.price
     }
-    enableStripe.value = true
   }
 })
 </script>

@@ -17,7 +17,6 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
     return heightRow ? heightRow[selectedWidth] || null : null;
   });
 
-  // ✅ UPDATED: Custom RAL price (39 €/m²)
   const colorExtraCost = computed(() => {
     const color = form.config_options?.color;
     const width = form.config_options?.width;
@@ -25,7 +24,10 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
 
     if (!color || !width || !height) return 0;
 
-    const standardColors = colorOptions.map(option => option.value).filter(value => value !== 'custom');
+    const standardColors = colorOptions
+      .map(option => option.value)
+      .filter(value => value !== 'custom');
+
     if (standardColors.includes(color)) return 0;
 
     const squareMeters = (width / 1000) * (height / 1000);
@@ -43,38 +45,42 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
 
     const accessories = form.config_options?.accessories ?? {};
 
-    // ✅ UPDATED: Panelling
+    // Panelling
     const panelling = accessories.panelling;
     if (panelling === 'uninsulated') total += Math.ceil(m2 * 121);
     else if (panelling === 'insulated') total += Math.ceil(m2 * 148);
 
-    // ✅ UPDATED: Glazing
+    // Glazing - windows
     const glazing = accessories.glazing ?? {};
-    const windowItems = glazing.windows ?? [];
-    windowItems.forEach(win => {
-      total += win.insulated ? 545 : 418;
-    });
+    const windowConfig = glazing.windows ?? {};
+    if (windowConfig?.type && windowConfig?.quantity > 0) {
+      const unitPrice = windowConfig.insulated ? 545 : 418;
+      total += unitPrice * Number(windowConfig.quantity);
+    }
 
+    // Glazing - glass stripe
     const stripe = glazing.stripe ?? {};
     if (stripe?.type && stripe?.length) {
-      const stripeArea = stripe.length * 0.4;
+      const stripeLengthM = Number(stripe.length) / 1000; // mm -> m
+      const stripeHeightM = 0.4; // 400 mm
+      const stripeArea = stripeLengthM * stripeHeightM;
       const rate = stripe.insulated ? 509 : 376;
       total += Math.ceil(stripeArea * rate);
     }
 
-    // UPDATED: Drive-over plate
+    // Drive-over plate
     const plate = accessories.driveOverPlate;
     if (plate === 'stainless') total += Math.ceil(rmt * 165);
     else if (plate === 'aluminium') total += Math.ceil(rmt * 125);
 
-    // UPDATED: Motor + Assembly + Transmitters
+    // Motor + Assembly + Transmitters
     const motorStepIndex = configurationSteps.value?.findIndex?.(
       stepObj => stepObj.name === 'Insulation & Hand Transmitter'
     );
 
     if (step.value > (motorStepIndex ?? -1) + 1) {
       total += 651 + 334; // Motor + Assembly Kit
-      const transmitters = parseInt(accessories.handTransmitters || 0);
+      const transmitters = parseInt(accessories.handTransmitters || 0, 10);
       total += transmitters * 60;
     }
 

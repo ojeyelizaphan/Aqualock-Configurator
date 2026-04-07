@@ -67,7 +67,7 @@
             />
           </div>
 
-          <!-- Height -->
+          <!-- Water-protection height -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
               Desired Water-Protection Height (500 – 1,200 mm)
@@ -83,11 +83,27 @@
             />
           </div>
 
+          <!-- Total gate height -->
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">
+              Desired Total Height of the Gate (up to 2000 mm)
+            </label>
+            <input
+              v-model="enteredTotalGateHeight"
+              type="number"
+              min="500"
+              max="2000"
+              step="1"
+              placeholder="e.g. 1800"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+            />
+          </div>
+
           <div
-            v-if="(enteredWidth || enteredHeight) && !isSizeValid"
+            v-if="(enteredWidth || enteredHeight || enteredTotalGateHeight) && !isSizeValid"
             class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
           >
-            Please enter a valid width between 800 and 5000 mm and a valid height between 500 and 1200 mm.
+            Please enter a valid width between 800 and 5000 mm, a valid water-protection height between 500 and 1200 mm, and a valid total gate height up to 2000 mm.
           </div>
 
           <!-- Assembly Kit -->
@@ -127,7 +143,7 @@
               class="rounded-lg border"
             />
             <figcaption class="text-xs text-gray-600">
-              Wood paneling above protection height
+              Gate with wood panelling (price available on demand).
             </figcaption>
           </figure>
 
@@ -138,7 +154,7 @@
               class="rounded-lg border"
             />
             <figcaption class="text-xs text-gray-600">
-              Portal with lattice bars
+              Gate with through - access
             </figcaption>
           </figure>
         </div>
@@ -169,27 +185,37 @@ const props = defineProps({
   form: Object,
 });
 
+const form = props.form;
+
 const upperDesignOptions = [
   { value: 'lattice', label: 'Lattice Bars (Round or Angular)' },
   { value: 'wood', label: 'Wood Paneling' },
 ];
 
 const enteredWidth = ref(
-  props.form.config_options.entered_width ||
-  props.form.config_options.width ||
+  form.config_options.entered_width ||
+  form.config_options.width ||
   ''
 );
 
 const enteredHeight = ref(
-  props.form.config_options.entered_height ||
-  props.form.config_options.height ||
+  form.config_options.entered_height ||
+  form.config_options.protection_height ||
+  ''
+);
+
+const enteredTotalGateHeight = ref(
+  form.config_options.entered_total_gate_height ||
+  form.config_options.total_gate_height ||
   ''
 );
 
 const minWidth = 800;
 const maxWidth = 5000;
-const minHeight = 500;
-const maxHeight = 1200;
+const minProtectionHeight = 500;
+const maxProtectionHeight = 1200;
+const minTotalGateHeight = 500;
+const maxTotalGateHeight = 2000;
 
 const mappedWidth = computed(() => {
   const width = Number(enteredWidth.value);
@@ -201,22 +227,37 @@ const mappedWidth = computed(() => {
   return Math.floor((width - 800) / 200) * 200 + 800;
 });
 
-const mappedHeight = computed(() => {
+const mappedProtectionHeight = computed(() => {
   const height = Number(enteredHeight.value);
 
-  if (!height || height < minHeight || height > maxHeight) {
+  if (!height || height < minProtectionHeight || height > maxProtectionHeight) {
     return null;
   }
 
   return Math.floor((height - 500) / 100) * 100 + 500;
 });
 
+const totalGateHeightValue = computed(() => {
+  const totalHeight = Number(enteredTotalGateHeight.value);
+
+  if (!totalHeight || totalHeight < minTotalGateHeight || totalHeight > maxTotalGateHeight) {
+    return null;
+  }
+
+  return totalHeight;
+});
+
 const isSizeValid = computed(() => {
-  return !!mappedWidth.value && !!mappedHeight.value;
+  return (
+    !!mappedWidth.value &&
+    !!mappedProtectionHeight.value &&
+    !!totalGateHeightValue.value &&
+    totalGateHeightValue.value >= mappedProtectionHeight.value
+  );
 });
 
 const assemblyKitPrice = computed(() => {
-  const width = props.form.config_options.width;
+  const width = form.config_options.width;
 
   if (!width) return null;
 
@@ -226,22 +267,27 @@ const assemblyKitPrice = computed(() => {
 });
 
 watch(enteredWidth, (val) => {
-  props.form.config_options.entered_width = val ? Number(val) : null;
-  props.form.config_options.width = mappedWidth.value;
+  form.config_options.entered_width = val ? Number(val) : null;
+  form.config_options.width = mappedWidth.value;
 });
 
 watch(enteredHeight, (val) => {
-  props.form.config_options.entered_height = val ? Number(val) : null;
-  props.form.config_options.height = mappedHeight.value;
-  props.form.config_options.protection_height = mappedHeight.value;
+  form.config_options.entered_height = val ? Number(val) : null;
+  form.config_options.protection_height = mappedProtectionHeight.value;
+  form.config_options.height = mappedProtectionHeight.value;
+});
+
+watch(enteredTotalGateHeight, (val) => {
+  form.config_options.entered_total_gate_height = val ? Number(val) : null;
+  form.config_options.total_gate_height = val ? Number(val) : null;
 });
 
 watch(mappedWidth, (val) => {
-  props.form.config_options.width = val;
+  form.config_options.width = val;
 });
 
-watch(mappedHeight, (val) => {
-  props.form.config_options.height = val;
-  props.form.config_options.protection_height = val;
+watch(mappedProtectionHeight, (val) => {
+  form.config_options.protection_height = val;
+  form.config_options.height = val;
 });
 </script>

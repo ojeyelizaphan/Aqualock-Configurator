@@ -27,7 +27,7 @@
             v-for="option in centralLockingOptions"
             :key="option.value"
             class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition"
-            :class="form.config_options.central_locking === option.value
+            :class="form.config_options.centralLocking === option.value
               ? 'border-brand-orange bg-orange-50'
               : 'border-gray-200 hover:border-gray-300'"
           >
@@ -35,16 +35,20 @@
               type="radio"
               class="mt-1"
               :value="option.value"
-              v-model="form.config_options.central_locking"
+              v-model="form.config_options.centralLocking"
             />
-            <div>
+            <div class="flex-1">
               <p class="text-sm font-medium text-gray-800">
-                {{ option.label }}
+              {{ option.label }}
               </p>
               <p class="text-xs text-gray-600">
-                {{ option.description }}
-              </p>
+              {{ option.description }}
+            </p>
             </div>
+            
+              <span v-if="option.price > 0" class="text-sm text-gray-700">
+                + €{{ option.price }}
+              </span>
           </label>
         </div>
 
@@ -141,9 +145,9 @@
             Included by default depending on gate width:
           </p>
           <ul class="list-disc ml-5 text-xs text-gray-600">
-            <li>Up to 1,500 mm width: €154</li>
-            <li>1,501 – 5,000 mm width: €223</li>
-            <li>Industrial version: €347</li>
+            <li>Up to 1,500 mm width: €131</li>
+            <li>1,501 – 5,000 mm width: €189</li>
+            <li>Industrial version: €294</li>
           </ul>
         </div>
       </section>
@@ -172,12 +176,14 @@ const centralLockingOptions = [
   {
     value: 'with',
     label: 'With central locking system',
-    description: 'All locking bolts operated via a central lever'
+    description: 'All locking bolts operated via a central lever',
+    price: 547
   },
   {
     value: 'without',
     label: 'Without central locking system',
-    description: 'Standard configuration without internal locking'
+    description: 'Standard configuration without internal locking',
+    price: 0
   }
 ];
 
@@ -186,13 +192,7 @@ const optionalAccessories = [
     modelKey: 'opening180',
     label: '180° Gate Opening',
     description: 'Upgrade from standard 95° to full 180° opening',
-    price: 427
-  },
-  {
-    modelKey: 'centralLockingAccessory',
-    label: 'Central Locking System',
-    description: 'Enhanced internal locking system',
-    price: 645
+    price: 362
   },
   {
     modelKey: 'padlockPreparation',
@@ -204,7 +204,7 @@ const optionalAccessories = [
     modelKey: 'durchgriff',
     label: 'Through-access with central locking',
     description: 'Access option when central locking is present',
-    price: 479
+    price: 700
   }
 ];
 

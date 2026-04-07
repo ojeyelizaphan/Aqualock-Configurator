@@ -39,7 +39,7 @@
           <p>
             In order to customize the colour of your
             <strong>AquaLOCK® flap</strong>, you can choose between
-            <strong>213 RAL colours</strong>.
+            <strong>216 RAL colours</strong>.
           </p>
 
           <p>

@@ -21,6 +21,7 @@
         </p>
       </div>
     </div>
+
     <h2 class="text-2xl font-semibold text-center text-gray-800">Select Accessories</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -34,7 +35,12 @@
               :key="option.value"
               class="flex items-start gap-3 cursor-pointer"
             >
-              <input type="checkbox" :value="option.value" v-model="form.config_options.panic_features" class="mt-1" />
+              <input
+                type="checkbox"
+                :value="option.value"
+                v-model="form.config_options.panic_features"
+                class="mt-1"
+              />
               <div>
                 <p class="font-medium text-gray-800">{{ option.label }}</p>
                 <p class="text-sm text-gray-600">{{ option.description }}</p>
@@ -62,27 +68,6 @@
               <input type="checkbox" v-model="form.config_options.fixed_panel_right" />
               <span class="text-gray-800">Right side panel (100–400 mm)</span>
             </label>
-            <!-- <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" v-model="form.config_options.fixed_panel_top" />
-              <span class="text-gray-800">Top panel above door (100–400 mm)</span>
-            </label> -->
-          </div>
-        </div>
-
-        <div>
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">Window Type</h3>
-          <div class="space-y-2">
-            <label
-              v-for="option in windowOptions.slice(0, 3)"
-              :key="option.value"
-              class="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-gray-50 transition"
-            >
-              <input type="radio" :value="option.value" v-model="form.config_options.window_type" class="mt-1" />
-              <div>
-                <p class="font-medium text-gray-800">{{ option.label }}</p>
-                <p class="text-sm text-gray-600">{{ option.description }}</p>
-              </div>
-            </label>
           </div>
         </div>
       </div>
@@ -90,25 +75,12 @@
       <!-- RIGHT SIDE -->
       <div class="space-y-6">
         <div>
-          <div class="space-y-2">
-            <label
-              v-for="option in windowOptions.slice(3)"
-              :key="option.value"
-              class="flex items-start gap-3 cursor-pointer p-2 rounded-md hover:bg-gray-50 transition"
-            >
-              <input type="radio" :value="option.value" v-model="form.config_options.window_type" class="mt-1" />
-              <div>
-                <p class="font-medium text-gray-800">{{ option.label }}</p>
-                <p class="text-sm text-gray-600">{{ option.description }}</p>
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <div>
           <h3 class="text-lg font-semibold text-gray-700 mb-2">Burglary Protection Level</h3>
-          <select v-model="form.config_options.burglary_protection" class="w-full rounded-lg border-gray-300 px-4 py-2">
-            <option disabled value="">-- Select Protection Level --</option>
+          <select
+            v-model="form.config_options.burglary_protection"
+            class="w-full rounded-lg border-gray-300 px-4 py-2"
+          >
+            <option :value="null">None</option>
             <option value="RC2">RC2</option>
             <option value="RC3">RC3</option>
           </select>
@@ -116,8 +88,11 @@
 
         <div>
           <h3 class="text-lg font-semibold text-gray-700 mb-2">Drive-over Plate</h3>
-          <select v-model="form.config_options.drive_plate" class="w-full rounded-lg border-gray-300 px-4 py-2">
-            <option disabled value="">-- Select Plate --</option>
+          <select
+            v-model="form.config_options.drive_plate"
+            class="w-full rounded-lg border-gray-300 px-4 py-2"
+          >
+            <option :value="null">None</option>
             <option value="aluminium">Aluminium 2mm</option>
             <option value="stainless">Stainless Steel 2mm</option>
           </select>
@@ -131,13 +106,13 @@
           </label>
         </div>
 
-        <div>
+        <!-- <div>
           <h3 class="text-lg font-semibold text-gray-700 mb-2">Flood Protection</h3>
           <label class="flex items-center gap-3 cursor-pointer">
             <input type="checkbox" v-model="form.config_options.flood_protection" />
             <span class="text-gray-800">Heavy duty version with flood protection up to 5m</span>
           </label>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -148,18 +123,19 @@ const props = defineProps({ form: Object });
 const form = props.form;
 
 if (!form.config_options.panic_features) form.config_options.panic_features = [];
+if (!form.config_options.drive_plate) form.config_options.drive_plate = null;
+if (!form.config_options.burglary_protection) form.config_options.burglary_protection = null;
 
 const panicOptions = [
-  { value: 'panic_function_e', label: 'Panic Function E', description: 'For fixed knob outside. Opens only with key when espagnolette is open.' },
-  { value: 'pushbar', label: 'Pushbar', description: 'Enables fast exit, bar-style mechanism on inside.' }
-];
-
-const windowOptions = [
-  { value: 'non_thermal_transparent', label: 'Window (Non-Thermal, Transparent)', description: 'Double glazed laminated glass – 650x450 mm' },
-  { value: 'non_thermal_mastercarree', label: 'Window (Non-Thermal, Mastercarrée)', description: 'Double glazed laminated glass – 650x450 mm' },
-  { value: 'non_thermal_satinato', label: 'Window (Non-Thermal, Satinato)', description: 'Double glazed laminated glass – 650x450 mm' },
-  { value: 'thermal_transparent', label: 'Window (Thermal, Transparent)', description: 'Triple glazed laminated glass – 650x450 mm' },
-  { value: 'thermal_mastercarree', label: 'Window (Thermal, Mastercarrée)', description: 'Triple glazed laminated glass – 650x450 mm' },
-  { value: 'thermal_satinato', label: 'Window (Thermal, Satinato)', description: 'Triple glazed laminated glass – 650x450 mm' }
+  {
+    value: 'panic_function_e',
+    label: 'Panic Function E',
+    description: 'For fixed knob outside. Opens only with key when espagnolette is open.'
+  },
+  {
+    value: 'pushbar',
+    label: 'Pushbar',
+    description: 'Enables fast exit, bar-style mechanism on inside.'
+  }
 ];
 </script>

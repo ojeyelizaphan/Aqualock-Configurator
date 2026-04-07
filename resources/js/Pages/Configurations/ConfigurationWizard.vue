@@ -81,7 +81,11 @@
           <button
             v-if="step < configurationSteps.length + 1 && form.product_id"
             @click="nextStep"
-            class="bg-brand-orange hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
+            :disabled="!isCurrentStepValid"
+            class="text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
+            :class="isCurrentStepValid
+              ? 'bg-brand-orange hover:bg-orange-600'
+              : 'bg-gray-300 cursor-not-allowed'"
           >
             Next →
           </button>
@@ -197,6 +201,23 @@ const currentStepProps = computed(() => ({
   colorExtraCost: colorExtraCost.value,
 }));
 
+const isCurrentStepValid = computed(() => {
+  if (!productSlug.value) return true;
+
+  const currentStepData = configurationSteps.value[step.value - 2];
+  if (!currentStepData) return true;
+
+  const stepName = currentStepData.name?.toLowerCase().trim();
+  const config = form.config_options || {};
+
+  // Quickwall: Protection Level & Measurements
+  if (productSlug.value === "quickwall" && stepName === "protection level & measurements") {
+    return !!config.width && !!config.height;
+  }
+
+  return true;
+});
+
 watch(finalPrice, (newPrice) => {
   if (newPrice !== null) {
     form.total_price = newPrice;
@@ -217,6 +238,10 @@ const selectProduct = async (product) => {
 };
 
 const nextStep = async () => {
+  if (!isCurrentStepValid.value) {
+    return;
+  }
+
   if (step.value < configurationSteps.value.length + 1) {
     step.value++;
     await scrollToStepTop();

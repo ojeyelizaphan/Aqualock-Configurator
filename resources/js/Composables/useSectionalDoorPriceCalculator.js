@@ -1,6 +1,5 @@
 import { computed } from 'vue';
 import { sectionalDoorWithoutMotor, sectionalDoorWidthSteps } from '@/Data/sectionalDoorPrices';
-import { colorOptions } from '@/Data/colorOptions';
 
 export function useSectionalDoorPriceCalculator(form, configurationSteps, step) {
   const baseCalculatedPrice = computed(() => {
@@ -25,11 +24,10 @@ export function useSectionalDoorPriceCalculator(form, configurationSteps, step) 
 
     if (!color || !selectedWidth || !selectedHeight) return 0;
 
-    const standardColors = colorOptions
-      .map(option => option.value)
-      .filter(value => value !== 'custom');
+    const standardColors = ['ral9016', 'ral7016'];
 
     if (standardColors.includes(color)) return 0;
+    if (color !== 'custom') return 0;
 
     const squareMeters = (selectedWidth / 1000) * (selectedHeight / 1000);
     return Math.ceil(squareMeters * 69);
@@ -51,7 +49,7 @@ export function useSectionalDoorPriceCalculator(form, configurationSteps, step) 
       total += Math.ceil(rmt * 42);
     }
 
-    // Upgrade kits
+    // Upgrade kits (required choice)
     const upgradeKit = form.config_options?.upgradeKit;
     if (upgradeKit === 'upTo3m') {
       total += 272;
@@ -69,15 +67,11 @@ export function useSectionalDoorPriceCalculator(form, configurationSteps, step) 
       total += 421;
     }
 
-    // Motor
-    if (form.config_options?.motor === true) {
-      total += 651;
-    }
+    // Motor - always included
+    total += 651;
 
-    // Assembly kit
-    if (form.config_options?.assemblyKit !== false) {
-      total += 246;
-    }
+    // Assembly kit - always included
+    total += 246;
 
     // Hand transmitters
     const transmitters = parseInt(form.config_options?.handTransmitterQty || 0, 10);
