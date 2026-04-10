@@ -4,9 +4,7 @@
       Choice of Base Plate
     </h2>
 
-    <!-- Split Screen -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-
       <!-- LEFT: Aluminum Base Plate -->
       <section>
         <h3 class="text-lg font-semibold text-gray-800 mb-3">
@@ -20,38 +18,24 @@
           the AquaLOCK® Sectional door functions safely and reliably.
         </p>
 
-        <!-- Image -->
         <div class="flex justify-start mb-4">
           <img
-            :src=img1
+            :src="img1"
             alt="Aluminum base plate"
             class="mx-auto max-h-48 object-contain"
           />
         </div>
 
-        <!-- Options (caption-style) -->
         <div class="space-y-3">
           <label class="flex items-center gap-2 cursor-pointer">
             <input
               type="radio"
-              value="withAluminum"
-              v-model="form.config_options.aluminumBasePlate"
-              class="form-radio"
+              value="aluminum"
+              v-model="form.config_options.basePlate"
+              class="accent-brand-orange"
             />
             <span class="text-sm text-gray-800">
               With aluminum base plate
-            </span>
-          </label>
-
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              value="withoutAluminum"
-              v-model="form.config_options.aluminumBasePlate"
-              class="form-radio"
-            />
-            <span class="text-sm text-gray-800">
-              Without aluminum base plate
             </span>
           </label>
         </div>
@@ -78,51 +62,59 @@
           door installation much easier.
         </p>
 
-        <!-- Image -->
         <div class="flex justify-start mb-4">
           <img
-            :src=img2
+            :src="img2"
             alt="Stainless steel base plate"
             class="mx-auto max-h-48 object-contain"
           />
         </div>
 
-        <!-- Options (caption-style) -->
         <div class="space-y-3">
           <label class="flex items-center gap-2 cursor-pointer">
             <input
               type="radio"
-              value="withStainlessSteel"
-              v-model="form.config_options.stainlessSteelBasePlate"
-              class="form-radio"
+              value="stainless_steel"
+              v-model="form.config_options.basePlate"
+              class="accent-brand-orange"
             />
             <span class="text-sm text-gray-800">
               With stainless steel base plate
             </span>
           </label>
-
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              value="withoutStainlessSteel"
-              v-model="form.config_options.stainlessSteelBasePlate"
-              class="form-radio"
-            />
-            <span class="text-sm text-gray-800">
-              Without stainless steel base plate
-            </span>
-          </label>
         </div>
       </section>
-
     </div>
+
+    <!-- No base plate option -->
+    <section class="border rounded-2xl p-6 bg-gray-50">
+      <label class="flex items-center gap-2 cursor-pointer">
+        <input
+          type="radio"
+          value="none"
+          v-model="form.config_options.basePlate"
+          class="accent-brand-orange"
+        />
+        <span class="text-sm text-gray-800 font-medium">
+          Without any base plate
+        </span>
+      </label>
+    </section>
   </div>
 </template>
 
 <script setup>
-  import img1 from "@/Assets/6-Sectional/Step-2/sectional-2a.jpg"
-  import img2 from "@/Assets/6-Sectional/Step-2/sectional-2b.jpg"
-defineProps({
+import { onMounted } from "vue";
+import img1 from "@/Assets/6-Sectional/Step-2/sectional-2a.jpg";
+import img2 from "@/Assets/6-Sectional/Step-2/sectional-2b.jpg";
+
+const props = defineProps({
   form: Object
-})
+});
+
+onMounted(() => {
+  if (!props.form.config_options.basePlate) {
+    props.form.config_options.basePlate = "none";
+  }
+});
 </script>

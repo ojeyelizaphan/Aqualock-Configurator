@@ -4,8 +4,7 @@ import { ref, computed, onMounted } from "vue";
 import Navbar from '@/Components/Navbar.vue';
 import Footer from '@/Components/Footer.vue';
 import { formatAccessories } from '@/utils/formatAccessories';
-import ConfigurationWizard from '@/Pages/Configurations/ConfigurationWizard.vue';
-
+import SecondaryNavbar from "@/Components/SecondaryNavbar.vue";
 
 const props = defineProps({
   configuration: Object,
@@ -23,6 +22,13 @@ const form = useForm({
   phone: "",
   address: "",
   accessories_summary: []
+});
+
+const vatRate = 0.19;
+
+const totalPriceInclVat = computed(() => {
+  const basePrice = Number(configuration.value?.total_price || 0);
+  return basePrice * (1 + vatRate);
 });
 
 onMounted(() => {
@@ -45,13 +51,14 @@ const accessoriesSummary = computed(() => {
   return formatAccessories(accessoriesOption.value);
 });
 
-
+const goBackToConfiguration = () => {
+  router.visit(route('configurations.edit', configuration.value.id));
+};
 
 const closeModal = () => {
   showSuccessModal.value = false;
   router.visit('/configurations/create');
 };
-
 
 const submitOrder = async () => {
   try {
@@ -73,22 +80,27 @@ const submitOrder = async () => {
 };
 </script>
 
-
 <template>
   <Navbar />
+  <SecondaryNavbar />
 
   <div class="max-w-6xl mx-auto p-6">
-    <!-- Page Title -->
     <h1 class="text-3xl font-bold text-center mb-10 text-gray-800">
       Contact Details
     </h1>
 
-    <!-- 2-Column Layout -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div class="mb-6">
+      <button
+        type="button"
+        @click="goBackToConfiguration"
+        class="inline-flex items-center gap-2 bg-gray-700 hover:bg-gray-800 text-white font-medium px-5 py-3 rounded-xl transition-all duration-300"
+      >
+        ← Back to configuration
+      </button>
+    </div>
 
-      <!-- LEFT: Summary Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
       <div>
-        <!-- Configuration Summary Box -->
         <h2 class="text-2xl font-semibold text-[#f39200] mb-4 text-center md:text-left">
           Configuration Summary
         </h2>
@@ -101,24 +113,21 @@ const submitOrder = async () => {
           <p class="text-lg text-gray-800">
             <strong>Total Price:</strong>
             <span class="text-[#f39200] font-semibold">
-              €{{ parseFloat(configuration.total_price).toFixed(2) }}
+              €{{ totalPriceInclVat.toFixed(2) }}
             </span>
           </p>
 
           <div class="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-4">
             <p class="text-sm text-amber-900 leading-relaxed">
               <span class="font-semibold">Important pricing note:</span>
-              All prices shown are <span class="font-semibold">net prices</span>.
-              VAT is <span class="font-semibold">not included</span> and must be added
-              according to the VAT rate applicable in your country.
+              All prices are quoted <span class="font-semibold">including German VAT of 19 %</span>.
               <span class="block mt-2">
-                Transport and installation are also <span class="font-semibold">not included</span>.
+                Transport and installation are <span class="font-semibold">not included</span>.
               </span>
             </p>
           </div>
         </div>
 
-        <!-- Configuration Details -->
         <div class="bg-gray-50 shadow rounded-xl p-6 border border-gray-200">
           <h2 class="text-xl font-semibold mb-4 text-[#f39200]">
             Configuration Details
@@ -149,9 +158,10 @@ const submitOrder = async () => {
             </li>
           </ul>
 
-          <!-- Accessories Summary -->
-          <div v-if="accessoriesSummary.length"
-               class="bg-white shadow rounded-lg p-6 border border-gray-200 mt-6">
+          <div
+            v-if="accessoriesSummary.length"
+            class="bg-white shadow rounded-lg p-6 border border-gray-200 mt-6"
+          >
             <h2 class="text-xl font-semibold mb-4 text-[#f39200]">Accessories</h2>
             <ul class="list-disc list-inside text-gray-700 space-y-1">
               <li v-for="(line, i) in accessoriesSummary" :key="i">
@@ -159,13 +169,9 @@ const submitOrder = async () => {
               </li>
             </ul>
           </div>
-
         </div>
-
-
       </div>
 
-      <!-- RIGHT: Contact Form -->
       <div>
         <form
           @submit.prevent="submitOrder"
@@ -235,7 +241,6 @@ const submitOrder = async () => {
 
   <Footer />
 
-  <!-- Success Modal -->
   <transition name="fade">
     <div
       v-if="showSuccessModal"
@@ -256,9 +261,7 @@ const submitOrder = async () => {
       </div>
     </div>
   </transition>
-
 </template>
-
 
 <style scoped>
 .fade-enter-active, .fade-leave-active {
@@ -268,6 +271,3 @@ const submitOrder = async () => {
   opacity: 0;
 }
 </style>
-
-
-

@@ -34,15 +34,15 @@
         </div>
       </div>
 
-    <!-- Casing & Hand Transmitters Section -->
+    <!-- Cladding & Hand Transmitters Section -->
     <div class="flex flex-col sm:flex-row gap-6">
 
-      <!-- Casing & Insulation -->
+      <!-- Cladding & Insulation -->
       <div class="sm:w-1/2 border rounded-2xl p-6 shadow-sm space-y-4">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-2 text-center">Casing & Insulation</h2>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-2 text-center">Cladding & Insulation</h2>
         <p class="text-sm text-gray-600 text-center leading-relaxed mb-4">
           The inside of the door is lined with smooth aluminum sheet metal, painted in your chosen color.
-          The casing reduces condensation and increases insulation value. You may also choose to insulate your door.
+          The cladding reduces condensation and increases insulation value. You may also choose to insulate your door.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-6">
@@ -218,11 +218,14 @@
               Stripe Length (mm)
             </label>
             <input
-              type="number"
-              min="0"
-              v-model.number="form.config_options.accessories.glazing.stripe.length"
-              class="w-48 border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+              type="text"
+              :value="calculatedStripeLength"
+              readonly
+              class="w-48 border border-gray-300 rounded-lg px-4 py-2 bg-gray-100 text-gray-700"
             />
+            <p class="text-xs text-gray-500 mt-1">
+              Automatically calculated as door width - 370 mm. Quantity: 1 piece.
+            </p>
           </div>
         </div>
       </div>
@@ -233,7 +236,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
+import { ref, watch, onMounted, computed } from 'vue'
 import { glazingOptions } from '@/Data/glazingOptions'
 import { insulationOptions } from '@/Data/insulationOptions'
 import imgTransmitters from '@/Assets/2-Up-and-over door - Steps/step-4/transmitters.jpg'
@@ -254,12 +257,21 @@ const handTransmitterImage2 = imgTransmitters2
 const handTransmitterImage1 = imgTransmitters
 const casing = imgCasing
 
+const calculatedStripeLength = computed(() => {
+  const width = Number(props.form.config_options?.width || 0)
+  if (!width) return ''
+  return Math.max(width - 370, 0)
+})
+
 function ensureGlazingStructure() {
   const accessories = props.form.config_options.accessories ||= {}
 
   if (!accessories.driveOverPlate) {
     accessories.driveOverPlate = 'none'
   }
+
+  accessories.handTransmitters ??= 0
+  props.form.config_options.insulation ??= 'none'
 
   const glazing = accessories.glazing ||= {
     windows: {
@@ -330,6 +342,7 @@ watch(selectedStripe, (val) => {
     stripe.unit = val.unit
     stripe.value = val.value
     stripe.price = val.price
+    stripe.length = Math.max(Number(props.form.config_options?.width || 0) - 370, 0)
   } else {
     stripe.type = null
     stripe.length = 0
@@ -354,6 +367,20 @@ watch(enableStripe, (enabled) => {
     stripe.price = null
   }
 })
+
+watch(
+  () => props.form.config_options?.width,
+  (newWidth) => {
+    ensureGlazingStructure()
+
+    const stripe = props.form.config_options.accessories.glazing.stripe
+
+    if (enableStripe.value && stripe.type) {
+      stripe.length = Math.max(Number(newWidth || 0) - 370, 0)
+    }
+  },
+  { immediate: true }
+)
 
 onMounted(() => {
   ensureGlazingStructure()
@@ -380,6 +407,8 @@ onMounted(() => {
       value: glazing.stripe.value,
       price: glazing.stripe.price
     }
+
+    glazing.stripe.length = Math.max(Number(props.form.config_options?.width || 0) - 370, 0)
   }
 })
 </script>

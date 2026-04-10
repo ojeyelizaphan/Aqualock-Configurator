@@ -112,7 +112,7 @@
               type="radio"
               value="standard"
               v-model="form.config_options.profileColour"
-              class="form-radio"
+              class="accent-brand-orange"
             />
             <span class="text-sm text-gray-800">
               Without customized colour to match sectional door
@@ -124,7 +124,7 @@
               type="radio"
               value="custom"
               v-model="form.config_options.profileColour"
-              class="form-radio"
+              class="accent-brand-orange"
             />
             <span class="text-sm text-gray-800">
               With customized colour (RAL)

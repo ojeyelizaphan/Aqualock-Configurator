@@ -28,18 +28,15 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
-        // Fetch the configuration including the product
         $configuration = Configuration::with('product')
-            ->where('id', $request->configuration_id)  // ✅ Ensure we only fetch the correct configuration
-            ->where('user_id', auth()->id())          // ✅ Ensure it belongs to the authenticated user
-            ->first(); 
+            ->where('id', $request->configuration_id)
+            ->where('user_id', auth()->id())
+            ->first();
 
-        // Check if the configuration exists before rendering
         if (!$configuration) {
             return redirect()->route('configurations.index')->with('error', 'Configuration not found.');
         }
 
-        // Human-readable labels
         $labels = [
             'protection_height' => 'Protection Height',
             'protection_height_cost' => 'Protection Height Cost (€)',
@@ -57,15 +54,14 @@ class OrderController extends Controller
             'transmitter_cost' => 'Transmitter Cost (€)',
         ];
 
-        $configOptions = json_decode($configuration->config_options, true);
+        $configOptions = $configuration->config_options ?? [];
 
         $formattedOptions = collect($configOptions)->map(function ($value, $key) use ($labels) {
             return [
                 'label' => $labels[$key] ?? ucwords(str_replace('_', ' ', $key)),
-                'value' => is_numeric($value) ? number_format($value, 2) : $value
+                'value' => is_numeric($value) ? number_format($value, 2) : $value,
             ];
         })->values()->all();
-
 
         return Inertia::render('Orders/Create', [
             'configuration' => $configuration,
@@ -104,20 +100,6 @@ class OrderController extends Controller
         return redirect()->back()->with('success', true);
         // return redirect()->route('orders.confirmation', ['order_id' => $order->id]);
     }
-
-    // public function confirmation(Request $request)
-    // {
-    //     $order = Order::with(['configuration.product'])->find($request->order_id);
-
-    //     if (!$order) {
-    //         return redirect()->route('orders.index')->with('error', 'Order not found.');
-    //     }
-
-    //     return Inertia::render('Orders/Confirmation', [
-    //         'order' => $order
-    //     ]);
-    // }
-
 
 
 

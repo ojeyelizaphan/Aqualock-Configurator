@@ -60,11 +60,13 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
 
     // Glazing - glass stripe
     const stripe = glazing.stripe ?? {};
-    if (stripe?.type && stripe?.length) {
-      const stripeLengthM = Number(stripe.length) / 1000; // mm -> m
+    if (stripe?.type && width) {
+      const stripeLengthMm = Math.max(Number(width) - 370, 0);
+      const stripeLengthM = stripeLengthMm / 1000;
       const stripeHeightM = 0.4; // 400 mm
       const stripeArea = stripeLengthM * stripeHeightM;
       const rate = stripe.insulated ? 509 : 376;
+
       total += Math.ceil(stripeArea * rate);
     }
 

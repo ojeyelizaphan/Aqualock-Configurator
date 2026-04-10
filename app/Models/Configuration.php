@@ -15,8 +15,9 @@ class Configuration extends Model
         'product_id',
         'config_options',
         'total_price',
+        'current_step',
     ];
-    protected $casts = [
+        protected $casts = [
         'config_options' => 'array',
     ];
 

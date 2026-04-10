@@ -24,6 +24,26 @@
         />
       </div>
     </div>
+
+    <div v-if="stepLabels?.length" class="mt-5 flex flex-wrap gap-2">
+      <button
+        v-for="(label, index) in stepLabels"
+        :key="index"
+        type="button"
+        @click="$emit('go-to-step', index + 1)"
+        :disabled="!canNavigateTo(index + 1)"
+        class="px-3 py-2 rounded-xl text-sm font-medium border transition-all duration-200"
+        :class="[
+          currentStep === index + 1
+            ? 'bg-brand-orange text-white border-brand-orange'
+            : canNavigateTo(index + 1)
+            ? 'bg-white text-gray-700 border-gray-300 hover:border-brand-orange hover:text-brand-orange'
+            : 'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed'
+        ]"
+      >
+        {{ label }}
+      </button>
+    </div>
   </div>
 </template>
 
@@ -43,7 +63,17 @@ const props = defineProps({
     type: Number,
     default: 0,
   },
+  stepLabels: {
+    type: Array,
+    default: () => [],
+  },
+  maxVisitedStep: {
+    type: Number,
+    default: 1,
+  },
 });
+
+defineEmits(['go-to-step']);
 
 const progressWidth = computed(() => {
   if (!props.totalSteps) return 0;
@@ -56,4 +86,6 @@ const formattedPrice = computed(() =>
     maximumFractionDigits: 2,
   })
 );
+
+const canNavigateTo = (stepNumber) => stepNumber <= props.maxVisitedStep;
 </script>

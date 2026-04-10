@@ -1,17 +1,21 @@
 <template>
   <Navbar />
   <SecondaryNavbar />
-  
 
   <div class="min-h-screen bg-[#f8f8f8]">
-    <div ref="stepContainer" class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10">
-
+    <div
+      ref="stepContainer"
+      class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10"
+    >
       <!-- Progress / Price -->
       <div class="mb-8">
         <ProgressCard
           :current-step="step"
-          :total-steps="configurationSteps.length + 1"
+          :total-steps="totalSteps"
           :current-price="finalPrice"
+          :step-labels="progressStepLabels"
+          :max-visited-step="maxVisitedStep"
+          @go-to-step="goToStep"
         />
       </div>
 
@@ -72,6 +76,7 @@
         <button
           v-if="step > 1"
           @click="prevStep"
+          type="button"
           class="bg-gray-700 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
         >
           ← Back
@@ -79,8 +84,9 @@
 
         <div class="sm:ml-auto flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <button
-            v-if="step < configurationSteps.length + 1 && form.product_id"
+            v-if="step < totalSteps && form.product_id"
             @click="nextStep"
+            type="button"
             :disabled="!isCurrentStepValid"
             class="text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
             :class="isCurrentStepValid
@@ -91,8 +97,9 @@
           </button>
 
           <button
-            v-if="step === configurationSteps.length + 1"
+            v-if="step === totalSteps"
             @click="submitConfiguration"
+            type="button"
             class="bg-brand-orange hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
           >
             Submit
@@ -106,7 +113,15 @@
 </template>
 
 <script setup>
-import { ref, computed, defineProps, watch, defineAsyncComponent, nextTick} from "vue";
+import {
+  ref,
+  computed,
+  defineProps,
+  watch,
+  defineAsyncComponent,
+  nextTick,
+  onMounted,
+} from "vue";
 import { useForm } from "@inertiajs/vue3";
 import { useDynamicPriceCalculator } from "@/Composables/useDynamicPriceCalculator";
 import { colorOptions } from "@/Data/colorOptions";
@@ -118,22 +133,32 @@ import ProgressCard from "@/Components/ProgressCard.vue";
 import ProductCard from "@/Components/ProductCard.vue";
 
 const props = defineProps({
-  products: Array,
+  products: {
+    type: Array,
+    default: () => [],
+  },
+  existingConfiguration: {
+    type: Object,
+    default: null,
+  },
 });
 
 const step = ref(1);
+const maxVisitedStep = ref(1);
 const selectedProduct = ref(null);
 const configurationSteps = ref([]);
 const selectedWidth = ref(null);
 const selectedHeight = ref(null);
+const stepContainer = ref(null);
+
+const isEditing = computed(() => !!props.existingConfiguration);
 
 const form = useForm({
   product_id: "",
   config_options: {},
   total_price: 0,
+  current_step: 1,
 });
-
-const stepContainer = ref(null);
 
 const scrollToStepTop = async () => {
   await nextTick();
@@ -152,8 +177,22 @@ const scrollToStepTop = async () => {
     });
   }
 };
+
+const totalSteps = computed(() => configurationSteps.value.length + 1);
+
+const progressStepLabels = computed(() => {
+  const labels = ["Choose Product"];
+
+  configurationSteps.value.forEach((stepItem) => {
+    labels.push(stepItem.name);
+  });
+
+  return labels;
+});
+
 const productSlug = computed(() => {
   if (!selectedProduct.value || !selectedProduct.value.product_type) return "";
+
   return (
     selectedProduct.value.product_type.slug ||
     selectedProduct.value.product_type.name?.toLowerCase().replace(/\s+/g, "-")
@@ -175,6 +214,7 @@ const currentStepComponent = computed(() => {
 
   const folderName = toPascalCase(productSlug.value);
   const stepData = configurationSteps.value[step.value - 2];
+
   if (!stepData) return null;
 
   const formattedStepName = stepData.name
@@ -190,9 +230,15 @@ const calculator = computed(() =>
   useDynamicPriceCalculator(productSlug.value, form, configurationSteps, step)
 );
 
+const vatRate = 0.19;
+
 const colorExtraCost = computed(() => calculator.value?.colorExtraCost?.value ?? 0);
 const accessoryExtraCost = computed(() => calculator.value?.accessoryExtraCost?.value ?? 0);
-const finalPrice = computed(() => calculator.value?.finalPrice?.value ?? 0);
+const netPrice = computed(() => calculator.value?.finalPrice?.value ?? 0);
+
+const finalPrice = computed(() => {
+  return netPrice.value * (1 + vatRate);
+});
 
 const currentStepProps = computed(() => ({
   form,
@@ -210,8 +256,10 @@ const isCurrentStepValid = computed(() => {
   const stepName = currentStepData.name?.toLowerCase().trim();
   const config = form.config_options || {};
 
-  // Quickwall: Protection Level & Measurements
-  if (productSlug.value === "quickwall" && stepName === "protection level & measurements") {
+  if (
+    productSlug.value === "quickwall" &&
+    stepName === "protection level & measurements"
+  ) {
     return !!config.width && !!config.height;
   }
 
@@ -224,25 +272,74 @@ watch(finalPrice, (newPrice) => {
   }
 });
 
+watch(step, (newStep) => {
+  form.current_step = newStep;
+
+  if (newStep > maxVisitedStep.value) {
+    maxVisitedStep.value = newStep;
+  }
+});
+
+onMounted(() => {
+  if (!props.existingConfiguration) return;
+
+  const existing = props.existingConfiguration;
+
+  form.product_id = existing.product_id ?? "";
+  form.config_options = existing.config_options ?? {};
+  form.total_price = Number(existing.total_price ?? 0);
+  form.current_step = existing.current_step ?? 1;
+
+  const matchedProduct =
+    props.products.find((product) => product.id === existing.product_id) || null;
+
+  selectedProduct.value = matchedProduct || existing.product || null;
+
+  if (selectedProduct.value?.product_type) {
+    configurationSteps.value =
+      selectedProduct.value.product_type.configuration_steps || [];
+  }
+
+  const totalAvailableSteps = configurationSteps.value.length + 1;
+  const restoredStep = Math.min(existing.current_step || totalAvailableSteps, totalAvailableSteps);
+
+  step.value = restoredStep;
+  maxVisitedStep.value = restoredStep;
+});
+
 const selectProduct = async (product) => {
   form.product_id = product.id;
   selectedProduct.value = product;
+  form.config_options = {};
+  selectedWidth.value = null;
+  selectedHeight.value = null;
 
   if (product.product_type) {
     configurationSteps.value = product.product_type.configuration_steps || [];
     step.value = 2;
+    maxVisitedStep.value = 2;
+    form.current_step = 2;
     await scrollToStepTop();
   } else {
     configurationSteps.value = [];
+    step.value = 1;
+    maxVisitedStep.value = 1;
+    form.current_step = 1;
   }
 };
 
-const nextStep = async () => {
-  if (!isCurrentStepValid.value) {
-    return;
-  }
+const goToStep = async (targetStep) => {
+  if (targetStep < 1 || targetStep > totalSteps.value) return;
+  if (targetStep > maxVisitedStep.value) return;
 
-  if (step.value < configurationSteps.value.length + 1) {
+  step.value = targetStep;
+  await scrollToStepTop();
+};
+
+const nextStep = async () => {
+  if (!isCurrentStepValid.value) return;
+
+  if (step.value < totalSteps.value) {
     step.value++;
     await scrollToStepTop();
   }
@@ -256,18 +353,16 @@ const prevStep = async () => {
 };
 
 const submitConfiguration = () => {
-  form.post(route("configurations.store"), {
-    onSuccess: () => {
-      const configurationId = form.id;
-      if (configurationId) {
-        window.location.href = route("orders.create", {
-          configuration_id: configurationId,
-        });
-      }
-    },
+  const options = {
     onError: (errors) => {
       console.error("Failed to save configuration:", errors);
     },
-  });
+  };
+
+  if (isEditing.value) {
+    form.put(route("configurations.update", props.existingConfiguration.id), options);
+  } else {
+    form.post(route("configurations.store"), options);
+  }
 };
 </script>

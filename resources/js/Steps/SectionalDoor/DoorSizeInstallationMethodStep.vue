@@ -96,7 +96,7 @@
                 type="radio"
                 value="behind"
                 v-model="form.config_options.installationMethod"
-                class="form-radio mt-1"
+                class="accent-brand-orange mt-1"
               />
               <span class="text-sm text-gray-800 text-left">
                 Installation on the interior wall<br />
@@ -118,7 +118,7 @@
                 type="radio"
                 value="between"
                 v-model="form.config_options.installationMethod"
-                class="form-radio mt-1"
+                class="accent-brand-orange mt-1"
               />
               <span class="text-sm text-gray-800 text-left">
                 Installation on the reveal<br />
