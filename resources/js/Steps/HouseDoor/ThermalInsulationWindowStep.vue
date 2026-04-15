@@ -122,9 +122,17 @@
             type="radio"
             value="with"
             v-model="form.config_options.window_type"
+            :disabled="form.config_options.locking_mechanism === 'V3'"
           />
           <span class="font-medium text-gray-900">With Window</span>
         </label>
+
+        <p
+          v-if="form.config_options.locking_mechanism === 'V3'"
+          class="text-sm text-red-600 mt-1"
+        >
+          Windows are not available for V3 — this version is fully watertight over the entire door height.
+        </p>
       </div>
 
       <!-- FLOOD PROTECTION OPTION-->
@@ -265,6 +273,16 @@ const windowVersions = [
     image: imgDoor3
   }
 ];
+
+watch(
+  () => form.config_options.locking_mechanism,
+  (value) => {
+    if (value === 'V3') {
+      form.config_options.window_type = 'without';
+      form.config_options.window_version = null;
+    }
+  }
+);
 
 watch(
   () => form.config_options.window_type,

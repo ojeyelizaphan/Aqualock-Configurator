@@ -80,10 +80,29 @@
             v-model="form.config_options.burglary_protection"
             class="w-full rounded-lg border-gray-300 px-4 py-2"
           >
-            <option :value="null">None</option>
-            <option value="RC2">RC2</option>
-            <option value="RC3">RC3</option>
+            <option :value="null">
+              {{ ['V3', 'V6'].includes(form.config_options.locking_mechanism) ? 'RC1 only (standard)' : 'None' }}
+            </option>
+            <option
+              value="RC2"
+              :disabled="['V3', 'V6'].includes(form.config_options.locking_mechanism)"
+            >
+              RC2
+            </option>
+            <option
+              value="RC3"
+              :disabled="['V3', 'V6'].includes(form.config_options.locking_mechanism)"
+            >
+              RC3
+            </option>
           </select>
+
+          <p
+            v-if="['V3', 'V6'].includes(form.config_options.locking_mechanism)"
+            class="mt-2 text-sm text-red-600"
+          >
+            For locking mechanisms V3 and V6, only RC1 burglary protection is available.
+          </p>
         </div>
 
         <div>
@@ -119,12 +138,24 @@
 </template>
 
 <script setup>
+import { watch } from 'vue';
+
 const props = defineProps({ form: Object });
 const form = props.form;
 
 if (!form.config_options.panic_features) form.config_options.panic_features = [];
 if (!form.config_options.drive_plate) form.config_options.drive_plate = null;
 if (!form.config_options.burglary_protection) form.config_options.burglary_protection = null;
+
+watch(
+  () => form.config_options.locking_mechanism,
+  (value) => {
+    if (['V3', 'V6'].includes(value)) {
+      form.config_options.burglary_protection = null;
+    }
+  },
+  { immediate: true }
+);
 
 const panicOptions = [
   {

@@ -1,5 +1,6 @@
 import { computed } from 'vue';
 import { sectionalDoorWithoutMotor, sectionalDoorWidthSteps } from '@/Data/sectionalDoorPrices';
+const sectionalDoorStandardOutsideColors = ['RAL 9016', 'RAL 7016'];
 
 export function useSectionalDoorPriceCalculator(form, configurationSteps, step) {
   const baseCalculatedPrice = computed(() => {
@@ -19,15 +20,14 @@ export function useSectionalDoorPriceCalculator(form, configurationSteps, step) 
 
   const colorExtraCost = computed(() => {
     const color = form.config_options?.color;
-    const selectedWidth = form.config_options?.width;
-    const selectedHeight = form.config_options?.height;
+    const selectedWidth = Number(form.config_options?.width || 0);
+    const selectedHeight = Number(form.config_options?.height || 0);
 
     if (!color || !selectedWidth || !selectedHeight) return 0;
 
-    const standardColors = ['ral9016', 'ral7016'];
-
-    if (standardColors.includes(color)) return 0;
-    if (color !== 'custom') return 0;
+    if (sectionalDoorStandardOutsideColors.includes(color)) {
+      return 0;
+    }
 
     const squareMeters = (selectedWidth / 1000) * (selectedHeight / 1000);
     return Math.ceil(squareMeters * 69);

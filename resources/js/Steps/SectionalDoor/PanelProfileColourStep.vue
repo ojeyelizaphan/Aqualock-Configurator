@@ -44,30 +44,22 @@
 
         <ColorSelector
           title="Choose outside panel colour"
-          :options="outsideStandardColorOptions"
+          :options="colorOptions"
           v-model="form.config_options.color"
         />
 
-        <div v-if="form.config_options.color === 'custom'" class="mt-4">
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            Enter preferred RAL colour
-          </label>
-          <input
-            type="text"
-            v-model="form.config_options.custom_ral_color"
-            placeholder="e.g. RAL 1001 Beige"
-            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-brand-orange"
-          />
-          <p class="text-xs text-gray-500 mt-1">
-            Example: RAL 1001 Beige
-          </p>
+        <div
+          v-if="form.config_options.color && sectionalDoorStandardOutsideColors.includes(form.config_options.color)"
+          class="mt-2 text-sm text-green-600"
+        >
+          Selected outside colour is standard and carries no extra charge.
         </div>
 
         <div
-          v-if="form.config_options.color === 'custom' && colorExtraCost > 0"
+          v-else-if="form.config_options.color && colorExtraCost > 0"
           class="mt-2 text-sm text-red-500"
         >
-          Extra charge for custom colour: €{{ colorExtraCost }}
+          Selected outside colour is non-standard and incurs an extra charge of €{{ colorExtraCost }}.
         </div>
 
         <div class="mt-6 p-4 rounded-xl bg-gray-50 border border-gray-200">
@@ -156,6 +148,13 @@
         >
           Extra charge for customized steel corners and aluminium profiles: €421 / set
         </div>
+
+        <div class="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-200">
+          <p class="text-sm text-amber-900">
+            Dark colors should be avoided on the outside of double-walled steel doors facing the sun, 
+            as any deflection of the slats could impair the door's functionality.
+          </p>
+        </div>
       </section>
     </div>
   </div>
@@ -166,6 +165,7 @@ import { watch, onMounted } from 'vue'
 import img1 from "@/Assets/6-Sectional/Step-3/step-3a.jpg"
 import img2 from "@/Assets/6-Sectional/Step-3/step-3b.jpg"
 import ColorSelector from '@/Components/ColorSector.vue'
+import { colorOptions } from '@/Data/colorOptions'
 
 const props = defineProps({
   form: Object,
@@ -175,22 +175,9 @@ const props = defineProps({
   }
 })
 
-const outsideStandardColorOptions = [
-  {
-    value: 'ral9016',
-    label: 'RAL 9016 NZ Traffic White',
-    color: '#F1F0EA'
-  },
-  {
-    value: 'ral7016',
-    label: 'RAL 7016 NZ Anthracite Grey',
-    color: '#383E42'
-  },
-  {
-    value: 'custom',
-    label: 'Custom RAL Colour',
-    color: '#D1D5DB'
-  }
+const sectionalDoorStandardOutsideColors = [
+  'RAL 9016',
+  'RAL 7016'
 ]
 
 const ensureDefaults = () => {
@@ -207,15 +194,6 @@ const ensureDefaults = () => {
 onMounted(() => {
   ensureDefaults()
 })
-
-watch(
-  () => props.form.config_options.color,
-  (newColor) => {
-    if (newColor !== 'custom') {
-      props.form.config_options.custom_ral_color = ''
-    }
-  }
-)
 
 watch(
   () => props.form.config_options.profileColour,

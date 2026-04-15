@@ -96,7 +96,7 @@ const lockingMechanismOptions = [
   { value: 'V1', label: 'V1', description: 'Outside: No door fixture, no locking cylinder. Inside: Locking cylinder, lever handle and espagnolette bolt handle.', image: imgV1 },
   { value: 'V2', label: 'V2', description: 'Outside: Locking cylinder and a lever handle. Inside: Locking cylinder, lever handle and espagnolette bolt handle.', image: imgV2 },
   { value: 'V3', label: 'V3', description: 'Outside: Locking cylinder with waterproof cover, fixed lever knob. Inside: Locking cylinder, lever handle and espagnolette bolt handle.', image: imgV3 },
-  { value: 'V6', label: 'V6', description: 'Outside: Locking cylinder, fixed door knob and espagnolette bolt handle. Inside: Locking cylinder, lever handle and espagnolette bolt handle.', image: imgV6 }
+  { value: 'V6', label: 'V6', description: 'Outside: Locking cylinder, fixed door knob and door drive bolt. Inside: Locking cylinder, lever handle and espagnolette bolt handle.', image: imgV6 }
 ];
 
 const leftOptions = lockingMechanismOptions.slice(0,2);

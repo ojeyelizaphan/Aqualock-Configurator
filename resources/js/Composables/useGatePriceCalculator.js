@@ -1,6 +1,7 @@
 import { computed } from 'vue';
 import { gateInwardPrices, gateOutwardPrices } from '@/Data/gatePrices';
 import { colorOptions } from '@/Data/colorOptions';
+import { standardColorCodes } from '@/Data/colorOptions';
 
 export function useGatePriceCalculator(form, configurationSteps, step) {
   const baseCalculatedPrice = computed(() => {
@@ -16,19 +17,18 @@ export function useGatePriceCalculator(form, configurationSteps, step) {
   });
 
   const colorExtraCost = computed(() => {
-    const color = form.config_options['color'];
-    const selectedWidth = form.config_options['width'];
-    const selectedHeight = form.config_options['height'];
+    const color = form.config_options?.color;
+    const selectedWidth = Number(form.config_options?.width || 0);
+    const selectedHeight = Number(form.config_options?.height || 0);
 
     if (!color || !selectedWidth || !selectedHeight) return 0;
 
-    const standardColors = colorOptions
-      .map(option => option.value)
-      .filter(value => value !== 'custom');
+    const isStandard = standardColorCodes.includes(color);
 
-    if (standardColors.includes(color)) return 0;
+    if (isStandard) return 0;
 
     const squareMeters = (selectedWidth / 1000) * (selectedHeight / 1000);
+
     return Math.ceil(squareMeters * 78);
   });
 

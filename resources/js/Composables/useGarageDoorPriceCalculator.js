@@ -3,6 +3,7 @@ import { versionV500Prices } from '@/Data/versionV500Prices';
 import { versionVPrices } from '@/Data/versionVPrices';
 import { versionEPrices } from '@/Data/versionEPrices';
 import { colorOptions } from '@/Data/colorOptions';
+import { standardColorCodes } from '@/Data/colorOptions';
 
 export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
   const baseCalculatedPrice = computed(() => {
@@ -19,18 +20,17 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
 
   const colorExtraCost = computed(() => {
     const color = form.config_options?.color;
-    const width = form.config_options?.width;
-    const height = form.config_options?.height;
+    const width = Number(form.config_options?.width);
+    const height = Number(form.config_options?.height);
 
     if (!color || !width || !height) return 0;
 
-    const standardColors = colorOptions
-      .map(option => option.value)
-      .filter(value => value !== 'custom');
+    const isStandard = standardColorCodes.includes(color);
 
-    if (standardColors.includes(color)) return 0;
+    if (isStandard) return 0;
 
     const squareMeters = (width / 1000) * (height / 1000);
+
     return Math.ceil(squareMeters * 39);
   });
 

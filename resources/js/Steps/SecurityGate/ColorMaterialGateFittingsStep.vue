@@ -30,27 +30,18 @@
           v-model="form.config_options.color"
         />
 
-        <!-- Custom RAL input -->
-        <div v-if="form.config_options['color'] === 'custom'" class="mt-4">
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            Enter preferred RAL color
-          </label>
-          <input
-            type="text"
-            v-model="form.config_options['custom_ral_color']"
-            placeholder="e.g. RAL 1001 Beige"
-            class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-brand-orange"
-          />
-          <p class="text-xs text-gray-500 mt-1">
-            Example: RAL 1001 Beige
-          </p>
+        <div
+          v-if="form.config_options.color && standardColorCodes.includes(form.config_options.color)"
+          class="mt-2 text-sm text-green-600 text-center"
+        >
+          This is a standard colour and carries no extra charge.
         </div>
 
         <div
-          v-if="colorExtraCost > 0"
+          v-else-if="form.config_options.color && colorExtraCost > 0"
           class="mt-2 text-sm text-red-500 text-center"
         >
-          Extra charge for custom colour: €{{ colorExtraCost }}
+          Selected colour is a non-standard RAL colour and incurs an extra charge of €{{ colorExtraCost }}.
         </div>
 
         <!-- Reference Images (moved here) -->
@@ -136,6 +127,7 @@
 <script setup>
 import { watch } from 'vue';
 import ColorSelector from '@/Components/ColorSector.vue'
+import { colorOptions, standardColorCodes } from '@/Data/colorOptions'
 import img1 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-1.jpg"
 import img2 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-2.jpg"
 import img3 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-3.jpg"
