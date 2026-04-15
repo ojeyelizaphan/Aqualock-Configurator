@@ -91,15 +91,7 @@ defineProps({
   colorOptions: Array
 });
 
-// Clear custom RAL input if user moves away from custom color
-// watch(
-//   () => form.config_options['color'],
-//   (newColor) => {
-//     if (newColor !== 'custom') {
-//       form.config_options.custom_ral_color = '';
-//     }
-//   }
-// );
+
 
 const imgDoor = imgStep4;
 </script>

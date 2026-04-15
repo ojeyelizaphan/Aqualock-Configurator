@@ -5,7 +5,6 @@
     </h4>
 
     <div class="border border-gray-200 rounded-xl overflow-hidden bg-white max-w-md">
-      <!-- Search -->
       <div class="border-b border-gray-200 p-3 bg-gray-50">
         <input
           v-model="search"
@@ -16,45 +15,51 @@
       </div>
 
       <div class="max-h-80 overflow-y-auto">
-        <label
+        <div
           v-for="option in filteredOptions"
           :key="option.value"
-          class="block cursor-pointer"
+          class="block"
         >
           <input
+            :id="`color-${option.value}`"
             type="radio"
-            class="sr-only"
+            class="hidden"
             :value="option.value"
             :checked="modelValue === option.value"
             @change="$emit('update:modelValue', option.value)"
           />
 
-          <div
-            :class="[
-              'w-full px-4 py-2.5 text-sm flex items-center justify-between transition-all duration-150 border-b border-white/20',
-              modelValue === option.value
-                ? 'ring-2 ring-inset ring-brand-orange'
-                : 'hover:opacity-95'
-            ]"
-            :style="option.color ? { backgroundColor: option.color } : { backgroundColor: '#ffffff' }"
-            :title="option.label"
+          <label
+            :for="`color-${option.value}`"
+            class="block cursor-pointer"
           >
-            <span
-              class="font-medium"
-              :class="option.color ? (isLightColor(option.color) ? 'text-black' : 'text-white') : 'text-gray-800'"
+            <div
+              :class="[
+                'w-full px-4 py-2.5 text-sm flex items-center justify-between transition-all duration-150 border-b border-white/20',
+                modelValue === option.value
+                  ? 'ring-2 ring-inset ring-brand-orange'
+                  : 'hover:opacity-95'
+              ]"
+              :style="option.color ? { backgroundColor: option.color } : { backgroundColor: '#ffffff' }"
+              :title="option.label"
             >
-              {{ option.label }}
-            </span>
+              <span
+                class="font-medium"
+                :class="option.color ? (isLightColor(option.color) ? 'text-black' : 'text-white') : 'text-gray-800'"
+              >
+                {{ option.label }}
+              </span>
 
-            <span
-              v-if="modelValue === option.value"
-              class="text-xs font-semibold"
-              :class="option.color ? (isLightColor(option.color) ? 'text-black' : 'text-white') : 'text-gray-800'"
-            >
-              ✓
-            </span>
-          </div>
-        </label>
+              <span
+                v-if="modelValue === option.value"
+                class="text-xs font-semibold"
+                :class="option.color ? (isLightColor(option.color) ? 'text-black' : 'text-white') : 'text-gray-800'"
+              >
+                ✓
+              </span>
+            </div>
+          </label>
+        </div>
 
         <div
           v-if="filteredOptions.length === 0"
@@ -82,10 +87,11 @@ const search = ref('');
 
 const filteredOptions = computed(() => {
   const term = search.value.trim().toLowerCase();
+  const list = Array.isArray(props.options) ? props.options : [];
 
-  if (!term) return props.options;
+  if (!term) return list;
 
-  return props.options.filter((option) =>
+  return list.filter((option) =>
     option.label?.toLowerCase().includes(term) ||
     option.value?.toLowerCase().includes(term)
   );
