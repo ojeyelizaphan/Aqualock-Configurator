@@ -1,0 +1,57 @@
+{
+  "step1": {
+    "included": {
+      "title": "Grundsätzlich inbegriffen",
+      "description": "Bei dieser Tür-Konfiguration ist das Montage-Set zwingend inbegriffen und wird automatisch hinzugefügt.",
+      "name": "Montageset mit Dichtmittel",
+      "note": "Keine Auswahl nötig – immer inbegriffen.",
+      "price": "€246 / Stück"
+    },
+
+    "title": "Maße und Montageart",
+
+    "dimensions": {
+      "title": "Maße des Windows Protector",
+      "description1": "Bitte beachten Sie die maximale Größe der Maueröffnung für den Windows Protector von 1800 × 1800 mm.",
+      "width": "Breite der Maueröffnung:",
+      "widthRange": "Zwischen 400 und 1.800 mm",
+      "height": "Höhe der Maueröffnung:",
+      "heightRange": "Zwischen 400 und 1.800 mm",
+      "inputWidth": "Breite (mm)",
+      "inputHeight": "Höhe (mm)",
+      "invalidRange": "Bitte geben Sie eine gültige Breite und Höhe zwischen 400 mm und 1800 mm ein.",
+      "notManufacturable": "Diese Größe ist für die gewählte Konfiguration nicht verfügbar."
+    },
+
+    "installation": {
+      "title": "Montageart",
+      "description": "Das Acrylsystem für einfache Nachrüstung ist die perfekte Lösung zur Abdichtung von Keller- und Gebäudeöffnungen. Die Montage kann entweder auf dem Fensterrahmen oder direkt auf der Hauswand erfolgen. In beiden Fällen wird das System mit einem speziellen Acrylkleber befestigt und abgedichtet.",
+      "frame": "Auf dem Fensterrahmen",
+      "wall": "An der Hauswand"
+    }
+  },
+
+  "step2": {
+  "title": "Optionale Luke",
+
+  "removable": {
+    "title": "Auswahl Luke zum Herausnehmen",
+    "description": "Bitte wählen Sie aus den vorgegebenen Breiten und Höhen aus. Der Preis der Luke wird dann automatisch hinzugefügt.",
+    "width": "Breite",
+    "height": "Höhe",
+    "selectWidth": "Breite auswählen",
+    "selectHeight": "Höhe auswählen",
+    "price": "Preis der Luke"
+  },
+
+  "tiltUp": {
+    "title": "Auswahl Luke zum Kippen",
+    "description": "Bitte wählen Sie aus den vorgegebenen Breiten und Höhen aus. Der Preis der Luke wird dann automatisch hinzugefügt.",
+    "width": "Breite",
+    "height": "Höhe",
+    "selectWidth": "Breite auswählen",
+    "selectHeight": "Höhe auswählen",
+    "price": "Preis der Luke"
+  }
+}
+}

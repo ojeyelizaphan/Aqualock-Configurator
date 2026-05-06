@@ -1,118 +1,108 @@
+<script setup>
+import { useI18n } from 'vue-i18n'
+import ColorSelector from '@/Components/ColorSector.vue'
+import { colorOptions, standardColorCodes } from '@/Data/colorOptions'
+
+import img1 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-1.jpg"
+import img2 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-2.jpg"
+import img3 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-3.jpg"
+
+const { t } = useI18n()
+
+const props = defineProps({
+  form: Object,
+  colorExtraCost: Number
+})
+
+const form = props.form
+
+const gateFittingOptions = [
+  'aluminum_both',
+  'stainless_both',
+  'aluminum_inside',
+  'stainless_inside',
+  'aluminum_knob',
+  'stainless_knob'
+]
+</script>
+
 <template>
   <div class="max-w-6xl mx-auto space-y-8">
 
     <h2 class="text-2xl font-semibold text-center text-gray-800">
-      Colour & Material, Gate Fittings
+      {{ t('gate.step3.title') }}
     </h2>
 
-    <!-- Split Screen -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-      <!-- Colour Selection -->
+      <!-- COLOR -->
       <section class="space-y-6">
-        <h3 class="text-xl font-semibold text-gray-800 text-center">
-          Choose Colour
+        <h3 class="text-xl font-semibold text-center">
+          {{ t('gate.step3.color.title') }}
         </h3>
 
-        <p class="text-sm text-gray-600 text-center leading-relaxed">
-          To perfectly match your AquaLOCK® gate to your building, you have a choice
-          of 216 RAL colours. There are seven standard colours (white and six shades
-          of grey) available at no extra charge.
-          <br /><br />
-          Please note: Colour shades displayed on the website may differ from the
-          actual colour due to monitor settings; therefore, no guarantee for an
-          exact match can be given.
+        <p class="text-sm text-gray-600 text-center">
+          {{ t('gate.step3.color.description') }}
+          <br><br>
+          {{ t('gate.step3.color.note') }}
         </p>
 
-        <!-- Compact scroll container -->
         <ColorSelector
           :options="colorOptions"
           v-model="form.config_options.color"
         />
 
+        <!-- Color Messages -->
         <div
           v-if="form.config_options.color && standardColorCodes.includes(form.config_options.color)"
-          class="mt-2 text-sm text-green-600 text-center"
+          class="text-green-600 text-sm text-center"
         >
-          This is a standard colour and carries no extra charge.
+          {{ t('gate.step3.color.standard') }}
         </div>
 
         <div
           v-else-if="form.config_options.color && colorExtraCost > 0"
-          class="mt-2 text-sm text-red-500 text-center"
+          class="text-red-500 text-sm text-center"
         >
-          Selected colour is a non-standard RAL colour and incurs an extra charge of €{{ colorExtraCost }}.
+          {{ t('gate.step3.color.custom', { price: colorExtraCost }) }}
         </div>
 
-        <!-- Reference Images (moved here) -->
+        <!-- Images -->
         <div class="grid grid-cols-3 gap-4 pt-6">
-          <figure class="space-y-2 text-center">
-            <img
-              :src="img1"
-              alt="Gate fitting aluminum"
-              class="rounded-lg border"
-            />
-            <figcaption class="text-xs text-gray-600">
-              <!-- Aluminum F1 handle set -->
-            </figcaption>
-          </figure>
-
-          <figure class="space-y-2 text-center">
-            <img
-              :src="img2"
-              alt="Gate fitting stainless steel"
-              class="rounded-lg border"
-            />
-            <figcaption class="text-xs text-gray-600">
-              <!-- Stainless steel handle set -->
-            </figcaption>
-          </figure>
-
-          <figure class="space-y-2 text-center">
-            <img
-              :src="img3"
-              alt="Gate fitting knob outside"
-              class="rounded-lg border"
-            />
-            <figcaption class="text-xs text-gray-600">
-              <!-- Fixed knob outside option -->
-            </figcaption>
-          </figure>
+          <img :src="img1" class="rounded-lg border" />
+          <img :src="img2" class="rounded-lg border" />
+          <img :src="img3" class="rounded-lg border" />
         </div>
       </section>
 
-      <!-- Gate Fittings -->
+      <!-- FITTINGS -->
       <section class="space-y-5">
-        <h3 class="text-xl font-semibold text-gray-800">
-          Gate Fittings
+        <h3 class="text-xl font-semibold">
+          {{ t('gate.step3.fittings.title') }}
         </h3>
 
-        <p class="text-sm text-gray-600 leading-relaxed">
-          Are you looking to open and close the gate with an additional door handle
-          for everyday use? Choose from the following options.
-          <br /><br />
-          If no further information is provided, the gate will be manufactured
-          without a lock and handle.
+        <p class="text-sm text-gray-600">
+          {{ t('gate.step3.fittings.description') }}
         </p>
 
-        <!-- Options -->
         <div class="space-y-3">
           <label
             v-for="option in gateFittingOptions"
-            :key="option.value"
-            class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition"
-            :class="form.config_options.gate_fittings === option.value
+            :key="option"
+            class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer"
+            :class="form.config_options.gate_fittings === option
               ? 'border-brand-orange bg-orange-50'
-              : 'border-gray-200 hover:border-gray-300'"
+              : 'border-gray-200'"
           >
             <input
               type="radio"
-              class="mt-1"
-              :value="option.value"
+              class="mt-1 accent-orange-500"
+              :value="option"
               v-model="form.config_options.gate_fittings"
             />
-            <span class="text-sm text-gray-800">
-              {{ option.label }}
+
+            <span class="text-sm">
+              {{ t(`gate.step3.fittings.${option}`) }}
             </span>
           </label>
         </div>
@@ -121,54 +111,3 @@
     </div>
   </div>
 </template>
-
-
-  
-<script setup>
-import { watch } from 'vue';
-import ColorSelector from '@/Components/ColorSector.vue'
-import { colorOptions, standardColorCodes } from '@/Data/colorOptions'
-import img1 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-1.jpg"
-import img2 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-2.jpg"
-import img3 from "@/Assets/4-AquaLOCK Gate/Step-3/gate-fittings-3.jpg"
-
-defineProps({
-  form: Object,
-  colorOptions: Array,
-  colorExtraCost: {
-    type: Number,
-    default: 0
-  }
-});
-
-const gateFittingOptions = [
-  {
-    value: 'aluminum_both',
-    label: 'Lever handle set inside and outside – Aluminum F1'
-  },
-  {
-    value: 'stainless_both',
-    label: 'Lever handle set inside and outside – Stainless steel'
-  },
-  {
-    value: 'aluminum_inside',
-    label: 'Lever handle set only inside – Aluminum F1'
-  },
-  {
-    value: 'stainless_inside',
-    label: 'Lever handle set only inside – Stainless steel'
-  },
-  {
-    value: 'aluminum_knob',
-    label: 'Lever handle inside, fixed knob outside – Aluminum F1'
-  },
-  {
-    value: 'stainless_knob',
-    label: 'Lever handle inside, fixed knob outside – Stainless steel'
-  }
-];
-
-
-</script>
-
-  

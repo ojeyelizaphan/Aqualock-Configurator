@@ -1,0 +1,109 @@
+{
+  "stepProtection": {
+    "title": "Protection Level & Measurements",
+
+    "intro": {
+      "title": "Select water protection level",
+      "p1": "Some structural situations require the installation of mobile flood protection. The AquaLOCK® Quickwall panel was designed precisely for this purpose.",
+      "p2": "It consists of fixed slats and is available up to a maximum protection height of 1.6 m, depending on the opening width."
+    },
+
+    "width": {
+      "label": "Opening width (mm)",
+      "placeholder": "Enter opening width",
+      "error": "Please enter a valid width between 800 mm and 3000 mm."
+    },
+
+    "height": {
+      "label": "Protection height (mm)",
+      "required": "Please select a protection height before continuing.",
+      "none": "No protection heights are available for this width."
+    }
+  },
+
+  "stepInstallation": {
+    "title": "Installation Method & Locking Lever",
+
+    "installation": {
+      "title": "Installation type",
+      "description": "The AquaLOCK® Quickwall panel can be installed either in front of or between the reveal, depending on the structural situation.",
+      "front": "In front of the reveal",
+      "between": "Between the reveal"
+    },
+
+    "locking": {
+      "title": "Locking lever layout",
+      "description": "The removable locking lever can be positioned either on the left or right side of the door without extra cost.",
+      "view": "(Viewed from outside)",
+      "right": "Right from the outside",
+      "left": "Left from the outside"
+    }
+  },
+
+  "stepMultiPanel": {
+    "title": "Multi Panel System",
+
+    "intro": {
+      "highlight": "Solutions for wide openings with a center post or corner mounting",
+      "p1": "Multiple AquaLOCK® Quickwall panels can be connected using a fixed central post (width: 60 mm) where a higher level of protection is required, e.g. 2.5 m wide × 1 m high. The central post is inserted into a stainless steel sleeve embedded in concrete and fixed with an integrated screw. Quickwall panels are then mounted on each side of the post to create a stable and secure barrier.",
+      "p2": "For corner applications, a special corner post can be used to join two Quickwall panels at an angle, providing a seamless and strong corner installation."
+    },
+
+    "example": {
+      "title": "Example how to calculate the correct width of the Quickwall panels",
+      "p": "You want to protect a 2,400 mm wide garage door at a height of 1,500 mm. The maximum width at that protection height is 1,100 mm, which is not enough to use only 2 panels — so you have to take 3 panels and 2 center posts.",
+      "calc1": "2,400 mm − 120 mm (2 center posts) = 2,280 mm",
+      "calc2": "2,280 ÷ 3 = 760 mm per panel"
+    },
+
+    "inputs": {
+      "panels": {
+        "label": "Required Quickwall panels",
+        "placeholder": "Number of panels"
+      },
+      "centerPosts": {
+        "label": "Required center posts",
+        "placeholder": "Number of center posts"
+      },
+      "cornerPosts": {
+        "label": "Required corner posts",
+        "placeholder": "Number of corner posts"
+      }
+    },
+
+    "images": {
+      "center": "Center post configuration",
+      "corner": "Corner post configuration"
+    }
+  },
+
+  "stepAccessories": {
+    "title": "Accessories & Additional Options",
+
+    "included": {
+      "title": "Included at no extra cost",
+      "description": "As a special anniversary offer, the assembly kit is included free of charge. The corner profiles are part of this assembly kit. Only the colour coating of the profiles carries an additional charge."
+    },
+
+    "bottomPlate": {
+      "title": "Bottom plate",
+      "description": "The bottom plate is mandatory and is included automatically according to the number of Quickwall panels selected."
+    },
+
+    "cornerProfiles": {
+      "title": "Corner profiles colour coating",
+      "description": "Corner profiles are included as part of the assembly kit. You can optionally add RAL colour coating at an extra charge.",
+      "without": "Without colour coating (anodised aluminium)",
+      "with": "With colour coating (RAL)"
+    },
+
+    "accessories": {
+      "title": "Optional accessories",
+      "hooks": {
+        "title": "Hooks for storing the Quickwall panel",
+        "description": "Hooks for hanging and storing the panels.",
+        "price": "€11"
+      }
+    }
+  }
+}

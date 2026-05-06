@@ -1,59 +1,48 @@
 <template>
   <div class="max-w-6xl mx-auto px-4 space-y-20">
 
-    <!-- Included by default -->
+    <!-- INCLUDED -->
     <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 max-w-4xl mx-auto">
       <h3 class="text-lg font-semibold text-amber-900 mb-2">
-        Included by default
+        {{ t('door.included.title') }}
       </h3>
+
       <p class="text-sm text-amber-800 mb-4">
-        Assembly kit with sealing is a standard option and is automatically added to the total price.
+        {{ t('door.included.description') }}
       </p>
 
       <div class="flex items-start justify-between gap-4">
         <div>
-          <p class="font-medium text-gray-900">Assembly kit with sealing</p>
+          <p class="font-medium text-gray-900">
+            {{ t('door.included.item') }}
+          </p>
           <p class="text-sm text-gray-600">
-            Standard option — automatically included.
+            {{ t('door.included.note') }}
           </p>
         </div>
+
         <p class="font-semibold text-gray-900 whitespace-nowrap">
-          €398 / piece
+          {{ t('door.included.price') }}
         </p>
       </div>
     </div>
 
-    <!-- ============================= -->
-    <!--  SPLIT: INSULATION | WINDOWS -->
-    <!-- ============================= -->
+    <!-- SPLIT -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-14">
 
-      <!-- LEFT: INSULATION -->
+      <!-- ========================= -->
+      <!-- INSULATION -->
+      <!-- ========================= -->
       <section>
         <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">
-          Thermal Insulation
+          {{ t('door.insulation.title') }}
         </h2>
 
-        <div class="text-gray-700 leading-relaxed space-y-4 mb-8">
-          <p class="font-semibold text-lg text-gray-900">
-            Thermally insulated AquaLOCK® doors — efficient protection against heat and cold
-          </p>
+        <div
+          class="text-gray-700 leading-relaxed space-y-4 mb-8"
+          v-html="t('door.insulation.description')"
+        ></div>
 
-          <p>
-            The German Energy Conservation Ordinance (EnEV) requires front doors to have a maximum
-            Ud value of <strong>1.8 W/m²K</strong>.
-          </p>
-
-          <p>
-            AquaLOCK® thermally insulated doors achieve <strong>Ud 1.5 W/m²K</strong>.
-          </p>
-
-          <p>
-            Non-thermal doors suit garages or unheated spaces.
-          </p>
-        </div>
-
-        <!-- SIMPLE RADIO LIST -->
         <div class="space-y-3">
           <label
             v-for="option in insulationOptions"
@@ -66,244 +55,237 @@
               v-model="form.config_options.thermal_insulation"
               class="mt-1"
             />
+
             <div>
-              <p class="font-semibold text-gray-900">{{ option.label }}</p>
-              <p class="text-sm text-gray-600">{{ option.description }}</p>
+              <p class="font-semibold text-gray-900">
+                {{ t(`door.insulation.options.${option.value}.label`) }}
+              </p>
+              <p class="text-sm text-gray-600">
+                {{ t(`door.insulation.options.${option.value}.desc`) }}
+              </p>
             </div>
           </label>
         </div>
       </section>
 
-
-
-      <!-- RIGHT: WINDOWS -->
       <!-- ========================= -->
-<!-- WINDOWS (RIGHT SIDE ONLY) -->
-<!-- ========================= -->
-<section>
-  <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">
-    Windows
-  </h2>
+      <!-- WINDOWS -->
+      <!-- ========================= -->
+      <section>
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">
+          {{ t('door.windows.title') }}
+        </h2>
 
-  <!-- DESCRIPTION + BASIC WINDOW TYPE OPTIONS -->
+        <!-- DESCRIPTION -->
+        <div class="text-gray-700 leading-relaxed space-y-4">
 
-    <!-- LEFT: DESCRIPTION -->
-    <div class="text-gray-700 leading-relaxed space-y-4">
-      <p>
-        A non-opening window (max <strong>650 × 450 mm</strong>) can be added to bring natural light inside.
-      </p>
+          <div v-html="t('door.windows.description')"></div>
 
-      <p>
-        • Thermally insulated doors → <strong>triple glazing</strong><br>
-        • Non-insulated doors → <strong>double glazing</strong>
-      </p>
+          <p class="text-red-600 font-medium">
+            {{ t('door.windows.warning') }}
+          </p>
 
-      <p class="text-red-600 font-medium">
-        Note: Windows are not flood-resistant and should not be used where full-height flood protection is required.
-      </p>
+          <p class="text-sm text-gray-500">
+            {{ t('door.windows.samePrice') }}
+          </p>
 
-      <p>
-        Available in 3 variants, all at the same price.
-      </p>
+          <!-- WITHOUT / WITH -->
+          <div class="space-y-3 pt-4">
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input
+                type="radio"
+                value="without"
+                v-model="form.config_options.window_type"
+              />
+              <span class="font-medium text-gray-900">
+                {{ t('door.windows.without') }}
+              </span>
+            </label>
 
-      <!-- RADIO OPTIONS: WITHOUT / WITH -->
-      <div class="space-y-3 pt-4">
-        <label class="flex items-center gap-3 cursor-pointer">
-          <input
-            type="radio"
-            value="without"
-            v-model="form.config_options.window_type"
-          />
-          <span class="font-medium text-gray-900">Without Window</span>
-        </label>
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input
+                type="radio"
+                value="with"
+                v-model="form.config_options.window_type"
+                :disabled="form.config_options.locking_mechanism === 'V3'"
+              />
+              <span class="font-medium text-gray-900">
+                {{ t('door.windows.with') }}
+              </span>
+            </label>
 
-        <label class="flex items-center gap-3 cursor-pointer">
-          <input
-            type="radio"
-            value="with"
-            v-model="form.config_options.window_type"
-            :disabled="form.config_options.locking_mechanism === 'V3'"
-          />
-          <span class="font-medium text-gray-900">With Window</span>
-        </label>
-
-        <p
-          v-if="form.config_options.locking_mechanism === 'V3'"
-          class="text-sm text-red-600 mt-1"
-        >
-          Windows are not available for V3 — this version is fully watertight over the entire door height.
-        </p>
-      </div>
-
-      <!-- FLOOD PROTECTION OPTION-->
-      <div class="mt-6 border-t pt-6">
-        <h3 class="text-xl font-semibold text-gray-800 mb-3">
-          Flood Protection
-        </h3>
-
-        <p class="text-sm text-gray-600 mb-3">
-          The heavy duty version provides flood protection up to 5 m.
-        </p>
-
-        <label class="flex items-start gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            v-model="form.config_options.heavy_duty"
-            :disabled="form.config_options.window_type === 'with'"
-            class="mt-1"
-          />
-          <div>
-            <p class="font-medium text-gray-900">
-              Heavy duty version with flood protection up to 5 m
-            </p>
-            <p class="text-sm text-gray-600">
-              Not available when a window is selected.
+            <!-- V3 WARNING -->
+            <p
+              v-if="form.config_options.locking_mechanism === 'V3'"
+              class="text-sm text-red-600 mt-1"
+            >
+              {{ t('door.windows.v3Warning') }}
             </p>
           </div>
-        </label>
 
-        <p
+          <!-- ========================= -->
+          <!-- FLOOD -->
+          <!-- ========================= -->
+          <div class="mt-6 border-t pt-6">
+            <h3 class="text-xl font-semibold text-gray-800 mb-3">
+              {{ t('door.flood.title') }}
+            </h3>
+
+            <p class="text-sm text-gray-600 mb-3">
+              {{ t('door.flood.description') }}
+            </p>
+
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input
+                type="checkbox"
+                v-model="form.config_options.heavy_duty"
+                :disabled="form.config_options.window_type === 'with'"
+                class="mt-1"
+              />
+
+              <div>
+                <p class="font-medium text-gray-900">
+                  {{ t('door.flood.option') }}
+                </p>
+                <p class="text-sm text-gray-600">
+                  {{ t('door.flood.note') }}
+                </p>
+              </div>
+            </label>
+
+            <p
+              v-if="form.config_options.window_type === 'with'"
+              class="text-sm text-red-600 mt-2"
+            >
+              {{ t('door.flood.disabledNote') }}
+            </p>
+          </div>
+        </div>
+
+        <!-- ========================= -->
+        <!-- WINDOW VERSIONS -->
+        <!-- ========================= -->
+        <div
           v-if="form.config_options.window_type === 'with'"
-          class="text-sm text-red-600 mt-2"
+          class="mt-10 border-t pt-10"
         >
-          Flood protection is not available with windows.
-        </p>
-      </div>
-    </div>
- <!-- END DESCRIPTION GRID -->
+          <h3 class="text-2xl font-semibold text-center mb-6">
+            {{ t('door.windows.versionTitle') }}
+          </h3>
 
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
 
-  <!-- ============================== -->
-  <!-- WINDOW VERSIONS BELOW CONTENT -->
-  <!-- ============================== -->
-  <div
-    v-if="form.config_options.window_type === 'with'"
-    class="mt-10 border-t pt-10"
-  >
-    <h3 class="text-2xl font-semibold text-center mb-6">
-      Choose Window Version
-    </h3>
+            <!-- RADIO LIST -->
+            <div class="space-y-3">
+              <label
+                v-for="option in windowVersions"
+                :key="option.value"
+                class="flex items-start gap-3 cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  :value="option.value"
+                  v-model="form.config_options.window_version"
+                  class="mt-1"
+                />
 
-      
-    <div >
+                <div>
+                  <p class="font-semibold text-gray-900">
+                    {{ t(`door.windows.versions.${option.value}.label`) }}
+                  </p>
+                  <p class="text-sm text-gray-600">
+                    {{ t(`door.windows.versions.${option.value}.desc`) }}
+                  </p>
+                </div>
+              </label>
+            </div>
 
-      <!-- LEFT: RADIO LIST -->
-      <div class="space-y-3">
-        <label
-          v-for="option in windowVersions"
-          :key="option.value"
-          class="flex items-start gap-3 cursor-pointer"
-        >
-          <input
-            type="radio"
-            :value="option.value"
-            v-model="form.config_options.window_version"
-            class="mt-1"
-          />
-          <div>
-            <p class="font-semibold text-gray-900">{{ option.label }}</p>
-            <p class="text-sm text-gray-600">{{ option.description }}</p>
+            <!-- IMAGES -->
+            <div class="flex gap-4 justify-center flex-wrap">
+              <img
+                v-for="option in windowVersions"
+                :key="option.value"
+                :src="option.image"
+                :alt="option.value"
+                class="w-32 h-32 object-cover rounded-lg border"
+              />
+            </div>
+
           </div>
-        </label>
-      </div>
+        </div>
 
-      <!-- RIGHT: IMAGES IN ROW -->
-      <div class="flex gap-4 justify-center flex-wrap">
-        <img
-          v-for="option in windowVersions"
-          :key="option.value"
-          :src="option.image"
-          :alt="option.label"
-          class="w-32 h-32 object-cover rounded-lg border"
-        />
-      </div>
+      </section>
 
     </div>
-  </div>
-
-</section>
-
-
-    </div> <!-- END SPLIT GRID -->
-
-
-
-    
-
-
   </div>
 </template>
 
-
-
 <script setup>
-import { watch } from 'vue';
-import imgDoor1 from "@/Assets/3-AquaLOCK Door/Step-1/aqualock-1a.jpg";
-import imgDoor2 from "@/Assets/3-AquaLOCK Door/Step-1/aqualock-1b.jpg";
-import imgDoor3 from "@/Assets/3-AquaLOCK Door/Step-1/aqualock-1c.jpg";
+import { watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+import imgDoor1 from "@/Assets/3-AquaLOCK Door/Step-1/aqualock-1a.jpg"
+import imgDoor2 from "@/Assets/3-AquaLOCK Door/Step-1/aqualock-1b.jpg"
+import imgDoor3 from "@/Assets/3-AquaLOCK Door/Step-1/aqualock-1c.jpg"
+
+const { t } = useI18n()
 
 const props = defineProps({
   form: Object
-});
+})
 
-const form = props.form;
+const form = props.form
 
+// INSULATION OPTIONS
 const insulationOptions = [
-  { value: "thermally_insulated", label: "Thermally Insulated", description: "High thermal efficiency for energy savings." },
-  { value: "non_thermally_insulated", label: "Non-Thermally Insulated", description: "Standard construction without thermal break." },
-];
+  { value: "thermally_insulated" },
+  { value: "non_thermally_insulated" }
+]
 
+// WINDOW TYPES
 const windowVersions = [
-  {
-    value: "clear",
-    label: "Clear Glass",
-    description: "Clean transparent finish.",
-    image: imgDoor1
-  },
-  {
-    value: "mastercarree",
-    label: "Mastercarrée",
-    description: "Textured glass for privacy and style.",
-    image: imgDoor2
-  },
-  {
-    value: "satinato",
-    label: "Satinato (Frosted Glass)",
-    description: "Soft frosted appearance for maximum privacy.",
-    image: imgDoor3
-  }
-];
+  { value: "clear", image: imgDoor1 },
+  { value: "mastercarree", image: imgDoor2 },
+  { value: "satinato", image: imgDoor3 }
+]
 
+// =========================
+// LOGIC (KEEP THIS)
+// =========================
+
+// V3 → no windows
 watch(
   () => form.config_options.locking_mechanism,
   (value) => {
     if (value === 'V3') {
-      form.config_options.window_type = 'without';
-      form.config_options.window_version = null;
+      form.config_options.window_type = 'without'
+      form.config_options.window_version = null
     }
   }
-);
+)
 
+// window ↔ flood exclusion
 watch(
   () => form.config_options.window_type,
   (value) => {
     if (value === 'with') {
-      form.config_options.heavy_duty = false;
+      form.config_options.heavy_duty = false
     }
 
     if (value !== 'with') {
-      form.config_options.window_version = null;
+      form.config_options.window_version = null
     }
   }
-);
+)
 
+// flood ↔ window exclusion
 watch(
   () => form.config_options.heavy_duty,
   (value) => {
     if (value) {
-      form.config_options.window_type = 'without';
-      form.config_options.window_version = null;
+      form.config_options.window_type = 'without'
+      form.config_options.window_version = null
     }
   }
-);
+)
 </script>

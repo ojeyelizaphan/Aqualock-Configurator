@@ -1,114 +1,6 @@
-<template>
-  <div class="max-w-6xl mx-auto space-y-8">
-    <h2 class="text-2xl font-semibold text-center text-gray-800">
-      Protection Level & Measurements
-    </h2>
-
-    <div class="bg-white rounded-2xl shadow-md p-6 md:p-8">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-
-        <!-- LEFT: Description + Inputs -->
-        <div class="space-y-6">
-          <div class="space-y-3 text-gray-700 leading-relaxed">
-            <h3 class="text-lg font-semibold text-gray-800">
-              Select water protection level
-            </h3>
-            <p>
-              Some structural situations require the installation of mobile flood protection.
-              The <span class="font-medium">AquaLOCK® Quickwall panel</span> was designed precisely
-              for this purpose.
-            </p>
-            <p>
-              It consists of fixed slats and is available up to a maximum protection height of
-              <span class="font-medium">1.6 m</span>, depending on the opening width.
-            </p>
-          </div>
-
-          <!-- Opening Width -->
-          <div>
-            <label class="block font-medium text-gray-800 mb-2">
-              Opening width (mm)
-            </label>
-            <input
-              v-model="enteredWidth"
-              type="number"
-              min="800"
-              max="3000"
-              step="1"
-              placeholder="Enter opening width"
-              class="w-full p-3 border border-gray-300 rounded-xl focus:ring-brand-orange focus:border-brand-orange"
-            />
-          </div>
-
-          <div
-            v-if="enteredWidth && !isWidthValid"
-            class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
-          >
-            Please enter a valid width between 800 mm and 3000 mm.
-          </div>
-
-          <!-- Protection Height -->
-          <div v-if="isWidthValid">
-            <label class="block font-medium text-gray-800 mb-3">
-              Protection height (mm) <span class="text-red-600">*</span>
-            </label>
-
-            <div
-              v-if="availableProtectionHeights.length"
-              class="grid grid-cols-2 sm:grid-cols-3 gap-3"
-            >
-              <label
-                v-for="h in availableProtectionHeights"
-                :key="h"
-                class="flex items-center gap-2 p-3 border rounded-xl cursor-pointer hover:border-brand-orange transition"
-                :class="form.config_options.height === h ? 'border-brand-orange ring-1 ring-brand-orange' : 'border-gray-300'"
-              >
-                <input
-                  type="radio"
-                  class="accent-brand-orange"
-                  :value="h"
-                  v-model="form.config_options.height"
-                />
-                <span class="text-sm font-medium text-gray-700">
-                  {{ h }} mm
-                </span>
-              </label>
-            </div>
-
-            <div
-              v-else
-              class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
-            >
-              No protection heights are available for this width.
-            </div>
-
-            <div
-              v-if="availableProtectionHeights.length && !form.config_options.height"
-              class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700 mt-3"
-            >
-              Please select a protection height before continuing.
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT: Images -->
-        <div class="space-y-4">
-          <img
-            v-for="(img, index) in protectionImages"
-            :key="index"
-            :src="img"
-            alt="Quickwall protection example"
-            class="w-full h-60 object-contain rounded-xl bg-gray-50 shadow-sm"
-          />
-        </div>
-
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup>
 import { ref, computed, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import img1 from "@/Assets/5-Quickwall/Step-1/quickwall-1.jpg";
 import img2 from "@/Assets/5-Quickwall/Step-1/quickwall-1b.jpg";
 import {
@@ -117,6 +9,8 @@ import {
   quickwallBetweenReveal,
   quickwallFrontReveal
 } from "@/Data/quickwallPrices";
+
+const { t } = useI18n();
 
 const props = defineProps({
   form: Object
@@ -152,13 +46,8 @@ const mappedWidth = computed(() => {
 const selectedPriceTable = computed(() => {
   const installationMethod = props.form.config_options.installation_method;
 
-  if (installationMethod === "between_reveal") {
-    return quickwallBetweenReveal;
-  }
-
-  if (installationMethod === "front_reveal") {
-    return quickwallFrontReveal;
-  }
+  if (installationMethod === "between_reveal") return quickwallBetweenReveal;
+  if (installationMethod === "front_reveal") return quickwallFrontReveal;
 
   return quickwallBetweenReveal;
 });
@@ -191,3 +80,111 @@ watch(mappedWidth, (val) => {
   props.form.config_options.width = val;
 });
 </script>
+
+<template>
+  <div class="max-w-6xl mx-auto space-y-8">
+    <!-- TITLE -->
+    <h2 class="text-2xl font-semibold text-center text-gray-800">
+      {{ t('quickwall.stepProtection.title') }}
+    </h2>
+
+    <div class="bg-white rounded-2xl shadow-md p-6 md:p-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
+
+        <!-- LEFT -->
+        <div class="space-y-6">
+          <div class="space-y-3 text-gray-700 leading-relaxed">
+            <h3 class="text-lg font-semibold text-gray-800">
+              {{ t('quickwall.stepProtection.intro.title') }}
+            </h3>
+
+            <p>{{ t('quickwall.stepProtection.intro.p1') }}</p>
+            <p>{{ t('quickwall.stepProtection.intro.p2') }}</p>
+          </div>
+
+          <!-- WIDTH -->
+          <div>
+            <label class="block font-medium text-gray-800 mb-2">
+              {{ t('quickwall.stepProtection.width.label') }}
+            </label>
+
+            <input
+              v-model="enteredWidth"
+              type="number"
+              min="800"
+              max="3000"
+              step="1"
+              :placeholder="t('quickwall.stepProtection.width.placeholder')"
+              class="w-full p-3 border border-gray-300 rounded-xl focus:ring-brand-orange focus:border-brand-orange"
+            />
+          </div>
+
+          <div
+            v-if="enteredWidth && !isWidthValid"
+            class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
+          >
+            {{ t('quickwall.stepProtection.width.error') }}
+          </div>
+
+          <!-- HEIGHT -->
+          <div v-if="isWidthValid">
+            <label class="block font-medium text-gray-800 mb-3">
+              {{ t('quickwall.stepProtection.height.label') }}
+              <span class="text-red-600">*</span>
+            </label>
+
+            <div
+              v-if="availableProtectionHeights.length"
+              class="grid grid-cols-2 sm:grid-cols-3 gap-3"
+            >
+              <label
+                v-for="h in availableProtectionHeights"
+                :key="h"
+                class="flex items-center gap-2 p-3 border rounded-xl cursor-pointer hover:border-brand-orange transition"
+                :class="form.config_options.height === h
+                  ? 'border-brand-orange ring-1 ring-brand-orange'
+                  : 'border-gray-300'"
+              >
+                <input
+                  type="radio"
+                  class="accent-brand-orange"
+                  :value="h"
+                  v-model="form.config_options.height"
+                />
+                <span class="text-sm font-medium text-gray-700">
+                  {{ h }} mm
+                </span>
+              </label>
+            </div>
+
+            <div
+              v-else
+              class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
+            >
+              {{ t('quickwall.stepProtection.height.none') }}
+            </div>
+
+            <div
+              v-if="availableProtectionHeights.length && !form.config_options.height"
+              class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700 mt-3"
+            >
+              {{ t('quickwall.stepProtection.height.required') }}
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT IMAGES -->
+        <div class="space-y-4">
+          <img
+            v-for="(img, index) in protectionImages"
+            :key="index"
+            :src="img"
+            alt="Quickwall protection example"
+            class="w-full h-60 object-contain rounded-xl bg-gray-50 shadow-sm"
+          />
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>

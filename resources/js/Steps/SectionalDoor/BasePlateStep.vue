@@ -1,92 +1,73 @@
 <template>
   <div class="max-w-6xl mx-auto space-y-8">
+
+    <!-- TITLE -->
     <h2 class="text-2xl font-semibold text-center text-gray-800">
-      Choice of Base Plate
+      {{ $t('sectionalDoor.step2.title') }}
     </h2>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-      <!-- LEFT: Aluminum Base Plate -->
+
+      <!-- Aluminum -->
       <section>
         <h3 class="text-lg font-semibold text-gray-800 mb-3">
-          Aluminum base plate, glued on the floor
+          {{ $t('sectionalDoor.step2.aluminum.title') }}
         </h3>
 
         <p class="text-sm text-gray-600 mb-6">
-          For optimal installation, the surface must be perfectly even and smooth.
-          In any situation where this is not the case, we recommend using an aluminum
-          base plate to compensate for irregularities and gradients, thus ensuring
-          the AquaLOCK® Sectional door functions safely and reliably.
+          {{ $t('sectionalDoor.step2.aluminum.description') }}
         </p>
 
         <div class="flex justify-start mb-4">
-          <img
-            :src="img1"
-            alt="Aluminum base plate"
-            class="mx-auto max-h-48 object-contain"
-          />
+          <img :src="img1" class="mx-auto max-h-48 object-contain" />
         </div>
 
-        <div class="space-y-3">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              value="aluminum"
-              v-model="form.config_options.basePlate"
-              class="accent-brand-orange"
-            />
-            <span class="text-sm text-gray-800">
-              With aluminum base plate
-            </span>
-          </label>
-        </div>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input
+            type="radio"
+            value="aluminum"
+            v-model="form.config_options.basePlate"
+            class="accent-brand-orange"
+          />
+          <span class="text-sm text-gray-800">
+            {{ $t('sectionalDoor.step2.aluminum.option') }}
+          </span>
+        </label>
       </section>
 
-      <!-- RIGHT: Stainless Steel Base Plate -->
+      <!-- Stainless Steel -->
       <section>
         <h3 class="text-lg font-semibold text-gray-800 mb-3">
-          Stainless steel base plate, embedded in concrete
+          {{ $t('sectionalDoor.step2.steel.title') }}
         </h3>
 
-        <p class="text-sm text-gray-600 mb-6">
-          By embedding a stainless steel base plate in concrete in the threshold,
-          you can create a perfectly even surface before installing the AquaLOCK®
-          Sectional door. To do this, a 40 mm deep and 200 mm wide groove must be
-          created in the concrete floor, which is filled with fresh concrete.
-          The stainless steel floor plate is then placed in this fresh concrete
-          and levelled using a spirit level.
+        <p class="text-sm text-gray-600 mb-4">
+          {{ $t('sectionalDoor.step2.steel.description1') }}
         </p>
 
         <p class="text-sm text-gray-600 mb-6">
-          This type of installation makes it possible to order the AquaLOCK®
-          Sectional door with a pre-installed upgrade kit, which makes the actual
-          door installation much easier.
+          {{ $t('sectionalDoor.step2.steel.description2') }}
         </p>
 
         <div class="flex justify-start mb-4">
-          <img
-            :src="img2"
-            alt="Stainless steel base plate"
-            class="mx-auto max-h-48 object-contain"
-          />
+          <img :src="img2" class="mx-auto max-h-48 object-contain" />
         </div>
 
-        <div class="space-y-3">
-          <label class="flex items-center gap-2 cursor-pointer">
-            <input
-              type="radio"
-              value="stainless_steel"
-              v-model="form.config_options.basePlate"
-              class="accent-brand-orange"
-            />
-            <span class="text-sm text-gray-800">
-              With stainless steel base plate
-            </span>
-          </label>
-        </div>
+        <label class="flex items-center gap-2 cursor-pointer">
+          <input
+            type="radio"
+            value="stainless_steel"
+            v-model="form.config_options.basePlate"
+            class="accent-brand-orange"
+          />
+          <span class="text-sm text-gray-800">
+            {{ $t('sectionalDoor.step2.steel.option') }}
+          </span>
+        </label>
       </section>
     </div>
 
-    <!-- No base plate option -->
+    <!-- NONE -->
     <section class="border rounded-2xl p-6 bg-gray-50">
       <label class="flex items-center gap-2 cursor-pointer">
         <input
@@ -96,10 +77,11 @@
           class="accent-brand-orange"
         />
         <span class="text-sm text-gray-800 font-medium">
-          Without any base plate
+          {{ $t('sectionalDoor.step2.none.option') }}
         </span>
       </label>
     </section>
+
   </div>
 </template>
 

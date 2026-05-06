@@ -1,34 +1,21 @@
 <template>
   <div class="space-y-10 max-w-6xl mx-auto">
-    <!-- Included by default -->
-    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 max-w-4xl mx-auto">
-      <h3 class="text-lg font-semibold text-amber-900 mb-2">
-        Included by default
-      </h3>
-      <p class="text-sm text-amber-800 mb-4">
-        Assembly kit with sealing is a standard option and is automatically added to the total price.
-      </p>
 
-      <div class="flex items-start justify-between gap-4">
-        <div>
-          <p class="font-medium text-gray-900">Assembly kit with sealing</p>
-          <p class="text-sm text-gray-600">
-            Standard option — automatically included.
-          </p>
-        </div>
-        <p class="font-semibold text-gray-900 whitespace-nowrap">
-          €398 / piece
-        </p>
-      </div>
-    </div>
-
-    <h2 class="text-2xl font-semibold text-center text-gray-800">Select Accessories</h2>
+    <h2 class="text-2xl font-semibold text-center text-gray-800">
+      {{ t('door.accessories.title') }}
+    </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <!-- LEFT SIDE -->
+
+      <!-- LEFT -->
       <div class="space-y-6">
+
+        <!-- PANIC -->
         <div>
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">Panic Function</h3>
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">
+            {{ t('door.accessories.panic.title') }}
+          </h3>
+
           <div class="space-y-2">
             <label
               v-for="option in panicOptions"
@@ -42,131 +29,141 @@
                 class="mt-1"
               />
               <div>
-                <p class="font-medium text-gray-800">{{ option.label }}</p>
-                <p class="text-sm text-gray-600">{{ option.description }}</p>
+                <p class="font-medium text-gray-800">
+                  {{ t(`door.accessories.panic.options.${option.value}.label`) }}
+                </p>
+                <p class="text-sm text-gray-600">
+                  {{ t(`door.accessories.panic.options.${option.value}.desc`) }}
+                </p>
               </div>
             </label>
           </div>
         </div>
 
+        <!-- DRIP CAP -->
         <div>
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">Drip Cap</h3>
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">
+            {{ t('door.accessories.drip.title') }}
+          </h3>
+
           <label class="flex items-center gap-3 cursor-pointer">
             <input type="checkbox" v-model="form.config_options.drip_cap" />
-            <span class="text-gray-800">Drip cap mounted on top of the frame</span>
+            <span class="text-gray-800">
+              {{ t('door.accessories.drip.option') }}
+            </span>
           </label>
         </div>
 
-        <div>
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">Fixed Side Panels</h3>
-          <div class="space-y-2">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" v-model="form.config_options.fixed_panel_left" />
-              <span class="text-gray-800">Left side panel (100–400 mm)</span>
-            </label>
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" v-model="form.config_options.fixed_panel_right" />
-              <span class="text-gray-800">Right side panel (100–400 mm)</span>
-            </label>
-          </div>
-        </div>
       </div>
 
-      <!-- RIGHT SIDE -->
+      <!-- RIGHT -->
       <div class="space-y-6">
+
+        <!-- BURGLARY -->
         <div>
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">Burglary Protection Level</h3>
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">
+            {{ t('door.accessories.burglary.title') }}
+          </h3>
+
           <select
             v-model="form.config_options.burglary_protection"
             class="w-full rounded-lg border-gray-300 px-4 py-2"
           >
-            <option :value="null">
-              {{ ['V3', 'V6'].includes(form.config_options.locking_mechanism) ? 'RC1 only (standard)' : 'None' }}
-            </option>
+            <option value="RC1">RC1</option>
+
             <option
               value="RC2"
-              :disabled="['V3', 'V6'].includes(form.config_options.locking_mechanism)"
+              :disabled="!canUseHigherRC"
             >
               RC2
             </option>
+
             <option
               value="RC3"
-              :disabled="['V3', 'V6'].includes(form.config_options.locking_mechanism)"
+              :disabled="!canUseHigherRC"
             >
               RC3
             </option>
           </select>
 
-          <p
-            v-if="['V3', 'V6'].includes(form.config_options.locking_mechanism)"
-            class="mt-2 text-sm text-red-600"
-          >
-            For locking mechanisms V3 and V6, only RC1 burglary protection is available.
+          <p v-if="!canUseHigherRC" class="mt-2 text-sm text-red-600">
+            {{ t('door.accessories.burglary.restriction') }}
           </p>
         </div>
 
+        <!-- DRIVE PLATE -->
         <div>
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">Drive-over Plate</h3>
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">
+            {{ t('door.accessories.drive.title') }}
+          </h3>
+
           <select
             v-model="form.config_options.drive_plate"
             class="w-full rounded-lg border-gray-300 px-4 py-2"
           >
-            <option :value="null">None</option>
-            <option value="aluminium">Aluminium 2mm</option>
-            <option value="stainless">Stainless Steel 2mm</option>
+            <option :value="null">
+              {{ t('door.accessories.drive.none') }}
+            </option>
+            <option value="aluminium">
+              {{ t('door.accessories.drive.aluminium') }}
+            </option>
+            <option value="stainless">
+              {{ t('door.accessories.drive.stainless') }}
+            </option>
           </select>
         </div>
 
+        <!-- DOOR CLOSER -->
         <div>
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">Door Closer</h3>
+          <h3 class="text-lg font-semibold text-gray-700 mb-2">
+            {{ t('door.accessories.closer.title') }}
+          </h3>
+
           <label class="flex items-center gap-3 cursor-pointer">
             <input type="checkbox" v-model="form.config_options.door_closer" />
-            <span class="text-gray-800">Add GEZE 5000 Door Closer</span>
+            <span class="text-gray-800">
+              {{ t('door.accessories.closer.option') }}
+            </span>
           </label>
         </div>
 
-        <!-- <div>
-          <h3 class="text-lg font-semibold text-gray-700 mb-2">Flood Protection</h3>
-          <label class="flex items-center gap-3 cursor-pointer">
-            <input type="checkbox" v-model="form.config_options.flood_protection" />
-            <span class="text-gray-800">Heavy duty version with flood protection up to 5m</span>
-          </label>
-        </div> -->
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { watch } from 'vue';
+import { computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-const props = defineProps({ form: Object });
-const form = props.form;
+const { t } = useI18n()
 
-if (!form.config_options.panic_features) form.config_options.panic_features = [];
-if (!form.config_options.drive_plate) form.config_options.drive_plate = null;
-if (!form.config_options.burglary_protection) form.config_options.burglary_protection = null;
+const props = defineProps({ form: Object })
+const form = props.form
 
-watch(
-  () => form.config_options.locking_mechanism,
-  (value) => {
-    if (['V3', 'V6'].includes(value)) {
-      form.config_options.burglary_protection = null;
-    }
-  },
-  { immediate: true }
-);
+// defaults
+if (!form.config_options.panic_features) form.config_options.panic_features = []
+if (!form.config_options.drive_plate) form.config_options.drive_plate = null
+if (!form.config_options.burglary_protection) form.config_options.burglary_protection = 'RC1'
 
-const panicOptions = [
-  {
-    value: 'panic_function_e',
-    label: 'Panic Function E',
-    description: 'For fixed knob outside. Opens only with key when espagnolette is open.'
-  },
-  {
-    value: 'pushbar',
-    label: 'Pushbar',
-    description: 'Enables fast exit, bar-style mechanism on inside.'
+// ✅ RULE: when can RC2/RC3 be used
+const canUseHigherRC = computed(() => {
+  const locking = form.config_options.locking_mechanism
+  const hasWindow = form.config_options.window_type === 'with'
+
+  return ['V1', 'V2'].includes(locking) && !hasWindow
+})
+
+// enforce RC1 if invalid
+watch(canUseHigherRC, (allowed) => {
+  if (!allowed) {
+    form.config_options.burglary_protection = 'RC1'
   }
-];
+})
+
+// PANIC OPTIONS
+const panicOptions = [
+  { value: 'panic_function_e' },
+  { value: 'pushbar' }
+]
 </script>

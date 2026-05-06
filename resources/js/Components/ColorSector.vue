@@ -9,7 +9,7 @@
         <input
           v-model="search"
           type="text"
-          placeholder="Search RAL code or name..."
+          placeholder="Search RAL code ..."
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange"
         />
       </div>

@@ -1,159 +1,160 @@
 <template>
   <div class="space-y-10 max-w-6xl mx-auto">
+
+    <!-- TITLE -->
     <h2 class="text-2xl font-semibold text-center text-gray-800">
-      Accessories
+      {{ $t('sectionalDoor.step4.title') }}
     </h2>
 
-    <!-- Included by default -->
+    <!-- INCLUDED -->
     <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 max-w-4xl mx-auto">
       <h3 class="text-lg font-semibold text-amber-900 mb-2">
-        Included by default
+        {{ $t('sectionalDoor.step4.included.title') }}
       </h3>
+
       <p class="text-sm text-amber-800 mb-4">
-        Motor and assembly kit with sealing are standard options and are automatically added to the total price.
+        {{ $t('sectionalDoor.step4.included.description') }}
       </p>
 
       <div class="space-y-4">
-        <div class="flex items-start justify-between gap-4">
+
+        <!-- Motor -->
+        <div class="flex justify-between">
           <div>
-            <p class="font-medium text-gray-900">Motor</p>
+            <p class="font-medium">{{ $t('sectionalDoor.step4.included.motor.title') }}</p>
             <p class="text-sm text-gray-600">
-              Standard option — automatically included.
+              {{ $t('sectionalDoor.step4.included.motor.note') }}
             </p>
           </div>
-          <p class="font-semibold text-gray-900 whitespace-nowrap">
-            €651 / piece
+          <p class="font-semibold">
+            {{ $t('sectionalDoor.step4.included.motor.price') }}
           </p>
         </div>
 
-        <div class="flex items-start justify-between gap-4">
+        <!-- Assembly -->
+        <div class="flex justify-between">
           <div>
-            <p class="font-medium text-gray-900">Assembly kit with sealing</p>
+            <p class="font-medium">
+              {{ $t('sectionalDoor.step4.included.assembly.title') }}
+            </p>
             <p class="text-sm text-gray-600">
-              Standard option — automatically included.
+              {{ $t('sectionalDoor.step4.included.assembly.note') }}
             </p>
           </div>
-          <p class="font-semibold text-gray-900 whitespace-nowrap">
-            €246 / piece
+          <p class="font-semibold">
+            {{ $t('sectionalDoor.step4.included.assembly.price') }}
           </p>
         </div>
+
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
       <!-- LEFT -->
       <div class="space-y-6">
+
         <!-- Upgrade Kit -->
-        <div class="bg-white border border-gray-200 rounded-2xl p-5 space-y-4">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-800">Pre-mounted Upgrade Kit</h3>
-            <p class="text-sm text-gray-600 mt-1">
-              Select the appropriate upgrade kit depending on the door width.
-            </p>
-          </div>
+        <div class="bg-white border rounded-2xl p-5 space-y-4">
+          <h3 class="text-lg font-semibold">
+            {{ $t('sectionalDoor.step4.upgradeKit.title') }}
+          </h3>
 
-          <div class="space-y-3">
-            <label class="flex items-start gap-3 cursor-pointer">
-              <input
-                type="radio"
-                value="upTo3m"
-                v-model="form.config_options.upgradeKit"
-                class="mt-1"
-              />
-              <div>
-                <p class="font-medium text-gray-900">Width up to 3 m</p>
-                <p class="text-sm text-gray-600">€272 / piece</p>
-              </div>
-            </label>
+          <p class="text-sm text-gray-600">
+            {{ $t('sectionalDoor.step4.upgradeKit.description') }}
+          </p>
 
-            <label class="flex items-start gap-3 cursor-pointer">
-              <input
-                type="radio"
-                value="upTo6m"
-                v-model="form.config_options.upgradeKit"
-                class="mt-1"
-              />
-              <div>
-                <p class="font-medium text-gray-900">Width up to 6 m</p>
-                <p class="text-sm text-gray-600">€348 / piece</p>
-              </div>
-            </label>
-          </div>
+          <label class="flex gap-3">
+            <input type="radio" value="upTo3m" v-model="form.config_options.upgradeKit" />
+            <div>
+              <p>{{ $t('sectionalDoor.step4.upgradeKit.upTo3m.label') }}</p>
+              <p class="text-sm text-gray-600">
+                {{ $t('sectionalDoor.step4.upgradeKit.upTo3m.price') }}
+              </p>
+            </div>
+          </label>
 
-          <p
-            v-if="!form.config_options.upgradeKit"
-            class="text-sm text-red-600"
-          >
-            Please select an upgrade kit.
+          <label class="flex gap-3">
+            <input type="radio" value="upTo6m" v-model="form.config_options.upgradeKit" />
+            <div>
+              <p>{{ $t('sectionalDoor.step4.upgradeKit.upTo6m.label') }}</p>
+              <p class="text-sm text-gray-600">
+                {{ $t('sectionalDoor.step4.upgradeKit.upTo6m.price') }}
+              </p>
+            </div>
+          </label>
+
+          <p v-if="!form.config_options.upgradeKit" class="text-red-600 text-sm">
+            {{ $t('sectionalDoor.step4.upgradeKit.validation') }}
           </p>
         </div>
 
-        <!-- Stainless steel tracks -->
-        <div class="bg-white border border-gray-200 rounded-2xl p-5">
-          <label class="flex items-start gap-3 cursor-pointer">
-            <input
-              type="checkbox"
-              v-model="form.config_options.stainlessTracks"
-              class="mt-1"
-            />
+        <!-- Tracks -->
+        <div class="bg-white border rounded-2xl p-5">
+          <label class="flex gap-3">
+            <input type="checkbox" v-model="form.config_options.stainlessTracks" />
             <div>
-              <p class="font-medium text-gray-900">Stainless steel tracks</p>
-              <p class="text-sm text-gray-600">€282 / set</p>
+              <p>{{ $t('sectionalDoor.step4.tracks.label') }}</p>
+              <p class="text-sm text-gray-600">
+                {{ $t('sectionalDoor.step4.tracks.price') }}
+              </p>
             </div>
           </label>
         </div>
+
       </div>
 
       <!-- RIGHT -->
       <div class="space-y-6">
-        <!-- Hand transmitters -->
-        <div class="bg-white border border-gray-200 rounded-2xl p-5 space-y-4">
-          <div>
-            <h3 class="text-lg font-semibold text-gray-800">Hand Transmitters</h3>
-            <p class="text-sm text-gray-600 mt-1">
-              Since the motor is included by default, you can add hand transmitters here.
-            </p>
-          </div>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">
-              Hand transmitter quantity
-            </label>
-            <input
-              type="number"
-              min="0"
-              v-model="form.config_options.handTransmitterQty"
-              class="w-full border-gray-300 rounded-md focus:ring-[#f39200] focus:border-[#f39200]"
-              placeholder="Enter quantity"
-            />
-            <p class="text-sm text-gray-600 mt-1">
-              €60 / piece
-            </p>
-          </div>
+        <!-- Transmitters -->
+        <div class="bg-white border rounded-2xl p-5 space-y-4">
+          <h3 class="text-lg font-semibold">
+            {{ $t('sectionalDoor.step4.transmitters.title') }}
+          </h3>
+
+          <p class="text-sm text-gray-600">
+            {{ $t('sectionalDoor.step4.transmitters.description') }}
+          </p>
+
+          <label class="text-sm font-medium">
+            {{ $t('sectionalDoor.step4.transmitters.label') }}
+          </label>
+
+          <input
+            type="number"
+            min="0"
+            v-model="form.config_options.handTransmitterQty"
+            :placeholder="$t('sectionalDoor.step4.transmitters.placeholder')"
+            class="w-full border rounded-md px-3 py-2"
+          />
+
+          <p class="text-sm text-gray-600">
+            {{ $t('sectionalDoor.step4.transmitters.price') }}
+          </p>
         </div>
+
       </div>
     </div>
+
   </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted } from 'vue'
 
 const props = defineProps({
   form: Object
-});
+})
 
 onMounted(() => {
   if (props.form?.config_options) {
-    props.form.config_options.motor = true;
-    props.form.config_options.assemblyKit = true;
+    props.form.config_options.motor = true
+    props.form.config_options.assemblyKit = true
 
-    if (
-      props.form.config_options.handTransmitterQty === null ||
-      props.form.config_options.handTransmitterQty === undefined
-    ) {
-      props.form.config_options.handTransmitterQty = 0;
+    if (!props.form.config_options.handTransmitterQty) {
+      props.form.config_options.handTransmitterQty = 0
     }
   }
-});
+})
 </script>

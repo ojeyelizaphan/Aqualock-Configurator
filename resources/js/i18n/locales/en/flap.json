@@ -1,0 +1,67 @@
+{
+    "step1": {
+      "title": "Measurement & Material",
+
+      "included": {
+        "title": "Included by default",
+        "description": "Assembly kit with sealing is a standard option and is automatically added to the total price.",
+        "item": "Assembly kit with sealing",
+        "note": "Standard option — automatically included.",
+        "price": "€131 / piece"
+      },
+
+      "dimensions": {
+        "title": "Dimensions of the flap",
+        "description": "Please note the maximum size of the wall opening for the <strong>AquaLOCK® flap</strong> is <strong>1100 × 1100 mm</strong>.",
+        "widthLabel": "Width of the wall opening:",
+        "widthRange": "Between 600 and 1,100 mm",
+        "heightLabel": "Height of the wall opening:",
+        "heightRange": "Between 600 and 1,100 mm"
+      },
+
+      "inputs": {
+        "width": "Width (mm)",
+        "height": "Height (mm)"
+      },
+
+      "validation": "Please enter a valid width and height between 600 mm and 1100 mm.",
+
+      "material": {
+        "title": "Material",
+        "description": "In most cases, galvanization provides sufficient corrosion protection, especially as each flap is additionally primed and painted. However, if the flap is exposed to saltwater, we recommend stainless steel for enhanced durability and rust resistance.",
+        "galvanized": "Galvanized steel",
+        "stainless": "Stainless steel"
+      }
+    },
+
+     "step2": {
+      "title": "Colour, Opening Direction & Cladding",
+
+      "color": {
+        "title": "Colour varieties",
+        "description": "In order to customize the colour of your <strong>AquaLOCK® flap</strong>, you can choose between <strong>216 RAL colours</strong>.",
+        "freeColors": "Seven standard colours (white and six shades of gray) are available at no extra cost.",
+        "note": "Note: The colour displayed may differ from the actual colour due to monitor settings. No guarantee can be given."
+      },
+
+      "opening": {
+        "title": "Opening direction",
+        "description": "The AquaLOCK® flap is always supplied with hinges and can be installed vertically or horizontally.",
+        "left": "Left-hand inward opening",
+        "right": "Right-hand inward opening",
+        "top": "Top opening"
+      },
+
+      "closing": {
+        "title": "Closing mechanism",
+        "lockable": "Lockable flap (prepared for padlock)",
+        "nonLockable": "Non-lockable flap"
+      },
+
+      "cladding": {
+        "title": "Internal cladding",
+        "with": "With 2 mm aluminum sheet",
+        "without": "Without aluminum sheet"
+      }
+    }
+}

@@ -145,8 +145,27 @@
 
         <!-- Right side icons desktop -->
         <div class="hidden lg:flex items-center gap-4">
-          <a href="#" class="text-white hover:text-orange-100 transition-colors" title="Deutsch">🇩🇪</a>
-          <a href="#" class="text-white hover:text-orange-100 transition-colors" title="Français">🇫🇷</a>
+          <div class="flex items-center gap-3">
+            <!-- English -->
+            <button
+              @click="setLocale('en')"
+              class="text-white hover:text-orange-100 transition-colors"
+              title="English"
+              :class="{ 'font-bold underline': locale === 'en' }"
+            >
+              🇬🇧 EN
+            </button>
+
+            <!-- German -->
+            <button
+              @click="setLocale('de')"
+              class="text-white hover:text-orange-100 transition-colors"
+              title="Deutsch"
+              :class="{ 'font-bold underline': locale === 'de' }"
+            >
+              🇩🇪 DE
+            </button>
+          </div>
 
           <a
             href="https://www.youtube.com/@aqualock7157"
@@ -209,7 +228,14 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n'
 
+const { locale } = useI18n()
+
+const setLocale = (lang) => {
+  locale.value = lang
+  localStorage.setItem('locale', lang)
+}
 const productsOpen = ref(false);
 const galleryOpen = ref(false);
 const mobileOpen = ref(false);

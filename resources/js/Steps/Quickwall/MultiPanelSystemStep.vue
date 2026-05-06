@@ -1,135 +1,115 @@
+<script setup>
+import { useI18n } from 'vue-i18n'
+import img1 from "@/Assets/5-Quickwall/Step-3/panels-1.jpg";
+import img2 from "@/Assets/5-Quickwall/Step-3/panels-2.jpg";
+
+const { t } = useI18n()
+
+defineProps({
+  form: Object
+});
+</script>
+
 <template>
   <div class="max-w-6xl mx-auto space-y-10">
-    <!-- Title -->
+    <!-- TITLE -->
     <h2 class="text-2xl font-semibold text-center text-gray-800">
-      Multi Panel System
+      {{ t('quickwall.stepMultiPanel.title') }}
     </h2>
 
-    <!-- Explanation -->
+    <!-- INTRO -->
     <div class="space-y-4 text-gray-700 leading-relaxed">
       <p class="font-medium">
-        Solutions for wide openings with a center post or corner mounting
+        {{ t('quickwall.stepMultiPanel.intro.highlight') }}
       </p>
 
-      <p>
-        Multiple <span class="font-medium">AquaLOCK® Quickwall</span> panels can be connected using a fixed central post
-        (width: <span class="font-medium">60 mm</span>) where a higher level of protection is required,
-        e.g. <span class="font-medium">2.5 m wide × 1 m high</span>. The central post is inserted into a
-        stainless steel sleeve embedded in concrete and fixed with an integrated screw. Quickwall panels are
-        then mounted on each side of the post to create a stable and secure barrier.
-      </p>
+      <p>{{ t('quickwall.stepMultiPanel.intro.p1') }}</p>
+      <p>{{ t('quickwall.stepMultiPanel.intro.p2') }}</p>
 
-      <p>
-        For corner applications, a special corner post can be used to join two Quickwall panels at an angle,
-        providing a seamless and strong corner installation.
-      </p>
-
+      <!-- EXAMPLE -->
       <div class="bg-gray-50 border border-gray-200 rounded-2xl p-4">
         <p class="font-medium text-gray-800 mb-2">
-          Example how to calculate the correct width of the Quickwall panels
+          {{ t('quickwall.stepMultiPanel.example.title') }}
         </p>
 
         <p class="mb-3">
-          You want to protect a <span class="font-medium">2,400 mm</span> wide garage door at a height of
-          <span class="font-medium">1,500 mm</span>. The maximum width at that protection height is
-          <span class="font-medium">1,100 mm</span>, which is not enough to use only 2 panels — so you have
-          to take <span class="font-medium">3 panels</span> and <span class="font-medium">2 center posts</span>.
+          {{ t('quickwall.stepMultiPanel.example.p') }}
         </p>
 
         <p class="font-mono text-sm text-gray-800">
-          2,400 mm − 120 mm (2 center posts) = 2,280 mm
+          {{ t('quickwall.stepMultiPanel.example.calc1') }}
         </p>
         <p class="font-mono text-sm text-gray-800">
-          2,280 ÷ 3 = 760 mm per panel
+          {{ t('quickwall.stepMultiPanel.example.calc2') }}
         </p>
       </div>
     </div>
 
-    <!-- Subtle divider -->
+    <!-- DIVIDER -->
     <div class="border-t border-gray-200"></div>
 
-    <!-- Inputs + Images -->
+    <!-- INPUTS + IMAGES -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-      <!-- LEFT: Input Fields -->
+
+      <!-- INPUTS -->
       <div class="space-y-6">
         <div>
           <label class="block font-medium text-gray-800 mb-2">
-            Required Quickwall panels
+            {{ t('quickwall.stepMultiPanel.inputs.panels.label') }}
           </label>
           <input
             type="number"
             min="0"
             v-model="form.config_options.quickwall_panels"
-            class="w-full p-3 border border-gray-300 rounded-xl
-                   focus:ring-brand-orange focus:border-brand-orange"
-            placeholder="Number of panels"
+            class="w-full p-3 border border-gray-300 rounded-xl focus:ring-brand-orange focus:border-brand-orange"
+            :placeholder="t('quickwall.stepMultiPanel.inputs.panels.placeholder')"
           />
         </div>
 
         <div>
           <label class="block font-medium text-gray-800 mb-2">
-            Required center posts
+            {{ t('quickwall.stepMultiPanel.inputs.centerPosts.label') }}
           </label>
           <input
             type="number"
             min="0"
             v-model="form.config_options.center_posts"
-            class="w-full p-3 border border-gray-300 rounded-xl
-                   focus:ring-brand-orange focus:border-brand-orange"
-            placeholder="Number of center posts"
+            class="w-full p-3 border border-gray-300 rounded-xl focus:ring-brand-orange focus:border-brand-orange"
+            :placeholder="t('quickwall.stepMultiPanel.inputs.centerPosts.placeholder')"
           />
         </div>
 
         <div>
           <label class="block font-medium text-gray-800 mb-2">
-            Required corner posts
+            {{ t('quickwall.stepMultiPanel.inputs.cornerPosts.label') }}
           </label>
           <input
             type="number"
             min="0"
             v-model="form.config_options.corner_posts"
-            class="w-full p-3 border border-gray-300 rounded-xl
-                   focus:ring-brand-orange focus:border-brand-orange"
-            placeholder="Number of corner posts"
+            class="w-full p-3 border border-gray-300 rounded-xl focus:ring-brand-orange focus:border-brand-orange"
+            :placeholder="t('quickwall.stepMultiPanel.inputs.cornerPosts.placeholder')"
           />
         </div>
       </div>
 
-      <!-- RIGHT: Reference Images -->
+      <!-- IMAGES -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
-          <img
-            :src=img1
-            alt="Center post configuration"
-            class="mx-auto max-h-48 object-contain"
-          />
+          <img :src="img1" class="mx-auto max-h-48 object-contain" />
           <p class="text-sm text-gray-600 mt-2 text-center">
-            Center post configuration
+            {{ t('quickwall.stepMultiPanel.images.center') }}
           </p>
         </div>
 
         <div>
-          <img
-            :src=img2
-            alt="Corner post configuration"
-            class="mx-auto max-h-48 object-contain "
-          />
+          <img :src="img2" class="mx-auto max-h-48 object-contain" />
           <p class="text-sm text-gray-600 mt-2 text-center">
-            Corner post configuration
+            {{ t('quickwall.stepMultiPanel.images.corner') }}
           </p>
         </div>
       </div>
+
     </div>
   </div>
 </template>
-
-
-  
-  <script setup>
-    import img1 from "@/Assets/5-Quickwall/Step-3/panels-1.jpg";
-    import img2 from "@/Assets/5-Quickwall/Step-3/panels-2.jpg";
-  defineProps({
-    form: Object
-  });
-  </script>
-  

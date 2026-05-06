@@ -1,0 +1,190 @@
+{
+    "locking": {
+      "title": "Select Locking Mechanism",
+      "description": "There are four different locking mechanism variations to choose from. Depending on structural conditions and individual preferences, AquaLOCK® doors offer multiple configurations. With the exception of version V2 (protection height up to handle, max. 1,600 mm), all variants provide flood protection up to 5,000 mm.",
+
+      "options": {
+        "V1": "Outside: No door fittings, no locking cylinder. Inside: Locking cylinder, lever handle and espagnolette bolt.",
+        "V2": "Outside: Locking cylinder and lever handle. Inside: Locking cylinder, lever handle and espagnolette bolt.",
+        "V3": "Outside: Locking cylinder with waterproof cover, fixed knob. Inside: Locking cylinder, lever handle and espagnolette bolt.",
+        "V6": "Outside: Locking cylinder, fixed knob and espagnolette bolt. Inside: Locking cylinder, lever handle and espagnolette bolt."
+      },
+
+      "details": {
+        "V1": "<strong>Burglary Protection:</strong> RC1N, RC2, RC3 possible<br><strong>Glass Cut-Out:</strong> Not possible",
+        "V2": "<strong>Burglary Protection:</strong> RC1N, RC2, RC3 possible<br><strong>Glass Cut-Out:</strong> Only possible with RC1N, espagnolette bolt visible from outside",
+        "V3": "<strong>Burglary Protection:</strong> Only RC1N possible<br><strong>Glass Cut-Out:</strong> Not possible",
+        "V6": "<strong>Burglary Protection:</strong> Only RC1N possible<br><strong>Glass Cut-Out:</strong> Possible, espagnolette bolt visible from outside"
+      }
+    },
+
+    "dimensions": {
+      "title": "Door Dimensions",
+      "description": "Please note the permissible width and height of the door:<br>Width: between 500 and 1,200 mm<br>Height: between 1,200 and 2,300 mm",
+      "width": "Width (mm)",
+      "height": "Height (mm)",
+      "widthPlaceholder": "500 - 1210",
+      "heightPlaceholder": "1200 - 2300",
+      "widthError": "Width must be between 500 and 1210 mm",
+      "heightError": "Height must be between 1200 and 2300 mm",
+      "extra": "Larger widths are available on request."
+    },
+
+    "panels": {
+      "title": "Optional Fixed Panels",
+      "description": "Wider door openings can be compensated with fixed panels mounted on the frame to the left, right, and above the door:",
+      "left": "Fixed side panel up to 400 mm, left",
+      "right": "Fixed side panel up to 400 mm, right",
+      "top": "Fixed panel above the door, up to 400 mm",
+      "extra": "Larger widths are available on request."
+    },
+
+    "installation": {
+      "title": "Installation Type",
+      "description": "If you are unsure which installation type is suitable for your building, no problem — this will be clarified by an experienced technician on site.<br><strong>Attention:</strong> Depending on the installation type, thermally insulated doors may not be possible.",
+
+      "options": {
+        "between_reveal": {
+          "label": "Between the Reveal",
+          "desc": "Thermally insulated possible"
+        },
+        "infront_reveal": {
+          "label": "In Front of the Reveal",
+          "desc": "Thermally insulated not possible. Drip cap mandatory!"
+        },
+        "interior_flush": {
+          "label": "Interior Flush",
+          "desc": "Thermally insulated possible"
+        },
+        "behind_reveal": {
+          "label": "Behind the Reveal",
+          "desc": "Thermally insulated not possible"
+        }
+      }
+    },
+
+    "included": {
+      "title": "Included by default",
+      "description": "In this door configuration, the assembly kit is mandatory and automatically added.",
+      "item": "Assembly kit with sealing",
+      "note": "No selection required — always included.",
+      "price": "€398 / piece"
+    },
+
+    "insulation": {
+      "title": "Thermal Insulation",
+      "description": "Thermally insulated AquaLOCK® doors – efficient protection against heat and cold.<br><br>The German Energy Saving Ordinance (EnEV) requires front doors to have a maximum Ud value of 1.8 W/m²K.<br><br>AquaLOCK® thermally insulated doors achieve Ud 1.5 W/m²K, keeping warmth inside and cold outside.<br><br>Non-thermally insulated doors are recommended for secondary doors such as basements or garages.",
+
+      "options": {
+        "thermally_insulated": {
+          "label": "Thermally insulated door",
+          "desc": ""
+        },
+        "non_thermally_insulated": {
+          "label": "Non-thermally insulated door",
+          "desc": ""
+        }
+      }
+    },
+
+    "windows": {
+      "title": "Windows",
+      "description": "A non-opening window (max 650 × 450 mm) can be integrated in the upper door area.<br><br>• Thermally insulated doors → triple glazing<br>• Non-insulated doors → double glazing",
+      "warning": "Windows are not flood-resistant and are not suitable for doors requiring full-height flood protection.",
+
+      "without": "Without window",
+      "with": "With window",
+
+      "samePrice": "Available in 3 variants, all at the same price.",
+      "v3Warning": "Windows are not available for V3.",
+      
+
+      "versionTitle": "Choose window type",
+
+      "versions": {
+        "clear": {
+          "label": "Clear Glass",
+          "desc": "Simple transparent glass"
+        },
+        "mastercarree": {
+          "label": "Mastercarrée",
+          "desc": "Textured surface"
+        },
+        "satinato": {
+          "label": "Satinato (Frosted Glass)",
+          "desc": "Soft matte finish"
+        }
+      }
+    },
+
+    "flood": {
+      "title": "Flood Protection",
+      "description": "The reinforced version provides protection up to 5 m water level.",
+      "option": "Reinforced version with flood protection up to 5 m",
+      "note": "Not available with windows.",
+      "disabledNote": "Flood protection is not available with windows."
+    },
+
+     "colors": {
+      "title": "Plenty of Colours",
+      "description": "In order for your AquaLOCK® door to perfectly match your building, you have a choice of 216 RAL colours.<br>Seven standard colours (white, black and several shades of grey) are available at no extra charge.<br><br>Please Note: The colour shades on the website may differ from the actual colour due to monitor display and therefore, we offer no guarantee for an exact match.",
+      "standard": "This is a standard colour and carries no extra charge.",
+      "extra": "Selected colour is a non-standard RAL colour and incurs an extra charge of €{price}."
+    },
+
+    "fittings": {
+      "title": "Door Fittings",
+      "description": "Door fittings are based on the locking mechanism selected earlier.",
+      "selected": "Selected locking mechanism",
+      "notSelected": "Not selected",
+
+      "knobTitle": "Knob Type",
+      "knob": {
+        "none": "-- No Knob --",
+        "aluminium": "Fixed Aluminium Knob",
+        "stainless": "Fixed Stainless Steel Knob"
+      },
+
+      "kaba": "KABA version upgrade (+€92)"
+    },
+
+    "accessories": {
+      "title": "Select Accessories",
+
+      "panic": {
+        "title": "Panic Function",
+        "options": {
+          "panic_function_e": {
+            "label": "Panic Function E",
+            "desc": "For fixed knob outside. Opens only with key when espagnolette is open."
+          },
+          "pushbar": {
+            "label": "Pushbar",
+            "desc": "Enables fast exit, bar-style mechanism on inside."
+          }
+        }
+      },
+
+      "drip": {
+        "title": "Drip Cap",
+        "option": "Drip cap mounted on top of the frame"
+      },
+
+      "burglary": {
+        "title": "Burglary Protection",
+        "restriction": "RC2 and RC3 are only available for V1 and V2 without window."
+      },
+
+      "drive": {
+        "title": "Drive-over Plate",
+        "none": "None",
+        "aluminium": "Aluminium 2 mm",
+        "stainless": "Stainless Steel 2 mm"
+      },
+
+      "closer": {
+        "title": "Door Closer",
+        "option": "Add GEZE 5000 Door Closer"
+      }
+    }
+}

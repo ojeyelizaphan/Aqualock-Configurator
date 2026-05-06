@@ -1,0 +1,67 @@
+{
+    "step1": {
+      "title": "Maße und Material",
+
+      "included": {
+        "title": "Grundsätzlich inbegriffen",
+        "description": "Bei dieser Tür-Konfiguration ist das Montage-Set zwingend inbegriffen und wird automatisch hinzugefügt.",
+        "item": "Montageset mit Dichtmittel",
+        "note": "Keine Auswahl nötig – immer inbegriffen.",
+        "price": "€131 / Stück"
+      },
+
+      "dimensions": {
+        "title": "Maße der Klappe",
+        "description": "Bitte beachten Sie die maximale Größe der Maueröffnung für die AquaLOCK® Klappe von <strong>1100 × 1100 mm</strong>.",
+        "widthLabel": "Breite der Maueröffnung:",
+        "widthRange": "zwischen 600 mm und 1.100 mm",
+        "heightLabel": "Höhe der Maueröffnung:",
+        "heightRange": "zwischen 600 mm und 1.100 mm"
+      },
+
+      "inputs": {
+        "width": "Breite (mm)",
+        "height": "Höhe (mm)"
+      },
+
+      "validation": "Bitte geben Sie eine gültige Breite und Höhe zwischen 600 mm und 1100 mm ein.",
+
+      "material": {
+        "title": "Material",
+        "description": "In der Regel reicht eine Verzinkung für den Rostschutz vollkommen aus. Sollte die Klappe aber in Salzwasser in Berührung kommen, so ist Edelstahl die bessere Wahl für höhere Langlebigkeit und Korrosionsbeständigkeit.",
+        "galvanized": "Verzinkter Stahl",
+        "stainless": "Edelstahl"
+      }
+    },
+
+    "step2": {
+      "title": "Farbe, Öffnungsrichtung & Verschalung",
+
+      "color": {
+        "title": "216 Farben zur Auswahl",
+        "description": "Damit die AquaLOCK® Klappe perfekt zum Gebäude passt, haben Sie die Wahl zwischen 216 RAL-Farben.",
+        "freeColors": "Dabei gibt es sieben Standard-Farben (weiß und 6 Grau-Töne), die ohne Aufpreis erhältlich sind.",
+        "note": "Achtung: Die Darstellung der Farben auf der Website kann aufgrund von Monitoreinstellungen von der tatsächlichen Farbe abweichen. Alle Angaben daher ohne Gewähr."
+      },
+
+      "opening": {
+        "title": "Öffnungsrichtung",
+        "description": "Bitte beachten Sie, dass die AquaLOCK® Klappe immer mit Scharnieren ausgeliefert wird. Die Montage kann vertikal oder horizontal erfolgen.",
+        "left": "Öffnung links nach innen",
+        "right": "Öffnung rechts nach innen",
+        "top": "Öffnung nach oben"
+      },
+
+      "closing": {
+        "title": "Vorrichtung zum Verschließen",
+        "lockable": "Klappe abschließbar (vorgerichtet für Bügelschloss)",
+        "nonLockable": "Klappe nicht abschließbar"
+      },
+
+      "cladding": {
+        "title": "Innenverkleidung",
+        "with": "mit Aluminium-Blech 2 mm",
+        "without": "ohne Aluminium-Blech"
+      }
+    }
+}

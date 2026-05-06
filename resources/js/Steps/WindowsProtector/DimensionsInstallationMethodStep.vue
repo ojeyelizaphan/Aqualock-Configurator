@@ -1,80 +1,77 @@
 <template>
   <div class="space-y-10 max-w-6xl mx-auto">
 
-    <!-- Included by default -->
+    <!-- INCLUDED -->
     <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 max-w-4xl mx-auto">
       <h3 class="text-lg font-semibold text-amber-900 mb-2">
-        Included by default
+        {{ t('windowsProtector.step1.included.title') }}
       </h3>
+
       <p class="text-sm text-amber-800 mb-4">
-        Assembly kit with sealing is a standard option and is automatically added to the total price.
+        {{ t('windowsProtector.step1.included.description') }}
       </p>
 
       <div class="flex items-start justify-between gap-4">
         <div>
-          <p class="font-medium text-gray-900">Assembly kit with sealing</p>
+          <p class="font-medium text-gray-900">
+            {{ t('windowsProtector.step1.included.name') }}
+          </p>
           <p class="text-sm text-gray-600">
-            Standard option — automatically included.
+            {{ t('windowsProtector.step1.included.note') }}
           </p>
         </div>
+
         <p class="font-semibold text-gray-900 whitespace-nowrap">
-          €246 / piece
+          {{ t('windowsProtector.step1.included.price') }}
         </p>
       </div>
     </div>
 
-    <!-- Title -->
+    <!-- TITLE -->
     <h2 class="text-2xl font-semibold text-center text-gray-800">
-      Dimensions & Installation Method
+      {{ t('windowsProtector.step1.title') }}
     </h2>
 
-    <!-- Split layout -->
+    <!-- GRID -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <!-- LEFT: Dimensions -->
+
+      <!-- LEFT: DIMENSIONS -->
       <div class="space-y-6">
         <h3 class="text-lg font-semibold text-gray-800">
-          Dimensions of the WindowsProtector
+          {{ t('windowsProtector.step1.dimensions.title') }}
         </h3>
 
-        <!-- Description -->
         <div class="space-y-2 text-sm text-gray-600 leading-relaxed">
           <p>
-            Please note the maximum size of the wall opening for the
-            <strong>WindowsProtector</strong> is
-            <strong>1800 × 1800 mm</strong>.
+            {{ t('windowsProtector.step1.dimensions.description1') }}
           </p>
 
           <p>
-            <strong>Width of the wall opening:</strong><br />
-            Between 400 and 1,800 mm
+            <strong>{{ t('windowsProtector.step1.dimensions.width') }}</strong><br />
+            {{ t('windowsProtector.step1.dimensions.widthRange') }}
           </p>
 
           <p>
-            <strong>Height of the wall opening:</strong><br />
-            Between 400 and 1,800 mm
+            <strong>{{ t('windowsProtector.step1.dimensions.height') }}</strong><br />
+            {{ t('windowsProtector.step1.dimensions.heightRange') }}
           </p>
         </div>
 
-        <!-- Illustration -->
+        <!-- IMAGE -->
         <div class="flex justify-center pt-2">
-          <img
-            :src="img1"
-            alt="WindowsProtector dimensions illustration"
-            class="max-h-48 object-contain"
-          />
+          <img :src="img1" class="max-h-48 object-contain" />
         </div>
 
-        <!-- Inputs -->
+        <!-- INPUTS -->
         <div class="grid grid-cols-2 gap-6 pt-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Width (mm)
+              {{ t('windowsProtector.step1.dimensions.inputWidth') }}
             </label>
             <input
               type="number"
               min="400"
               max="1800"
-              step="1"
               v-model="enteredWidth"
               class="w-full border-gray-300 rounded-md focus:ring-[#f39200] focus:border-[#f39200]"
             />
@@ -82,69 +79,59 @@
 
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Height (mm)
+              {{ t('windowsProtector.step1.dimensions.inputHeight') }}
             </label>
             <input
               type="number"
               min="400"
               max="1800"
-              step="1"
               v-model="enteredHeight"
               class="w-full border-gray-300 rounded-md focus:ring-[#f39200] focus:border-[#f39200]"
             />
           </div>
         </div>
 
+        <!-- ERRORS -->
         <div
           v-if="(enteredWidth || enteredHeight) && !isInRange"
           class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
         >
-          Please enter a valid width and height between 400 mm and 1800 mm.
+          {{ t('windowsProtector.step1.dimensions.invalidRange') }}
         </div>
 
         <div
           v-else-if="isInRange && !isManufacturable"
           class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
         >
-          This size is not available for manufacture for the selected configuration.
+          {{ t('windowsProtector.step1.dimensions.notManufacturable') }}
         </div>
       </div>
 
-      <!-- RIGHT: Installation Method -->
+      <!-- RIGHT: INSTALLATION -->
       <div class="space-y-6">
         <h3 class="text-lg font-semibold text-gray-800">
-          Installation method
+          {{ t('windowsProtector.step1.installation.title') }}
         </h3>
 
-        <!-- Description -->
         <p class="text-sm text-gray-600 leading-relaxed">
-          The acrylic partition for easy retrofitting is the perfect
-          solution for sealing basement and building windows.
-          <br /><br />
-          Installation can be carried out either on the window frame or
-          directly onto the building wall. In both cases, the acrylic
-          partition is adhered and sealed using a special acrylic adhesive.
+          {{ t('windowsProtector.step1.installation.description') }}
         </p>
 
-        <!-- Illustration -->
+        <!-- IMAGE -->
         <div class="flex justify-center pt-2">
-          <img
-            :src="img2"
-            alt="WindowsProtector installation illustration"
-            class="max-h-40 object-contain"
-          />
+          <img :src="img2" class="max-h-40 object-contain" />
         </div>
 
-        <!-- Native radio buttons -->
+        <!-- RADIO -->
         <div class="space-y-3 pt-4">
           <label class="flex items-center gap-3 text-sm text-gray-700">
             <input
               type="radio"
               value="on_window_frame"
               v-model="form.config_options.installation_method"
-              class="text-[#f39200] focus:ring-[#f39200]"
+              class="text-[#f39200]"
             />
-            On the window frame
+            {{ t('windowsProtector.step1.installation.frame') }}
           </label>
 
           <label class="flex items-center gap-3 text-sm text-gray-700">
@@ -152,18 +139,25 @@
               type="radio"
               value="on_opening_wall"
               v-model="form.config_options.installation_method"
-              class="text-[#f39200] focus:ring-[#f39200]"
+              class="text-[#f39200]"
             />
-            On the opening wall
+            {{ t('windowsProtector.step1.installation.wall') }}
           </label>
         </div>
+
+        <!-- OPTIONAL UX: SHOW PRODUCT SIZE -->
+        <div v-if="productWidth && productHeight" class="text-sm text-gray-500 pt-2">
+          {{ productWidth }} × {{ productHeight }} mm
+        </div>
       </div>
+
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
 import img1 from '@/Assets/8-Windows Protector/Step-1/windows-1a.jpg';
 import img2 from '@/Assets/8-Windows Protector/Step-1/windows-1b.jpg';
 import {
@@ -171,16 +165,22 @@ import {
   windowPricesWithoutHatch
 } from '@/Data/windowsProtectorPrices';
 
+const { t } = useI18n();
+
 const props = defineProps({
   form: Object
 });
 
-const minWidth = 400;
-const maxWidth = 1800;
-const minHeight = 400;
-const maxHeight = 1800;
+// -------------------
+// CONSTANTS
+// -------------------
+const min = 400;
+const max = 1800;
 const stepSize = 100;
 
+// -------------------
+// INPUT (OPENING SIZE)
+// -------------------
 const enteredWidth = ref(
   props.form.config_options.entered_width ||
   props.form.config_options.width ||
@@ -193,89 +193,92 @@ const enteredHeight = ref(
   ''
 );
 
+// -------------------
+// GRID MAPPING
+// -------------------
 const mappedWidth = computed(() => {
-  const width = Number(enteredWidth.value);
-
-  if (!width || width < minWidth || width > maxWidth) {
-    return null;
-  }
-
-  return Math.floor((width - minWidth) / stepSize) * stepSize + minWidth;
+  const val = Number(enteredWidth.value);
+  if (!val || val < min || val > max) return null;
+  return Math.floor((val - min) / stepSize) * stepSize + min;
 });
 
 const mappedHeight = computed(() => {
-  const height = Number(enteredHeight.value);
-
-  if (!height || height < minHeight || height > maxHeight) {
-    return null;
-  }
-
-  return Math.floor((height - minHeight) / stepSize) * stepSize + minHeight;
+  const val = Number(enteredHeight.value);
+  if (!val || val < min || val > max) return null;
+  return Math.floor((val - min) / stepSize) * stepSize + min;
 });
 
-const isInRange = computed(() => {
-  return !!mappedWidth.value && !!mappedHeight.value;
+// -------------------
+// INSTALLATION
+// -------------------
+const installationMethod = computed(() =>
+  props.form.config_options.installation_method || 'on_window_frame'
+);
+
+// -------------------
+// PRODUCT SIZE
+// -------------------
+const productWidth = computed(() => {
+  if (!mappedWidth.value) return null;
+  return installationMethod.value === 'on_opening_wall'
+    ? mappedWidth.value + 100
+    : mappedWidth.value;
 });
 
-// Adjust this to your actual hatch field name if different
-const selectedPriceTable = computed(() => {
-  if (props.form.config_options?.with_hatch === true) {
-    return windowPricesWithHatch;
-  }
-
-  if (props.form.config_options?.with_hatch === false) {
-    return windowPricesWithoutHatch;
-  }
-
-  // Before hatch selection is made, allow any size that exists in at least one table
-  return null;
+const productHeight = computed(() => {
+  if (!mappedHeight.value) return null;
+  return installationMethod.value === 'on_opening_wall'
+    ? mappedHeight.value + 100
+    : mappedHeight.value;
 });
+
+// -------------------
+// VALIDATION
+// -------------------
+const isInRange = computed(() =>
+  !!mappedWidth.value && !!mappedHeight.value
+);
 
 const isManufacturable = computed(() => {
-  const width = mappedWidth.value;
-  const height = mappedHeight.value;
+  const w = productWidth.value;
+  const h = productHeight.value;
 
-  if (!width || !height) return false;
-
-  if (selectedPriceTable.value) {
-    return selectedPriceTable.value?.[height]?.[width] != null;
-  }
+  if (!w || !h) return false;
 
   return (
-    windowPricesWithHatch?.[height]?.[width] != null ||
-    windowPricesWithoutHatch?.[height]?.[width] != null
+    windowPricesWithHatch?.[h]?.[w] != null ||
+    windowPricesWithoutHatch?.[h]?.[w] != null
   );
 });
 
+// -------------------
+// SYNC FORM
+// -------------------
 watch(enteredWidth, (val) => {
   props.form.config_options.entered_width = val ? Number(val) : null;
-  props.form.config_options.width =
-    isManufacturable.value || selectedPriceTable.value === null
-      ? mappedWidth.value
-      : null;
 });
 
 watch(enteredHeight, (val) => {
   props.form.config_options.entered_height = val ? Number(val) : null;
-  props.form.config_options.height =
-    isManufacturable.value || selectedPriceTable.value === null
-      ? mappedHeight.value
-      : null;
 });
 
-watch([mappedWidth, mappedHeight, selectedPriceTable], () => {
-  if (!mappedWidth.value || !mappedHeight.value) {
-    props.form.config_options.width = null;
-    props.form.config_options.height = null;
-    return;
-  }
+watch(
+  [productWidth, productHeight, installationMethod],
+  () => {
+    if (!productWidth.value || !productHeight.value) {
+      props.form.config_options.width = null;
+      props.form.config_options.height = null;
+      return;
+    }
 
-  if (isManufacturable.value || selectedPriceTable.value === null) {
-    props.form.config_options.width = mappedWidth.value;
-    props.form.config_options.height = mappedHeight.value;
-  } else {
-    props.form.config_options.width = null;
-    props.form.config_options.height = null;
-  }
-});
+    if (isManufacturable.value) {
+      props.form.config_options.width = productWidth.value;
+      props.form.config_options.height = productHeight.value;
+    } else {
+      props.form.config_options.width = null;
+      props.form.config_options.height = null;
+    }
+  },
+  { immediate: true }
+);
 </script>

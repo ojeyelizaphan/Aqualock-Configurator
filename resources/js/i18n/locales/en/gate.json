@@ -1,0 +1,152 @@
+{
+  "step1": {
+    "title": "Selection of Size and Water Protection Level",
+    "description": "The AquaLOCK® gate offers reliable protection with a maximum width of 5,000 mm and a water protection height of up to 1,200 mm.",
+
+    "pricePerPiece": "€{price} / piece",
+
+    "included": {
+      "title": "Included by default",
+      "description": "The assembly kit with sealing is mandatory and is automatically added to the total price.",
+      "item": "Assembly kit with sealing",
+      "auto": "Automatically included depending on gate width",
+      "breakdownTitle": "Included by default depending on gate width:",
+      "upTo1500": "Up to 1,500 mm width: €131",
+      "upTo5000": "1,501 – 5,000 mm width: €189",
+      "industrial": "Industrial version: €294"
+    },
+
+    "upperDesign": {
+      "title": "Options for designing the upper area",
+      "lattice": "Lattice Bars (Round or Angular)",
+      "wood": "Wood Paneling"
+    },
+
+    "size": {
+      "title": "Gate Size",
+      "width": "Desired Width (800 – 5,000 mm)",
+      "height": "Desired Water Protection Height (500 – 1,200 mm)",
+      "totalHeight": "Desired Total Gate Height (up to 2,000 mm)"
+    },
+
+    "validation": "Please enter a valid width (800–5000 mm), water protection height (500–1200 mm), and total gate height up to 2000 mm (must be greater than or equal to protection height).",
+
+    "images": {
+      "wood": "Gate with wood paneling (price on request)",
+      "access": "Gate with through-access",
+      "diagram": "Maximum water protection height: 1,200 mm"
+    }
+  },
+
+  "step2": {
+    "title": "Gate Configuration",
+
+    "opening": {
+        "title": "Opening Direction",
+        "description": "The AquaLOCK® gate can be opened inwards or outwards. With inward opening, the locks must withstand water pressure. With outward opening, they press the gate shut.",
+        "subtitle": "Opening direction and opening angle",
+
+        "left_in_95": "Left inward 95°",
+        "left_in_180": "Left inward 180°",
+        "left_out_95": "Left outward 95°",
+        "left_out_180": "Left outward 180°",
+        "right_in_95": "Right inward 95°",
+        "right_in_180": "Right inward 180°",
+        "right_out_95": "Right outward 95°",
+        "right_out_180": "Right outward 180°"
+    },
+
+    "installation": {
+        "title": "Installation Method",
+        "description": "Fitting methods: in front of, behind or between the reveal. If unsure, our technicians will clarify on site.",
+        "behind": "Behind the Reveal",
+        "between": "Between the Reveal",
+        "front": "In Front of the Reveal"
+    },
+
+    "images": {
+        "inward": "Gate opens inward at 95°",
+        "outward": "Gate opens outward at 180°"
+    }
+    },
+
+    "step3": {
+    "title": "Colour & Material, Gate Fittings",
+
+    "color": {
+      "title": "Choose Colour",
+      "description": "To perfectly match your AquaLOCK® gate to your building, you can choose from 216 RAL colours. Seven standard colours (white and six shades of grey) are available at no extra charge.",
+      "note": "Please note: Colours displayed may differ due to monitor settings. No guarantee for exact colour match.",
+
+      "standard": "This is a standard colour and carries no extra charge.",
+      "custom": "Selected colour is a non-standard RAL colour and incurs an extra charge of €{price}."
+    },
+
+    "fittings": {
+      "title": "Gate Fittings",
+      "description": "Would you like to operate the gate using a door handle? Choose from the options below. If no selection is made, the gate will be delivered without a lock and handle.",
+
+      "aluminum_both": "Lever handle inside and outside – Aluminum F1",
+      "stainless_both": "Lever handle inside and outside – Stainless steel",
+      "aluminum_inside": "Lever handle inside only – Aluminum F1",
+      "stainless_inside": "Lever handle inside only – Stainless steel",
+      "aluminum_knob": "Lever handle inside, fixed knob outside – Aluminum F1",
+      "stainless_knob": "Lever handle inside, fixed knob outside – Stainless steel"
+    }
+  },
+
+  "step4": {
+    "title": "Locking System & Accessories",
+
+    "centralLocking": {
+      "title": "Central Locking",
+      "note": "(For inward-opening gates only, operated from the inside)",
+      "description": "The central locking system allows all individual locking bolts to be operated via a central lever.",
+
+      "with": {
+        "label": "With central locking system",
+        "description": "All locking bolts operated via a central lever",
+        "price": "+ €547"
+      },
+      "without": {
+        "label": "Without central locking system",
+        "description": "All locking bolts must be operated individually",
+        "price": ""
+      }
+    },
+
+    "accessories": {
+      "title": "Accessories",
+      "optional": "Optional Add-ons",
+
+      "gateStop": {
+        "label": "Gate stop",
+        "description": "Secures the gate against a wall, preventing unwanted opening",
+        "price": "+ €160"
+      },
+      "padlockPreparation": {
+        "label": "Padlock preparation",
+        "description": "Prepared for padlock use (padlock not included)",
+        "price": "+ €88"
+      },
+      "durchgriff": {
+        "label": "Through-access with central locking",
+        "description": "Allows opening from outside (only for inward-opening gates with central locking)",
+        "price": "+ €700"
+      }
+    },
+
+    "lattice": {
+      "title": "Lattice Bars",
+
+      "round_extruded": "Round lattice bars, extruded",
+      "angular_extruded": "Angular lattice bars, extruded",
+      "round_forged": "Round lattice bars, forged",
+      "angular_forged": "Angular lattice bars, forged",
+
+      "unit": "€{price} / m²"
+    },
+
+    "imageCaption": "Gate with through-access and central locking, allowing opening from outside"
+  }
+}

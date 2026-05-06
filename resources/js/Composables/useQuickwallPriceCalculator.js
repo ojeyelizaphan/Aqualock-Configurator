@@ -10,12 +10,12 @@ export function useQuickwallPriceCalculator(form) {
   const baseCalculatedPrice = computed(() => {
     const width = form.config_options?.width;
     const height = form.config_options?.height;
-    const installType = form.config_options?.installation_method; // 'between' or 'in_front'
+    const installType = form.config_options?.installation_method; // 'between_reveal' or 'front_reveal'
 
     if (!width || !height || !installType) return null;
 
     const priceTable =
-      installType === 'in_front'
+      installType === 'front_reveal'
         ? quickwallFrontReveal
         : quickwallBetweenReveal;
 

@@ -1,0 +1,124 @@
+{
+  "protection": {
+    "title": "Wasserschutzhöhe auswählen",
+    "intro": {
+      "p1": "Bei Starkregen sammelt sich zwar in sehr kurzer Zeit sehr viel Wasser, aber selten über einen halben Meter Wasserstandshöhe hinaus. Befindet sich Ihre Garage unter dem Haus, sieht es natürlich anders aus – die Einfahrt wirkt wie ein Trichter und läuft schnell voll, auch über eine Höhe von 500 mm. Dabei entsteht ein Druck, dem nur ein verstärktes Tor länger standhält.",
+      "p2": "Abhängig von der Torhöhe können wir für alle AquaLOCK® Schwingtore einen Schutz bis 1.600 mm garantieren. Bei einer Breite von über 3.100 mm kommen zusätzlich manuelle Verriegelungen zum Einsatz. Dies müssen zwingend geschlossen werden, um den vollen Schutz zu erreichen."
+    },
+    "note500": "Bei Toren ab 3.100 mm Breite müssen die manuellen Verriegelungen geschlossen werden, um den vollen Schutz zu erreichen. Maximale Breite: 5.200 mm.",
+    "options": {
+      "upTo500": {
+        "label": "Wasserschutz bis 500 mm",
+        "description": "Bei einer Schutz­höhe bis 500 mm werden zusätzlich manuelle Verriegelungen eingesetzt, die den Anpressdruck unterstützen."
+      },
+      "over500": {
+        "label": "Wasserschutz über 500 mm",
+        "description": "Bei einer Schutz­höhe über 500 mm wird das Tor durch den Druck des speziellen Garagentorantriebs fest verschlossen gehalten."
+      }
+    }
+  },
+
+   "dimensions": {
+    "title": "Torgröße",
+    "widthInfo": "Breite der Maueröffnung zwischen 2.200 und 5.200 mm",
+    "heightInfo": "Höhe der Maueröffnung: Zwischen 1.920 und 2.520 mm",
+    "widthLabel": "Breite (mm)",
+    "heightLabel": "Höhe (mm)",
+    "widthPlaceholder": "Breite eingeben",
+    "heightPlaceholder": "Höhe eingeben",
+    "widthRange": "Breite zwischen 2.200 – {max} mm",
+    "heightRange": "Höhe zwischen 1.920 und 2.520 mm",
+    "invalid": "Bitte geben Sie eine gültige Größe im zulässigen Bereich ein."
+  },
+  "installation": {
+    "title": "Einbauart: Vor oder zwischen der Laibung",
+    "description": "Sollten Sie nicht sicher sein, welche Einbauart bei Ihrem Gebäude in Frage kommt, kein Problem – dies wird von einem erfahrenen Monteur vor Ort geklärt.",
+    "options": {
+      "behind": {
+        "label": "Hinter der Laibung",
+        "description": "Auf der Innenwand montiert."
+      },
+      "between": {
+        "label": "Vor der Laibung",
+        "description": "In der Öffnung montiert."
+      }
+    }
+  },
+
+  "color": {
+    "title": "216 Farben zur Auswahl",
+    "description": "Damit Ihr AquaLOCK® Tor perfekt zu Ihrem Gebäude passt, haben Sie die Wahl zwischen 216 RAL-Farben. Dabei gibt es sieben Standard-Farben (weiß und 6 Grau-Töne), die ohne Aufpreis erhältlich sind. Achtung: Die Darstellung der Farben auf der Website kann aufgrund der Monitordarstellung von der tatsächlichen Farbe abweichen. Alle Angaben daher ohne Gewähr.",
+    "standardNotice": "Dies ist eine Standardfarbe und es fällt kein Aufpreis an.",
+    "customNotice": "Die gewählte Farbe ist eine nicht standardmäßige RAL-Farbe und verursacht einen Aufpreis von €{amount}."
+  },
+  "material": {
+    "title": "Material: Verzinkter Stahl",
+    "name": "Verzinkter Stahl",
+    "description": "In der Regel reicht eine Verzinkung für den Rostschutz vollkommen aus, zumal jedes Tor ja zusätzlich noch grundiert und lackiert wird. Wir geben 5 Jahre Garantie gegen Durchrosten."
+  },
+
+  "included": {
+    "title": "Grundsätzlich inbegriffen",
+    "description": "Bei dieser Schwingtor-Konfiguration sind Motor und Montage-Set zwingend inbegriffen und werden automatisch hinzugefügt.",
+    "motor": "Motor",
+    "assembly": "Montageset mit Dichtmittel",
+    "always": "Keine Auswahl nötig – immer inbegriffen.",
+    "total": "Automatisch hinzugefügter Betrag"
+  },
+
+  "insulation": {
+    "title": "Schalung & Isolierung",
+    "description": "Die Innenseite des Tores wird mit glatten Aluminiumblechen verkleidet...",
+
+    "none": {
+        "label": "Ohne Schalung",
+        "description": "Grundinstallation ohne Verkleidung."
+    },
+
+    "casingNoInsulation": {
+        "label": "Mit Schalung aber ohne Isolierung",
+        "description": "Verkleidung vorhanden, jedoch ohne zusätzliche Isolierung."
+    },
+
+    "full": {
+        "label": "Mit Schalung und Isolierung",
+        "description": "Komplette Verkleidung mit zusätzlicher Isolierung für maximale Effizienz."
+    },
+
+    "imageAlt": "Schwingtor ohne Isolierung"
+    },
+
+  "transmitters": {
+    "title": "Anzahl Handsender",
+    "question": "Wie viele Funk-Handsender benötigen Sie?",
+    "placeholder": "Stückzahl eingeben",
+    "label": "Anzahl Handsender",
+    "doorImageAlt": "Schwingtor",
+    "remoteImageAlt": "TBS Funkfernbedienung"
+  },
+
+  "drivePlate": {
+    "title": "Überfahrblech",
+    "none": "Ohne",
+    "stainless": "Aus Edelstahl",
+    "aluminium": "Aus Aluminium",
+    "noCost": "Keine zusätzlichen Kosten",
+    "stainlessCost": "€165 pro lfm",
+    "aluminiumCost": "€125 pro lfm"
+  },
+
+  "glazing": {
+    "title": "Verglasung auswählen",
+    "addWindows": "Fenster hinzufügen (650x450 mm)",
+    "addStripes": "Glasband hinzufügen (Höhe 400 mm)",
+    "quantity": "Anzahl Fenster",
+    "autoNote": "Automatisch berechnet als Türbreite - 370 mm.",
+    "quantityPlaceholder": "Stückzahl eingeben",
+    "stripeLength": "Glasband-Länge (mm)"
+  },
+
+  "units": {
+    "piece": "Stück",
+    "sqm": "m²"
+  }
+}
