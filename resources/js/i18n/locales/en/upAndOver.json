@@ -1,0 +1,126 @@
+{
+  "protection": {
+    "title": "Select Water Protection Level",
+    "intro": {
+      "p1": "Heavy rainfall may cause an accumulation of water in a very short time, but it seldom exceeds a water level of more than half a meter. The situation is different if you have an underground garage — the sunken driveway acts like a funnel and quickly fills up beyond a height of 500 mm, creating pressure that only a reinforced door can withstand for longer periods.",
+      "p2": "The AquaLOCK® up-and-over garage doors ensure protection up to 1,600 mm, depending on the height of the door. If your garage door is between 3,100 mm and 5,200 mm wide, we recommend the V500 version, which is limited to a protection height of 500 mm."
+    },
+    "note500": "For doors from 3,100 mm width, manual locking must be closed to achieve full protection. Maximum width is 5,200 mm.",
+    "options": {
+      "upTo500": {
+        "label": "Protection height up to 500 mm",
+        "description": "Manual locking devices are used in addition to the operating pressure for a safety height of up to 500 mm."
+      },
+      "over500": {
+        "label": "Protection height over 500 mm",
+        "description": "At a safety height of over 500 mm, the door is maintained firmly latched by the pressure of the special garage door drive."
+      }
+    }
+  },
+
+  "dimensions": {
+    "title": "Garage Door Size",
+    "widthInfo": "Width of the wall opening: between 2,200 and 5,200 mm.",
+    "heightInfo": "Height of the wall opening: between 1,920 and 2,520 mm",
+    "widthLabel": "Width (mm)",
+    "heightLabel": "Height (mm)",
+    "widthPlaceholder": "Enter width",
+    "heightPlaceholder": "Enter height",
+    "widthRange": "Allowed range: 2200 - {max} mm",
+    "heightRange": "Allowed range: 1920 - 2520 mm",
+    "invalid": "Please enter a valid size within the allowed range."
+  },
+  "installation": {
+    "title": "Installation Type",
+    "description": "No worries if you are not sure which type of installation is appropriate for your building - an experienced fitter will clarify this on site.",
+    "options": {
+      "behind": {
+        "label": "Behind the reveal",
+        "description": "Mounted on the interior wall."
+      },
+      "between": {
+        "label": "Between the reveal",
+        "description": "Installed in the wall opening."
+      }
+    }
+  },
+
+  "color": {
+    "title": "Choose Color",
+    "description": "216 colors to choose from. You have a choice of 216 RAL colors to give your AquaLOCK® garage door the perfect look for your building. This includes seven standard colors (white and 6 shades of grey), which are available at no extra charges. Please note: The display of colors on the website may differ from the actual color due to the monitor display. Specifications are therefore without guarantee.",
+    "standardNotice": "This is a standard colour and carries no extra charge.",
+    "customNotice": "Selected colour is a non-standard RAL colour and incurs an extra charge of €{amount}."
+  },
+  "material": {
+    "title": "Material",
+    "name": "Galvanized Steel",
+    "description": "Galvanized steel is the only available material option for the AquaLOCK® garage door at the moment. As a rule, galvanizing is completely sufficient for rust protection, especially as each door is also primed and painted. We give a 5-year guarantee against rusting through."
+  },
+
+  "included": {
+    "title": "Included by default",
+    "description": "For this door configuration, the following items are automatically included and added to the total price.",
+    "motor": "Motor",
+    "assembly": "Assembly kit with sealing",
+    "always": "No option required — always included.",
+    "total": "Automatically added total"
+  },
+
+  "insulation": {
+    "title": "Cladding & Insulation",
+    "description": "The inside of the door is lined with smooth aluminum sheet metal...",
+    "none": {
+      "label": "Without cladding",
+      "description": "Basic installation without any casing."
+    },
+    "casingNoInsulation": {
+      "label": "With cladding but without insulation",
+      "description": "Casing installed but no additional insulation."
+    },
+    "full": {
+      "label": "With cladding and insulation",
+      "description": "Complete casing with added insulation for maximum efficiency."
+    },
+    "imageAlt": "Up-and-over door without insulation"
+  },
+
+  "transmitters": {
+    "title": "Hand-held Transmitters",
+    "question": "How many radio hand-held transmitters do you need for your AquaLOCK® garage door?",
+    "label": "Number of hand-held transmitters",
+    "placeholder": "Enter quantity",
+    "doorImageAlt": "Up-and-over door",
+    "remoteImageAlt": "TBS radio remote control"
+  },
+
+  "drivePlate": {
+    "title": "Drive-over Plate for Threshold",
+    "none": "Without",
+    "stainless": "Stainless Steel",
+    "aluminium": "Aluminium",
+    "noCost": "No extra cost",
+    "stainlessCost": "€165 per RMT",
+    "aluminiumCost": "€125 per RMT"
+  },
+
+  "glazing": {
+    "title": "Choose Glazing",
+    "addWindows": "Add Windows (650x450 mm)",
+    "addStripes": "Add Glass Stripes (height 400 mm)",
+    "quantity": "Number of windows",
+    "stripeLength": "Stripe Length (mm)",
+    "autoNote": "Automatically calculated as door width - 370 mm. Quantity: 1 piece.",
+    "quantityPlaceholder": "Enter quantity",
+
+    "window": {
+      "transparent": {
+        "noInsulation": "Window (650x450 mm) - Transparent Glass",
+        "withInsulation": "Window (650x450 mm, ISO) - Transparent Glass"
+      }
+    }
+  },
+  "units": {
+    "piece": "piece",
+    "sqm": "m²"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "stepProtection": {
+    "title": "Schutzhöhe & Maße",
+
+    "intro": {
+      "title": "Wasserschutzhöhe auswählen",
+      "p1": "Es gibt bauliche Situationen, in denen keine andere Möglichkeit besteht, als einen mobilen Hochwasserschutz einzusetzen. Genau dafür wurde die AquaLOCK® Quickwall konzipiert.",
+      "p2": "Sie besteht aus feststehenden Lamellen und ist je nach Breite bis zu einer Schutzhöhe von 1,6 m verfügbar. Sonderlösungen sind möglich."
+    },
+
+    "width": {
+      "label": "Öffnungsbreite (mm)",
+      "placeholder": "Öffnungsbreite eingeben",
+      "error": "Bitte geben Sie eine gültige Breite zwischen 800 mm und 3000 mm ein."
+    },
+
+    "height": {
+      "label": "Schutzhöhe (mm)",
+      "required": "Bitte wählen Sie eine Schutzhöhe aus, bevor Sie fortfahren.",
+      "none": "Für diese Breite sind keine Schutzhöhen verfügbar."
+    }
+  },
+
+  "stepInstallation": {
+    "title": "Einbauart, Schließhebel",
+
+    "installation": {
+      "title": "Einbauart: Vor oder zwischen der Laibung",
+      "description": "Es gibt 2 Einbaumöglichkeiten für die AquaLOCK® Quickwall. Abhängig von der baulichen Situation kann die Quickwall vor oder zwischen der Laibung installiert werden.",
+      "front": "Vor der Laibung",
+      "between": "Zwischen der Laibung"
+    },
+
+    "locking": {
+      "title": "Anordnung Schließhebel",
+      "description": "Der entfernbare Schließhebel kann wahlweise und ohne Aufpreis rechts oder links angeordnet werden.",
+      "view": "",
+      "right": "Rechts von außen",
+      "left": "Links von außen"
+    }
+  },
+
+  "stepMultiPanel": {
+    "title": "Mehrfeld-System",
+
+    "intro": {
+      "highlight": "Lösungen für breite Öffnungen mit Mittelpfosten oder Montage über Eck",
+      "p1": "Sollte eine höhere Schutzhöhe benötigt werden (z. B. 2,5 m breit × 1 m hoch), gibt es die Möglichkeit mehrere Quickwall mit einem festen Mittelpfosten (Breite 60 mm) zu verbinden. Der Pfosten ist in einem Boden einbetonierten Edelstahlhülse eingesteckt und zu beiden Seiten jeweils eine AquaLOCK® Quickwall eingesetzt.",
+      "p2": "Mit einem speziellen Eckpfosten ist es auch möglich zwei Quickwalls sicher über Eck zu verbinden."
+    },
+
+    "example": {
+      "title": "Beispiel für die Berechnung der richtigen Breite der Quickwall-Paneele",
+      "p": "Sie möchten ein 2.400 mm breites Garagentor in einer Höhe von 1.500 mm absichern. Die maximale Breite der Absicherungshöhe beträgt 1.100 mm, was nicht ausreicht, um nur 2 Paneele zu verwenden – daher benötigen Sie 3 Paneele und 2 Mittelpfosten.",
+      "calc1": "2.400 mm − 120 mm (2 Mittelpfosten) = 2.280 mm",
+      "calc2": "2.280 ÷ 3 = 760 mm pro Paneel"
+    },
+
+    "inputs": {
+      "panels": {
+        "label": "Erforderliche Anzahl Panels",
+        "placeholder": "Anzahl Quickwalls"
+      },
+      "centerPosts": {
+        "label": "Erforderliche Anzahl Mittelpfosten",
+        "placeholder": "Anzahl Mittelpfosten"
+      },
+      "cornerPosts": {
+        "label": "Erforderliche Anzahl Eckpfosten",
+        "placeholder": "Anzahl Eckpfosten"
+      }
+    },
+
+    "images": {
+      "center": "Mittelpfosten-Konfiguration",
+      "corner": "Eckpfosten-Konfiguration"
+    }
+  },
+
+  "stepAccessories": {
+    "title": "Zubehör & weitere Optionen",
+
+    "included": {
+      "title": "Ohne Aufpreis enthalten",
+      "description": "Als besonderes Jubiläumsangebot ist der Montagesatz kostenlos enthalten. Die Eckprofile sind Teil dieses Montagesatzes. Lediglich für die Farbbeschichtung der Profile fällt ein Aufpreis an."
+    },
+
+    "bottomPlate": {
+      "title": "Bodenblech",
+      "description": "Das automatisch enthaltene Bodenblech gleicht Bodenunebenheiten aus und wird einfach mit dem Dichtmittel aufgeklebt. Durch das Bodenblech wird auch eine zu starke Abnutzung der unteren Dichtlippe vermieden."
+    },
+
+    "cornerProfiles": {
+      "title": "Farbbeschichtung der Gebäudeprofile",
+      "description": "",
+      "without": "Ohne Farbbeschichtung (Alu eloxiert)",
+      "with": "Mit Farbbeschichtung"
+    },
+
+    "accessories": {
+      "title": "Optionales Zubehör",
+      "hooks": {
+        "title": "Haken zum Aufhängen der Quickwall, Preis pro Stück €11",
+        "description": ""
+      }
+    }
+  }
+}

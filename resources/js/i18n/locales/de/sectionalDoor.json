@@ -1,0 +1,137 @@
+{
+  "step1": {
+    "title": "Torgröße und Einbauart",
+
+    "doorSize": {
+      "title": "Torgröße",
+      "description": "Bitte beachten Sie die maximale Größe der Maueröffnung für das Sektionaltor. Links und rechts werden mind. 90 mm Laibung benötigt, andernfalls muss ein Hilfsrahmen montiert werden.",
+      "widthLabel": "Breite der Maueröffnung",
+      "widthPlaceholder": "Breite eingeben (mm)",
+      "heightLabel": "Höhe der Maueröffnung",
+      "heightPlaceholder": "Höhe eingeben (mm)",
+      "validation": "Bitte geben Sie eine gültige Breite zwischen 2000 und 6000 mm und eine gültige Höhe zwischen 2000 und 3000 mm ein."
+    },
+
+    "installation": {
+      "title": "Einbauart: Vor oder zwischen der Laibung",
+      "description": "Sollten Sie sich nicht sicher sein, welche Einbauart bei Ihrem Gebäude in Frage kommt, kein Problem – dies wird von einem erfahrenen Monteur vor Ort geklärt.",
+      "behind": {
+        "title": "Hinter der Laibung",
+        "description": "Auf der Innenwand montiert"
+      },
+      "between": {
+        "title": "Zwischen der Laibung",
+        "description": "(evtl. Hilfsrahmen erforderlich)"
+      }
+    }
+  },
+
+  "step2": {
+    "title": "Wahl des Bodenblechs",
+
+    "aluminum": {
+      "title": "Bodenblech aus Aluminium, auf den Boden aufgeklebt",
+      "description": "Für die Installation muss der Boden absolut eben und glatt sein. Da dies selten gegeben ist, empfehlen wir ein Bodenblech aus eloxiertem Aluminium, um Unebenheiten und Gefälle auszugleichen und die sichere Funktion des AquaLOCK® Sektionaltors zu gewährleisten.",
+      "option": "Mit Bodenblech aus eloxiertem Aluminium"
+    },
+
+    "steel": {
+      "title": "Bodenblech aus Edelstahl, im Beton verankert",
+      "description1": "Durch das Einbetonieren einer Edelstahl-Bodenplatte in die Schwelle schaffen Sie eine perfekt ebene Fläche für den Einbau des AquaLOCK®-Sektionaltors. Dazu muss im Garagenboden eine 40 mm tiefe und 200 mm breite Nut angelegt werden, die mit Frischbeton verfüllt wird. Die Edelstahl-Bodenplatte wird dann in diesen Frischbeton eingelassen und mit einer Wasserwaage ausgerichtet.",
+      "description2": "Diese Art der Montage ermöglicht es, das AquaLOCK®-Sektionaltor mit einem vorinstallierten Aufrüstsatz zu bestellen, was die eigentliche Torinstallation erheblich vereinfacht.",
+      "option": "Mit Bodenblech aus Edelstahl"
+    },
+
+    "none": {
+      "option": "Ohne Bodenblech"
+    }
+  },
+
+  "step3": {
+    "title": "Farben der Panels und Profile",
+
+    "panel": {
+      "title": "Wählen Sie aus 216 verschiedenen Farben",
+      "description1": "Damit Ihr AquaLOCK®-Sektionaltor perfekt zu Ihrem Gebäude passt, entscheiden Sie sich zwischen den beiden Standard-Außenfarben oder wählen Sie eine individuelle RAL-Farbe aus (gegen Aufpreis).",
+      "description2": "Es stehen zwei Standardfarben für die Außenseite (RAL 9016 NZ Verkehrsweiß, RAL 7016 NZ Anthrazitgrau) und eine Standardfarbe für die Innenseite (RAL 9002) kostenfrei zur Verfügung.",
+      "description3": "Individuelle Farben sind nur für die Außenseite verfügbar, nicht für die Innenseite. Die Innenfarbe ist fest auf RAL 9002 festgelegt.",
+      "note": "Bitte beachten Sie: Die auf der Website gezeigten Farben können aufgrund der Bildschirmanzeige von der tatsächlichen Farbe abweichen. Die Farbauswahl erfolgt daher ohne Gewähr.",
+
+      "selectorTitle": "Wahl der Außenfarbe",
+
+      "standardSelected": "Die gewählte Außenfarbe ist eine Standardfarbe und kostenlos.",
+      "customSelected": "Die gewählte Außenfarbe ist keine Standardfarbe und verursacht einen Aufpreis von €{price}.",
+
+      "insideTitle": "Farbe auf der Innenseite der Panels",
+      "insideValue": "RAL 9002 (nicht ander wählbar)"
+    },
+
+    "profile": {
+      "title": "Stahlecken und Aluminiumprofile",
+      "description1": "In der Standardausführung bestehen die Profile auf der unteren Lamelle aus eloxiertem Aluminium, die Stahlecken werden anthrazitfarben lackiert.",
+      "description2": "Auf Wunsch und gegen Aufpreis können beide farblich dem AquaLOCK® Sektionaltor angepasst werden, sodass das Tor noch eleganter wirkt.",
+
+      "standardOption": "Keine farbliche Anpassung an das Sektionaltor",
+      "customOption": "Mit farblicher Anpassung, Farbton RAL ___",
+
+      "inputLabel": "RAL-Farbcode eingeben",
+      "inputPlaceholder": "z. B. RAL 7016",
+      "inputHint": "Beispiel: RAL 7016",
+
+      "extraCost": "Aufpreis für farbliche Anpassung: €421 / Satz",
+
+      "warning": "Dunkle Farben sollten an der Außenseite von doppelwandigen Stahl-Sandwichpaneelen, die der Sonne zugewandt sind, vermieden werden, da die Verformung der Lamellen durch Wärme die Funktionalität der Tür beeinträchtigen könnte."
+    }
+  },
+
+  "step4": {
+    "title": "Zubehör",
+
+    "included": {
+      "title": "Grundsätzlich inbegriffen",
+      "description": "Bei dieser Sektionaltor-Konfiguration sind Motor und Montage-Set zwingend inbegriffen und werden automatisch hinzugefügt.",
+
+      "motor": {
+        "title": "Motor",
+        "note": "Keine Auswahl nötig – immer inbegriffen.",
+        "price": "€651"
+      },
+
+      "assembly": {
+        "title": "Montageset mit Dichtmittel",
+        "note": "Keine Auswahl nötig – immer inbegriffen.",
+        "price": "€334"
+      }
+    },
+
+    "upgradeKit": {
+      "title": "Vormontiertes Nachrüstset",
+      "description": "Bei absolut geradem Boden oder wenn ein Edelstahl-Bodenblech einbetoniert wurde, kann die untere Sektion mit vormontiertem Upgrade-Kit bestellt werden. Bitte wählen Sie das passende Nachrüstset entsprechend der Torbreite aus.",
+
+      "upTo3m": {
+        "label": "Breite bis zu 3 m",
+        "price": "272 € / Stück"
+      },
+
+      "upTo6m": {
+        "label": "Breite bis zu 6 m",
+        "price": "348 € / Stück"
+      },
+
+      "validation": "Bitte wählen Sie ein Nachrüstset aus."
+    },
+
+    "tracks": {
+      "label": "Laufschienen in Edelstahl",
+      "price": "282 € / Set"
+    },
+
+    "transmitters": {
+      "title": "Anzahl Handsender",
+      "description": "Wie viele Funk-Handsender benötigen Sie für Ihr AquaLOCK® Sektionaltor?",
+      "label": "Anzahl Handsender",
+      "placeholder": "0",
+      "price": "60 € pro Stück"
+    }
+  }
+}

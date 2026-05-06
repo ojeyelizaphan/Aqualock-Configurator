@@ -4,25 +4,57 @@
     <!-- Intro -->
     <div class="text-center space-y-3">
       <h2 class="text-2xl font-semibold text-gray-800">
-        Selection of Water-Protection Level
+        {{ t('gate.step1.title') }}
       </h2>
+
       <p class="text-sm text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        The AquaLOCK® gate offers protection for your driveway with a maximum width
-        of 5,000 mm and a water protection height of up to 1,200 mm, keeping out
-        99.9% of the water.
+        {{ t('gate.step1.description') }}
       </p>
     </div>
 
-    <!-- Split Screen -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
 
-      <!-- Options / Inputs -->
+      <!-- LEFT -->
       <section class="space-y-6">
 
-        <!-- Upper Area Design -->
+        <!-- INCLUDED -->
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5">
+          <h3 class="text-lg font-semibold text-amber-900 mb-2">
+            {{ t('gate.step1.included.title') }}
+          </h3>
+
+          <p class="text-sm text-amber-800 mb-4">
+            {{ t('gate.step1.included.description') }}
+          </p>
+
+          <div class="flex items-start justify-between gap-4 mb-3">
+            <div>
+              <p class="font-medium text-gray-900">
+                {{ t('gate.step1.included.item') }}
+              </p>
+              <p class="text-sm text-gray-600">
+                {{ t('gate.step1.included.auto') }}
+              </p>
+            </div>
+
+            <p v-if="assemblyKitPrice" class="font-semibold text-gray-900 whitespace-nowrap">
+              {{ t('gate.step1.pricePerPiece', { price: assemblyKitPrice }) }}
+            </p>
+          </div>
+
+          <!-- Breakdown -->
+          <div class="text-xs text-gray-700 bg-white border border-gray-200 rounded-lg p-3">
+            <p><strong>{{ t('gate.step1.included.breakdownTitle') }}</strong></p>
+            <p>{{ t('gate.step1.included.upTo1500') }}</p>
+            <p>{{ t('gate.step1.included.upTo5000') }}</p>
+            <p>{{ t('gate.step1.included.industrial') }}</p>
+          </div>
+        </div>
+
+        <!-- Upper Design -->
         <div class="space-y-3">
           <p class="text-sm font-medium text-gray-700">
-            Options for designing the upper area
+            {{ t('gate.step1.upperDesign.title') }}
           </p>
 
           <label
@@ -35,12 +67,13 @@
           >
             <input
               type="radio"
-              class="mt-1"
+              class="mt-1 accent-orange-500"
               :value="option.value"
               v-model="form.config_options.upper_design"
             />
+
             <span class="text-sm text-gray-800">
-              {{ option.label }}
+              {{ t(`gate.step1.upperDesign.${option.value}`) }}
             </span>
           </label>
         </div>
@@ -48,125 +81,89 @@
         <!-- Gate Size -->
         <div class="space-y-4">
           <h3 class="text-lg font-semibold text-gray-800">
-            Gate Size
+            {{ t('gate.step1.size.title') }}
           </h3>
 
           <!-- Width -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Desired Width (800 – 5,000 mm)
+              {{ t('gate.step1.size.width') }}
             </label>
             <input
               v-model="enteredWidth"
               type="number"
               min="800"
               max="5000"
-              step="1"
               placeholder="e.g. 3500"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-brand-orange"
             />
           </div>
 
-          <!-- Water-protection height -->
+          <!-- Protection Height -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Desired Water-Protection Height (500 – 1,200 mm)
+              {{ t('gate.step1.size.height') }}
             </label>
             <input
               v-model="enteredHeight"
               type="number"
               min="500"
               max="1200"
-              step="1"
               placeholder="e.g. 1000"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-brand-orange"
             />
           </div>
 
-          <!-- Total gate height -->
+          <!-- Total Height -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">
-              Desired Total Height of the Gate (up to 2000 mm)
+              {{ t('gate.step1.size.totalHeight') }}
             </label>
             <input
               v-model="enteredTotalGateHeight"
               type="number"
               min="500"
               max="2000"
-              step="1"
               placeholder="e.g. 1800"
-              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+              class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-brand-orange"
             />
           </div>
 
+          <!-- Validation -->
           <div
             v-if="(enteredWidth || enteredHeight || enteredTotalGateHeight) && !isSizeValid"
             class="bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-sm text-red-700"
           >
-            Please enter a valid width between 800 and 5000 mm, a valid water-protection height between 500 and 1200 mm, and a valid total gate height up to 2000 mm.
-          </div>
-
-          <!-- Assembly Kit -->
-          <div
-            v-if="assemblyKitPrice"
-            class="bg-amber-50 border border-amber-200 rounded-2xl p-5"
-          >
-            <h3 class="text-lg font-semibold text-amber-900 mb-2">
-              Included by default
-            </h3>
-            <p class="text-sm text-amber-800 mb-4">
-              Assembly kit with sealing is a standard option and is automatically added to the total price.
-            </p>
-
-            <div class="flex items-start justify-between gap-4">
-              <div>
-                <p class="font-medium text-gray-900">Assembly kit with sealing</p>
-                <p class="text-sm text-gray-600">
-                  Standard option — automatically included.
-                </p>
-              </div>
-              <p class="font-semibold text-gray-900 whitespace-nowrap">
-                €{{ assemblyKitPrice }} / piece
-              </p>
-            </div>
+            {{ t('gate.step1.validation') }}
           </div>
         </div>
+
       </section>
 
-      <!-- Images -->
+      <!-- RIGHT -->
       <section class="space-y-4">
         <div class="grid grid-cols-2 gap-4">
-          <figure class="space-y-2 text-center">
-            <img
-              :src="img1"
-              alt="Wood panel design"
-              class="rounded-lg border"
-            />
+
+          <figure class="text-center">
+            <img :src="img1" class="rounded-lg border" />
             <figcaption class="text-xs text-gray-600">
-              Gate with wood panelling (price available on demand).
+              {{ t('gate.step1.images.wood') }}
             </figcaption>
           </figure>
 
-          <figure class="space-y-2 text-center">
-            <img
-              :src="img2"
-              alt="Upper area lattice design"
-              class="rounded-lg border"
-            />
+          <figure class="text-center">
+            <img :src="img2" class="rounded-lg border" />
             <figcaption class="text-xs text-gray-600">
-              Gate with through - access
+              {{ t('gate.step1.images.access') }}
             </figcaption>
           </figure>
+
         </div>
 
-        <figure class="space-y-2 text-center">
-          <img
-            :src="img3"
-            alt="Gate height and flood protection diagram"
-            class="rounded-lg border w-full"
-          />
+        <figure class="text-center">
+          <img :src="img3" class="rounded-lg border w-full" />
           <figcaption class="text-xs text-gray-600">
-            Maximum flood protection height: 1,200 mm
+            {{ t('gate.step1.images.diagram') }}
           </figcaption>
         </figure>
       </section>
@@ -176,76 +173,59 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
-import img1 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2a.jpg";
-import img2 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2b.jpg";
-import img3 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2c.jpg";
+import { ref, computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+import img1 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2a.jpg"
+import img2 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2b.jpg"
+import img3_en from "@/Assets/4-AquaLOCK Gate/Step-2/step-2c.jpg"
+import img3_de from "@/Assets/4-AquaLOCK Gate/Step-2/step-2c-de.jpg"
+
+const { t, locale } = useI18n()
+
+const img3 = computed(() => {
+  return locale.value === 'de' ? img3_de : img3_en
+})
 
 const props = defineProps({
   form: Object,
-});
+})
 
-const form = props.form;
+const form = props.form
 
 const upperDesignOptions = [
-  { value: 'lattice', label: 'Lattice Bars (Round or Angular)' },
-  { value: 'wood', label: 'Wood Paneling' },
-];
+  { value: 'lattice' },
+  { value: 'wood' }
+]
 
-const enteredWidth = ref(
-  form.config_options.entered_width ||
-  form.config_options.width ||
-  ''
-);
+const enteredWidth = ref(form.config_options.entered_width || form.config_options.width || '')
+const enteredHeight = ref(form.config_options.entered_height || form.config_options.protection_height || '')
+const enteredTotalGateHeight = ref(form.config_options.entered_total_gate_height || form.config_options.total_gate_height || '')
 
-const enteredHeight = ref(
-  form.config_options.entered_height ||
-  form.config_options.protection_height ||
-  ''
-);
-
-const enteredTotalGateHeight = ref(
-  form.config_options.entered_total_gate_height ||
-  form.config_options.total_gate_height ||
-  ''
-);
-
-const minWidth = 800;
-const maxWidth = 5000;
-const minProtectionHeight = 500;
-const maxProtectionHeight = 1200;
-const minTotalGateHeight = 500;
-const maxTotalGateHeight = 2000;
+const minWidth = 800
+const maxWidth = 5000
+const minProtectionHeight = 500
+const maxProtectionHeight = 1200
+const minTotalGateHeight = 500
+const maxTotalGateHeight = 2000
 
 const mappedWidth = computed(() => {
-  const width = Number(enteredWidth.value);
-
-  if (!width || width < minWidth || width > maxWidth) {
-    return null;
-  }
-
-  return Math.floor((width - 800) / 200) * 200 + 800;
-});
+  const width = Number(enteredWidth.value)
+  if (!width || width < minWidth || width > maxWidth) return null
+  return Math.floor((width - 800) / 200) * 200 + 800
+})
 
 const mappedProtectionHeight = computed(() => {
-  const height = Number(enteredHeight.value);
-
-  if (!height || height < minProtectionHeight || height > maxProtectionHeight) {
-    return null;
-  }
-
-  return Math.floor((height - 500) / 100) * 100 + 500;
-});
+  const height = Number(enteredHeight.value)
+  if (!height || height < minProtectionHeight || height > maxProtectionHeight) return null
+  return Math.floor((height - 500) / 100) * 100 + 500
+})
 
 const totalGateHeightValue = computed(() => {
-  const totalHeight = Number(enteredTotalGateHeight.value);
-
-  if (!totalHeight || totalHeight < minTotalGateHeight || totalHeight > maxTotalGateHeight) {
-    return null;
-  }
-
-  return totalHeight;
-});
+  const totalHeight = Number(enteredTotalGateHeight.value)
+  if (!totalHeight || totalHeight < minTotalGateHeight || totalHeight > maxTotalGateHeight) return null
+  return totalHeight
+})
 
 const isSizeValid = computed(() => {
   return (
@@ -253,41 +233,40 @@ const isSizeValid = computed(() => {
     !!mappedProtectionHeight.value &&
     !!totalGateHeightValue.value &&
     totalGateHeightValue.value >= mappedProtectionHeight.value
-  );
-});
+  )
+})
 
 const assemblyKitPrice = computed(() => {
-  const width = form.config_options.width;
+  const width = form.config_options.width
+  if (!width) return null
 
-  if (!width) return null;
-
-  if (width <= 1500) return 131;
-  if (width <= 5000) return 189;
-  return 294;
-});
+  if (width <= 1500) return 131
+  if (width <= 5000) return 189
+  return 294
+})
 
 watch(enteredWidth, (val) => {
-  form.config_options.entered_width = val ? Number(val) : null;
-  form.config_options.width = mappedWidth.value;
-});
+  form.config_options.entered_width = val ? Number(val) : null
+  form.config_options.width = mappedWidth.value
+})
 
 watch(enteredHeight, (val) => {
-  form.config_options.entered_height = val ? Number(val) : null;
-  form.config_options.protection_height = mappedProtectionHeight.value;
-  form.config_options.height = mappedProtectionHeight.value;
-});
+  form.config_options.entered_height = val ? Number(val) : null
+  form.config_options.protection_height = mappedProtectionHeight.value
+  form.config_options.height = mappedProtectionHeight.value
+})
 
 watch(enteredTotalGateHeight, (val) => {
-  form.config_options.entered_total_gate_height = val ? Number(val) : null;
-  form.config_options.total_gate_height = val ? Number(val) : null;
-});
+  form.config_options.entered_total_gate_height = val ? Number(val) : null
+  form.config_options.total_gate_height = val ? Number(val) : null
+})
 
 watch(mappedWidth, (val) => {
-  form.config_options.width = val;
-});
+  form.config_options.width = val
+})
 
 watch(mappedProtectionHeight, (val) => {
-  form.config_options.protection_height = val;
-  form.config_options.height = val;
-});
+  form.config_options.protection_height = val
+  form.config_options.height = val
+})
 </script>

@@ -1,0 +1,57 @@
+{
+  "step1": {
+    "included": {
+      "title": "Included by default",
+      "description": "Assembly kit with sealing is a standard option and is automatically added to the total price.",
+      "name": "Assembly kit with sealing",
+      "note": "Standard option — automatically included.",
+      "price": "€246 / piece"
+    },
+
+    "title": "Dimensions & Installation Method",
+
+    "dimensions": {
+      "title": "Dimensions of the WindowsProtector",
+      "description1": "Please note the maximum size of the wall opening for the WindowsProtector is 1800 × 1800 mm.",
+      "width": "Width of the wall opening:",
+      "widthRange": "Between 400 and 1,800 mm",
+      "height": "Height of the wall opening:",
+      "heightRange": "Between 400 and 1,800 mm",
+      "inputWidth": "Width (mm)",
+      "inputHeight": "Height (mm)",
+      "invalidRange": "Please enter a valid width and height between 400 mm and 1800 mm.",
+      "notManufacturable": "This size is not available for manufacture for the selected configuration."
+    },
+
+    "installation": {
+      "title": "Installation method",
+      "description": "The acrylic partition for easy retrofitting is the perfect solution for sealing basement and building windows. Installation can be carried out either on the window frame or directly onto the building wall. In both cases, the acrylic partition is adhered and sealed using a special acrylic adhesive.",
+      "frame": "On the window frame",
+      "wall": "On the opening wall"
+    }
+  },
+
+  "step2": {
+  "title": "Hatch Options",
+
+  "removable": {
+    "title": "Removable hatch",
+    "description": "Select predefined width and height. The hatch price will be mapped automatically.",
+    "width": "Width",
+    "height": "Height",
+    "selectWidth": "Select width",
+    "selectHeight": "Select height",
+    "price": "Hatch price"
+  },
+
+  "tiltUp": {
+    "title": "Tilt-up hatch",
+    "description": "Select predefined width and height. The hatch price will be mapped automatically.",
+    "width": "Width",
+    "height": "Height",
+    "selectWidth": "Select width",
+    "selectHeight": "Select height",
+    "price": "Hatch price"
+  }
+}
+}

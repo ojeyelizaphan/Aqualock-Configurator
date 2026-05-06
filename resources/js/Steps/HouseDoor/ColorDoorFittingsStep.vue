@@ -1,73 +1,103 @@
 <template>
   <div class="space-y-10 max-w-6xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <!-- LEFT SIDE: Colour Section -->
+
+      <!-- ========================= -->
+      <!-- LEFT: COLOURS -->
+      <!-- ========================= -->
       <div>
-        <h2 class="text-2xl font-semibold text-gray-800 mb-2">Plenty of Colours</h2>
-        <p class="text-sm text-gray-600 mb-4">
-          In order for your AquaLOCK® door to perfectly match your building, you have a choice of 216 RAL colours.
-          Seven standard colours (white, black and several shades of grey) are available at no extra charge.
-          <br>Please Note: The colour shades on the website may differ from the actual colour due to monitor display
-          and therefore, we offer no guarantee for an exact match.
-        </p>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+          {{ t('door.colors.title') }}
+        </h2>
+
+        <p
+          class="text-sm text-gray-600 mb-4"
+          v-html="t('door.colors.description')"
+        ></p>
 
         <ColorSelector
           :options="colorOptions"
           v-model="form.config_options.color"
         />
 
+        <!-- STANDARD -->
         <div
           v-if="form.config_options.color && standardColorCodes.includes(form.config_options.color)"
           class="mt-2 text-sm text-green-600 text-center"
         >
-          This is a standard colour and carries no extra charge.
+          {{ t('door.colors.standard') }}
         </div>
 
+        <!-- EXTRA COST -->
         <div
           v-else-if="form.config_options.color && colorExtraCost > 0"
           class="mt-2 text-sm text-red-500 text-center"
         >
-          Selected colour is a non-standard RAL colour and incurs an extra charge of €{{ colorExtraCost }}.
+          {{ t('door.colors.extra', { price: colorExtraCost }) }}
         </div>
       </div>
 
-      <!-- RIGHT SIDE: Door Fittings -->
+      <!-- ========================= -->
+      <!-- RIGHT: DOOR FITTINGS -->
+      <!-- ========================= -->
       <div class="flex gap-6">
+
+        <!-- LEFT CONTENT -->
         <div class="flex-1 space-y-4">
-          <h2 class="text-2xl font-semibold text-gray-800 mb-2">Door Fittings</h2>
+          <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+            {{ t('door.fittings.title') }}
+          </h2>
+
           <p class="text-sm text-gray-600 mb-4">
-            Door fittings are based on the locking mechanism selected earlier.
+            {{ t('door.fittings.description') }}
           </p>
 
+          <!-- Selected mechanism -->
           <div class="rounded-lg border border-gray-200 bg-gray-50 p-4">
             <p class="text-sm text-gray-600">
-              Selected locking mechanism:
-              <strong>{{ form.config_options.locking_mechanism || 'Not selected' }}</strong>
+              {{ t('door.fittings.selected') }}:
+              <strong>
+                {{ form.config_options.locking_mechanism || t('door.fittings.notSelected') }}
+              </strong>
             </p>
           </div>
 
+          <!-- KNOB -->
           <div
             v-if="form.config_options.locking_mechanism === 'V2' || form.config_options.locking_mechanism === 'V6'"
           >
-            <label class="block font-medium text-gray-700 mb-1">Knob Type</label>
+            <label class="block font-medium text-gray-700 mb-1">
+              {{ t('door.fittings.knobTitle') }}
+            </label>
+
             <select
               v-model="form.config_options.knob_type"
               class="w-full rounded-lg border-gray-300 px-4 py-2"
             >
-              <option value="">-- No Knob --</option>
-              <option value="aluminium">Fixed Aluminium Knob</option>
-              <option value="stainless">Fixed Stainless Steel Knob</option>
+              <option value="">
+                {{ t('door.fittings.knob.none') }}
+              </option>
+              <option value="aluminium">
+                {{ t('door.fittings.knob.aluminium') }}
+              </option>
+              <option value="stainless">
+                {{ t('door.fittings.knob.stainless') }}
+              </option>
             </select>
           </div>
 
+          <!-- KABA -->
           <div>
             <label class="flex items-center gap-3 cursor-pointer">
               <input type="checkbox" v-model="form.config_options.kaba_upgrade" />
-              <span class="text-gray-800">KABA version upgrade (+€92)</span>
+              <span class="text-gray-800">
+                {{ t('door.fittings.kaba') }}
+              </span>
             </label>
           </div>
         </div>
 
+        <!-- IMAGE -->
         <div class="flex-shrink-0 flex justify-center items-start">
           <img
             :src="imgDoor"
@@ -75,23 +105,25 @@
             class="w-64 h-auto object-contain rounded-md border"
           />
         </div>
+
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import imgStep4 from "@/Assets/3-AquaLOCK Door/Step-4/step-4.jpg";
+import { useI18n } from 'vue-i18n'
+import imgStep4 from "@/Assets/3-AquaLOCK Door/Step-4/step-4.jpg"
 import ColorSelector from '@/Components/ColorSector.vue'
 import { colorOptions, standardColorCodes } from '@/Data/colorOptions'
-import { watch } from 'vue';
 
-defineProps({
+const { t } = useI18n()
+
+const props = defineProps({
   form: Object,
-  colorOptions: Array
-});
+  colorExtraCost: Number
+})
 
+const imgDoor = imgStep4
 
-
-const imgDoor = imgStep4;
 </script>

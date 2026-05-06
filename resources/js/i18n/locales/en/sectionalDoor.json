@@ -1,0 +1,137 @@
+{"step1": {
+    "title": "Door Size & Installation Method",
+
+    "doorSize": {
+      "title": "Door Size",
+      "description": "Please note the maximum size of the wall opening for the sectional door. The minimum reveal size inside is 90 mm, otherwise additional tubes are required.",
+      "widthLabel": "Width of the wall opening",
+      "widthPlaceholder": "Enter width (mm)",
+      "heightLabel": "Height of the wall opening",
+      "heightPlaceholder": "Enter height (mm)",
+      "validation": "Please enter a valid width between 2000 and 6000 mm and a valid height between 2000 and 3000 mm."
+    },
+
+    "installation": {
+      "title": "Installation Method",
+      "description": "Installation method: behind or between the reveal. Our authorized technicians will clarify the installation method on site if you are uncertain about the appropriate option to go with.",
+      "behind": {
+        "title": "Behind the reveal",
+        "description": "Installation on the interior wall"
+      },
+      "between": {
+        "title": "Between the reveal",
+        "description": "Installation on the reveal",
+        "note": "(tubes may be required)"
+      }
+    }
+  },
+
+  "step2": {
+    "title": "Choice of Base Plate",
+
+    "aluminum": {
+      "title": "Aluminum base plate, glued on the floor",
+      "description": "For optimal installation, the surface must be perfectly even and smooth. In any situation where this is not the case, we recommend using an aluminum base plate to compensate for irregularities and gradients, thus ensuring the AquaLOCK® Sectional door functions safely and reliably.",
+      "option": "With aluminum base plate"
+    },
+
+    "steel": {
+      "title": "Stainless steel base plate, embedded in concrete",
+      "description1": "By embedding a stainless steel base plate in concrete in the threshold, you can create a perfectly even surface before installing the AquaLOCK® Sectional door. To do this, a 40 mm deep and 200 mm wide groove must be created in the concrete floor, which is filled with fresh concrete. The stainless steel floor plate is then placed in this fresh concrete and levelled using a spirit level.",
+      "description2": "This type of installation makes it possible to order the AquaLOCK® Sectional door with a pre-installed upgrade kit, which makes the actual door installation much easier.",
+      "option": "With stainless steel base plate"
+    },
+
+    "none": {
+      "option": "Without any base plate"
+    }
+  },
+
+  "step3": {
+    "title": "Panel and Profile Colour",
+
+    "panel": {
+      "title": "Colour varieties: 216 different colours",
+      "description1": "To ensure that your AquaLOCK® door perfectly matches your building, choose from standard outside colours or enter a customized RAL colour.",
+      "description2": "There are two standard colours for the outside (RAL 9016 NZ traffic white, RAL 7016 NZ anthracite grey) and one standard colour for the inside (RAL 9002) available at no extra charge.",
+      "description3": "Customized colour is only available for the outside, not for the inside. The inside colour is fixed as RAL 9002.",
+      "note": "Please note: The colours shown on the website may differ from the actual colour due to monitor display. Therefore the colour choice is without guarantee.",
+
+      "selectorTitle": "Choose outside panel colour",
+
+      "standardSelected": "Selected outside colour is standard and carries no extra charge.",
+      "customSelected": "Selected outside colour is non-standard and incurs an extra charge of €{price}.",
+
+      "insideTitle": "Inside panel colour",
+      "insideValue": "RAL 9002 (mandatory)"
+    },
+
+    "profile": {
+      "title": "Steel corners and aluminium profiles",
+      "description1": "In the standard configuration, the profiles on the bottom slat are constructed from silver anodized aluminium, while the steel corners are powder-coated in grey.",
+      "description2": "For an additional fee, both can be customized to match the colour of the AquaLOCK® sectional door, enhancing the overall aesthetics and giving the door a more refined, seamless look.",
+
+      "standardOption": "Without customized colour to match sectional door",
+      "customOption": "With customized colour (RAL)",
+
+      "inputLabel": "Enter RAL colour code",
+      "inputPlaceholder": "e.g. RAL 7016",
+      "inputHint": "Example: RAL 7016",
+
+      "extraCost": "Extra charge for customized steel corners and aluminium profiles: €421 / set",
+
+      "warning": "Dark colors should be avoided on the outside of double-walled steel doors facing the sun, as any deflection of the slats could impair the door's functionality."
+    }
+  },
+
+  "step4": {
+    "title": "Accessories",
+
+    "included": {
+      "title": "Included by default",
+      "description": "Motor and assembly kit with sealing are standard options and are automatically added to the total price.",
+
+      "motor": {
+        "title": "Motor",
+        "note": "Standard option — automatically included.",
+        "price": "€651 / piece"
+      },
+
+      "assembly": {
+        "title": "Assembly kit with sealing",
+        "note": "Standard option — automatically included.",
+        "price": "€334 / piece"
+      }
+    },
+
+    "upgradeKit": {
+      "title": "Pre-mounted Upgrade Kit",
+      "description": "Select the appropriate upgrade kit depending on the door width.",
+
+      "upTo3m": {
+        "label": "Width up to 3 m",
+        "price": "€272 / piece"
+      },
+
+      "upTo6m": {
+        "label": "Width up to 6 m",
+        "price": "€348 / piece"
+      },
+
+      "validation": "Please select an upgrade kit."
+    },
+
+    "tracks": {
+      "label": "Stainless steel tracks",
+      "price": "€282 / set"
+    },
+
+    "transmitters": {
+      "title": "Hand Transmitters",
+      "description": "Since the motor is included by default, you can add hand transmitters here.",
+      "label": "Hand transmitter quantity",
+      "placeholder": "Enter quantity",
+      "price": "€60 / piece"
+    }
+  }
+}

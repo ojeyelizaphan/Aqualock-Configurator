@@ -1,103 +1,98 @@
 <template>
   <div class="max-w-6xl mx-auto space-y-8">
+    <!-- TITLE -->
     <h2 class="text-2xl font-semibold text-center text-gray-800">
-      Panel and Profile Colour
+      {{ $t('sectionalDoor.step3.title') }}
     </h2>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-      <!-- LEFT: Panel Colour -->
+
+      <!-- ================= LEFT: PANEL COLOUR ================= -->
       <section>
         <h3 class="text-lg font-semibold text-gray-800 mb-3">
-          Colour varieties: 216 different colours
+          {{ $t('sectionalDoor.step3.panel.title') }}
         </h3>
 
         <p class="text-sm text-gray-600 mb-4">
-          To ensure that your AquaLOCK® door perfectly matches your building,
-          choose from standard outside colours or enter a customized RAL colour.
+          {{ $t('sectionalDoor.step3.panel.description1') }}
         </p>
 
         <p class="text-sm text-gray-600 mb-4">
-          There are two standard colours for the outside
-          (<strong>RAL 9016 NZ traffic white</strong>,
-          <strong>RAL 7016 NZ anthracite grey</strong>)
-          and one standard colour for the inside
-          (<strong>RAL 9002</strong>) available at no extra charge.
+          {{ $t('sectionalDoor.step3.panel.description2') }}
         </p>
 
         <p class="text-sm text-gray-600 mb-4">
-          Customized colour is only available for the outside, not for the inside.
-          The inside colour is fixed as <strong>RAL 9002</strong>.
+          {{ $t('sectionalDoor.step3.panel.description3') }}
         </p>
 
         <p class="text-xs text-gray-500 mb-6">
-          Please note: The colours shown on the website may differ from the actual
-          colour due to monitor display. Therefore the colour choice is without guarantee.
+          {{ $t('sectionalDoor.step3.panel.note') }}
         </p>
 
+        <!-- Image -->
         <div class="mb-6">
           <img
             :src="img1"
-            alt="Sectional door colour example"
             class="max-h-56 object-contain"
           />
         </div>
 
+        <!-- Color Selector -->
         <ColorSelector
-          title="Choose outside panel colour"
+          :title="$t('sectionalDoor.step3.panel.selectorTitle')"
           :options="colorOptions"
           v-model="form.config_options.color"
         />
 
+        <!-- Standard / Custom Messages -->
         <div
-          v-if="form.config_options.color && sectionalDoorStandardOutsideColors.includes(form.config_options.color)"
+          v-if="isStandardColor"
           class="mt-2 text-sm text-green-600"
         >
-          Selected outside colour is standard and carries no extra charge.
+          {{ $t('sectionalDoor.step3.panel.standardSelected') }}
         </div>
 
         <div
-          v-else-if="form.config_options.color && colorExtraCost > 0"
+          v-else-if="isCustomColor"
           class="mt-2 text-sm text-red-500"
         >
-          Selected outside colour is non-standard and incurs an extra charge of €{{ colorExtraCost }}.
+          {{ $t('sectionalDoor.step3.panel.customSelected', { price: colorExtraCost }) }}
         </div>
 
+        <!-- Inside Colour -->
         <div class="mt-6 p-4 rounded-xl bg-gray-50 border border-gray-200">
           <p class="text-sm font-medium text-gray-800 mb-1">
-            Inside panel colour
+            {{ $t('sectionalDoor.step3.panel.insideTitle') }}
           </p>
           <p class="text-sm text-gray-600">
-            RAL 9002 (mandatory)
+            {{ $t('sectionalDoor.step3.panel.insideValue') }}
           </p>
         </div>
       </section>
 
-      <!-- RIGHT: Profile Colour -->
+      <!-- ================= RIGHT: PROFILE COLOUR ================= -->
       <section>
         <h3 class="text-lg font-semibold text-gray-800 mb-3">
-          Steel corners and aluminium profiles
+          {{ $t('sectionalDoor.step3.profile.title') }}
         </h3>
 
         <p class="text-sm text-gray-600 mb-4">
-          In the standard configuration, the profiles on the bottom slat are
-          constructed from silver anodized aluminium, while the steel corners are
-          powder-coated in grey.
+          {{ $t('sectionalDoor.step3.profile.description1') }}
         </p>
 
         <p class="text-sm text-gray-600 mb-6">
-          For an additional fee, both can be customized to match the colour of the
-          AquaLOCK® sectional door, enhancing the overall aesthetics and giving the
-          door a more refined, seamless look.
+          {{ $t('sectionalDoor.step3.profile.description2') }}
         </p>
 
+        <!-- Image -->
         <div class="mb-4">
           <img
             :src="img2"
-            alt="Steel corners and aluminium profiles"
             class="max-h-56 object-contain"
           />
         </div>
 
+        <!-- Options -->
         <div class="space-y-3">
           <label class="flex items-center gap-2 cursor-pointer">
             <input
@@ -107,7 +102,7 @@
               class="accent-brand-orange"
             />
             <span class="text-sm text-gray-800">
-              Without customized colour to match sectional door
+              {{ $t('sectionalDoor.step3.profile.standardOption') }}
             </span>
           </label>
 
@@ -119,49 +114,51 @@
               class="accent-brand-orange"
             />
             <span class="text-sm text-gray-800">
-              With customized colour (RAL)
+              {{ $t('sectionalDoor.step3.profile.customOption') }}
             </span>
           </label>
         </div>
 
-        <div
-          v-if="form.config_options.profileColour === 'custom'"
-          class="mt-4"
-        >
+        <!-- Custom Input -->
+        <div v-if="isCustomProfile" class="mt-4">
           <label class="block text-sm font-medium text-gray-700 mb-1">
-            Enter RAL colour code
+            {{ $t('sectionalDoor.step3.profile.inputLabel') }}
           </label>
+
           <input
             type="text"
             v-model="form.config_options.profileRAL"
-            placeholder="e.g. RAL 7016"
+            :placeholder="$t('sectionalDoor.step3.profile.inputPlaceholder')"
             class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-brand-orange"
           />
+
           <p class="text-xs text-gray-500 mt-1">
-            Example: RAL 7016
+            {{ $t('sectionalDoor.step3.profile.inputHint') }}
           </p>
         </div>
 
+        <!-- Extra Cost -->
         <div
-          v-if="form.config_options.profileColour === 'custom'"
+          v-if="isCustomProfile"
           class="mt-3 text-sm text-red-500"
         >
-          Extra charge for customized steel corners and aluminium profiles: €421 / set
+          {{ $t('sectionalDoor.step3.profile.extraCost') }}
         </div>
 
+        <!-- Warning -->
         <div class="mt-6 p-4 rounded-xl bg-amber-50 border border-amber-200">
           <p class="text-sm text-amber-900">
-            Dark colors should be avoided on the outside of double-walled steel doors facing the sun, 
-            as any deflection of the slats could impair the door's functionality.
+            {{ $t('sectionalDoor.step3.profile.warning') }}
           </p>
         </div>
       </section>
+
     </div>
   </div>
 </template>
 
 <script setup>
-import { watch, onMounted } from 'vue'
+import { computed, watch, onMounted } from 'vue'
 import img1 from "@/Assets/6-Sectional/Step-3/step-3a.jpg"
 import img2 from "@/Assets/6-Sectional/Step-3/step-3b.jpg"
 import ColorSelector from '@/Components/ColorSector.vue'
@@ -175,11 +172,29 @@ const props = defineProps({
   }
 })
 
-const sectionalDoorStandardOutsideColors = [
-  'RAL 9016',
-  'RAL 7016'
-]
+/**
+ * STANDARD COLORS
+ */
+const standardOutsideColors = ['RAL 9016', 'RAL 7016']
 
+/**
+ * COMPUTED STATES
+ */
+const isStandardColor = computed(() => {
+  return standardOutsideColors.includes(props.form.config_options.color)
+})
+
+const isCustomColor = computed(() => {
+  return props.form.config_options.color && !isStandardColor.value
+})
+
+const isCustomProfile = computed(() => {
+  return props.form.config_options.profileColour === 'custom'
+})
+
+/**
+ * DEFAULTS
+ */
 const ensureDefaults = () => {
   props.form.config_options.insideColour = 'RAL 9002'
 
@@ -195,12 +210,15 @@ onMounted(() => {
   ensureDefaults()
 })
 
+/**
+ * WATCHERS
+ */
 watch(
   () => props.form.config_options.profileColour,
-  (newValue) => {
-    props.form.config_options.customColourProfiles = newValue === 'custom'
+  (val) => {
+    props.form.config_options.customColourProfiles = val === 'custom'
 
-    if (newValue !== 'custom') {
+    if (val !== 'custom') {
       props.form.config_options.profileRAL = ''
     }
   },

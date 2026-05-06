@@ -1,0 +1,152 @@
+{
+  "step1": {
+    "title": "Größe und Schutzhöhe des Tores auswählen",
+    "description": "Das AquaLOCK®-Tor bietet zuverlässigen Schutz bei einer maximalen Breite von 5.000 mm und einer Schutzhöhe von bis zu 1.200 mm.",
+
+    "pricePerPiece": "€{price} / Stück",
+
+    "included": {
+      "title": "Grundsätzlich inbegriffen",
+      "description": "Das Montageset mit Dichtung ist verpflichtend und wird automatisch zum Gesamtpreis hinzugefügt.",
+      "item": "Montageset mit Dichtung",
+      "auto": "Automatisch enthalten abhängig von der Torbreite",
+      "breakdownTitle": "Standardmäßig enthalten je nach Torbreite:",
+      "upTo1500": "Bis 1.500 mm Breite: €131",
+      "upTo5000": "1.501 – 5.000 mm Breite: €189",
+      "industrial": "Industrieversion: €294"
+    },
+
+    "upperDesign": {
+      "title": "Optionen zur Gestaltung des oberen Bereichs",
+      "lattice": "Gitterstäbe (rund oder eckig)",
+      "wood": "Holzverkleidung"
+    },
+
+    "size": {
+      "title": "Torgröße",
+      "width": "Gewünschte Breite (800 – 5.000 mm)",
+      "height": "Gewünschte Schutzhöhe (500 – 1.200 mm)",
+      "totalHeight": "Gewünschte Gesamthöhe des Tores (bis 2.000 mm)"
+    },
+
+    "validation": "Bitte geben Sie eine gültige Breite (800–5000 mm), Schutzhöhe (500–1200 mm) und Gesamthöhe (bis 2000 mm) ein (Gesamthöhe muss ≥ Schutzhöhe sein).",
+
+    "images": {
+      "wood": "Tor mit Holzverkleidung (Preis auf Anfrage)",
+      "access": "Tor mit Durchgang",
+      "diagram": "Maximale Schutzhöhe: 1.200 mm"
+    }
+  },
+
+  "step2": {
+  "title": "Konfiguration AquaLOCK® Tor",
+
+  "opening": {
+    "title": "Öffnungsrichtung",
+    "description": "Das AquaLOCK®-Tor kann nach innen oder außen geöffnet werden. Bei nach innen öffnenden Varianten müssen die Verschlüsse dem Wasserdruck standhalten, bei nach außen öffnenden Varianten halten sie das Tor geschlossen.",
+    "subtitle": "Öffnungsrichtung und Öffnungswinkel",
+
+    "left_in_95": "DIN links nach innen öffnend 95°",
+    "left_in_180": "DIN links nach innen öffnend 180°",
+    "left_out_95": "DIN links nach außen öffnend 95°",
+    "left_out_180": "DIN links nach außen öffnend 180°",
+    "right_in_95": "DIN rechts nach innen öffnend 95°",
+    "right_in_180": "DIN rechts nach innen öffnend 180°",
+    "right_out_95": "DIN rechts nach außen öffnend 95°",
+    "right_out_180": "DIN rechts nach außen öffnend 180°"
+  },
+
+  "installation": {
+    "title": "Einbauart",
+    "description": "Einbau vor, hinter oder zwischen der Laibung. Falls unsicher, wird dies vor Ort geklärt.",
+    "behind": "Hinter der Laibung",
+    "between": "Zwischen der Laibung",
+    "front": "Vor der Laibung"
+  },
+
+  "images": {
+    "inward": "Tor nach innen öffnend, 95°",
+    "outward": "Tor nach außen öffnend, 180°"
+  }
+},
+
+"step3": {
+    "title": "Farbe auswählen & Beschläge",
+
+    "color": {
+      "title": "Farbe auswählen",
+      "description": "Damit Ihr AquaLOCK® Tor perfekt zu Ihrem Gebäude passt, haben Sie die Wahl zwischen 216 RAL-Farben. Sieben Standardfarben (weiß und 6 Grau-Töne) sind ohne Aufpreis erhältlich.",
+      "note": "Achtung: Die Darstellung der Farben auf der Website kann aufgrund von Monitoreinstellungen abweichen. Alle Angaben daher ohne Gewähr.",
+
+      "standard": "Dies ist eine Standardfarbe ohne Aufpreis.",
+      "custom": "Ausgewählte Farbe ist eine Sonderfarbe und kostet zusätzlich €{price}."
+    },
+
+    "fittings": {
+      "title": "Beschläge Tor",
+      "description": "Möchten Sie das Tor mit einem Türdrücker öffnen? Wählen Sie aus den folgenden Optionen. Ohne Auswahl wird das Tor ohne Schloss und Drücker gefertigt.",
+
+      "aluminum_both": "Drückergarnitur innen und außen – Alu F1",
+      "stainless_both": "Drückergarnitur innen und außen – Edelstahl",
+      "aluminum_inside": "Drückergarnitur nur innen – Alu F1",
+      "stainless_inside": "Drückergarnitur nur innen – Edelstahl",
+      "aluminum_knob": "Drückergarnitur innen, fester Knopf außen – Alu F1",
+      "stainless_knob": "Drückergarnitur innen, fester Knopf außen – Edelstahl"
+    }
+  },
+
+  "step4": {
+    "title": "Zentralverriegelung, Durchgriff & Gitterstäbe",
+
+    "centralLocking": {
+      "title": "Zentralverriegelung",
+      "note": "(nur bei nach innen öffnendem Tor)",
+      "description": "Die Zentralverriegelung ermöglicht alle einzelnen Verschlussriegel über einen zentralen Hebel zu bedienen.",
+
+      "with": {
+        "label": "Mit Zentralverriegelung",
+        "description": "Alle Verriegelungen werden mit einem Handgriff bedient",
+        "price": "+ €547"
+      },
+      "without": {
+        "label": "Ohne Zentralverriegelung",
+        "description": "Alle Verriegelungen müssen einzeln bedient werden",
+        "price": ""
+      }
+    },
+
+    "accessories": {
+      "title": "Accessoires",
+      "optional": "Optional Add-ons",
+
+      "gateStop": {
+        "label": "Tor-Feststeller",
+        "description": "Zum Feststellen des Torflügels an der Wand",
+        "price": "+ €160"
+      },
+      "padlock": {
+        "label": "Vorrichtung für Vorhängeschloss",
+        "description": "(Das Vorhängeschloss ist nicht inbegriffen)",
+        "price": "+ €88"
+      },
+      "durchgriff": {
+        "label": "Durchgriff zum Öffnen des Tores von außen",
+        "description": "Nur für nach innen öffnende Tore mit Zentralverriegelung",
+        "price": "+ €700"
+      }
+    },
+
+    "lattice": {
+      "title": "Optionales Zubehör",
+
+      "round_extruded": "Runde Gitterstäbe, extrudiert",
+      "angular_extruded": "Eckige Gitterstäbe, extrudiert",
+      "round_forged": "Runde Gitterstäbe, geschmiedet",
+      "angular_forged": "Eckige Gitterstäbe, geschmiedet",
+
+      "unit": "€{price} / m²"
+    },
+
+    "imageCaption": "Tor mit Durchgriff und Zentralverriegelung, damit es von außen geöffnet werden kann"
+  }
+}

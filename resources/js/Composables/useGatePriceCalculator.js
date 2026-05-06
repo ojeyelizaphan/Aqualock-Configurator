@@ -42,7 +42,11 @@ export function useGatePriceCalculator(form, configurationSteps, step) {
 
     const accessories = form.config_options.accessories ?? {};
 
-    if (accessories.opening180) total += 362;
+    const opening = form.config_options['gate_opening'];
+
+    if (opening?.includes('180')) {
+      total += 362;
+    }
 
     if (form.config_options.centralLocking === 'with') {
       total += 547;

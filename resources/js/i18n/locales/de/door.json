@@ -1,0 +1,190 @@
+{
+    "locking": {
+      "title": "Wahl der Verriegelung",
+      "description": "Je nach baulichen Möglichkeiten und Ihren individuellen Wünschen bieten wir Ihnen vier Verriegelungsvarianten Ihrer AquaLOCK® Tür an. Mit Ausnahme der V2 (Schutzhöhe bis Türklinke, maximal 1.600 mm) können wir für alle Varianten einen Hochwasserschutz bis maximal 5.000 mm garantieren.",
+
+      "options": {
+        "V1": "Außen: Kein Türbeschlag, kein Schloss. Innen: Schloss, Türdrücker und Treibriegel.",
+        "V2": "Außen: Schloss und Türdrücker. Innen: Schloss, Türdrücker und Treibriegel.",
+        "V3": "Außen: Schloss mit wasserdichter Abdeckung, fester Türknopf. Innen: Schloss, Türdrücker und Treibriegel.",
+        "V6": "Außen: Schloss, fester Türknopf und Treibriegel. Innen: Schloss, Türdrücker und Treibriegel."
+      },
+
+      "details": {
+        "V1": "<strong>Einbruchschutz:</strong> RC1N, RC2, RC3 möglich<br><strong>Glasausschnitt:</strong> Nicht möglich",
+        "V2": "<strong>Einbruchschutz:</strong> RC1N, RC2, RC3 möglich<br><strong>Glasausschnitt:</strong> Nur bei RC1N möglich, Treibriegel ist im Glasausschnitt von außen sichtbar",
+        "V3": "<strong>Einbruchschutz:</strong> Nur RC1N möglich<br><strong>Glasausschnitt:</strong> Nicht möglich",
+        "V6": "<strong>Einbruchschutz:</strong> Nur RC1N möglich<br><strong>Glasausschnitt:</strong> Möglich, Treibriegel ist im Glasausschnitt von außen sichtbar"
+      }
+    },
+
+    "dimensions": {
+      "title": "Türgröße",
+      "description": "Bitte beachten Sie die zulässige Breite bzw. Höhe der Tür:<br>Breite: Zwischen 500 und 1.200 mm<br>Höhe: Zwischen 1.200 und 2.300 mm",
+      "width": "Breite (mm)",
+      "height": "Höhe (mm)",
+      "widthPlaceholder": "500 - 1210",
+      "heightPlaceholder": "1200 - 2300",
+      "widthError": "Breite muss zwischen 500 und 1210 mm liegen",
+      "heightError": "Höhe muss zwischen 1200 und 2300 mm liegen",
+      "extra": "Größere Breiten sind auf Anfrage möglich."
+    },
+
+    "panels": {
+      "title": "Optionale feste Blenden",
+      "description": "Breitere Türöffnungen können mit festen Blenden ausgeglichen werden, die links, rechts und oberhalb der Tür auf dem Rahmen montiert werden:",
+      "left": "Festes Seitenteil bis 400 mm, links",
+      "right": "Festes Seitenteil bis 400 mm, rechts",
+      "top": "Feste Blende oberhalb der Tür, bis 400 mm",
+      "extra": "Größere Breiten sind auf Anfrage möglich."
+    },
+
+    "installation": {
+      "title": "Einbausituation",
+      "description": "Sollten Sie nicht sicher sein, welche Einbauart bei Ihrem Gebäude in Frage kommt, kein Problem – dies wird von einem erfahrenen Monteur vor Ort geklärt.<br><strong>Achtung:</strong> Je nach Einbausituation sind thermisch getrennte Türen bauartbedingt nicht möglich.",
+
+      "options": {
+        "between_reveal": {
+          "label": "Zwischen der Leibung",
+          "desc": "Thermisch getrennt möglich"
+        },
+        "infront_reveal": {
+          "label": "Vor der Leibung",
+          "desc": "Nicht thermisch getrennt möglich. Wetterschenkel zwingend erforderlich!"
+        },
+        "interior_flush": {
+          "label": "Innen bündig",
+          "desc": "Thermisch getrennt möglich"
+        },
+        "behind_reveal": {
+          "label": "Hinter der Leibung",
+          "desc": "Nicht thermisch getrennt möglich"
+        }
+      }
+    },
+
+    "included": {
+      "title": "Grundsätzlich inbegriffen",
+      "description": "Bei dieser Tür-Konfiguration ist das Montage-Set zwingend inbegriffen und wird automatisch hinzugefügt.",
+      "item": "Montageset mit Dichtmittel",
+      "note": "Keine Auswahl nötig – immer inbegriffen.",
+      "price": "€398 / Stück"
+    },
+
+    "insulation": {
+      "title": "Thermische Isolation",
+      "description": "Thermisch getrennte AquaLOCK® Türen – effizienter Hitze- und Kälteschutz<br><br>Die Energieeinsparverordnung EnEV schreibt vor, dass neue Haustüren maximal einen Ud-Wert von 1,8 W/m²K aufweisen dürfen, um Heizkosten zu sparen und die Umwelt zu schonen.<br><br>Mit ihrem effizienten Wärmeschutz von Ud 1,5 W/m²K entsprechen unsere thermisch getrennten AquaLOCK® Türen der Norm und halten die Wärme drinnen und die Kälte draußen.<br><br>Thermisch nicht getrennte Türen empfehlen sich daher nur für Nebentüren, wie z. B. in Kellern oder Garagen.",
+
+      "options": {
+        "thermally_insulated": {
+          "label": "Thermisch getrennte Tür",
+          "desc": ""
+        },
+        "non_thermally_insulated": {
+          "label": "Thermisch nicht getrennte Tür",
+          "desc": ""
+        }
+      }
+    },
+
+    "windows": {
+      "title": "Fenster",
+      "description": "In der oberen Tür können wir ein nicht zu öffnendes Fenster mit den Maximalmaßen 650×450 mm integrieren.<br><br>• Thermisch getrennte Türen → Dreifachverglasung<br>• Nicht thermisch getrennte Türen → Zweifachverglasung",
+      "warning": "Bitte beachten Sie, dass die Fenster nicht hochwasserfest sind und daher ungeeignet für Türen, die über die gesamte Türhöhe hochwasserbeständig sein sollen.",
+
+      "without": "Ohne Fenster",
+      "with": "Mit Fenster",
+
+      "samePrice": "Die Fenster gibt es in 3 Ausführungen, alle zum gleichen Preis.",
+      "v3Warning": "Fenster sind bei Version V3 nicht verfügbar.",
+      
+
+      "versionTitle": "Glasart auswählen",
+
+      "versions": {
+        "clear": {
+          "label": "Klarglas",
+          "desc": "Einfaches, durchsichtiges Fensterglas"
+        },
+        "mastercarree": {
+          "label": "Mastercarrée",
+          "desc": "Strukturierte Oberfläche"
+        },
+        "satinato": {
+          "label": "Satinato (Milchglas)",
+          "desc": "Soft matt geschliffene Oberfläche"
+        }
+      }
+    },
+
+    "flood": {
+      "title": "Schutzhöhe",
+      "description": "Die verstärkte Version der Tür bietet Schutz bis 5 m Wasserstand.",
+      "option": "Verstärkte Version mit einer Schutzhöhe bis 5 m",
+      "note": "Nicht verfügbar bei Türen mit Fenstern.",
+      "disabledNote": "Hochwasserschutz ist bei Fenstern nicht verfügbar."
+    },
+
+    "colors": {
+      "title": "Ganz schön bunt",
+      "description": "Damit Ihre AquaLOCK® Tür perfekt zu Ihrem Gebäude passt, haben Sie die Wahl zwischen 216 RAL Classic-Farben.<br>Darunter gibt es sieben Standard-Farben (weiß, schwarz und mehrere Grau-Töne), die ohne Aufpreis erhältlich sind.<br><br>Achtung: Die Darstellung der Farben auf der Website kann aufgrund der Monitoreinstellungen von der tatsächlichen Farbe abweichen. Alle Angaben daher ohne Gewähr.",
+      "standard": "Dies ist eine Standardfarbe und ohne Aufpreis.",
+      "extra": "Ausgewählte Farbe ist keine Standard-RAL-Farbe und verursacht einen Aufpreis von €{price}."
+    },
+
+    "fittings": {
+      "title": "Türgriffe",
+      "description": "Je nachdem, welche Verriegelung gewählt wurde, sind verschiedene Griffversionen verfügbar.",
+      "selected": "Ausgewählte Verriegelung",
+      "notSelected": "Nicht ausgewählt",
+
+      "knobTitle": "Grifftyp",
+      "knob": {
+        "none": "-- Kein Griff --",
+        "aluminium": "Fester Aluminiumknopf",
+        "stainless": "Fester Edelstahlknopf"
+      },
+
+      "kaba": "KABA-Ausführung (+€92)"
+    },
+
+     "accessories": {
+      "title": "Extras auswählen",
+
+      "panic": {
+        "title": "Panikfunktion",
+        "options": {
+          "panic_function_e": {
+            "label": "Panikschloss, Funktion E",
+            "desc": "Für feststehenden Knopf außen. Von außen kann die Tür nur per Schlüssel bei offenem Treibriegel geöffnet werden."
+          },
+          "pushbar": {
+            "label": "Panikstange",
+            "desc": "Für schnelles Verlassen des Gebäudes. Achtung: 2 Treibriegel erforderlich."
+          }
+        }
+      },
+
+      "drip": {
+        "title": "Wetterschenkel",
+        "option": "Wetterschenkel oben"
+      },
+
+      "burglary": {
+        "title": "Einbruchschutz",
+        "restriction": "RC2 und RC3 sind nur bei V1 und V2 ohne Fenster möglich."
+      },
+
+      "drive": {
+        "title": "Überfahrblech",
+        "none": "Keines",
+        "aluminium": "Aluminium 2 mm",
+        "stainless": "Edelstahl 2 mm"
+      },
+
+      "closer": {
+        "title": "Obertürschließer",
+        "option": "GEZE 5000 Türschließer hinzufügen"
+      }
+    }
+}

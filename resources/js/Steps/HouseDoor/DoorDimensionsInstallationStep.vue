@@ -1,166 +1,179 @@
 <template>
   <div class="space-y-10 max-w-6xl mx-auto">
 
-    <!-- Split screen: Door dimensions + panels | Installation type -->
+    <!-- Split -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
 
-      <!-- LEFT SIDE: Door Dimensions & Panels -->
+      <!-- LEFT -->
       <div class="space-y-6">
-        <!-- Door Dimensions -->
+
+        <!-- Dimensions -->
         <div>
-          <h2 class="text-2xl font-semibold text-gray-800 mb-2">Door Dimensions</h2>
-          <p class="text-sm text-gray-600 mb-4">
-            Take caution on the permissible dimensions of the door:
-            <br>• Width: between 500 and 1,200 mm
-            <br>• Height: between 1,200 and 2,300 mm
-          </p>
+          <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+            {{ t('door.dimensions.title') }}
+          </h2>
+
+          <p class="text-sm text-gray-600 mb-4" v-html="t('door.dimensions.description')"></p>
+
           <div class="grid grid-cols-1 gap-4">
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Width (mm)</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                {{ t('door.dimensions.width') }}
+              </label>
               <input
                 type="number"
                 v-model.number="form.config_options.width"
                 :min="500"
                 :max="1210"
-                class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-                placeholder="500 - 1210"
-                :class="{'border-red-500': isWidthInvalid, 'border-gray-300': !isWidthInvalid}"
+                class="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                :placeholder="t('door.dimensions.widthPlaceholder')"
+                :class="{'border-red-500': isWidthInvalid}"
               />
-              <p v-if="isWidthInvalid" class="text-xs text-red-500">Width must be between 500 and 1210 mm</p>
+              <p v-if="isWidthInvalid" class="text-xs text-red-500">
+                {{ t('door.dimensions.widthError') }}
+              </p>
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">Height (mm)</label>
+              <label class="block text-sm font-medium text-gray-700 mb-1">
+                {{ t('door.dimensions.height') }}
+              </label>
               <input
                 type="number"
                 v-model.number="form.config_options.height"
                 :min="1200"
                 :max="2300"
-                class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange"
-                placeholder="1200 - 2300"
-                :class="{'border-red-500': isHeightInvalid, 'border-gray-300': !isHeightInvalid}"
+                class="w-full border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                :placeholder="t('door.dimensions.heightPlaceholder')"
+                :class="{'border-red-500': isHeightInvalid}"
               />
-              <p v-if="isHeightInvalid" class="text-xs text-red-500">Height must be between 1200 and 2300 mm</p>
+              <p v-if="isHeightInvalid" class="text-xs text-red-500">
+                {{ t('door.dimensions.heightError') }}
+              </p>
             </div>
           </div>
-          <p class="text-xs text-gray-500 mt-2">Larger widths are available on request.</p>
+
+          <p class="text-xs text-gray-500 mt-2">
+            {{ t('door.dimensions.extra') }}
+          </p>
         </div>
 
-        <!-- Optional Fixed Panels -->
+        <!-- Fixed Panels -->
         <div>
-          <h2 class="text-2xl font-semibold text-gray-800 mb-2">Optional Fixed Panels</h2>
+          <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+            {{ t('door.panels.title') }}
+          </h2>
+
           <p class="text-sm text-gray-600 mb-3">
-            Wider door openings can be evened out with fixed panels that are mounted on the frame to the left, right, and above the door:
+            {{ t('door.panels.description') }}
           </p>
+
           <div class="space-y-3">
             <label class="flex items-center gap-3">
               <input type="checkbox" v-model="form.config_options.fixed_panel_left" class="accent-brand-orange" />
-              <span class="text-gray-700">Fixed side panel (left, up to 400 mm)</span>
+              <span>{{ t('door.panels.left') }}</span>
             </label>
+
             <label class="flex items-center gap-3">
               <input type="checkbox" v-model="form.config_options.fixed_panel_right" class="accent-brand-orange" />
-              <span class="text-gray-700">Fixed side panel (right, up to 400 mm)</span>
+              <span>{{ t('door.panels.right') }}</span>
             </label>
+
             <label class="flex items-center gap-3">
               <input type="checkbox" v-model="form.config_options.fixed_panel_top" class="accent-brand-orange" />
-              <span class="text-gray-700">Fixed panel above door (up to 400 mm)</span>
+              <span>{{ t('door.panels.top') }}</span>
             </label>
           </div>
+
+          <!-- 🔴 Missing note you highlighted -->
+          <p class="text-xs text-gray-500 mt-2">
+            {{ t('door.panels.extra') }}
+          </p>
         </div>
       </div>
 
-      <!-- RIGHT SIDE: Installation Type -->
+      <!-- RIGHT -->
       <div class="space-y-6">
-        <h2 class="text-2xl font-semibold text-gray-800 mb-2">Installation Type</h2>
-        <p class="text-sm text-gray-600 mb-4">
-          Four installation variations. In cases of complexity of installation, our authorised technician will be on site to offer guidance.
-          <br>Attention: Depending on the structural designs, thermally insulated doors may not be possible:
-        </p>
+        <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+          {{ t('door.installation.title') }}
+        </h2>
 
-        <div class="grid grid-cols-1 gap-6">
+        <p
+          class="text-sm text-gray-600 mb-4"
+          v-html="t('door.installation.description')"
+        ></p>
 
-          <!-- Split into two columns inside right side -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            <!-- LEFT Column: first two options -->
-            <div class="space-y-4">
-              <label
-                v-for="option in leftInstallationOptions"
-                :key="option.value"
-                class="flex items-start gap-4 cursor-pointer p-2 rounded-md hover:bg-gray-50 transition"
-              >
-                <input
-                  type="radio"
-                  :value="option.value"
-                  v-model="form.config_options.installation_type"
-                  class="mt-1"
-                />
-                <img :src="option.image" :alt="option.label" class="w-24 h-24 object-contain border rounded-md" />
-                <div class="flex-1">
-                  <p class="font-semibold text-gray-800">{{ option.label }}</p>
-                  <p class="text-sm text-gray-600 mt-1">{{ option.description }}</p>
-                </div>
-              </label>
+          <label
+            v-for="option in installationOptions"
+            :key="option.value"
+            class="cursor-pointer p-3 rounded-lg hover:bg-gray-50 transition text-center"
+          >
+            <!-- Image -->
+            <img
+              :src="option.image"
+              class="w-full h-32 object-contain mx-auto mb-2"
+            />
+
+            <!-- Caption (blue text like screenshot) -->
+            <p class="text-sm font-medium text-blue-600 mb-2">
+              {{ t(`door.installation.options.${option.value}.desc`) }}
+            </p>
+
+            <!-- Radio + label -->
+            <div class="flex items-center justify-center gap-2">
+              <input
+                type="radio"
+                :value="option.value"
+                v-model="form.config_options.installation_type"
+              />
+              <span class="text-sm text-gray-800">
+                {{ t(`door.installation.options.${option.value}.label`) }}
+              </span>
             </div>
+          </label>
 
-            <!-- RIGHT Column: last two options -->
-            <div class="space-y-4">
-              <label
-                v-for="option in rightInstallationOptions"
-                :key="option.value"
-                class="flex items-start gap-4 cursor-pointer p-2 rounded-md hover:bg-gray-50 transition"
-              >
-                <input
-                  type="radio"
-                  :value="option.value"
-                  v-model="form.config_options.installation_type"
-                  class="mt-1"
-                />
-                <img :src="option.image" :alt="option.label" class="w-24 h-24 object-contain border rounded-md" />
-                <div class="flex-1">
-                  <p class="font-semibold text-gray-800">{{ option.label }}</p>
-                  <p class="text-sm text-gray-600 mt-1">{{ option.description }}</p>
-                </div>
-              </label>
-            </div>
-
-          </div>
         </div>
-
       </div>
     </div>
   </div>
 </template>
 
-
 <script setup>
-import { computed } from 'vue';
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+// images (restore these)
 import imgBetween from "@/Assets/3-AquaLOCK Door/Step-2/between-the-reveal.jpg";
 import imgBehind from "@/Assets/3-AquaLOCK Door/Step-2/behind-the-reveal.jpg";
 import imgInfront from "@/Assets/3-AquaLOCK Door/Step-2/infront-of-the-reveal.jpg";
 import imgInterior from "@/Assets/3-AquaLOCK Door/Step-2/interior-flush.jpg";
-import imgStep from "@/Assets/3-AquaLOCK Door/Step-2/step-a.jpg";
-const props = defineProps({ form: Object });
 
-// Full installation options
+const { t } = useI18n()
+
+const props = defineProps({ form: Object })
+
+// KEEP structure, REMOVE hardcoded text
 const installationOptions = [
-  { value: 'between_reveal', label: 'Between the Reveal', description: 'Thermally insulated possible.', image: imgBetween },
-  { value: 'infront_reveal', label: 'In Front of the Reveal', description: 'Thermally insulated not possible. Drip cap mandatory!', image: imgInfront },
-  { value: 'interior_flush', label: 'Interior Flush', description: 'Thermally insulated possible.', image: imgInterior },
-  { value: 'behind_reveal', label: 'Behind the Reveal', description: 'Thermally insulated not possible.', image: imgBehind }
-];
+  { value: 'between_reveal', image: imgBetween },
+  { value: 'infront_reveal', image: imgInfront },
+  { value: 'interior_flush', image: imgInterior },
+  { value: 'behind_reveal', image: imgBehind }
+]
 
-// Split into two columns for display
-const leftInstallationOptions = installationOptions.slice(0, 2);
-const rightInstallationOptions = installationOptions.slice(2, 4);
+// split columns
+const leftInstallationOptions = installationOptions.slice(0, 2)
+const rightInstallationOptions = installationOptions.slice(2, 4)
 
-// Input validation
+// validation
 const isWidthInvalid = computed(() => {
-  const w = props.form.config_options.width;
-  return w < 500 || w > 1210;
-});
+  const w = props.form.config_options.width
+  return w < 500 || w > 1210
+})
+
 const isHeightInvalid = computed(() => {
-  const h = props.form.config_options.height;
-  return h < 1200 || h > 2300;
-});
+  const h = props.form.config_options.height
+  return h < 1200 || h > 2300
+})
 </script>

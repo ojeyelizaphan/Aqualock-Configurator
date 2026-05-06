@@ -27,6 +27,7 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "ral-colors": "^1.0.1"
+        "ral-colors": "^1.0.1",
+        "vue-i18n": "^11.4.0"
     }
 }

@@ -1,0 +1,38 @@
+{
+  "summary": {
+    "title": "Kontaktdaten",
+    "back": "Zurück zur Konfiguration",
+
+    "configSummary": "Zusammenfassung der Konfiguration",
+    "totalPrice": "Gesamtpreis",
+
+    "pricingNoteTitle": "Wichtiger Hinweis zum Preis:",
+    "pricingNote": "Alle angegebenen Preise sind Netto-Preise. MwSt. ist nicht inbegriffen und muss je nach Land hinzugefügt werden. Auch der Transport und der Einbau sind nicht im Preis enthalten.",
+
+    "configDetails": "Das von Ihnen konfigurierte Produkt",
+    "accessories": "Zubehör",
+
+    "contactTitle": "Kontakt aufnehmen",
+    "contactDescription": "Nun freut sich einer unserer Mitarbeiter oder Installationspartner auf ein persönliches Gespräch mit Ihnen.",
+
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail-Adresse",
+    "phone": "Telefonnummer",
+    "address": "Anschrift",
+
+    "placeholders": {
+      "name": "Vollständigen Namen eingeben",
+      "email": "E-Mail-Adresse eingeben",
+      "phone": "Telefonnummer eingeben",
+      "address": "Adresse eingeben"
+    },
+
+    "submit": "Anfrage absenden",
+
+    "success": {
+      "title": "Erfolgreich! 🎉",
+      "message": "Sie haben Ihr AquaLOCK® Produkt erfolgreich konfiguriert. Wir melden uns bei Ihnen.",
+      "cta": "Zur Startseite"
+    }
+  }
+}

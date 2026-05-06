@@ -1,0 +1,38 @@
+{
+  "summary": {
+    "title": "Contact Details",
+    "back": "Back to configuration",
+
+    "configSummary": "Configuration Summary",
+    "totalPrice": "Total Price",
+
+    "pricingNoteTitle": "Important pricing note:",
+    "pricingNote": "All prices are quoted including German VAT of 19%. Transport and installation are not included.",
+
+    "configDetails": "Configuration Details",
+    "accessories": "Accessories",
+
+    "contactTitle": "Get in Touch",
+    "contactDescription": "Now, one of our employees or installation partners will be happy to talk to you personally. We will get in touch with you as soon as we have your contact for any further instructions.",
+
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "address": "Delivery Address",
+
+    "placeholders": {
+      "name": "Enter your full name",
+      "email": "Enter your email",
+      "phone": "Enter your phone number",
+      "address": "Enter your delivery address"
+    },
+
+    "submit": "Submit Inquiry",
+
+    "success": {
+      "title": "Congrats! 🎉",
+      "message": "You successfully configured your customized AquaLOCK® product. We'll get in touch.",
+      "cta": "Go to Homepage"
+    }
+  }
+}
