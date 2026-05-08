@@ -10,7 +10,12 @@ class ConfigurationStep extends Model
     /** @use HasFactory<\Database\Factories\ConfigurationStepFactory> */
     use HasFactory;
 
-    protected $fillable = ['product_type_id', 'name', 'order'];
+    protected $fillable = [
+        'product_type_id',
+        'name',
+        'translation_key',
+        'order',
+    ];
 
     public function productType()
     {

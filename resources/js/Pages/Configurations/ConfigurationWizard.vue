@@ -38,10 +38,11 @@
       >
         <div class="mb-8">
           <h2 class="text-2xl md:text-3xl font-semibold text-gray-900 mb-2">
-            Choose Your Product
+            {{ t('homepage.chooseProductTitle') }}
           </h2>
+
           <p class="text-gray-600">
-            Select one of the available AquaLOCK systems to continue.
+            {{ t('homepage.chooseProductDescription') }}
           </p>
         </div>
 
@@ -49,7 +50,7 @@
           <ProductCard
             v-for="product in products"
             :key="product.id"
-            :name="product.name"
+            :name="t(`products.${product.translation_key}`)"
             :description="product.description"
             :image="product.image"
             :selected="form.product_id === product.id"
@@ -79,7 +80,7 @@
           type="button"
           class="bg-gray-700 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
         >
-          ← Back
+          ← {{ t('navigation.back') }}
         </button>
 
         <div class="sm:ml-auto flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
@@ -93,7 +94,7 @@
               ? 'bg-brand-orange hover:bg-orange-600'
               : 'bg-gray-300 cursor-not-allowed'"
           >
-            Next →
+           {{ t('navigation.next') }} →
           </button>
 
           <button
@@ -102,7 +103,7 @@
             type="button"
             class="bg-brand-orange hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
           >
-            Submit
+            {{ t('navigation.submit') }}
           </button>
         </div>
       </div>
@@ -123,6 +124,7 @@ import {
   onMounted,
 } from "vue";
 import { useForm } from "@inertiajs/vue3";
+import { useI18n } from "vue-i18n";
 import { useDynamicPriceCalculator } from "@/Composables/useDynamicPriceCalculator";
 import { colorOptions } from "@/Data/colorOptions";
 
@@ -142,6 +144,8 @@ const props = defineProps({
     default: null,
   },
 });
+
+const { t } = useI18n();
 
 const step = ref(1);
 const maxVisitedStep = ref(1);
@@ -181,10 +185,12 @@ const scrollToStepTop = async () => {
 const totalSteps = computed(() => configurationSteps.value.length + 1);
 
 const progressStepLabels = computed(() => {
-  const labels = ["Choose Product"];
+  const labels = [t("steps.chooseProduct")];
 
   configurationSteps.value.forEach((stepItem) => {
-    labels.push(stepItem.name);
+    labels.push(
+      t(`steps.${productSlug.value}.${stepItem.translation_key}`)
+    );
   });
 
   return labels;

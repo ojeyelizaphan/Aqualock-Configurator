@@ -116,9 +116,33 @@
       "transparent": {
         "noInsulation": "Window (650x450 mm) - Transparent Glass",
         "withInsulation": "Window (650x450 mm, ISO) - Transparent Glass"
+      },
+      "mastercarre": {
+        "noInsulation": "Window (650x450 mm) - Mastercarre Glass",
+        "withInsulation": "Window (650x450 mm, ISO) - Mastercarre Glass"
+      },
+      "satinato": {
+        "noInsulation": "Window (650x450 mm) - Satinato Glass",
+        "withInsulation": "Window (650x450 mm, ISO) - Satinato Glass"
+      }
+    },
+
+    "stripe": {
+      "transparent": {
+        "noInsulation": "Glass Stripe (400 mm) - Transparent Glass",
+        "withInsulation": "Glass Stripe (400 mm) - Transparent Glass"
+      },
+      "mastercarre": {
+        "noInsulation": "Glass Stripe (400 mm) - Mastercarre Glass",
+        "withInsulation": "Glass Stripe (400 mm) - Mastercarre Glass"
+      },
+      "satinato": {
+        "noInsulation": "Glass Stripe (400 mm) - Satinato Glass",
+        "withInsulation": "Glass Stripe (400 mm) - Satinato Glass"
       }
     }
   },
+  
   "units": {
     "piece": "piece",
     "sqm": "m²"

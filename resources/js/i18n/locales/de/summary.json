@@ -1,0 +1,439 @@
+{
+  "summary": {
+    "title": "Zusammenfassung der Konfiguration",
+    "back": "Zurück zur Konfiguration",
+    "configSummary": "Konfigurationsübersicht",
+    "configDetails": "Konfigurationsdetails",
+    "totalPrice": "Gesamtpreis",
+    "pricingNoteTitle": "Hinweis:",
+    "pricingNote": "Die Preise verstehen sich inklusive MwSt. Transport- und Montagekosten sind nicht enthalten.",
+    "accessories": "Zubehör",
+    "contactTitle": "Kontaktdaten",
+    "contactDescription": "Bitte geben Sie Ihre Kontaktdaten ein, damit wir Ihre Anfrage bearbeiten können.",
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "address": "Adresse",
+    "submit": "Anfrage absenden",
+
+    "placeholders": {
+      "name": "Geben Sie Ihren vollständigen Namen ein",
+      "email": "Geben Sie Ihre E-Mail-Adresse ein",
+      "phone": "Geben Sie Ihre Telefonnummer ein",
+      "address": "Geben Sie Ihre Adresse ein"
+    },
+
+    "success": {
+      "title": "Anfrage erfolgreich gesendet",
+      "message": "Vielen Dank. Wir haben Ihre Konfigurationsanfrage erhalten.",
+      "cta": "Neue Konfiguration erstellen"
+    },
+
+    "errors": {
+      "generic": "Etwas ist schiefgelaufen. Bitte überprüfen Sie das Formular und versuchen Sie es erneut.",
+      "unexpected": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
+    },
+
+    "labels": {
+      "protection_height": "Schutzhöhe",
+      "version": "Version",
+      "material": "Material",
+      "width": "Breite",
+      "height": "Höhe",
+      "entered_width": "Eingegebene Breite",
+      "entered_height": "Eingegebene Höhe",
+      "installation_type": "Einbauart",
+      "installation_method": "Einbauart",
+      "color": "Farbe",
+      "insulation": "Schalung & Isolierung",
+      "hand_transmitters": "Handsender",
+      "hand_transmitter_qty": "Handsender",
+      "drive_over_plate": "Überfahrblech",
+      "windows": "Fenster",
+      "stripe": "Glasstreifen",
+      "quantity": "Menge",
+      "length": "Länge",
+
+      "base_plate": "Bodenblech",
+      "inside_colour": "Innenfarbe",
+      "profile_colour": "Profilfarbe",
+      "profile_ral": "Profil RAL-Farbe",
+      "upgrade_kit": "Upgrade-Kit",
+      "stainless_tracks": "Edelstahl-Laufschienen",
+      "assembly_kit": "Montage-Set",
+
+      "locking_mechanism": "Verriegelung",
+      "thermal_insulation": "Thermische Trennung",
+      "fixed_panel_left": "Festes Seitenteil links",
+      "fixed_panel_right": "Festes Seitenteil rechts",
+      "fixed_panel_top": "Festes Oberteil",
+      "window_type": "Fenster-Typ",
+      "window_version": "Fenster-Version",
+      "heavy_duty": "Verstärkter Hochwasserschutz",
+      "knob_type": "Beschlag",
+      "kaba_upgrade": "Kaba-Ausführung",
+      "panic_features": "Panik-Ausführung",
+      "burglary_protection": "Einbruchschutz",
+      "drive_plate": "Überfahrblech",
+      "door_closer": "Türschließer",
+
+      "upper_design": "Gestaltung des oberen Bereichs",
+      "total_gate_height": "Gesamt-Torhöhe",
+      "entered_total_gate_height": "Eingegebene Gesamt-Torhöhe",
+      "gate_opening": "Öffnungsrichtung und Winkel",
+      "fitting_method": "Einbauart",
+      "gate_fittings": "Torbeschläge",
+      "central_locking": "Zentralverriegelung",
+      "lattice_bar": "Gitterstäbe",
+      "gate_stop": "Tor-Feststeller",
+      "padlock_preparation": "Vorrichtung für Vorhängeschloss",
+      "durchgriff": "Durchgriff mit Zentralverriegelung",
+
+      "quickwall_panels": "Zusätzliche Panels",
+      "center_posts": "Mittelpfosten",
+      "corner_posts": "Eckpfosten",
+      "locking_lever_position": "Position des Schließhebels",
+      "corner_profiles_coloring": "Farbbeschichtung Gebäudeanschlussprofile",
+      "accessory_quantities": "Zubehör",
+      "quickwall_hooks": "Quickwall-Haken",
+
+      "hatch_type": "Luken-Typ",
+      "removable_hatch_width": "Breite herausnehmbare Luke",
+      "removable_hatch_height": "Höhe herausnehmbare Luke",
+      "tilt_up_hatch_width": "Breite Luke zum Kippen",
+      "tilt_up_hatch_height": "Höhe Luke zum Kippen",
+
+      "opening_direction": "Öffnungsrichtung",
+      "closing_mechanism": "Vorrichtung zum Abschließen",
+
+      "internal_cladding": "Innenverkleidung",
+      "internal_panelling": "Innenverkleidung"
+    },
+
+    "values": {
+      "protection_height": {
+        "up_to_500mm": "Bis 500 mm",
+        "over_500mm": "Über 500 mm"
+      },
+
+      "version": {
+        "v": "Version V",
+        "v500": "Version V500",
+        "e": "Version E"
+      },
+
+      "material": {
+        "galvanized_steel": "Verzinkter Stahl",
+        "galvanized": "Verzinkter Stahl",
+        "stainless": "Edelstahl",
+        "stainless_steel": "Edelstahl"
+      },
+
+      "installation_type": {
+        "behind_reveal": "Hinter der Laibung",
+        "between_reveal": "Zwischen der Laibung",
+        "infront_reveal": "Vor der Laibung",
+        "in_front_reveal": "Vor der Laibung",
+        "interior_flush": "Innen bündig"
+      },
+
+      "installation_method": {
+        "behind": "Hinter der Laibung",
+        "between": "Zwischen der Laibung",
+        "behind_reveal": "Hinter der Laibung",
+        "between_reveal": "Zwischen der Laibung",
+        "front_reveal": "Vor der Laibung",
+        "in_front_reveal": "Vor der Laibung",
+        "on_window_frame": "Auf dem Fensterrahmen",
+        "on_opening_wall": "Auf der Maueröffnung"
+      },
+
+      "insulation": {
+        "none": "Ohne Schalung",
+        "without_casing": "Ohne Schalung",
+        "with_casing_no_insulation": "Mit Schalung ohne Isolierung",
+        "with_casing_and_insulation": "Mit Schalung und Isolierung"
+      },
+
+      "drive_over_plate": {
+        "none": "Keines",
+        "stainless": "Edelstahl",
+        "aluminium": "Aluminium",
+        "aluminum": "Aluminium"
+      },
+
+      "windows": {
+        "window_transparent_no_insulation": "Transparentes Fenster (ohne Isolierung)",
+        "window_mastercarre_no_insulation": "Mastercarré-Fenster (ohne Isolierung)",
+        "window_satinato_no_insulation": "Satinato-Fenster (ohne Isolierung)",
+        "window_transparent_with_insulation": "Transparentes Fenster (mit Isolierung)",
+        "window_mastercarre_with_insulation": "Mastercarré-Fenster (mit Isolierung)",
+        "window_satinato_with_insulation": "Satinato-Fenster (mit Isolierung)"
+      },
+
+      "stripe": {
+        "stripe_transparent_no_insulation": "Transparenter Glasstreifen (ohne Isolierung)",
+        "stripe_mastercarre_no_insulation": "Mastercarré-Glasstreifen (ohne Isolierung)",
+        "stripe_satinato_no_insulation": "Satinato-Glasstreifen (ohne Isolierung)",
+        "stripe_transparent_with_insulation": "Transparenter Glasstreifen (mit Isolierung)",
+        "stripe_mastercarre_with_insulation": "Mastercarré-Glasstreifen (mit Isolierung)",
+        "stripe_satinato_with_insulation": "Satinato-Glasstreifen (mit Isolierung)"
+      },
+
+      "base_plate": {
+        "none": "Kein Bodenblech",
+        "aluminum": "Aluminium-Bodenblech",
+        "aluminium": "Aluminium-Bodenblech",
+        "stainless_steel": "Edelstahl-Bodenblech"
+      },
+
+      "profile_colour": {
+        "standard": "Standardfarbe",
+        "custom": "Sonderfarbe"
+      },
+
+      "upgrade_kit": {
+        "upto3m": "Upgrade-Kit bis 3 m",
+        "up_to_3m": "Upgrade-Kit bis 3 m",
+        "upto6m": "Upgrade-Kit bis 6 m",
+        "up_to_6m": "Upgrade-Kit bis 6 m"
+      },
+
+      "stainless_tracks": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "motor": {
+        "true": "Inbegriffen",
+        "false": "Nicht inbegriffen"
+      },
+
+      "assembly_kit": {
+        "true": "Inbegriffen",
+        "false": "Nicht inbegriffen"
+      },
+
+      "locking_mechanism": {
+        "v1": "V1",
+        "v2": "V2",
+        "v3": "V3",
+        "v6": "V6"
+      },
+
+      "thermal_insulation": {
+        "thermally_insulated": "Thermisch getrennt",
+        "non_thermally_insulated": "Nicht thermisch getrennt"
+      },
+
+      "fixed_panel_left": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "fixed_panel_right": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "fixed_panel_top": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "window_type": {
+        "with": "Mit Fenster",
+        "without": "Ohne Fenster"
+      },
+
+      "window_version": {
+        "clear": "Klarglas",
+        "mastercarree": "Mastercarré-Glas",
+        "satinato": "Satinato-Glas"
+      },
+
+      "heavy_duty": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "knob_type": {
+        "aluminium": "Aluminium-Knopf",
+        "aluminum": "Aluminium-Knopf",
+        "stainless": "Edelstahl-Knopf"
+      },
+
+      "kaba_upgrade": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "panic_features": {
+        "panic_function_e": "Panikschloss Funktion E",
+        "pushbar": "Panikstange"
+      },
+
+      "burglary_protection": {
+        "rc1": "RC1",
+        "rc2": "RC2",
+        "rc3": "RC3"
+      },
+
+      "drive_plate": {
+        "aluminium": "Aluminium",
+        "aluminum": "Aluminium",
+        "stainless": "Edelstahl"
+      },
+
+      "door_closer": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "upper_design": {
+        "lattice": "Gitterstäbe",
+        "wood": "Holz"
+      },
+
+      "gate_opening": {
+        "left_in_95": "Links nach innen öffnend 95°",
+        "left_in_180": "Links nach innen öffnend 180°",
+        "left_out_95": "Links nach außen öffnend 95°",
+        "left_out_180": "Links nach außen öffnend 180°",
+        "right_in_95": "Rechts nach innen öffnend 95°",
+        "right_in_180": "Rechts nach innen öffnend 180°",
+        "right_out_95": "Rechts nach außen öffnend 95°",
+        "right_out_180": "Rechts nach außen öffnend 180°"
+      },
+
+      "fitting_method": {
+        "behind_reveal": "Hinter der Laibung",
+        "between_reveal": "Zwischen der Laibung",
+        "in_front_reveal": "Vor der Laibung"
+      },
+
+      "gate_fittings": {
+        "aluminum_both": "Drückergarnitur innen und außen – Alu F1",
+        "aluminium_both": "Drückergarnitur innen und außen – Alu F1",
+        "stainless_both": "Drückergarnitur innen und außen – Edelstahl",
+        "aluminum_inside": "Drückergarnitur nur innen – Alu F1",
+        "aluminium_inside": "Drückergarnitur nur innen – Alu F1",
+        "stainless_inside": "Drückergarnitur nur innen – Edelstahl",
+        "aluminum_knob": "Drückergarnitur innen, fester Knopf außen – F1",
+        "aluminium_knob": "Drückergarnitur innen, fester Knopf außen – F1",
+        "stainless_knob": "Drückergarnitur innen, fester Knopf außen – Edelstahl"
+      },
+
+      "central_locking": {
+        "with": "Mit Zentralverriegelung",
+        "without": "Ohne Zentralverriegelung",
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "lattice_bar": {
+        "round_extruded": "Runde, extrudierte Gitterstäbe",
+        "angular_extruded": "Eckige, extrudierte Gitterstäbe",
+        "round_forged": "Runde, geschmiedete Gitterstäbe",
+        "angular_forged": "Eckige, geschmiedete Gitterstäbe"
+      },
+
+      "gate_stop": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "padlock_preparation": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "durchgriff": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
+      "locking_lever_position": {
+        "left": "Links",
+        "right": "Rechts"
+      },
+
+      "corner_profiles_coloring": {
+        "with": "Mit Farbbeschichtung",
+        "without": "Ohne Farbbeschichtung"
+      },
+
+      "hatch_type": {
+        "none": "Ohne Luke",
+        "removable": "Herausnehmbare Luke",
+        "tilt_up": "Luke zum Kippen"
+      },
+
+      "opening_direction": {
+        "left_inward": "Links nach innen",
+        "right_inward": "Rechts nach innen",
+        "top": "Nach oben öffnend"
+      },
+
+      "closing_mechanism": {
+        "lockable": "Abschließbar",
+        "non_lockable": "Nicht abschließbar"
+      },
+
+      "internal_cladding": {
+        "with_aluminium": "Mit Aluminium-Verkleidung",
+        "without_aluminium": "Ohne Aluminium-Verkleidung"
+      },
+
+      "internal_panelling": {
+        "with_panelling": "Mit Innenverkleidung",
+        "without_panelling": "Ohne Innenverkleidung"
+      }
+    },
+
+    "units": {
+      "piece": "Stück",
+      "sqm": "m²",
+      "mm": "mm"
+    },
+
+    "groups": {
+      "dimensions": "Maße",
+      "installation": "Einbau",
+      "protection": "Schutz",
+      "accessories": "Zubehör",
+      "glazing": "Verglasung",
+      "motor": "Motor",
+      "assembly_kit": "Montage-Set",
+      "base_plate": "Bodenblech",
+      "profiles": "Profile",
+      "transmitters": "Handsender",
+      "included": "Grundsätzlich inbegriffen",
+
+      "locking": "Verriegelungsvariante",
+      "insulation": "Isolierung",
+      "windows": "Fenster",
+      "fittings": "Beschläge",
+      "panic": "Panik-Ausführung",
+      "security": "Sicherheit",
+      "flood_protection": "Hochwasserschutz",
+
+      "gate": "Tor",
+      "opening": "Öffnung",
+      "lattice": "Gitterstäbe",
+      "central_locking": "Zentralverriegelung",
+
+      "multi_panel": "Mehrfeld-System",
+      "bottom_plate": "Bodenblech",
+      "hooks": "Haken",
+
+      "window_protector": "Windows Protector",
+      "hatches": "Luken",
+
+      
+      "closing": "Verschluss",
+      "cladding": "Verkleidung",
+      "panelling": "Innenverkleidung"
+    }
+  }
+}

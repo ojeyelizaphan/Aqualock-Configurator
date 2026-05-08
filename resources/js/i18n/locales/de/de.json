@@ -1,5 +1,5 @@
 {
-  "summary": {
+  "summaryGeneral": {
     "title": "Kontaktdaten",
     "back": "Zurück zur Konfiguration",
 
@@ -34,5 +34,83 @@
       "message": "Sie haben Ihr AquaLOCK® Produkt erfolgreich konfiguriert. Wir melden uns bei Ihnen.",
       "cta": "Zur Startseite"
     }
+  },
+
+  "steps": {
+    "chooseProduct": "Produkt auswählen",
+
+    "garage-door": {
+      "protectionHeight": "Schutzhöhe",
+      "sizeAndInstallation": "Größe & Einbauart",
+      "colorAndMaterial": "Farbe & Material",
+      "insulationAndTransmitter": "Isolierung & Handsender"
+    },
+
+    "sectional-door": {
+      "doorSizeAndInstallationMethod": "Größe & Einbauart",
+      "basePlate": "Bodenblech",
+      "panelAndProfileColour": "Farbe Sektionen & Profile",
+      "accessories": "Zubehör"
+    },
+
+    "house-door": {
+      "lockingMechanism": "Türversion",
+      "doorDimensionsAndInstallation": "Maße & Einbauart",
+      "thermalInsulationAndWindow": "Thermische Isolierung & Fenster",
+      "colorAndDoorFittings": "Farbe & Beschläge",
+      "accessories": "Zubehör"
+    },
+
+    "security-gate": {
+      "floodProtectionLevelAndGateSize": "Schutzhöhe & Maße",
+      "openingDirectionAndInstallation": "Öffnungsrichtung & Einbauart",
+      "colorAndMaterialGateFittings": "Farbe & Material, Beschläge",
+      "lockingSystemAndAccessories": "Verriegelung & Zubehör"
+    },
+
+    "quickwall": {
+      "protectionLevelAndMeasurements": "Schutzhöhe & Maße",
+      "installationMethodLockingLever": "Einbauart, Schließhebel",
+      "multiPanelSystem": "Mehrfeld-System",
+      "cornerProfilesBasePlateHangingHooks": "Gebäudeanschlussprofile, Bodenblech, Aufhänge-Haken"
+    },
+
+    "windows-protector": {
+      "dimensionsAndInstallationMethod": "Maße & Einbauart",
+      "hatchOptions": "Luken-Optionen"
+    },
+
+    "basement-flaps": {
+      "measurementAndMaterial": "Maße & Material",
+      "colourOpeningDirectionCladding": "Farbe, Öffnungsrichtung, Verschalung"
+    }
+  },
+
+  "progress": {
+    "title": "Konfigurationsschritt",
+    "step": "Schritt",
+    "of": "von",
+    "currentPrice": "Aktueller Preis"
+  },
+
+  "products": {
+    "upAndOverGarageDoor": "AquaLOCK® Schwingtor",
+    "sectionalGarageDoor": "AquaLOCK® Sektionaltor",
+    "door": "AquaLOCK® Tür",
+    "gate": "AquaLOCK® Portal",
+    "quickwall": "AquaLOCK® Quickwall",
+    "windowProtector": "AquaLOCK® Window Protector",
+    "flap": "AquaLOCK® Klappe"
+  },
+
+  "homepage": {
+    "chooseProductTitle": "Wählen Sie das passende Produkt aus",
+    "chooseProductDescription": "Wählen Sie eines der verfügbaren AquaLOCK-Systeme aus, um fortzufahren."
+  },
+
+  "navigation": {
+    "back": "Zurück",
+    "next": "Weiter",
+    "submit": "Absenden"
   }
 }

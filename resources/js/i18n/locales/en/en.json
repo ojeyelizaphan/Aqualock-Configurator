@@ -1,5 +1,5 @@
 {
-  "summary": {
+  "summaryGeneral": {
     "title": "Contact Details",
     "back": "Back to configuration",
 
@@ -34,5 +34,83 @@
       "message": "You successfully configured your customized AquaLOCK® product. We'll get in touch.",
       "cta": "Go to Homepage"
     }
+  },
+
+  "steps": {
+    "chooseProduct": "Choose Product",
+
+    "garage-door": {
+      "protectionHeight": "Protection Height",
+      "sizeAndInstallation": "Size & Installation Type",
+      "colorAndMaterial": "Color & Material",
+      "insulationAndTransmitter": "Insulation & Hand Transmitter"
+    },
+
+    "sectional-door": {
+      "doorSizeAndInstallationMethod": "Door Size & Installation Method",
+      "basePlate": "Base Plate",
+      "panelAndProfileColour": "Panel & Profile Colour",
+      "accessories": "Accessories"
+    },
+
+    "house-door": {
+      "lockingMechanism": "Locking Mechanism",
+      "doorDimensionsAndInstallation": "Door Dimensions & Installation",
+      "thermalInsulationAndWindow": "Thermal Insulation & Window",
+      "colorAndDoorFittings": "Color & Door Fittings",
+      "accessories": "Accessories"
+    },
+
+    "security-gate": {
+      "floodProtectionLevelAndGateSize": "Flood Protection Level & Gate Size",
+      "openingDirectionAndInstallation": "Opening Direction & Installation",
+      "colorAndMaterialGateFittings": "Color & Material, Gate Fittings",
+      "lockingSystemAndAccessories": "Locking System & Accessories"
+    },
+
+    "quickwall": {
+      "protectionLevelAndMeasurements": "Protection level and Measurements",
+      "installationMethodLockingLever": "Installation method, Locking Lever",
+      "multiPanelSystem": "Multi Panel System",
+      "cornerProfilesBasePlateHangingHooks": "Corner Profiles, Base Plate, Hanging Hooks"
+    },
+
+    "windows-protector": {
+      "dimensionsAndInstallationMethod": "Dimensions & Installation Method",
+      "hatchOptions": "Hatch Options"
+    },
+
+    "basement-flaps": {
+      "measurementAndMaterial": "Measurement & Material",
+      "colourOpeningDirectionCladding": "Colour, Opening Direction, Cladding."
+    }
+  },
+
+  "progress": {
+    "title": "Configuration Progress",
+    "step": "Step",
+    "of": "of",
+    "currentPrice": "Current Price"
+  },
+
+  "products": {
+    "upAndOverGarageDoor": "AquaLOCK® Up-and-Over Garage Door",
+    "sectionalGarageDoor": "AquaLOCK® Sectional Door",
+    "door": "AquaLOCK® Door",
+    "gate": "AquaLOCK® Gate",
+    "quickwall": "AquaLOCK® Quickwall",
+    "windowProtector": "AquaLOCK® Window Protector",
+    "flap": "AquaLOCK® Flap"
+  },
+
+  "homepage": {
+    "chooseProductTitle": "Choose Your Product",
+    "chooseProductDescription": "Select one of the available AquaLOCK systems to continue."
+  },
+
+  "navigation": {
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit"
   }
 }

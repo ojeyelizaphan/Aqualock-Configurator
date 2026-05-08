@@ -203,7 +203,7 @@
               class="mr-3 accent-brand-orange"
             />
 
-            {{ translatedOptionLabel(option) }} - €{{ option.price }} / {{ $t(`units.${option.unit}`) }}
+            {{ translatedOptionLabel(option) }} - €{{ option.price }} / {{ $t(`upAndOver.units.${option.unit}`) }}
           </label>
 
           <div class="mt-2">
@@ -244,7 +244,7 @@
               class="mr-3 accent-brand-orange"
             />
 
-            {{ translatedOptionLabel(option) }} - €{{ option.price }} / {{ $t(`units.${option.unit}`) }}
+            {{ translatedOptionLabel(option) }} - €{{ option.price }} / {{ $t(`upAndOver.units.${option.unit}`) }}
           </label>
 
           <div class="mt-2">

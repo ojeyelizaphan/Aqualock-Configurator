@@ -16,6 +16,7 @@ class Product extends Model
         'price',
         'image',
         'product_type_id',
+        'translation_key',
     ];
 
     public function productType()

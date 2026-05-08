@@ -114,7 +114,37 @@
     "quantity": "Anzahl Fenster",
     "autoNote": "Automatisch berechnet als Türbreite - 370 mm.",
     "quantityPlaceholder": "Stückzahl eingeben",
-    "stripeLength": "Glasband-Länge (mm)"
+    "stripeLength": "Glasband-Länge (mm)",
+
+    "window": {
+      "transparent": {
+        "noInsulation": "Fenster (650x450 mm) – Transparentes Glas",
+        "withInsulation": "Fenster (650x450 mm, ISO) – Transparentes Glas"
+      },
+      "mastercarre": {
+        "noInsulation": "Fenster (650x450 mm) – Mastercarre",
+        "withInsulation": "Fenster (650x450 mm, ISO) – Mastercarre"
+      },
+      "satinato": {
+        "noInsulation": "Fenster (650x450 mm) – Satinato",
+        "withInsulation": "Fenster (650x450 mm, ISO) – Satinato"
+      }
+    },
+
+    "stripe": {
+      "transparent": {
+        "noInsulation": "Glasband (400 mm) – Transparentes Glas",
+        "withInsulation": "Glasband (400 mm, ISO) – Transparentes Glas"
+      },
+      "mastercarre": {
+        "noInsulation": "Glasband (400 mm) – Mastercarre",
+        "withInsulation": "Glasband (400 mm, ISO) – Mastercarre"
+      },
+      "satinato": {
+        "noInsulation": "Glasband (400 mm) – Satinato",
+        "withInsulation": "Glasband (400 mm, ISO) – Satinato"
+      }
+    }
   },
 
   "units": {

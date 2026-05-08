@@ -2,16 +2,28 @@
   <div class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 shadow-sm">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <div>
-        <p class="text-sm text-gray-500 mb-1">Configuration Progress</p>
+        <p class="text-sm text-gray-500 mb-1">
+          {{ t('progress.title') }}
+        </p>
+
         <p class="text-lg font-medium text-gray-900">
-          Step <span class="text-brand-orange font-bold">{{ currentStep }}</span> of {{ totalSteps }}
+          {{ t('progress.step') }}
+
+          <span class="text-brand-orange font-bold">
+            {{ currentStep }}
+          </span>
+
+          {{ t('progress.of') }} {{ totalSteps }}
         </p>
       </div>
 
       <div class="md:text-right">
-        <p class="text-sm text-gray-500 mb-1">Current Price</p>
+        <p class="text-sm text-gray-500 mb-1">
+          {{ t('progress.currentPrice') }}
+        </p>
+
         <p class="text-2xl md:text-3xl font-bold text-brand-orange">
-          €{{ formattedPrice }}
+          {{ formattedPrice }}
         </p>
       </div>
     </div>
@@ -49,6 +61,7 @@
 
 <script setup>
 import { computed } from 'vue';
+import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   currentStep: {
@@ -73,6 +86,8 @@ const props = defineProps({
   },
 });
 
+const { t, locale } = useI18n();
+
 defineEmits(['go-to-step']);
 
 const progressWidth = computed(() => {
@@ -80,12 +95,17 @@ const progressWidth = computed(() => {
   return Math.min((props.currentStep / props.totalSteps) * 100, 100);
 });
 
-const formattedPrice = computed(() =>
-  Number(props.currentPrice || 0).toLocaleString('en-US', {
+const formattedPrice = computed(() => {
+  const currentLocale =
+    locale.value === 'de' ? 'de-DE' : 'en-US';
+
+  return new Intl.NumberFormat(currentLocale, {
+    style: 'currency',
+    currency: 'EUR',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  })
-);
+  }).format(Number(props.currentPrice || 0));
+});
 
 const canNavigateTo = (stepNumber) => stepNumber <= props.maxVisitedStep;
 </script>
