@@ -40,6 +40,8 @@
       "material": "Material",
       "width": "Breite",
       "height": "Höhe",
+      "Width (mm)": "Breite (mm)",
+      "Height (mm)": "Höhe (mm)",
       "entered_width": "Eingegebene Breite",
       "entered_height": "Eingegebene Höhe",
       "installation_type": "Einbauart",

@@ -120,19 +120,15 @@
         </div>
 
         <!-- Custom Input -->
+        <!-- Custom Profile Colour Selector -->
         <div v-if="isCustomProfile" class="mt-4">
-          <label class="block text-sm font-medium text-gray-700 mb-1">
-            {{ $t('sectionalDoor.step3.profile.inputLabel') }}
-          </label>
-
-          <input
-            type="text"
+          <ColorSelector
+            :title="$t('sectionalDoor.step3.profile.inputLabel')"
+            :options="colorOptions"
             v-model="form.config_options.profileRAL"
-            :placeholder="$t('sectionalDoor.step3.profile.inputPlaceholder')"
-            class="w-full max-w-md border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-orange focus:border-brand-orange"
           />
 
-          <p class="text-xs text-gray-500 mt-1">
+          <p class="text-xs text-gray-500 mt-2">
             {{ $t('sectionalDoor.step3.profile.inputHint') }}
           </p>
         </div>

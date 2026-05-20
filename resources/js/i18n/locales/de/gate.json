@@ -1,7 +1,7 @@
 {
   "step1": {
-    "title": "Größe und Schutzhöhe des Tores auswählen",
-    "description": "Das AquaLOCK®-Tor bietet zuverlässigen Schutz bei einer maximalen Breite von 5.000 mm und einer Schutzhöhe von bis zu 1.200 mm.",
+    "title": "Größe und Schutzhöhe des Portals auswählen",
+    "description": "Das AquaLOCK®-Portal bietet zuverlässigen Schutz bei einer maximalen Breite von 5.000 mm und einer Schutzhöhe von bis zu 1.200 mm.",
 
     "pricePerPiece": "€{price} / Stück",
 
@@ -9,8 +9,8 @@
       "title": "Grundsätzlich inbegriffen",
       "description": "Das Montageset mit Dichtung ist verpflichtend und wird automatisch zum Gesamtpreis hinzugefügt.",
       "item": "Montageset mit Dichtung",
-      "auto": "Automatisch enthalten abhängig von der Torbreite",
-      "breakdownTitle": "Standardmäßig enthalten je nach Torbreite:",
+      "auto": "Automatisch enthalten abhängig von der Portalbreite",
+      "breakdownTitle": "Standardmäßig enthalten je nach Portalbreite:",
       "upTo1500": "Bis 1.500 mm Breite: €131",
       "upTo5000": "1.501 – 5.000 mm Breite: €189",
       "industrial": "Industrieversion: €294"
@@ -23,27 +23,27 @@
     },
 
     "size": {
-      "title": "Torgröße",
+      "title": "Portalgröße",
       "width": "Gewünschte Breite (800 – 5.000 mm)",
       "height": "Gewünschte Schutzhöhe (500 – 1.200 mm)",
-      "totalHeight": "Gewünschte Gesamthöhe des Tores (bis 2.000 mm)"
+      "totalHeight": "Gewünschte Gesamthöhe des Portals (bis 2.000 mm)"
     },
 
     "validation": "Bitte geben Sie eine gültige Breite (800–5000 mm), Schutzhöhe (500–1200 mm) und Gesamthöhe (bis 2000 mm) ein (Gesamthöhe muss ≥ Schutzhöhe sein).",
 
     "images": {
-      "wood": "Tor mit Holzverkleidung (Preis auf Anfrage)",
-      "access": "Tor mit Durchgang",
+      "wood": "Portal mit Holzverkleidung (Preis auf Anfrage)",
+      "access": "Portal mit Durchgang",
       "diagram": "Maximale Schutzhöhe: 1.200 mm"
     }
   },
 
   "step2": {
-  "title": "Konfiguration AquaLOCK® Tor",
+  "title": "Konfiguration AquaLOCK® Portal",
 
   "opening": {
     "title": "Öffnungsrichtung",
-    "description": "Das AquaLOCK®-Tor kann nach innen oder außen geöffnet werden. Bei nach innen öffnenden Varianten müssen die Verschlüsse dem Wasserdruck standhalten, bei nach außen öffnenden Varianten halten sie das Tor geschlossen.",
+    "description": "Das AquaLOCK®-Portal kann nach innen oder außen geöffnet werden. Bei nach innen öffnenden Varianten müssen die Verschlüsse dem Wasserdruck standhalten, bei nach außen öffnenden Varianten halten sie das Portal geschlossen.",
     "subtitle": "Öffnungsrichtung und Öffnungswinkel",
 
     "left_in_95": "DIN links nach innen öffnend 95°",
@@ -65,8 +65,8 @@
   },
 
   "images": {
-    "inward": "Tor nach innen öffnend, 95°",
-    "outward": "Tor nach außen öffnend, 180°"
+    "inward": "Portal nach innen öffnend, 95°",
+    "outward": "Portal nach außen öffnend, 180°"
   }
 },
 
@@ -75,7 +75,7 @@
 
     "color": {
       "title": "Farbe auswählen",
-      "description": "Damit Ihr AquaLOCK® Tor perfekt zu Ihrem Gebäude passt, haben Sie die Wahl zwischen 216 RAL-Farben. Sieben Standardfarben (weiß und 6 Grau-Töne) sind ohne Aufpreis erhältlich.",
+      "description": "Damit Ihr AquaLOCK® Portal perfekt zu Ihrem Gebäude passt, haben Sie die Wahl zwischen 216 RAL-Farben. Sieben Standardfarben (weiß und 6 Grau-Töne) sind ohne Aufpreis erhältlich.",
       "note": "Achtung: Die Darstellung der Farben auf der Website kann aufgrund von Monitoreinstellungen abweichen. Alle Angaben daher ohne Gewähr.",
 
       "standard": "Dies ist eine Standardfarbe ohne Aufpreis.",
@@ -83,8 +83,8 @@
     },
 
     "fittings": {
-      "title": "Beschläge Tor",
-      "description": "Möchten Sie das Tor mit einem Türdrücker öffnen? Wählen Sie aus den folgenden Optionen. Ohne Auswahl wird das Tor ohne Schloss und Drücker gefertigt.",
+      "title": "Beschläge Portal",
+      "description": "Möchten Sie das Portal mit einem Türdrücker öffnen? Wählen Sie aus den folgenden Optionen. Ohne Auswahl wird das Portal ohne Schloss und Drücker gefertigt.",
 
       "aluminum_both": "Drückergarnitur innen und außen – Alu F1",
       "stainless_both": "Drückergarnitur innen und außen – Edelstahl",
@@ -100,7 +100,7 @@
 
     "centralLocking": {
       "title": "Zentralverriegelung",
-      "note": "(nur bei nach innen öffnendem Tor)",
+      "note": "(nur bei nach innen öffnendem Portal)",
       "description": "Die Zentralverriegelung ermöglicht alle einzelnen Verschlussriegel über einen zentralen Hebel zu bedienen.",
 
       "with": {
@@ -120,18 +120,18 @@
       "optional": "Optional Add-ons",
 
       "gateStop": {
-        "label": "Tor-Feststeller",
-        "description": "Zum Feststellen des Torflügels an der Wand",
+        "label": "Portal-Feststeller",
+        "description": "Zum Feststellen des Portalflügels an der Wand",
         "price": "+ €160"
       },
-      "padlock": {
+      "padlockPreparation": {
         "label": "Vorrichtung für Vorhängeschloss",
         "description": "(Das Vorhängeschloss ist nicht inbegriffen)",
         "price": "+ €88"
       },
       "durchgriff": {
-        "label": "Durchgriff zum Öffnen des Tores von außen",
-        "description": "Nur für nach innen öffnende Tore mit Zentralverriegelung",
+        "label": "Durchgriff zum Öffnen des Portals von außen",
+        "description": "Nur für nach innen öffnende Portal mit Zentralverriegelung",
         "price": "+ €700"
       }
     },
@@ -147,6 +147,6 @@
       "unit": "€{price} / m²"
     },
 
-    "imageCaption": "Tor mit Durchgriff und Zentralverriegelung, damit es von außen geöffnet werden kann"
+    "imageCaption": "Portal mit Durchgriff und Zentralverriegelung, damit es von außen geöffnet werden kann"
   }
 }

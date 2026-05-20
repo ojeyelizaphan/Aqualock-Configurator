@@ -2,7 +2,6 @@ import { computed } from 'vue';
 import { versionV500Prices } from '@/Data/versionV500Prices';
 import { versionVPrices } from '@/Data/versionVPrices';
 import { versionEPrices } from '@/Data/versionEPrices';
-import { colorOptions } from '@/Data/colorOptions';
 import { standardColorCodes } from '@/Data/colorOptions';
 
 export function useGarageDoorPriceCalculator(form, configurationSteps, step) {

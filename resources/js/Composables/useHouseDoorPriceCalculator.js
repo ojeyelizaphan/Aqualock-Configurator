@@ -135,7 +135,13 @@ export function useHouseDoorPriceCalculator(form, steps, step) {
         : windowExtras.non_thermal;
     }
 
-    total += 398;
+    const accessoriesStepIndex = steps.value?.findIndex?.(
+      stepObj => stepObj.name === 'Accessories'
+    );
+
+    if (step.value > (accessoriesStepIndex ?? -1) + 1) {
+      total += 398; // Assembly kit with sealing
+    }
 
     return total;
   });

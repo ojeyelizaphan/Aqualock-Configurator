@@ -41,7 +41,7 @@ const gateFittingOptions = [
           {{ t('gate.step3.color.title') }}
         </h3>
 
-        <p class="text-sm text-gray-600 text-center">
+        <p class="text-sm text-gray-600 text-left">
           {{ t('gate.step3.color.description') }}
           <br><br>
           {{ t('gate.step3.color.note') }}

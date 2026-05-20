@@ -8,7 +8,7 @@
           {{ $t('upAndOver.color.title') }}
         </h2>
 
-        <p class="text-sm text-gray-600 text-center leading-relaxed">
+        <p class="text-sm text-gray-600 text-left leading-relaxed">
           {{ $t('upAndOver.color.description') }}
         </p>
 
@@ -43,7 +43,7 @@
             {{ $t('upAndOver.material.name') }}
           </h3>
 
-          <p class="text-sm text-gray-600 leading-relaxed max-w-md mx-auto">
+          <p class="text-sm text-gray-600 text-left leading-relaxed max-w-md mx-auto">
             {{ $t('upAndOver.material.description') }}
           </p>
         </div>

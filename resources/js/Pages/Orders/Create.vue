@@ -54,8 +54,12 @@ const normalizeKey = (option) => {
     .replace(/-/g, "_");
 };
 
+const optionKey = (option) => {
+  return option.key || normalizeKey(option.label)
+}
+
 const getTranslatedLabel = (option) => {
-  const key = normalizeKey(option);
+  const key = optionKey(option);
 
   const translated = t(`summary.labels.${key}`);
 
@@ -67,7 +71,7 @@ const getTranslatedLabel = (option) => {
 };
 
 const getTranslatedValue = (option) => {
-  const key = normalizeKey(option);
+  const key = optionKey(option);
 
   // numbers
   if (
@@ -266,7 +270,7 @@ const submitOrder = async () => {
                     'accessories',
                     'width',
                     'height'
-                  ].includes(normalizeKey(opt))
+                  ].includes(optionKey(opt))
               )"
               :key="index"
               class="flex justify-between gap-6"

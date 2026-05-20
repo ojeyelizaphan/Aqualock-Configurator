@@ -9,7 +9,7 @@
         <input
           v-model="search"
           type="text"
-          placeholder="Search RAL code ..."
+          :placeholder="t('colorSelector.searchPlaceholder')"
           class="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange"
         />
       </div>
@@ -65,7 +65,7 @@
           v-if="filteredOptions.length === 0"
           class="px-4 py-6 text-sm text-gray-500 text-center"
         >
-          No colours found.
+          {{ t('colorSelector.noColoursFound') }}
         </div>
       </div>
     </div>
@@ -74,6 +74,9 @@
 
 <script setup>
 import { computed, ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const props = defineProps({
   title: { type: String, default: '' },

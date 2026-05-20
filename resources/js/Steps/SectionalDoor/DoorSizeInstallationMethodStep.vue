@@ -137,9 +137,9 @@
                   {{ $t('sectionalDoor.step1.installation.between.title') }}
                 </strong>
                 <br />
-                <span class="text-xs text-gray-500">
-                  {{ $t('sectionalDoor.step1.installation.between.note') }}
-                </span>
+                <!-- <span class="text-xs text-gray-500">
+                  {{ $t('sectionalDoor.step1.installation.between.note') }} 
+                </span> -->
               </span>
             </label>
           </div>

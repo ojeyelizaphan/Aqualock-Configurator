@@ -1,31 +1,7 @@
 <template>
   <div class="max-w-6xl mx-auto px-4 space-y-20">
 
-    <!-- INCLUDED -->
-    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 max-w-4xl mx-auto">
-      <h3 class="text-lg font-semibold text-amber-900 mb-2">
-        {{ t('door.included.title') }}
-      </h3>
-
-      <p class="text-sm text-amber-800 mb-4">
-        {{ t('door.included.description') }}
-      </p>
-
-      <div class="flex items-start justify-between gap-4">
-        <div>
-          <p class="font-medium text-gray-900">
-            {{ t('door.included.item') }}
-          </p>
-          <p class="text-sm text-gray-600">
-            {{ t('door.included.note') }}
-          </p>
-        </div>
-
-        <p class="font-semibold text-gray-900 whitespace-nowrap">
-          {{ t('door.included.price') }}
-        </p>
-      </div>
-    </div>
+    
 
     <!-- SPLIT -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-14">

@@ -12,7 +12,12 @@
 
       "dimensions": {
         "title": "Maße der Klappe",
-        "description": "Bitte beachten Sie die maximale Größe der Maueröffnung für die AquaLOCK® Klappe von <strong>1100 × 1100 mm</strong>.",
+        "description": {
+          "beforeProduct": "Bitte beachten Sie die maximale Größe der Maueröffnung für die",
+          "product": "AquaLOCK® Klappe",
+          "middle": "von",
+          "size": "1100 × 1100 mm"
+        },
         "widthLabel": "Breite der Maueröffnung:",
         "widthRange": "zwischen 600 mm und 1.100 mm",
         "heightLabel": "Höhe der Maueröffnung:",
@@ -39,7 +44,12 @@
 
       "color": {
         "title": "216 Farben zur Auswahl",
-        "description": "Damit die AquaLOCK® Klappe perfekt zum Gebäude passt, haben Sie die Wahl zwischen 216 RAL-Farben.",
+        "description": {
+          "beforeProduct": "Damit die",
+          "product": "AquaLOCK® Klappe",
+          "middle": "perfekt zum Gebäude passt, haben Sie die Wahl zwischen",
+          "ralColors": "216 RAL-Farben"
+        },
         "freeColors": "Dabei gibt es sieben Standard-Farben (weiß und 6 Grau-Töne), die ohne Aufpreis erhältlich sind.",
         "note": "Achtung: Die Darstellung der Farben auf der Website kann aufgrund von Monitoreinstellungen von der tatsächlichen Farbe abweichen. Alle Angaben daher ohne Gewähr."
       },

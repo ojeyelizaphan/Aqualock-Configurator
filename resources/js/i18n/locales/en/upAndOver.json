@@ -68,7 +68,7 @@
 
   "insulation": {
     "title": "Cladding & Insulation",
-    "description": "The inside of the door is lined with smooth aluminum sheet metal...",
+    "description": "The inside of the door is lined with smooth aluminum sheet metal.",
     "none": {
       "label": "Without cladding",
       "description": "Basic installation without any casing."

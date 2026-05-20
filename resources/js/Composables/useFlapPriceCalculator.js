@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue';
 
-export function useFlapPriceCalculator(form) {
+export function useFlapPriceCalculator(form, configurationSteps, step) {
   const baseCalculatedPrice = ref(0);
   const colorExtraCost = ref(0);
   const accessoryExtraCost = ref(0);
@@ -53,7 +53,14 @@ export function useFlapPriceCalculator(form) {
     const padlockCost =
       options.padlock_preparation === 'with_padlock_preparation' ? 69 : 0;
 
-    const assemblyKitCost = 131; // always included
+    const colourStepIndex = configurationSteps.value?.findIndex?.(
+      stepObj => stepObj.name === 'Colour, Opening Direction, Cladding.'
+    );
+
+    const assemblyKitCost =
+      step.value > (colourStepIndex ?? -1) + 1
+        ? 131
+        : 0;
 
     const accessoriesCost = panellingCost + padlockCost + assemblyKitCost;
 

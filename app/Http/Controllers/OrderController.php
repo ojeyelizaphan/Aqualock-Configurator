@@ -58,8 +58,11 @@ class OrderController extends Controller
 
         $formattedOptions = collect($configOptions)->map(function ($value, $key) use ($labels) {
             return [
+                'key' => $key,
                 'label' => $labels[$key] ?? ucwords(str_replace('_', ' ', $key)),
-                'value' => is_numeric($value) ? number_format($value, 2) : $value,
+                'value' => is_bool($value)
+                    ? $value
+                    : (is_numeric($value) ? number_format($value, 2) : $value),
             ];
         })->values()->all();
 

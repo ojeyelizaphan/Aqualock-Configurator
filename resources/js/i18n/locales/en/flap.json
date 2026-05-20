@@ -12,7 +12,12 @@
 
       "dimensions": {
         "title": "Dimensions of the flap",
-        "description": "Please note the maximum size of the wall opening for the <strong>AquaLOCK® flap</strong> is <strong>1100 × 1100 mm</strong>.",
+        "description": {
+          "beforeProduct": "Please note the maximum size of the wall opening for the",
+          "product": "AquaLOCK® flap",
+          "middle": "is",
+          "size": "1100 × 1100 mm"
+        },
         "widthLabel": "Width of the wall opening:",
         "widthRange": "Between 600 and 1,100 mm",
         "heightLabel": "Height of the wall opening:",
@@ -39,7 +44,12 @@
 
       "color": {
         "title": "Colour varieties",
-        "description": "In order to customize the colour of your <strong>AquaLOCK® flap</strong>, you can choose between <strong>216 RAL colours</strong>.",
+        "description": {
+          "beforeProduct": "In order to customize the colour of your",
+          "product": "AquaLOCK® flap",
+          "middle": "you can choose between",
+          "ralColors": "216 RAL colours"
+        },
         "freeColors": "Seven standard colours (white and six shades of gray) are available at no extra cost.",
         "note": "Note: The colour displayed may differ from the actual colour due to monitor settings. No guarantee can be given."
       },

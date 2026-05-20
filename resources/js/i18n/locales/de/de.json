@@ -112,5 +112,10 @@
     "back": "Zurück",
     "next": "Weiter",
     "submit": "Absenden"
+  },
+
+  "colorSelector": {
+    "searchPlaceholder": "RAL-Code eingeben ...",
+    "noColoursFound": "Keine Farben gefunden."
   }
 }

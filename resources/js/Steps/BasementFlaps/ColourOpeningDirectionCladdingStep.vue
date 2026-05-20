@@ -1,5 +1,32 @@
 <template>
   <div class="space-y-10 max-w-6xl mx-auto">
+
+    <!-- Included by default -->
+    <div class="bg-amber-50 border border-amber-200 rounded-2xl p-5 max-w-4xl mx-auto">
+      <h3 class="text-lg font-semibold text-amber-900 mb-2">
+        {{ t('flap.step1.included.title') }}
+      </h3>
+
+      <p class="text-sm text-amber-800 mb-4">
+        {{ t('flap.step1.included.description') }}
+      </p>
+
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <p class="font-medium text-gray-900">
+            {{ t('flap.step1.included.item') }}
+          </p>
+          <p class="text-sm text-gray-600">
+            {{ t('flap.step1.included.note') }}
+          </p>
+        </div>
+
+        <p class="font-semibold text-gray-900 whitespace-nowrap">
+          {{ t('flap.step1.included.price') }}
+        </p>
+      </div>
+    </div>
+
     <!-- Title -->
     <h2 class="text-2xl font-semibold text-center text-gray-800">
       {{ t('flap.step2.title') }}
@@ -13,7 +40,12 @@
         </h3>
 
         <div class="space-y-3 text-sm text-gray-600 leading-relaxed">
-          <p v-html="t('flap.step2.color.description')"></p>
+          <p>
+            {{ t('flap.step2.color.description.beforeProduct') }}
+            <strong>{{ t('flap.step2.color.description.product') }}</strong>
+            {{ t('flap.step2.color.description.middle') }}
+            <strong>{{ t('flap.step2.color.description.ralColors') }}</strong>.
+          </p>
 
           <p>
             {{ t('flap.step2.color.freeColors') }}

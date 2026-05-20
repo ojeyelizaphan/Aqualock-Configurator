@@ -138,7 +138,7 @@
       "selected": "Ausgewählte Verriegelung",
       "notSelected": "Nicht ausgewählt",
 
-      "knobTitle": "Grifftyp",
+      "knobTitle": "Grifftyp außen",
       "knob": {
         "none": "-- Kein Griff --",
         "aluminium": "Fester Aluminiumknopf",

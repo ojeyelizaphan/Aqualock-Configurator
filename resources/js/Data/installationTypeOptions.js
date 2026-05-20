@@ -1,5 +1,5 @@
-import imgBehind from "@/Assets/2-Up-and-over door - Steps/Step-2/behind-the-reveal.jpg";
-import imgBetween from "@/Assets/2-Up-and-over door - Steps/Step-2/between-the-reveal.jpg";
+import imgBehind from "@/Assets/6-Sectional/Step-1/sectional-1b.jpg";
+import imgBetween from "@/Assets/6-Sectional/Step-1/sectional-1c.jpg";
 
 export const installationTypeOptions = [
   {
