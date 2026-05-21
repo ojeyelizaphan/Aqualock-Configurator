@@ -1,0 +1,42 @@
+{
+  "footer": {
+    "openingHours": {
+      "title": "Öffnungszeiten Showroom",
+      "weekdays": "Montag – Freitag:",
+      "morning": "08:00 Uhr – 12:00 Uhr",
+      "afternoon": "13:00 Uhr – 17:00 Uhr",
+      "saturday": "Jeden ersten Samstag:",
+      "saturdayHours": "09:00 Uhr – 12:00 Uhr"
+    },
+
+    "products": {
+      "title": "Produkte",
+      "garageDoor": "Schwingtor",
+      "flap": "Klappe",
+      "gate": "Portal",
+      "quickwall": "Quickwall"
+    },
+
+    "company": {
+      "title": "Unternehmen",
+      "about": "Unternehmen",
+      "gallery": "Galerie",
+      "fmApproved": "FM Approved",
+      "contact": "Kontakt"
+    },
+
+    "contact": {
+      "title": "Kontakt",
+      "company": "Torbau Schwaben GmbH",
+      "street": "Enzianstraße 14",
+      "city": "D-88436 Oberessendorf"
+    },
+
+    "bottom": {
+      "copyright": "© 2026 AquaLOCK. Alle Rechte vorbehalten.",
+      "privacy": "Datenschutz",
+      "legal": "Impressum",
+      "shipping": "Versandkosten"
+    }
+  }
+}

@@ -2,8 +2,10 @@
   <nav class="sticky top-0 z-40 bg-brand-orange shadow-md">
     <div class="w-full max-w-screen-2xl mx-auto px-4 lg:px-6">
       <div class="h-12 flex items-center justify-between">
+
         <!-- Desktop nav -->
         <div class="hidden lg:flex items-center gap-6">
+
           <!-- Products dropdown -->
           <div
             class="relative"
@@ -14,8 +16,14 @@
               class="flex items-center gap-1 text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide"
               type="button"
             >
-              Products
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {{ t('navbar.products') }}
+
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -29,50 +37,102 @@
               v-if="productsOpen"
               class="absolute left-0 top-full mt-1 w-72 bg-white rounded-md shadow-xl py-2 z-50"
             >
-              <a href="https://aqualock.uk/aqualock-tur/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors">AquaLOCK® Door</a>
-              <a href="https://aqualock.uk/schwingtor/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors">AquaLOCK® Up-and-over Garage Door</a>
-              <a href="https://aqualock.uk/sektionaltor/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors">AquaLOCK® Sectional Door</a>
-              <a href="https://aqualock.uk/portal/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors">AquaLOCK® Gate</a>
-              <a href="https://aqualock.uk/quickwall/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors">AquaLOCK® Quickwall</a>
-              <a href="https://aqualock.uk/klappe/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors">AquaLOCK® Flap</a>
-              <a href="https://aqualock.uk/protector/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors">AquaLOCK® Windows Protector</a>
-              <a href="https://aqualock.uk/industrie-gewerbe/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors">AquaLOCK® Industrial</a>
+              <a
+                href="https://aqualock.uk/aqualock-tur/"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              >
+                {{ t('navbar.productLinks.door') }}
+              </a>
+
+              <a
+                href="https://aqualock.uk/schwingtor/"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              >
+                {{ t('navbar.productLinks.upAndOver') }}
+              </a>
+
+              <a
+                href="https://aqualock.uk/sektionaltor/"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              >
+                {{ t('navbar.productLinks.sectional') }}
+              </a>
+
+              <a
+                href="https://aqualock.uk/portal/"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              >
+                {{ t('navbar.productLinks.gate') }}
+              </a>
+
+              <a
+                href="https://aqualock.uk/quickwall/"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              >
+                {{ t('navbar.productLinks.quickwall') }}
+              </a>
+
+              <a
+                href="https://aqualock.uk/klappe/"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              >
+                {{ t('navbar.productLinks.flap') }}
+              </a>
+
+              <a
+                href="https://aqualock.uk/protector/"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              >
+                {{ t('navbar.productLinks.windowsProtector') }}
+              </a>
+
+              <a
+                href="https://aqualock.uk/industrie-gewerbe/"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              >
+                {{ t('navbar.productLinks.industrial') }}
+              </a>
             </div>
           </div>
 
+          <!-- FM Approved -->
           <a
             href="https://aqualock.uk/fm-approved/"
             class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide"
           >
-            FM Approved
+            {{ t('navbar.fmApproved') }}
           </a>
 
+          <!-- Configurator -->
           <a
             href="#"
             class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide"
           >
-            Configurator
+            {{ t('navbar.configurator') }}
           </a>
 
+          <!-- Download -->
           <a
             href="https://aqualock.uk/download-2/"
             class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide"
           >
-            Download
+            {{ t('navbar.download') }}
           </a>
 
+          <!-- Shop -->
           <a
             href="#"
             class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide"
           >
-            Shop
+            {{ t('navbar.shop') }}
           </a>
 
+          <!-- About -->
           <a
             href="https://aqualock.uk/unternehmen/"
             class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide"
           >
-            About
+            {{ t('navbar.about') }}
           </a>
 
           <!-- Gallery dropdown -->
@@ -85,8 +145,14 @@
               class="flex items-center gap-1 text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide"
               type="button"
             >
-              Gallery
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {{ t('navbar.gallery') }}
+
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
@@ -100,23 +166,35 @@
               v-if="galleryOpen"
               class="absolute left-0 top-full mt-1 w-52 bg-white rounded-md shadow-xl py-2 z-50"
             >
-              <a href="https://aqualock.uk/galerie/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors">Photo Gallery</a>
-              <a href="https://www.youtube.com/@aqualock7157" class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors">Videos</a>
+              <a
+                href="https://aqualock.uk/galerie/"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              >
+                {{ t('navbar.galleryLinks.photos') }}
+              </a>
+
+              <a
+                href="https://www.youtube.com/@aqualock7157"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-orange-50 hover:text-brand-orange transition-colors"
+              >
+                {{ t('navbar.galleryLinks.videos') }}
+              </a>
             </div>
           </div>
 
+          <!-- Contact -->
           <a
             href="#"
             class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide"
           >
-            Contact
+            {{ t('navbar.contact') }}
           </a>
         </div>
 
         <!-- Mobile button -->
         <div class="lg:hidden flex items-center justify-between w-full">
           <span class="text-white text-sm font-semibold uppercase tracking-wide">
-            Menu
+            {{ t('navbar.menu') }}
           </span>
 
           <button
@@ -124,7 +202,13 @@
             class="text-white"
             type="button"
           >
-            <svg v-if="!mobileOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              v-if="!mobileOpen"
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -132,7 +216,14 @@
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
-            <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+            <svg
+              v-else
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
@@ -145,8 +236,10 @@
 
         <!-- Right side icons desktop -->
         <div class="hidden lg:flex items-center gap-4">
+
+          <!-- Locale Switch -->
           <div class="flex items-center gap-3">
-            <!-- English -->
+
             <button
               @click="setLocale('en')"
               class="text-white hover:text-orange-100 transition-colors"
@@ -156,7 +249,6 @@
               🇬🇧 EN
             </button>
 
-            <!-- German -->
             <button
               @click="setLocale('de')"
               class="text-white hover:text-orange-100 transition-colors"
@@ -167,6 +259,7 @@
             </button>
           </div>
 
+          <!-- YouTube -->
           <a
             href="https://www.youtube.com/@aqualock7157"
             class="text-black hover:text-orange-100 transition-colors"
@@ -177,6 +270,7 @@
             </svg>
           </a>
 
+          <!-- LinkedIn -->
           <a
             href="https://www.linkedin.com/company/aqualock/posts/?feedView=all"
             class="text-black hover:text-orange-100 transition-colors"
@@ -187,6 +281,7 @@
             </svg>
           </a>
 
+          <!-- Instagram -->
           <a
             href="https://www.instagram.com/aqualock_dach?igsh=MWJiZ3F0cG1ubXl2Mw%3D%3D"
             class="text-black hover:text-orange-100 transition-colors"
@@ -197,6 +292,7 @@
             </svg>
           </a>
 
+          <!-- Facebook -->
           <a
             href="https://www.facebook.com/people/Aqualock/100091361281845/"
             class="text-black hover:text-orange-100 transition-colors"
@@ -210,16 +306,67 @@
       </div>
 
       <!-- Mobile menu panel -->
-      <div v-if="mobileOpen" class="lg:hidden border-t border-orange-400 py-4">
+      <div
+        v-if="mobileOpen"
+        class="lg:hidden border-t border-orange-400 py-4"
+      >
         <div class="flex flex-col gap-3">
-          <a href="#" class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1">Products</a>
-          <a href="#" class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1">FM Approved</a>
-          <a href="#" class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1">Configurator</a>
-          <a href="#" class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1">Download</a>
-          <a href="#" class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1">Shop</a>
-          <a href="#" class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1">About</a>
-          <a href="#" class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1">Gallery</a>
-          <a href="#" class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1">Contact</a>
+
+          <a
+            href="#"
+            class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1"
+          >
+            {{ t('navbar.products') }}
+          </a>
+
+          <a
+            href="#"
+            class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1"
+          >
+            {{ t('navbar.fmApproved') }}
+          </a>
+
+          <a
+            href="#"
+            class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1"
+          >
+            {{ t('navbar.configurator') }}
+          </a>
+
+          <a
+            href="#"
+            class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1"
+          >
+            {{ t('navbar.download') }}
+          </a>
+
+          <a
+            href="#"
+            class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1"
+          >
+            {{ t('navbar.shop') }}
+          </a>
+
+          <a
+            href="#"
+            class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1"
+          >
+            {{ t('navbar.about') }}
+          </a>
+
+          <a
+            href="#"
+            class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1"
+          >
+            {{ t('navbar.gallery') }}
+          </a>
+
+          <a
+            href="#"
+            class="text-black hover:text-orange-100 transition-colors text-sm font-semibold uppercase tracking-wide py-1"
+          >
+            {{ t('navbar.contact') }}
+          </a>
         </div>
       </div>
     </div>
@@ -227,16 +374,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 
 const setLocale = (lang) => {
   locale.value = lang
   localStorage.setItem('locale', lang)
 }
-const productsOpen = ref(false);
-const galleryOpen = ref(false);
-const mobileOpen = ref(false);
+
+const productsOpen = ref(false)
+const galleryOpen = ref(false)
+const mobileOpen = ref(false)
 </script>

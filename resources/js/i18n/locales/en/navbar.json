@@ -1,0 +1,31 @@
+{
+  "navbar": {
+    "menu": "Menu",
+
+    "products": "Products",
+    "fmApproved": "FM Approved",
+    "configurator": "Configurator",
+    "download": "Download",
+    "shop": "Shop",
+    "about": "About",
+    "gallery": "Gallery",
+    "contact": "Contact",
+    "requestQuote": "Request for Quote",
+
+    "productLinks": {
+      "door": "AquaLOCK® Door",
+      "upAndOver": "AquaLOCK® Up-and-over Garage Door",
+      "sectional": "AquaLOCK® Sectional Door",
+      "gate": "AquaLOCK® Gate",
+      "quickwall": "AquaLOCK® Quickwall",
+      "flap": "AquaLOCK® Flap",
+      "windowsProtector": "AquaLOCK® Windows Protector",
+      "industrial": "AquaLOCK® Industrial"
+    },
+
+    "galleryLinks": {
+      "photos": "Photo Gallery",
+      "videos": "Videos"
+    }
+  }
+}

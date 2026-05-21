@@ -2,7 +2,9 @@
 import { createI18n } from 'vue-i18n';
 
 import enCommon from './locales/en/en.json';
-import enSummary from './locales/en/summary.json'
+import enSummary from './locales/en/summary.json';
+import enNavbar from './locales/en/navbar.json';
+import enFooter from './locales/en/footer.json';
 import enUpAndOver from './locales/en/upAndOver.json';
 import enSectionalDoor from './locales/en/sectionalDoor.json';
 import enDoor from './locales/en/door.json';
@@ -13,6 +15,8 @@ import enFlap from './locales/en/flap.json';
 
 import deCommon from './locales/de/de.json';
 import deSummary from './locales/de/summary.json';
+import deNavbar from './locales/de/navbar.json';
+import deFooter from './locales/de/footer.json';
 import deUpAndOver from './locales/de/upAndOver.json';
 import deSectionalDoor from './locales/de/sectionalDoor.json';
 import deDoor from './locales/de/door.json';
@@ -25,6 +29,8 @@ const messages = {
   en: {
     ...enCommon,
     ...enSummary,
+    ...enNavbar,
+    ...enFooter,
     upAndOver: enUpAndOver,
     sectionalDoor: enSectionalDoor,
     door : enDoor,
@@ -36,6 +42,8 @@ const messages = {
   de: {
     ...deCommon,
     ...deSummary,
+    ...deNavbar,
+    ...deFooter,
     upAndOver: deUpAndOver,
     sectionalDoor : deSectionalDoor,
     door : deDoor,

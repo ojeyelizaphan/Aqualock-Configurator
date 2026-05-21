@@ -42,7 +42,7 @@
             href="https://aqualock.uk/kontakt/"
             class="bg-brand-orange hover:bg-orange-600 text-white px-5 py-2.5 rounded-xl font-medium transition-colors inline-flex items-center justify-center"
           >
-            Request for Quote
+            {{t('navbar.requestQuote')}}
           </Link>
         </div>
       </div>
@@ -52,4 +52,12 @@
 
 <script setup>
 import { Link } from "@inertiajs/vue3";
+import { useI18n } from 'vue-i18n'
+
+const { locale, t } = useI18n()
+
+const setLocale = (lang) => {
+  locale.value = lang
+  localStorage.setItem('locale', lang)
+}
 </script>

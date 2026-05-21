@@ -1,0 +1,42 @@
+{
+  "footer": {
+    "openingHours": {
+      "title": "Showroom Opening Hours",
+      "weekdays": "Monday – Friday:",
+      "morning": "08:00 AM – 12:00 PM",
+      "afternoon": "01:00 PM – 05:00 PM",
+      "saturday": "Every first Saturday:",
+      "saturdayHours": "09:00 AM – 12:00 PM"
+    },
+
+    "products": {
+      "title": "Products",
+      "garageDoor": "Garage Door",
+      "flap": "Flap",
+      "gate": "Gate",
+      "quickwall": "Quickwall"
+    },
+
+    "company": {
+      "title": "Company",
+      "about": "About",
+      "gallery": "Gallery",
+      "fmApproved": "FM Approved",
+      "contact": "Contact"
+    },
+
+    "contact": {
+      "title": "Contact",
+      "company": "Torbau Schwaben GmbH",
+      "street": "Enzianstraße 14",
+      "city": "D-88436 Oberessendorf"
+    },
+
+    "bottom": {
+      "copyright": "© 2026 AquaLOCK. All rights reserved.",
+      "privacy": "Privacy",
+      "legal": "Legal Information",
+      "shipping": "Shipping Cost"
+    }
+  }
+}

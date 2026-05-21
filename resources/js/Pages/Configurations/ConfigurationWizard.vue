@@ -143,9 +143,16 @@ const props = defineProps({
     type: Object,
     default: null,
   },
+
+  locale: {
+    type: String,
+    default: 'en',
+  },
 });
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+
+locale.value = props.locale || 'en';
 
 const step = ref(1);
 const maxVisitedStep = ref(1);

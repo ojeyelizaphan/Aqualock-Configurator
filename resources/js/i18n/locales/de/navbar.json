@@ -1,0 +1,31 @@
+{
+  "navbar": {
+    "menu": "Menü",
+
+    "products": "Produkte",
+    "fmApproved": "FM Approved",
+    "configurator": "Konfigurator",
+    "download": "Download",
+    "shop": "Shop",
+    "about": "Unternehmen",
+    "gallery": "Galerie",
+    "contact": "Kontakt",
+    "requestQuote": "Angebot Anfordern",
+
+    "productLinks": {
+      "door": "AquaLOCK® Tür",
+      "upAndOver": "AquaLOCK® Schwingtor",
+      "sectional": "AquaLOCK® Sektionaltor",
+      "gate": "AquaLOCK® Portal",
+      "quickwall": "AquaLOCK® Quickwall",
+      "flap": "AquaLOCK® Klappe",
+      "windowsProtector": "AquaLOCK® Windows Protector",
+      "industrial": "AquaLOCK® Industrie / Gewerbe"
+    },
+
+    "galleryLinks": {
+      "photos": "Bildergalerie",
+      "videos": "Video"
+    }
+  }
+}
