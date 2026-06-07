@@ -121,18 +121,19 @@
 
         <!-- Custom Input -->
         <!-- Custom Profile Colour Selector -->
-        <div v-if="isCustomProfile" class="mt-4">
-          <ColorSelector
-            :title="$t('sectionalDoor.step3.profile.inputLabel')"
-            :options="colorOptions"
-            v-model="form.config_options.profileRAL"
-          />
+        <div v-if="isCustomProfile" class="mt-4 p-4 rounded-xl bg-gray-50 border border-gray-200">
+          <p class="text-sm font-medium text-gray-800 mb-1">
+            {{ $t('sectionalDoor.step3.profile.inputLabel') }}
+          </p>
+
+          <p class="text-sm text-gray-700">
+            {{ form.config_options.profileRAL || '-' }}
+          </p>
 
           <p class="text-xs text-gray-500 mt-2">
             {{ $t('sectionalDoor.step3.profile.inputHint') }}
           </p>
         </div>
-
         <!-- Extra Cost -->
         <div
           v-if="isCustomProfile"
@@ -168,14 +169,8 @@ const props = defineProps({
   }
 })
 
-/**
- * STANDARD COLORS
- */
 const standardOutsideColors = ['RAL 9016', 'RAL 7016']
 
-/**
- * COMPUTED STATES
- */
 const isStandardColor = computed(() => {
   return standardOutsideColors.includes(props.form.config_options.color)
 })
@@ -188,9 +183,13 @@ const isCustomProfile = computed(() => {
   return props.form.config_options.profileColour === 'custom'
 })
 
-/**
- * DEFAULTS
- */
+const syncProfileRALWithOutsideColour = () => {
+  if (props.form.config_options.profileColour === 'custom') {
+    props.form.config_options.profileRAL =
+      props.form.config_options.color || ''
+  }
+}
+
 const ensureDefaults = () => {
   props.form.config_options.insideColour = 'RAL 9002'
 
@@ -200,24 +199,32 @@ const ensureDefaults = () => {
 
   props.form.config_options.customColourProfiles =
     props.form.config_options.profileColour === 'custom'
+
+  syncProfileRALWithOutsideColour()
 }
 
 onMounted(() => {
   ensureDefaults()
 })
 
-/**
- * WATCHERS
- */
 watch(
   () => props.form.config_options.profileColour,
   (val) => {
     props.form.config_options.customColourProfiles = val === 'custom'
 
-    if (val !== 'custom') {
+    if (val === 'custom') {
+      syncProfileRALWithOutsideColour()
+    } else {
       props.form.config_options.profileRAL = ''
     }
   },
   { immediate: true }
+)
+
+watch(
+  () => props.form.config_options.color,
+  () => {
+    syncProfileRALWithOutsideColour()
+  }
 )
 </script>

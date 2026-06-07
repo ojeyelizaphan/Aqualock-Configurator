@@ -9,7 +9,7 @@ import SecondaryNavbar from "@/Components/SecondaryNavbar.vue";
 
 import { formatAccessories } from "@/utils/formatAccessories";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const props = defineProps({
   configuration: Object,
@@ -170,7 +170,10 @@ onMounted(() => {
 
 const goBackToConfiguration = () => {
   router.visit(
-    route("configurations.edit", configuration.value.id)
+    route("configurations.edit", {
+      locale: locale.value,
+      configuration: configuration.value.id,
+    })
   );
 };
 

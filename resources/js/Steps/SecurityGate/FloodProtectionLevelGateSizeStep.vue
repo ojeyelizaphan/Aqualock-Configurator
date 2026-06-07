@@ -52,7 +52,7 @@
         </div>
 
         <!-- Upper Design -->
-        <div class="space-y-3">
+        <!-- <div class="space-y-3">
           <p class="text-sm font-medium text-gray-700">
             {{ t('gate.step1.upperDesign.title') }}
           </p>
@@ -76,7 +76,7 @@
               {{ t(`gate.step1.upperDesign.${option.value}`) }}
             </span>
           </label>
-        </div>
+        </div> -->
 
         <!-- Gate Size -->
         <div class="space-y-4">

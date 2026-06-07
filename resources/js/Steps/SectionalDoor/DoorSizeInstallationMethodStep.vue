@@ -154,8 +154,8 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 import img1 from "@/Assets/6-Sectional/Step-1/sectional-1.jpg";
-import img2 from "@/Assets/6-Sectional/Step-1/sectional-1b.jpg";
-import img3 from "@/Assets/6-Sectional/Step-1/sectional-1c.jpg";
+import img2 from "@/Assets/6-Sectional/Step-1/sectional-1c.jpg";
+import img3 from "@/Assets/6-Sectional/Step-1/sectional-1b.jpg";
 
 const props = defineProps({
   form: Object

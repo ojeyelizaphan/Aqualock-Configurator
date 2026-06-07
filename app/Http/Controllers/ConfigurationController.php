@@ -83,8 +83,10 @@ class ConfigurationController extends Controller
         ]);
     }
 
-    public function edit(Configuration $configuration)
+    public function edit($locale, Configuration $configuration)
     {
+        app()->setLocale($locale);
+
         if ($configuration->user_id !== auth()->id()) {
             abort(403);
         }
@@ -95,6 +97,7 @@ class ConfigurationController extends Controller
         return Inertia::render('Configurations/ConfigurationWizard', [
             'products' => $products,
             'existingConfiguration' => $configuration,
+            'locale' => $locale,
         ]);
     }
 

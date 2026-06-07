@@ -40,7 +40,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/configurations', [ConfigurationController::class, 'index'])->name('configurations.index');
     Route::get('/configurations/{configuration}', [ConfigurationController::class, 'show'])->name('configurations.show');
 
-    Route::get('/configurations/{configuration}/edit', [ConfigurationController::class, 'edit'])->name('configurations.edit');
+    Route::get('/{locale}/configurations/{configuration}/edit', [ConfigurationController::class, 'edit'])
+    ->whereIn('locale', ['en', 'de'])
+    ->name('configurations.edit');
     Route::put('/configurations/{configuration}', [ConfigurationController::class, 'update'])->name('configurations.update');
 
 

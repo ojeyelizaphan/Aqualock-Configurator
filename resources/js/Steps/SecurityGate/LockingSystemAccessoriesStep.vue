@@ -31,7 +31,8 @@ const latticeOptions = [
   { value: 'round_extruded', price: 638 },
   { value: 'angular_extruded', price: 638 },
   { value: 'round_forged', price: 771 },
-  { value: 'angular_forged', price: 771 }
+  { value: 'angular_forged', price: 771 },
+  { value: 'wood_paneling', price: 0 }
 ]
 </script>
 
@@ -162,7 +163,13 @@ const latticeOptions = [
             </div>
 
             <span class="text-sm">
-              {{ t('gate.step4.lattice.unit', { price: lattice.price }) }}
+               <template v-if="lattice.price > 0">
+                {{ t('gate.step4.lattice.unit', { price: lattice.price }) }}
+              </template>
+
+              <template v-else>
+                {{ t('gate.step4.lattice.included') }}
+              </template>
             </span>
           </label>
         </div>

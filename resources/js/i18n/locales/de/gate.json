@@ -143,6 +143,8 @@
       "angular_extruded": "Eckige Gitterstäbe, extrudiert",
       "round_forged": "Runde Gitterstäbe, geschmiedet",
       "angular_forged": "Eckige Gitterstäbe, geschmiedet",
+      "wood_paneling": "Holzverkleidung",
+      "included": "Inklusive",
 
       "unit": "€{price} / m²"
     },

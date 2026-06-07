@@ -143,6 +143,8 @@
       "angular_extruded": "Angular lattice bars, extruded",
       "round_forged": "Round lattice bars, forged",
       "angular_forged": "Angular lattice bars, forged",
+      "wood_paneling": "Wood Paneling",
+      "included": "Included",
 
       "unit": "€{price} / m²"
     },

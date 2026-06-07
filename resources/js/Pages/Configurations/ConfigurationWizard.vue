@@ -269,11 +269,21 @@ const isCurrentStepValid = computed(() => {
   const stepName = currentStepData.name?.toLowerCase().trim();
   const config = form.config_options || {};
 
+
   if (
     productSlug.value === "quickwall" &&
     stepName === "protection level & measurements"
   ) {
     return !!config.width && !!config.height;
+  }
+
+  if (
+    productSlug.value === 'basement-flaps' &&
+    stepName === 'measurement & material'
+  ) {
+    return !!config.width &&
+      !!config.height &&
+      !!config.material;
   }
 
   return true;
