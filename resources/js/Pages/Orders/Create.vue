@@ -9,7 +9,7 @@ import SecondaryNavbar from "@/Components/SecondaryNavbar.vue";
 
 import { formatAccessories } from "@/utils/formatAccessories";
 
-const { t, locale } = useI18n();
+const { t, te, locale } = useI18n();
 
 const props = defineProps({
   configuration: Object,
@@ -41,6 +41,16 @@ const vatRate = 0.19;
 |--------------------------------------------------------------------------
 */
 
+const toSnakeCase = (value) => {
+  return String(value ?? "")
+    .trim()
+    .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
+    .replace(/\(mm\)/gi, "")
+    .replace(/[^a-zA-Z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .toLowerCase();
+};
+
 const normalizeKey = (option) => {
   const rawKey = option?.key || option?.label || "";
 
@@ -55,60 +65,64 @@ const normalizeKey = (option) => {
 };
 
 const optionKey = (option) => {
-  return option.key || normalizeKey(option.label)
-}
+  return toSnakeCase(option?.key || option?.label || "");
+};
 
 const getTranslatedLabel = (option) => {
   const key = optionKey(option);
+  const path = `summary.labels.${key}`;
 
-  const translated = t(`summary.labels.${key}`);
-
-  if (translated.includes("summary.labels")) {
-    return option.label || key;
-  }
-
-  return translated;
+  return te(path) ? t(path) : option.label || key;
 };
 
 const getTranslatedValue = (option) => {
+  const value = option?.value;
+
+  if (value === null || value === undefined || value === "") {
+    return "-";
+  }
+
   const key = optionKey(option);
 
-  // numbers
-  if (
-    typeof option.value === "number" ||
-    !isNaN(option.value)
-  ) {
-    return option.value;
+  if (typeof value === "boolean") {
+    const specificPath =
+      `summary.values.${key}.${String(value)}`;
+
+    if (te(specificPath)) {
+      return t(specificPath);
+    }
+
+    return t(`summary.values.boolean.${String(value)}`);
   }
 
-  // arrays
-  if (Array.isArray(option.value)) {
-    return option.value.join(", ");
+  if (typeof value === "number" || (!isNaN(value) && value !== "")) {
+    return value;
   }
 
-  // objects
-  if (
-    typeof option.value === "object" &&
-    option.value !== null
-  ) {
-    return JSON.stringify(option.value);
+  if (Array.isArray(value)) {
+    return value.join(", ");
   }
 
-  const normalizedValue = String(option.value)
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, "_")
-    .replace(/-/g, "_");
+  if (typeof value === "object") {
+    return Object.entries(value)
+      .filter(([_, qty]) => Number(qty) > 0)
+      .map(([itemKey, qty]) => {
+        const normalizedItemKey = toSnakeCase(itemKey);
+        const labelPath = `summary.labels.${normalizedItemKey}`;
 
-  const translated = t(
-    `summary.values.${key}.${normalizedValue}`
-  );
+        const label = te(labelPath)
+          ? t(labelPath)
+          : normalizedItemKey;
 
-  if (translated.includes("summary.values")) {
-    return option.value;
+        return `${label}: ${qty}`;
+      })
+      .join(", ");
   }
 
-  return translated;
+  const normalizedValue = toSnakeCase(value);
+  const path = `summary.values.${key}.${normalizedValue}`;
+
+  return te(path) ? t(path) : value;
 };
 
 /*
@@ -301,7 +315,7 @@ const submitOrder = async () => {
 
             <ul class="list-disc pl-5 space-y-1">
               <li
-                v-for="(line, i) in accessoriessummaryGeneral"
+                v-for="(line, i) in accessoriesSummary"
                 :key="i"
               >
                 {{ line }}

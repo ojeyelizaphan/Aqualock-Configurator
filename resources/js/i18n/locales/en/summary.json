@@ -63,6 +63,7 @@
       "upgrade_kit": "Upgrade Kit",
       "stainless_tracks": "Stainless Steel Tracks",
       "assembly_kit": "Assembly Kit",
+      "custom_colour_profiles": "Custom Profile Colour",
 
       "locking_mechanism": "Locking Mechanism",
       "thermal_insulation": "Thermal Insulation",
@@ -114,6 +115,11 @@
     },
 
     "values": {
+      "boolean": {
+        "true": "Yes",
+        "false": "No"
+      },
+      
       "protection_height": {
         "up_to_500mm": "Up to 500 mm",
         "over_500mm": "Over 500 mm"

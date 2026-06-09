@@ -63,6 +63,7 @@
       "upgrade_kit": "Upgrade-Kit",
       "stainless_tracks": "Edelstahl-Laufschienen",
       "assembly_kit": "Montage-Set",
+      "custom_colour_profiles": "Sonderfarbe für Profile",
 
       "locking_mechanism": "Verriegelung",
       "thermal_insulation": "Thermische Trennung",
@@ -113,6 +114,11 @@
     },
 
     "values": {
+      "boolean": {
+        "true": "Ja",
+        "false": "Nein"
+      },
+
       "protection_height": {
         "up_to_500mm": "Bis 500 mm",
         "over_500mm": "Über 500 mm"
