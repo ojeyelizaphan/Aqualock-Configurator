@@ -67,21 +67,21 @@
   },
 
   "insulation": {
-    "title": "Schalung & Isolierung",
-    "description": "Die Innenseite des Tores wird mit glatten Aluminiumblechen verkleidet.",
+    "title": "Innenverkleidung & Isolierung",
+    "description": "Die Innenseite des Tores kann mit Aluminiumblech verkleidet werden.",
 
     "none": {
-        "label": "Ohne Schalung",
+        "label": "Ohne Innenverkleidung",
         "description": "Grundinstallation ohne Verkleidung."
     },
 
     "casingNoInsulation": {
-        "label": "Mit Schalung aber ohne Isolierung",
+        "label": "Mit Innenverkleidung aber ohne Isolierung",
         "description": "Verkleidung vorhanden, jedoch ohne zusätzliche Isolierung."
     },
 
     "full": {
-        "label": "Mit Schalung und Isolierung",
+        "label": "Mit Innenverkleidung und Isolierung",
         "description": "Komplette Verkleidung mit zusätzlicher Isolierung für maximale Effizienz."
     },
 

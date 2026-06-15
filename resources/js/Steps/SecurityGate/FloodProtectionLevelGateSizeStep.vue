@@ -51,33 +51,6 @@
           </div>
         </div>
 
-        <!-- Upper Design -->
-        <!-- <div class="space-y-3">
-          <p class="text-sm font-medium text-gray-700">
-            {{ t('gate.step1.upperDesign.title') }}
-          </p>
-
-          <label
-            v-for="option in upperDesignOptions"
-            :key="option.value"
-            class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition"
-            :class="form.config_options.upper_design === option.value
-              ? 'border-brand-orange bg-orange-50'
-              : 'border-gray-200 hover:border-gray-300'"
-          >
-            <input
-              type="radio"
-              class="mt-1 accent-orange-500"
-              :value="option.value"
-              v-model="form.config_options.upper_design"
-            />
-
-            <span class="text-sm text-gray-800">
-              {{ t(`gate.step1.upperDesign.${option.value}`) }}
-            </span>
-          </label>
-        </div> -->
-
         <!-- Gate Size -->
         <div class="space-y-4">
           <h3 class="text-lg font-semibold text-gray-800">
@@ -141,31 +114,61 @@
       </section>
 
       <!-- RIGHT -->
-      <section class="space-y-4">
-        <div class="grid grid-cols-2 gap-4">
+      <!-- RIGHT: Opening Direction -->
+      <section class="space-y-5">
+        <h3 class="text-xl font-semibold">
+          {{ t('gate.step2.opening.title') }}
+        </h3>
 
-          <figure class="text-center">
-            <img :src="img1" class="rounded-lg border" />
-            <figcaption class="text-xs text-gray-600">
-              {{ t('gate.step1.images.wood') }}
-            </figcaption>
-          </figure>
+        <p class="text-sm text-gray-600">
+          {{ t('gate.step2.opening.description') }}
+        </p>
 
-          <figure class="text-center">
-            <img :src="img2" class="rounded-lg border" />
-            <figcaption class="text-xs text-gray-600">
-              {{ t('gate.step1.images.access') }}
-            </figcaption>
-          </figure>
+        <p class="text-sm font-medium text-gray-700">
+          {{ t('gate.step2.opening.subtitle') }}
+        </p>
 
+        <div class="space-y-3">
+          <label
+            v-for="option in openingOptions"
+            :key="option"
+            class="flex items-start gap-3 p-3 rounded-lg border cursor-pointer"
+            :class="form.config_options.gate_opening === option
+              ? 'border-brand-orange bg-orange-50'
+              : 'border-gray-200'"
+          >
+            <input
+              type="radio"
+              class="mt-1 accent-orange-500"
+              :value="option"
+              v-model="form.config_options.gate_opening"
+            />
+
+            <span class="text-sm">
+              {{ t(`gate.step2.opening.${option}`) }}
+            </span>
+          </label>
         </div>
 
-        <figure class="text-center">
-          <img :src="img3" class="rounded-lg border w-full" />
-          <figcaption class="text-xs text-gray-600">
-            {{ t('gate.step1.images.diagram') }}
-          </figcaption>
-        </figure>
+        <div v-if="openingExtraCost" class="text-sm text-orange-600 font-medium">
+          +€{{ openingExtraCost }} (180° opening)
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 pt-4">
+          <figure class="text-center">
+            <img :src="imgInwards" class="rounded-lg border" />
+            <figcaption class="text-xs text-gray-600">
+              {{ t('gate.step2.images.inward') }}
+            </figcaption>
+          </figure>
+
+          <figure class="text-center">
+            <img :src="imgOutwards" class="rounded-lg border" />
+            <figcaption class="text-xs text-gray-600">
+              {{ t('gate.step2.images.outward') }}
+            </figcaption>
+          </figure>
+        </div>
       </section>
 
     </div>
@@ -178,6 +181,9 @@ import { useI18n } from 'vue-i18n'
 
 import img1 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2a.jpg"
 import img2 from "@/Assets/4-AquaLOCK Gate/Step-2/step-2b.jpg"
+
+import imgInwards from "@/Assets/4-AquaLOCK Gate/Step-1/inwards.jpg"
+import imgOutwards from "@/Assets/4-AquaLOCK Gate/Step-1/outwards.jpg"
 import img3_en from "@/Assets/4-AquaLOCK Gate/Step-2/step-2c.jpg"
 import img3_de from "@/Assets/4-AquaLOCK Gate/Step-2/step-2c-de.jpg"
 
@@ -193,10 +199,24 @@ const props = defineProps({
 
 const form = props.form
 
-const upperDesignOptions = [
-  { value: 'lattice' },
-  { value: 'wood' }
+
+const openingOptions = [
+  'left_in_95',
+  'left_in_180',
+  'left_out_95',
+  'left_out_180',
+  'right_in_95',
+  'right_in_180',
+  'right_out_95',
+  'right_out_180'
 ]
+
+const openingExtraCost = computed(() => {
+  const opening = form.config_options.gate_opening
+  if (!opening) return 0
+
+  return opening.includes('180') ? 362 : 0
+})
 
 const enteredWidth = ref(form.config_options.entered_width || form.config_options.width || '')
 const enteredHeight = ref(form.config_options.entered_height || form.config_options.protection_height || '')

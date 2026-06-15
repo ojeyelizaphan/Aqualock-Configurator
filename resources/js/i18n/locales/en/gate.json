@@ -33,7 +33,7 @@
 
     "images": {
       "wood": "Gate with wood paneling (price on request)",
-      "access": "Gate with through-access",
+      "access": "Outward opening pedestrian gate",
       "diagram": "Maximum water protection height: 1,200 mm"
     }
   },
@@ -144,7 +144,7 @@
       "round_forged": "Round lattice bars, forged",
       "angular_forged": "Angular lattice bars, forged",
       "wood_paneling": "Wood Paneling",
-      "included": "Included",
+      "included": "Price on demand",
 
       "unit": "€{price} / m²"
     },

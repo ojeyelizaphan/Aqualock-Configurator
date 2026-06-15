@@ -21,7 +21,7 @@
       },
       "between": {
         "title": "Zwischen der Laibung",
-        "description": "(evtl. Hilfsrahmen erforderlich)"
+        "description": "(Hilfsrahmen erforderlich)"
       }
     }
   },
@@ -48,7 +48,7 @@
   },
 
   "step3": {
-    "title": "Farben der Panels und Profile",
+    "title": "Farben der Panels",
 
     "panel": {
       "title": "Wählen Sie aus 216 verschiedenen Farben",

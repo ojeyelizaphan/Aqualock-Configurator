@@ -70,9 +70,18 @@ watch(enteredWidth, (val) => {
   props.form.config_options.width = mappedWidth.value;
 });
 
+watch(
+  () => props.form.config_options.height,
+  (val) => {
+    props.form.config_options.entered_height = val || null;
+  },
+  { immediate: true }
+);
+
 watch(availableProtectionHeights, (heights) => {
   if (!heights.includes(props.form.config_options.height)) {
     props.form.config_options.height = null;
+    props.form.config_options.entered_height = null;
   }
 });
 
