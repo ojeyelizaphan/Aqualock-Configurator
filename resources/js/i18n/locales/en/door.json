@@ -30,13 +30,16 @@
       "extra": "Larger widths are available on request."
     },
 
-    "panels": {
+   "panels": {
       "title": "Optional Fixed Panels",
-      "description": "Wider door openings can be compensated with fixed panels mounted on the frame to the left, right, and above the door:",
-      "left": "Fixed side panel up to 400 mm, left",
-      "right": "Fixed side panel up to 400 mm, right",
-      "top": "Fixed panel above the door, up to 400 mm",
-      "extra": "Larger widths are available on request."
+      "description": "Wider or taller door openings can be compensated with fixed panels mounted to the left, right, above, or below the door.",
+      "left": "Fixed side panel, left",
+      "right": "Fixed side panel, right",
+      "top": "Fixed panel above the door",
+      "bottom": "Fixed panel below the door",
+      "width": "Panel width",
+      "height": "Panel height",
+      "pricingNote": "Panels up to 400 mm use a fixed price. Panels of 401 mm or more are calculated by area."
     },
 
     "installation": {

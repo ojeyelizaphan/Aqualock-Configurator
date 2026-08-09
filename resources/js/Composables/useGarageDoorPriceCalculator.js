@@ -1,7 +1,8 @@
 import { computed } from 'vue';
-import { versionV500Prices } from '@/Data/versionV500Prices';
-import { versionVPrices } from '@/Data/versionVPrices';
-import { versionEPrices } from '@/Data/versionEPrices';
+import {
+  garageDoorExtraPrices,
+  garageDoorPrices,
+} from '@/Data/garageDoorPrices';
 import { standardColorCodes } from '@/Data/colorOptions';
 
 export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
@@ -12,9 +13,7 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
 
     if (!selectedVersion || !selectedWidth || !selectedHeight) return null;
 
-    const priceTables = { E: versionEPrices, V: versionVPrices, V500: versionV500Prices };
-    const heightRow = priceTables[selectedVersion]?.[selectedHeight];
-    return heightRow ? heightRow[selectedWidth] || null : null;
+    return garageDoorPrices[selectedVersion]?.[selectedHeight]?.[selectedWidth] ?? null;
   });
 
   const colorExtraCost = computed(() => {
@@ -23,66 +22,65 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
     const height = Number(form.config_options?.height);
 
     if (!color || !width || !height) return 0;
-
-    const isStandard = standardColorCodes.includes(color);
-
-    if (isStandard) return 0;
+    if (standardColorCodes.includes(color)) return 0;
 
     const squareMeters = (width / 1000) * (height / 1000);
 
-    return Math.ceil(squareMeters * 39);
+    return Math.ceil(squareMeters * garageDoorExtraPrices.customColorPerM2);
   });
 
   const accessoryExtraCost = computed(() => {
     let total = 0;
-    const width = form.config_options?.width;
-    const height = form.config_options?.height;
+    const width = Number(form.config_options?.width);
+    const height = Number(form.config_options?.height);
+
     if (!width || !height) return 0;
 
-    const m2 = (width / 1000) * (height / 1000);
-    const rmt = width / 1000;
-
+    const squareMeters = (width / 1000) * (height / 1000);
+    const runningMeters = width / 1000;
     const accessories = form.config_options?.accessories ?? {};
 
-    // Panelling
-    const panelling = accessories.panelling;
-    if (panelling === 'uninsulated') total += Math.ceil(m2 * 121);
-    else if (panelling === 'insulated') total += Math.ceil(m2 * 148);
+    const panellingRate = garageDoorExtraPrices.panellingPerM2[accessories.panelling];
+    if (panellingRate) {
+      total += Math.ceil(squareMeters * panellingRate);
+    }
 
-    // Glazing - windows
     const glazing = accessories.glazing ?? {};
     const windowConfig = glazing.windows ?? {};
-    if (windowConfig?.type && windowConfig?.quantity > 0) {
-      const unitPrice = windowConfig.insulated ? 545 : 418;
+
+    if (windowConfig.type && Number(windowConfig.quantity) > 0) {
+      const insulationKey = windowConfig.insulated ? 'insulated' : 'uninsulated';
+      const unitPrice = garageDoorExtraPrices.glazing.windowPerPiece[insulationKey];
       total += unitPrice * Number(windowConfig.quantity);
     }
 
-    // Glazing - glass stripe
     const stripe = glazing.stripe ?? {};
-    if (stripe?.type && width) {
-      const stripeLengthMm = Math.max(Number(width) - 370, 0);
-      const stripeLengthM = stripeLengthMm / 1000;
-      const stripeHeightM = 0.4; // 400 mm
-      const stripeArea = stripeLengthM * stripeHeightM;
-      const rate = stripe.insulated ? 509 : 376;
+    if (stripe.type) {
+      const stripeLengthMeters = Math.max(width - 370, 0) / 1000;
+      const stripeArea = stripeLengthMeters * 0.4;
+      const insulationKey = stripe.insulated ? 'insulated' : 'uninsulated';
+      const rate = garageDoorExtraPrices.glazing.stripePerM2[insulationKey];
 
       total += Math.ceil(stripeArea * rate);
     }
 
-    // Drive-over plate
-    const plate = accessories.driveOverPlate;
-    if (plate === 'stainless') total += Math.ceil(rmt * 165);
-    else if (plate === 'aluminium') total += Math.ceil(rmt * 125);
+    const plateRate = garageDoorExtraPrices.driveOverPlatePerRunningMeter[
+      accessories.driveOverPlate
+    ];
 
-    // Motor + Assembly + Transmitters
+    if (plateRate) {
+      total += Math.ceil(runningMeters * plateRate);
+    }
+
     const motorStepIndex = configurationSteps.value?.findIndex?.(
-      stepObj => stepObj.name === 'Insulation & Hand Transmitter'
+      (stepObject) => stepObject.name === 'Insulation & Hand Transmitter',
     );
 
     if (step.value > (motorStepIndex ?? -1) + 1) {
-      total += 651 + 334; // Motor + Assembly Kit
-      const transmitters = parseInt(accessories.handTransmitters || 0, 10);
-      total += transmitters * 60;
+      total += garageDoorExtraPrices.motor + garageDoorExtraPrices.assemblyKit;
+
+      const transmitters = Number.parseInt(accessories.handTransmitters || 0, 10);
+      total += transmitters * garageDoorExtraPrices.handTransmitter;
     }
 
     return total;
@@ -90,8 +88,18 @@ export function useGarageDoorPriceCalculator(form, configurationSteps, step) {
 
   const finalPrice = computed(() => {
     if (baseCalculatedPrice.value === null) return null;
-    return baseCalculatedPrice.value + colorExtraCost.value + accessoryExtraCost.value;
+
+    return (
+      baseCalculatedPrice.value
+      + colorExtraCost.value
+      + accessoryExtraCost.value
+    );
   });
 
-  return { baseCalculatedPrice, colorExtraCost, accessoryExtraCost, finalPrice };
+  return {
+    baseCalculatedPrice,
+    colorExtraCost,
+    accessoryExtraCost,
+    finalPrice,
+  };
 }

@@ -22,9 +22,10 @@ const centralLockingOptions = [
 ]
 
 const optionalAccessories = [
-  { key: 'gateStop' },
+  { key: 'electricDoorOpener' },
   { key: 'padlockPreparation' },
-  { key: 'durchgriff' }
+  { key: 'durchgriff' },
+  { key: 'slopingBottom' }
 ]
 
 const latticeOptions = [

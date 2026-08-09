@@ -1,89 +1,133 @@
 import { computed } from 'vue';
-import { sectionalDoorWithoutMotor, sectionalDoorWidthSteps } from '@/Data/sectionalDoorPrices';
-const sectionalDoorStandardOutsideColors = ['RAL 9016', 'RAL 7016'];
 
-export function useSectionalDoorPriceCalculator(form, configurationSteps, step) {
+import {
+  sectionalDoorWithMotor,
+  sectionalDoorWidthSteps,
+} from '@/Data/sectionalDoorPrices';
+
+const sectionalDoorStandardOutsideColors = [
+  'RAL 9016',
+  'RAL 7016',
+];
+
+export function useSectionalDoorPriceCalculator(form) {
   const baseCalculatedPrice = computed(() => {
-    const width = form.config_options?.width;
-    const height = form.config_options?.height;
+    const options = form.config_options ?? {};
 
-    if (!width || !height) return null;
+    const width = Number(options.width) || 0;
+    const height = Number(options.height) || 0;
 
-    const heightRow = sectionalDoorWithoutMotor[height];
-    if (!heightRow) return null;
+    if (!width || !height) {
+      return null;
+    }
 
-    const widthIndex = sectionalDoorWidthSteps.indexOf(width);
-    if (widthIndex === -1) return null;
+    const heightRow = sectionalDoorWithMotor[height];
+
+    if (!heightRow) {
+      return null;
+    }
+
+    const widthIndex =
+      sectionalDoorWidthSteps.indexOf(width);
+
+    if (widthIndex === -1) {
+      return null;
+    }
 
     return heightRow[widthIndex] ?? null;
   });
 
   const colorExtraCost = computed(() => {
-    const color = form.config_options?.color;
-    const selectedWidth = Number(form.config_options?.width || 0);
-    const selectedHeight = Number(form.config_options?.height || 0);
+    const options = form.config_options ?? {};
 
-    if (!color || !selectedWidth || !selectedHeight) return 0;
+    const color = options.color;
+    const width = Number(options.width) || 0;
+    const height = Number(options.height) || 0;
 
-    if (sectionalDoorStandardOutsideColors.includes(color)) {
+    if (!color || !width || !height) {
       return 0;
     }
 
-    const squareMeters = (selectedWidth / 1000) * (selectedHeight / 1000);
-    return Math.ceil(squareMeters * 69);
+    if (
+      sectionalDoorStandardOutsideColors.includes(color)
+    ) {
+      return 0;
+    }
+
+    const squareMeters =
+      (width / 1000) * (height / 1000);
+
+    return Math.ceil(squareMeters * 71);
   });
 
   const accessoryExtraCost = computed(() => {
-    let total = 0;
-    const width = form.config_options?.width;
-    const height = form.config_options?.height;
+    const options = form.config_options ?? {};
 
-    if (!width || !height) return 0;
+    const width = Number(options.width) || 0;
+    const height = Number(options.height) || 0;
 
-    const rmt = width / 1000;
-
-    // Base plates
-    if (form.config_options?.stainlessBasePlate) {
-      total += Math.ceil(rmt * 148);
-    } else if (form.config_options?.aluminumBasePlate) {
-      total += Math.ceil(rmt * 42);
+    if (!width || !height) {
+      return 0;
     }
 
-    // Upgrade kits (required choice)
-    const upgradeKit = form.config_options?.upgradeKit;
-    if (upgradeKit === 'upTo3m') {
+    let total = 0;
+
+    const runningMeters = width / 1000;
+
+    // Base plates
+    if (options.stainlessBasePlate) {
+      total += Math.ceil(runningMeters * 89);
+    } else if (options.aluminumBasePlate) {
+      total += Math.ceil(runningMeters * 44);
+    }
+
+    // Pre-mounted upgrade kit
+    if (options.upgradeKit === 'upTo3m') {
       total += 272;
-    } else if (upgradeKit === 'upTo6m') {
+    } else if (options.upgradeKit === 'upTo6m') {
       total += 348;
     }
 
-    // Stainless steel tracks
-    if (form.config_options?.stainlessTracks) {
+    // Stainless-steel tracks
+    if (options.stainlessTracks) {
       total += 282;
     }
 
-    // Colour profile customization
-    if (form.config_options?.customColourProfiles) {
+    // Custom-coloured steel corners and profiles
+    if (options.customColourProfiles) {
       total += 421;
     }
 
-    // Motor - always included
-    total += 651;
+    /*
+     * Do not add €651 here.
+     * The selected matrix already includes the motor.
+     */
 
-    // Assembly kit - always included
-    total += 246;
+    /*
+     * The assembly kit is mandatory and is included once
+     * valid dimensions have been selected.
+     */
+    total += 238;
 
-    // Hand transmitters
-    const transmitters = parseInt(form.config_options?.handTransmitterQty || 0, 10);
-    if (!isNaN(transmitters) && transmitters > 0) {
-      total += transmitters * 60;
+    const transmitterQuantity = Number.parseInt(
+      options.handTransmitterQty ?? 0,
+      10
+    );
+
+    if (
+      Number.isFinite(transmitterQuantity) &&
+      transmitterQuantity > 0
+    ) {
+      total += transmitterQuantity * 62;
     }
 
     return total;
   });
 
   const finalPrice = computed(() => {
-    if (baseCalculatedPrice.value === null) return null;
+    if (baseCalculatedPrice.value === null) {
+      return null;
+    }
 
     return (
       baseCalculatedPrice.value +
@@ -96,6 +140,6 @@ export function useSectionalDoorPriceCalculator(form, configurationSteps, step) 
     baseCalculatedPrice,
     colorExtraCost,
     accessoryExtraCost,
-    finalPrice
+    finalPrice,
   };
 }

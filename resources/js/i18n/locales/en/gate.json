@@ -124,6 +124,11 @@
         "description": "Secures the gate against a wall, preventing unwanted opening",
         "price": "+ €160"
       },
+      "electricDoorOpener": {
+        "label": "Electric door opener",
+        "description": "Electric door opener with day and night settings",
+        "price": "+ €312"
+      },
       "padlockPreparation": {
         "label": "Padlock preparation",
         "description": "Prepared for padlock use (padlock not included)",
@@ -133,6 +138,11 @@
         "label": "Through-access with central locking",
         "description": "Allows opening from outside (only for inward-opening gates with central locking)",
         "price": "+ €700"
+      },
+      "slopingBottom": {
+        "label": "Sloping bottom edge",
+        "description": "Sloping at the bottom of the gate, with the hinge side at the lowest point of the terrain",
+        "price": "+ €975"
       }
     },
 

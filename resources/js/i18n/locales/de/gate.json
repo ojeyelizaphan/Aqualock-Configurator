@@ -117,12 +117,17 @@
 
     "accessories": {
       "title": "Accessoires",
-      "optional": "Optional Add-ons",
+      "optional": "Optionales Zubehör",
 
       "gateStop": {
         "label": "Portal-Feststeller",
         "description": "Zum Feststellen des Portalflügels an der Wand",
         "price": "+ €160"
+      },
+      "electricDoorOpener": {
+        "label": "Elektrischer Türöffner",
+        "description": "Elektrischer Türöffner mit Tag- und Nachtschaltung",
+        "price": "+ €312"
       },
       "padlockPreparation": {
         "label": "Vorrichtung für Vorhängeschloss",
@@ -133,6 +138,11 @@
         "label": "Durchgriff zum Öffnen des Portals von außen",
         "description": "Nur für nach innen öffnende Portal mit Zentralverriegelung",
         "price": "+ €700"
+      },
+      "slopingBottom": {
+        "label": "Abschrägung an der Torunterkante",
+        "description": "Abschrägung an der Unterkante des Tores, Bandseite am tiefsten Punkt des Geländes",
+        "price": "+ €975"
       }
     },
 

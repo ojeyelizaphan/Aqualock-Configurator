@@ -64,30 +64,194 @@
             {{ t('door.panels.title') }}
           </h2>
 
-          <p class="text-sm text-gray-600 mb-3">
+          <p class="text-sm text-gray-600 mb-5">
             {{ t('door.panels.description') }}
           </p>
 
-          <div class="space-y-3">
-            <label class="flex items-center gap-3">
-              <input type="checkbox" v-model="form.config_options.fixed_panel_left" class="accent-brand-orange" />
-              <span>{{ t('door.panels.left') }}</span>
-            </label>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Left panel -->
+            <div class="border rounded-xl p-4">
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  v-model="form.config_options.fixed_panel_left"
+                  class="accent-brand-orange"
+                />
 
-            <label class="flex items-center gap-3">
-              <input type="checkbox" v-model="form.config_options.fixed_panel_right" class="accent-brand-orange" />
-              <span>{{ t('door.panels.right') }}</span>
-            </label>
+                <span class="font-medium">
+                  {{ t('door.panels.left') }}
+                </span>
+              </label>
 
-            <label class="flex items-center gap-3">
-              <input type="checkbox" v-model="form.config_options.fixed_panel_top" class="accent-brand-orange" />
-              <span>{{ t('door.panels.top') }}</span>
-            </label>
+              <div
+                v-if="form.config_options.fixed_panel_left"
+                class="mt-4"
+              >
+                <label class="block text-sm text-gray-700 mb-1">
+                  {{ t('door.panels.width') }}
+                </label>
+
+                <div class="relative">
+                  <input
+                    type="number"
+                    v-model.number="
+                      form.config_options.fixed_panel_left_width
+                    "
+                    min="1"
+                    step="1"
+                    class="w-full rounded-lg border-gray-300 pr-12
+                          focus:border-brand-orange
+                          focus:ring-brand-orange"
+                  />
+
+                  <span
+                    class="absolute right-3 top-1/2
+                          -translate-y-1/2 text-sm text-gray-500"
+                  >
+                    mm
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right panel -->
+            <div class="border rounded-xl p-4">
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  v-model="form.config_options.fixed_panel_right"
+                  class="accent-brand-orange"
+                />
+
+                <span class="font-medium">
+                  {{ t('door.panels.right') }}
+                </span>
+              </label>
+
+              <div
+                v-if="form.config_options.fixed_panel_right"
+                class="mt-4"
+              >
+                <label class="block text-sm text-gray-700 mb-1">
+                  {{ t('door.panels.width') }}
+                </label>
+
+                <div class="relative">
+                  <input
+                    type="number"
+                    v-model.number="
+                      form.config_options.fixed_panel_right_width
+                    "
+                    min="1"
+                    step="1"
+                    class="w-full rounded-lg border-gray-300 pr-12
+                          focus:border-brand-orange
+                          focus:ring-brand-orange"
+                  />
+
+                  <span
+                    class="absolute right-3 top-1/2
+                          -translate-y-1/2 text-sm text-gray-500"
+                  >
+                    mm
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Top panel -->
+            <div class="border rounded-xl p-4">
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  v-model="form.config_options.fixed_panel_top"
+                  class="accent-brand-orange"
+                />
+
+                <span class="font-medium">
+                  {{ t('door.panels.top') }}
+                </span>
+              </label>
+
+              <div
+                v-if="form.config_options.fixed_panel_top"
+                class="mt-4"
+              >
+                <label class="block text-sm text-gray-700 mb-1">
+                  {{ t('door.panels.height') }}
+                </label>
+
+                <div class="relative">
+                  <input
+                    type="number"
+                    v-model.number="
+                      form.config_options.fixed_panel_top_height
+                    "
+                    min="1"
+                    step="1"
+                    class="w-full rounded-lg border-gray-300 pr-12
+                          focus:border-brand-orange
+                          focus:ring-brand-orange"
+                  />
+
+                  <span
+                    class="absolute right-3 top-1/2
+                          -translate-y-1/2 text-sm text-gray-500"
+                  >
+                    mm
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom panel -->
+            <div class="border rounded-xl p-4">
+              <label class="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  v-model="form.config_options.fixed_panel_bottom"
+                  class="accent-brand-orange"
+                />
+
+                <span class="font-medium">
+                  {{ t('door.panels.bottom') }}
+                </span>
+              </label>
+
+              <div
+                v-if="form.config_options.fixed_panel_bottom"
+                class="mt-4"
+              >
+                <label class="block text-sm text-gray-700 mb-1">
+                  {{ t('door.panels.height') }}
+                </label>
+
+                <div class="relative">
+                  <input
+                    type="number"
+                    v-model.number="
+                      form.config_options.fixed_panel_bottom_height
+                    "
+                    min="1"
+                    step="1"
+                    class="w-full rounded-lg border-gray-300 pr-12
+                          focus:border-brand-orange
+                          focus:ring-brand-orange"
+                  />
+
+                  <span
+                    class="absolute right-3 top-1/2
+                          -translate-y-1/2 text-sm text-gray-500"
+                  >
+                    mm
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- 🔴 Missing note you highlighted -->
-          <p class="text-xs text-gray-500 mt-2">
-            {{ t('door.panels.extra') }}
+          <p class="text-xs text-gray-500 mt-3">
+            {{ t('door.panels.pricingNote') }}
           </p>
         </div>
       </div>
@@ -162,9 +326,6 @@ const installationOptions = [
   { value: 'behind_reveal', image: imgBehind }
 ]
 
-// split columns
-const leftInstallationOptions = installationOptions.slice(0, 2)
-const rightInstallationOptions = installationOptions.slice(2, 4)
 
 // validation
 const isWidthInvalid = computed(() => {

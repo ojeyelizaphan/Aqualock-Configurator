@@ -1,96 +1,191 @@
 // composables/useQuickwallPriceCalculator.js
 import { computed } from 'vue';
+
 import {
   quickwallBetweenReveal,
   quickwallFrontReveal,
-  quickwallWidths
+  quickwallPostPrices,
+  quickwallWidths,
 } from '@/Data/quickwallPrices';
+
+const quickwallAccessoryPrices = {
+  assemblyKit: 136,
+  cornerProfileColourCoating: 89,
+  bottomPlatePerRunningMeter: 73,
+  hook: 11,
+};
 
 export function useQuickwallPriceCalculator(form) {
   const baseCalculatedPrice = computed(() => {
-    const width = form.config_options?.width;
-    const height = form.config_options?.height;
-    const installType = form.config_options?.installation_method; // 'between_reveal' or 'front_reveal'
+    const options = form.config_options ?? {};
 
-    if (!width || !height || !installType) return null;
+    const width = Number(options.width) || 0;
+    const height = Number(options.height) || 0;
+    const installationMethod = options.installation_method;
 
-    const priceTable =
-      installType === 'front_reveal'
-        ? quickwallFrontReveal
-        : quickwallBetweenReveal;
+    if (!width || !height || !installationMethod) {
+      return null;
+    }
+
+    let priceTable;
+
+    if (installationMethod === 'front_reveal') {
+      priceTable = quickwallFrontReveal;
+    } else if (installationMethod === 'between_reveal') {
+      priceTable = quickwallBetweenReveal;
+    } else {
+      return null;
+    }
 
     const heightRow = priceTable[height];
-    if (!heightRow) return null;
+
+    if (!heightRow) {
+      return null;
+    }
 
     const widthIndex = quickwallWidths.indexOf(width);
-    if (widthIndex === -1) return null;
 
-    return heightRow[widthIndex] || null;
+    if (widthIndex === -1) {
+      return null;
+    }
+
+    return heightRow[widthIndex] ?? null;
   });
 
   const multiPanelSystemCost = computed(() => {
-    const panelQty = parseInt(form.config_options?.quickwall_panels || 0);
-    const centerQty = parseInt(form.config_options?.center_posts || 0);
-    const cornerQty = parseInt(form.config_options?.corner_posts || 0);
-    const height = form.config_options?.height;
+    const options = form.config_options ?? {};
 
-    if (!height) return 0;
+    const height = Number(options.height) || 0;
+    const centerPostQuantity = Number.parseInt(
+      options.center_posts ?? 0,
+      10
+    );
+    const cornerPostQuantity = Number.parseInt(
+      options.corner_posts ?? 0,
+      10
+    );
 
-    const heightPriceMap = {
-      1340: 820,
-      1210: 782,
-      1080: 742,
-      950: 718,
-      810: 698,
-      680: 672,
-      550: 661,
-      410: 641,
-      280: 572
-    };
+    const unitPrice = quickwallPostPrices[height] ?? 0;
 
-    const unitPrice = heightPriceMap[height] || 0;
+    if (!unitPrice) {
+      return 0;
+    }
 
-    return unitPrice * (panelQty + centerQty + cornerQty);
+    const validCenterPostQuantity =
+      Number.isFinite(centerPostQuantity) &&
+      centerPostQuantity > 0
+        ? centerPostQuantity
+        : 0;
+
+    const validCornerPostQuantity =
+      Number.isFinite(cornerPostQuantity) &&
+      cornerPostQuantity > 0
+        ? cornerPostQuantity
+        : 0;
+
+    return (
+      unitPrice *
+      (validCenterPostQuantity + validCornerPostQuantity)
+    );
   });
 
   const bottomPlateCost = computed(() => {
-    const panelQty = parseInt(form.config_options?.quickwall_panels || 0);
-    const width = parseInt(form.config_options?.width || 0);
+    const options = form.config_options ?? {};
 
-    if (!panelQty || !width) return 0;
+    const panelQuantity = Number.parseInt(
+      options.quickwall_panels ?? 0,
+      10
+    );
+    const width = Number(options.width) || 0;
+
+    if (
+      !Number.isFinite(panelQuantity) ||
+      panelQuantity <= 0 ||
+      !width
+    ) {
+      return 0;
+    }
 
     const widthInMeters = width / 1000;
 
-    // number of panels × width × €71
-    return panelQty * widthInMeters * 71;
+    return Math.ceil(
+      panelQuantity *
+        widthInMeters *
+        quickwallAccessoryPrices.bottomPlatePerRunningMeter
+    );
   });
 
   const colourCoatingCost = computed(() => {
-    const cornerQty = parseInt(form.config_options?.corner_posts || 0);
+    const options = form.config_options ?? {};
+
     const hasColourCoating =
-      form.config_options?.corner_profiles_coloring === 'with';
+      options.corner_profiles_coloring === 'with';
 
-    if (!hasColourCoating) return 0;
+    if (!hasColourCoating) {
+      return 0;
+    }
 
-    // colour coating applies to the profiles only
-    return cornerQty * 86;
+    const cornerPostQuantity = Number.parseInt(
+      options.corner_posts ?? 0,
+      10
+    );
+
+    if (
+      !Number.isFinite(cornerPostQuantity) ||
+      cornerPostQuantity <= 0
+    ) {
+      return 0;
+    }
+
+    return (
+      cornerPostQuantity *
+      quickwallAccessoryPrices.cornerProfileColourCoating
+    );
   });
 
   const hooksCost = computed(() => {
-    const hookQty = parseInt(
-      form.config_options?.accessory_quantities?.quickwall_hooks || 0
+    const hookQuantity = Number.parseInt(
+      form.config_options?.accessory_quantities
+        ?.quickwall_hooks ?? 0,
+      10
     );
 
-    return hookQty * 11;
+    if (
+      !Number.isFinite(hookQuantity) ||
+      hookQuantity <= 0
+    ) {
+      return 0;
+    }
+
+    return hookQuantity * quickwallAccessoryPrices.hook;
+  });
+
+  const assemblyKitCost = computed(() => {
+    /*
+     * The price list says this is mandatory, so it is added
+     * once after a valid base configuration exists.
+     */
+    return baseCalculatedPrice.value === null
+      ? 0
+      : quickwallAccessoryPrices.assemblyKit;
   });
 
   const accessoryExtraCost = computed(() => {
-    return bottomPlateCost.value + colourCoatingCost.value + hooksCost.value;
+    return (
+      bottomPlateCost.value +
+      colourCoatingCost.value +
+      hooksCost.value +
+      assemblyKitCost.value
+    );
   });
 
   const finalPrice = computed(() => {
+    if (baseCalculatedPrice.value === null) {
+      return null;
+    }
+
     return (
-      (baseCalculatedPrice.value || 0) +
+      baseCalculatedPrice.value +
       multiPanelSystemCost.value +
       accessoryExtraCost.value
     );
@@ -102,7 +197,8 @@ export function useQuickwallPriceCalculator(form) {
     bottomPlateCost,
     colourCoatingCost,
     hooksCost,
+    assemblyKitCost,
     accessoryExtraCost,
-    finalPrice
+    finalPrice,
   };
 }

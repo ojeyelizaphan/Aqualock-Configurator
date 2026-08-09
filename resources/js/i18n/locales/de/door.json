@@ -32,11 +32,14 @@
 
     "panels": {
       "title": "Optionale feste Blenden",
-      "description": "Breitere Türöffnungen können mit festen Blenden ausgeglichen werden, die links, rechts und oberhalb der Tür auf dem Rahmen montiert werden:",
-      "left": "Festes Seitenteil bis 400 mm, links",
-      "right": "Festes Seitenteil bis 400 mm, rechts",
-      "top": "Feste Blende oberhalb der Tür, bis 400 mm",
-      "extra": "Größere Breiten sind auf Anfrage möglich."
+      "description": "Breitere oder höhere Türöffnungen können mit festen Blenden links, rechts, oberhalb oder unterhalb der Tür ausgeglichen werden.",
+      "left": "Festes Seitenteil, links",
+      "right": "Festes Seitenteil, rechts",
+      "top": "Feste Blende oberhalb der Tür",
+      "bottom": "Feste Blende unterhalb der Tür",
+      "width": "Breite der Blende",
+      "height": "Höhe der Blende",
+      "pricingNote": "Blenden bis 400 mm werden zu einem Festpreis berechnet. Blenden ab 401 mm werden nach Fläche berechnet."
     },
 
     "installation": {

@@ -1,170 +1,264 @@
 import { computed } from 'vue';
-import { colorOptions } from '@/Data/colorOptions';
 import { standardColorCodes } from '@/Data/colorOptions';
+import { houseDoorPrices } from '@/Data/houseDoorPrices';
 
 export function useHouseDoorPriceCalculator(form, steps, step) {
-  const basePrices = {
-    thermally_insulated: {
-      small: { V1: 5241, V2: 5390, V3: 5482, V6: 5712 },
-      large: { V1: 5401, V2: 5548, V3: 5641, V6: 5873 }
-    },
-    non_thermally_insulated: {
-      small: { V1: 3908, V2: 4055, V3: 4145, V6: 4380 },
-      large: { V1: 4071, V2: 4218, V3: 4309, V6: 4542 }
+  const nonThermalInstallations = [
+    'infront_reveal',
+    'behind_reveal',
+  ];
+
+  const effectiveInsulation = computed(() => {
+    const options = form.config_options ?? {};
+
+    const selectedInsulation =
+      options.thermal_insulation ||
+      'non_thermally_insulated';
+
+    if (
+      selectedInsulation === 'thermally_insulated' &&
+      nonThermalInstallations.includes(
+        options.installation_type
+      )
+    ) {
+      return 'non_thermally_insulated';
     }
-  };
 
-  const panelExtras = {
-    fixed_panel_left_non_thermal: 541,
-    fixed_panel_right_non_thermal: 541,
-    fixed_panel_left_thermal: 766,
-    fixed_panel_right_thermal: 766
-  };
+    return selectedInsulation;
+  });
 
-  const windowExtras = {
-    non_thermal: 443,
-    thermal: 552
-  };
-
-  const additionalAccessories = {
-    kaba_lock: 92,
-    drip_cap: 303,
-    door_closer: 460,
-    heavy_duty: 1946,
-    drive_plate: {
-      aluminium: 157,
-      stainless: 103
-    },
-    panic_function_e: 398,
-    pushbar: 1121,
-    burglary_protection: {
-      RC2: 234,
-      RC3: 454
-    }
-  };
-
-  const nonThermalInstallations = ['infront_reveal', 'behind_reveal'];
+  const isThermal = computed(
+    () =>
+      effectiveInsulation.value ===
+      'thermally_insulated'
+  );
 
   const baseCalculatedPrice = computed(() => {
-    const options = form.config_options;
-    const insulation = options.thermal_insulation || 'non_thermally_insulated';
+    const options = form.config_options ?? {};
+
+    const doorWidth = Number(options.width) || 0;
+    const doorHeight = Number(options.height) || 0;
     const locking = options.locking_mechanism;
-    const width = Number(options.width) || 0;
-    const installationType = options.installation_type;
 
-    const size = width >= 1101 ? 'large' : 'small';
+    if (!doorWidth || !doorHeight || !locking) {
+      return 0;
+    }
 
-    const effectiveInsulation =
-      insulation === 'thermally_insulated' && nonThermalInstallations.includes(installationType)
-        ? 'non_thermally_insulated'
-        : insulation;
+    const size = doorWidth >= 1101 ? 'large' : 'small';
 
-    const basePrice = basePrices?.[effectiveInsulation]?.[size]?.[locking] ?? 0;
+    const basePrice =
+      houseDoorPrices.base
+        ?.[effectiveInsulation.value]
+        ?.[size]
+        ?.[locking] ?? 0;
 
-    let extras = 0;
-    const isThermal = effectiveInsulation === 'thermally_insulated';
+    const panelPrices = isThermal.value
+      ? houseDoorPrices.panels.thermal
+      : houseDoorPrices.panels.non_thermal;
+
+    const calculateSidePanelPrice = (panelWidth) => {
+      const width = Number(panelWidth) || 0;
+
+      if (!width) {
+        return 0;
+      }
+
+      // Fixed price for side panels up to 400 mm wide.
+      if (width <= 400) {
+        return panelPrices.sideUpTo400;
+      }
+
+      // Panels from 401 mm are priced per square metre.
+      const panelAreaM2 =
+        (width / 1000) * (doorHeight / 1000);
+
+      return Math.ceil(
+        panelAreaM2 * panelPrices.sideOver400PerM2
+      );
+    };
+
+    const calculateTopBottomPanelPrice = (panelHeight) => {
+      const height = Number(panelHeight) || 0;
+
+      if (!height) {
+        return 0;
+      }
+
+      // Fixed price for top/bottom panels up to 400 mm high.
+      if (height <= 400) {
+        return panelPrices.topBottomUpTo400;
+      }
+
+      // Panels from 401 mm are priced per square metre.
+      const panelAreaM2 =
+        (doorWidth / 1000) * (height / 1000);
+
+      return Math.ceil(
+        panelAreaM2 * panelPrices.topBottomOver400PerM2
+      );
+    };
+
+    let panelTotal = 0;
 
     if (options.fixed_panel_left) {
-      extras += isThermal
-        ? panelExtras.fixed_panel_left_thermal
-        : panelExtras.fixed_panel_left_non_thermal;
+      panelTotal += calculateSidePanelPrice(
+        options.fixed_panel_left_width
+      );
     }
 
     if (options.fixed_panel_right) {
-      extras += isThermal
-        ? panelExtras.fixed_panel_right_thermal
-        : panelExtras.fixed_panel_right_non_thermal;
+      panelTotal += calculateSidePanelPrice(
+        options.fixed_panel_right_width
+      );
     }
 
-    return basePrice + extras;
+    if (options.fixed_panel_top) {
+      panelTotal += calculateTopBottomPanelPrice(
+        options.fixed_panel_top_height
+      );
+    }
+
+    if (options.fixed_panel_bottom) {
+      panelTotal += calculateTopBottomPanelPrice(
+        options.fixed_panel_bottom_height
+      );
+    }
+
+    return basePrice + panelTotal;
   });
 
   const colorExtraCost = computed(() => {
-    const color = form.config_options?.color;
-    const selectedWidth = Number(form.config_options?.width || 0);
-    const selectedHeight = Number(form.config_options?.height || 0);
+    const options = form.config_options ?? {};
 
-    if (!color || !selectedWidth || !selectedHeight) return 0;
+    const color = options.color;
+    const selectedWidth = Number(options.width) || 0;
+    const selectedHeight = Number(options.height) || 0;
 
-    const isStandard = standardColorCodes.includes(color);
+    if (!color || !selectedWidth || !selectedHeight) {
+      return 0;
+    }
 
-    if (isStandard) return 0;
+    if (standardColorCodes.includes(color)) {
+      return 0;
+    }
 
-    const squareMeters = (selectedWidth / 1000) * (selectedHeight / 1000);
+    const squareMeters =
+      (selectedWidth / 1000) *
+      (selectedHeight / 1000);
 
-    return Math.ceil(squareMeters * 78);
+    return Math.ceil(
+      squareMeters *
+      houseDoorPrices.customColorPerM2
+    );
   });
 
   const accessoryExtraCost = computed(() => {
-    const options = form.config_options;
+    const options = form.config_options ?? {};
     let total = 0;
 
     const width = Number(options.width) || 0;
-    const rmt = width / 1000;
+    const runningMeters = width / 1000;
 
-    if (options.heavy_duty) total += additionalAccessories.heavy_duty;
-    if (options.drip_cap) total += additionalAccessories.drip_cap;
-    if (options.door_closer) total += additionalAccessories.door_closer;
-
-    if (options.drive_plate && additionalAccessories.drive_plate[options.drive_plate]) {
-      total += Math.ceil(rmt * additionalAccessories.drive_plate[options.drive_plate]);
+    if (options.heavy_duty) {
+      total +=
+        houseDoorPrices.accessories.heavyDuty;
     }
 
-    if (options.panic_features?.includes('panic_function_e')) {
-      total += additionalAccessories.panic_function_e;
+    if (options.drip_cap) {
+      total += houseDoorPrices.accessories.dripCap;
     }
 
-    if (options.panic_features?.includes('pushbar')) {
-      total += additionalAccessories.pushbar;
+    if (options.door_closer) {
+      total +=
+        houseDoorPrices.accessories.doorCloser;
+    }
+
+    const drivePlateRate =
+      houseDoorPrices.accessories.drivePlatePerRmt[
+        options.drive_plate
+      ];
+
+    if (drivePlateRate) {
+      total += Math.ceil(
+        runningMeters * drivePlateRate
+      );
+    }
+
+    if (
+      options.panic_features?.includes(
+        'panic_function_e'
+      )
+    ) {
+      total +=
+        houseDoorPrices.accessories.panicFunctionE;
+    }
+
+    if (
+      options.panic_features?.includes('pushbar')
+    ) {
+      total += houseDoorPrices.accessories.pushbar;
     }
 
     const locking = options.locking_mechanism;
+    const burglaryProtection =
+      options.burglary_protection;
+
     if (
       ['V1', 'V2'].includes(locking) &&
-      options.burglary_protection &&
-      additionalAccessories.burglary_protection[options.burglary_protection]
+      burglaryProtection
     ) {
-      total += additionalAccessories.burglary_protection[options.burglary_protection];
+      total +=
+        houseDoorPrices.accessories
+          .burglaryProtection[burglaryProtection] ?? 0;
     }
 
     if (options.window_type === 'with') {
-      const isThermal = options.thermal_insulation === 'thermally_insulated';
-
-      total += isThermal
-        ? windowExtras.thermal
-        : windowExtras.non_thermal;
+      total += isThermal.value
+        ? houseDoorPrices.windows.thermal
+        : houseDoorPrices.windows.non_thermal;
     }
 
-    const accessoriesStepIndex = steps.value?.findIndex?.(
-      stepObj => stepObj.name === 'Accessories'
-    );
+    const accessoriesStepIndex =
+      steps.value?.findIndex?.(
+        (stepObject) =>
+          stepObject.name === 'Accessories'
+      ) ?? -1;
 
-    if (step.value > (accessoriesStepIndex ?? -1) + 1) {
-      total += 398; // Assembly kit with sealing
+    /*
+     * Retains your current timing:
+     * add the mandatory kit after Accessories.
+     */
+    if (step.value > accessoriesStepIndex + 1) {
+      total +=
+        houseDoorPrices.accessories.assemblyKit;
     }
 
     return total;
   });
 
   const fittingExtraCost = computed(() => {
-    const options = form.config_options;
-    let total = 0;
-
+    const options = form.config_options ?? {};
     const version = options.locking_mechanism;
 
-    if (version === 'V1') {
-      total += 199;
-    }
+    let total = 0;
 
-    if (version === 'V2' || version === 'V6') {
-      total += 401;
+    const standardFittingPrice =
+      houseDoorPrices.fittings[version] ?? 0;
 
-      if (options.knob_type === 'aluminium') total += 116;
-      if (options.knob_type === 'stainless') total += 312;
+    total += standardFittingPrice;
+
+    if (['V2', 'V6'].includes(version)) {
+      const knobPrice =
+        houseDoorPrices.fittings.knob[
+          options.knob_type
+        ] ?? 0;
+
+      total += knobPrice;
     }
 
     if (options.kaba_upgrade) {
-      total += 92;
+      total +=
+        houseDoorPrices.fittings.kabaUpgrade;
     }
 
     return total;
@@ -180,9 +274,11 @@ export function useHouseDoorPriceCalculator(form, steps, step) {
   });
 
   return {
+    effectiveInsulation,
     baseCalculatedPrice,
     colorExtraCost,
     accessoryExtraCost,
-    finalPrice
+    fittingExtraCost,
+    finalPrice,
   };
 }
