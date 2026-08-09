@@ -156,129 +156,201 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
+
 import img1 from '@/Assets/8-Windows Protector/Step-1/windows-1a.jpg';
 import img2 from '@/Assets/8-Windows Protector/Step-1/windows-1b.jpg';
+
 import {
-  windowPricesWithHatch,
-  windowPricesWithoutHatch
+  windowProtectorWidths,
+  windowPricesWithRemovableHatch,
+  windowPricesWithTiltUpHatch,
+  windowPricesWithoutHatch,
 } from '@/Data/windowsProtectorPrices';
 
 const { t } = useI18n();
 
 const props = defineProps({
-  form: Object
+  form: {
+    type: Object,
+    required: true,
+  },
 });
 
-// -------------------
-// CONSTANTS
-// -------------------
-const min = 400;
-const max = 1800;
-const stepSize = 100;
+const form = props.form;
 
-// -------------------
-// INPUT (OPENING SIZE)
-// -------------------
+if (!form.config_options) {
+  form.config_options = {};
+}
+
 const enteredWidth = ref(
-  props.form.config_options.entered_width ||
-  props.form.config_options.width ||
+  form.config_options.entered_width ??
+  form.config_options.width ??
   ''
 );
 
 const enteredHeight = ref(
-  props.form.config_options.entered_height ||
-  props.form.config_options.height ||
+  form.config_options.entered_height ??
+  form.config_options.height ??
   ''
 );
 
-// -------------------
-// GRID MAPPING
-// -------------------
-const mappedWidth = computed(() => {
-  const val = Number(enteredWidth.value);
-  if (!val || val < min || val > max) return null;
-  return Math.floor((val - min) / stepSize) * stepSize + min;
+/*
+ * Select the appropriate 2026 base-price matrix.
+ *
+ * Matrix structure:
+ * selectedPriceTable[height][widthIndex]
+ */
+const selectedPriceTable = computed(() => {
+  const hatchType =
+    form.config_options.hatch_type ?? 'none';
+
+  if (hatchType === 'removable') {
+    return windowPricesWithRemovableHatch;
+  }
+
+  if (hatchType === 'tilt-up') {
+    return windowPricesWithTiltUpHatch;
+  }
+
+  return windowPricesWithoutHatch;
 });
 
-const mappedHeight = computed(() => {
-  const val = Number(enteredHeight.value);
-  if (!val || val < min || val > max) return null;
-  return Math.floor((val - min) / stepSize) * stepSize + min;
+const normalizedEnteredWidth = computed(() => {
+  const width = Number(enteredWidth.value);
+
+  return Number.isFinite(width) ? width : 0;
 });
 
-// -------------------
-// INSTALLATION
-// -------------------
-const installationMethod = computed(() =>
-  props.form.config_options.installation_method || 'on_window_frame'
-);
+const normalizedEnteredHeight = computed(() => {
+  const height = Number(enteredHeight.value);
 
-// -------------------
-// PRODUCT SIZE
-// -------------------
-const productWidth = computed(() => {
-  if (!mappedWidth.value) return null;
-  return installationMethod.value === 'on_opening_wall'
-    ? mappedWidth.value + 100
-    : mappedWidth.value;
+  return Number.isFinite(height) ? height : 0;
 });
 
-const productHeight = computed(() => {
-  if (!mappedHeight.value) return null;
-  return installationMethod.value === 'on_opening_wall'
-    ? mappedHeight.value + 100
-    : mappedHeight.value;
-});
-
-// -------------------
-// VALIDATION
-// -------------------
-const isInRange = computed(() =>
-  !!mappedWidth.value && !!mappedHeight.value
-);
-
-const isManufacturable = computed(() => {
-  const w = productWidth.value;
-  const h = productHeight.value;
-
-  if (!w || !h) return false;
-
+const isInRange = computed(() => {
   return (
-    windowPricesWithHatch?.[h]?.[w] != null ||
-    windowPricesWithoutHatch?.[h]?.[w] != null
+    normalizedEnteredWidth.value >= 400 &&
+    normalizedEnteredWidth.value <= 1800 &&
+    normalizedEnteredHeight.value >= 400 &&
+    normalizedEnteredHeight.value <= 1800
   );
 });
 
-// -------------------
-// SYNC FORM
-// -------------------
-watch(enteredWidth, (val) => {
-  props.form.config_options.entered_width = val ? Number(val) : null;
+/*
+ * Find the next table dimension that can accommodate
+ * the customer's entered measurement.
+ */
+function findNextAvailableDimension(value, dimensions) {
+  return dimensions.find(
+    dimension => dimension >= value
+  ) ?? null;
+}
+
+const availableHeights = computed(() => {
+  return Object.keys(selectedPriceTable.value)
+    .map(Number)
+    .sort((a, b) => a - b);
 });
 
-watch(enteredHeight, (val) => {
-  props.form.config_options.entered_height = val ? Number(val) : null;
+const productHeight = computed(() => {
+  if (!isInRange.value) {
+    return null;
+  }
+
+  return findNextAvailableDimension(
+    normalizedEnteredHeight.value,
+    availableHeights.value
+  );
+});
+
+const productWidth = computed(() => {
+  if (!isInRange.value || !productHeight.value) {
+    return null;
+  }
+
+  const heightRow =
+    selectedPriceTable.value[productHeight.value];
+
+  if (!heightRow) {
+    return null;
+  }
+
+  /*
+   * Shorter price rows mean the larger widths are
+   * unavailable for that height and hatch type.
+   */
+  const widthsAvailableAtHeight =
+    windowProtectorWidths.slice(
+      0,
+      heightRow.length
+    );
+
+  return findNextAvailableDimension(
+    normalizedEnteredWidth.value,
+    widthsAvailableAtHeight
+  );
+});
+
+const selectedBasePrice = computed(() => {
+  if (!productWidth.value || !productHeight.value) {
+    return null;
+  }
+
+  const heightRow =
+    selectedPriceTable.value[productHeight.value];
+
+  if (!heightRow) {
+    return null;
+  }
+
+  const widthIndex = windowProtectorWidths.indexOf(
+    productWidth.value
+  );
+
+  if (widthIndex === -1) {
+    return null;
+  }
+
+  return heightRow[widthIndex] ?? null;
+});
+
+const isManufacturable = computed(() => {
+  return selectedBasePrice.value !== null;
 });
 
 watch(
-  [productWidth, productHeight, installationMethod],
+  [
+    enteredWidth,
+    enteredHeight,
+    selectedPriceTable,
+  ],
   () => {
-    if (!productWidth.value || !productHeight.value) {
-      props.form.config_options.width = null;
-      props.form.config_options.height = null;
+    form.config_options.entered_width =
+      normalizedEnteredWidth.value || null;
+
+    form.config_options.entered_height =
+      normalizedEnteredHeight.value || null;
+
+    if (
+      !isInRange.value ||
+      !isManufacturable.value
+    ) {
+      form.config_options.width = null;
+      form.config_options.height = null;
       return;
     }
 
-    if (isManufacturable.value) {
-      props.form.config_options.width = productWidth.value;
-      props.form.config_options.height = productHeight.value;
-    } else {
-      props.form.config_options.width = null;
-      props.form.config_options.height = null;
-    }
+    /*
+     * These are the rounded-up dimensions used by
+     * the price calculator.
+     */
+    form.config_options.width = productWidth.value;
+    form.config_options.height = productHeight.value;
   },
-  { immediate: true }
+  {
+    immediate: true,
+  }
 );
 </script>

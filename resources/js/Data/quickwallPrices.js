@@ -5,6 +5,22 @@ export const quickwallWidths = [
   2600, 2700, 2800, 2900, 3000,
 ];
 
+
+export const quickwallHeights = [
+  280,
+  410,
+  550,
+  680,
+  810,
+  950,
+  1080,
+  1210,
+  1340,
+  1470,
+  1600,
+];
+
+
 export const quickwallBetweenReveal = {
   280: [
     619, 672, 725, 741, 757, 774,
