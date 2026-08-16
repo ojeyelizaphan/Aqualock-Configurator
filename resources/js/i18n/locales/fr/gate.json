@@ -1,0 +1,139 @@
+{
+  "step1": {
+    "title": "Choix des dimensions et de la hauteur de protection",
+    "description": "Le portail AquaLOCK® offre une protection fiable jusqu’à une largeur maximale de 5 000 mm et une hauteur de protection maximale de 1 200 mm.",
+    "pricePerPiece": "{price} € / pièce",
+    "included": {
+      "title": "Inclus d’office",
+      "description": "Le kit de montage avec produit d’étanchéité est obligatoire et est automatiquement ajouté au prix total.",
+      "item": "Kit de montage avec produit d’étanchéité",
+      "auto": "Inclus automatiquement en fonction de la largeur du portail",
+      "breakdownTitle": "Inclus d’office en fonction de la largeur du portail :",
+      "upTo1500": "Largeur jusqu’à 1 500 mm : 131 €",
+      "upTo5000": "Largeur de 1 501 à 5 000 mm : 189 €",
+      "industrial": "Version industrielle : 294 €"
+    },
+    "upperDesign": {
+      "title": "Options d’aménagement de la partie supérieure",
+      "lattice": "Barreaux ronds ou carrés",
+      "wood": "Habillage en bois"
+    },
+    "size": {
+      "title": "Dimensions du portail",
+      "width": "Largeur souhaitée (800 à 5 000 mm)",
+      "height": "Hauteur de protection souhaitée (500 à 1 200 mm)",
+      "totalHeight": "Hauteur totale souhaitée du portail (jusqu’à 2 000 mm)"
+    },
+    "validation": "Veuillez saisir une largeur valide comprise entre 800 et 5 000 mm, une hauteur de protection comprise entre 500 et 1 200 mm et une hauteur totale maximale de 2 000 mm. La hauteur totale doit être supérieure ou égale à la hauteur de protection.",
+    "images": {
+      "wood": "Portail avec habillage en bois (prix sur demande)",
+      "access": "Portail piéton ouvrant vers l’extérieur",
+      "diagram": "Hauteur maximale de protection : 1 200 mm"
+    }
+  },
+  "step2": {
+    "title": "Configuration du portail",
+    "opening": {
+      "title": "Sens d’ouverture",
+      "description": "Le portail AquaLOCK® peut s’ouvrir vers l’intérieur ou vers l’extérieur. Dans la version ouvrant vers l’intérieur, les dispositifs de verrouillage doivent reprendre la pression de l’eau. Dans la version ouvrant vers l’extérieur, ils maintiennent le portail fermé.",
+      "subtitle": "Sens et angle d’ouverture",
+      "left_in_95": "DIN gauche – ouverture vers l’intérieur – 95°",
+      "left_in_180": "DIN gauche – ouverture vers l’intérieur – 180°",
+      "left_out_95": "DIN gauche – ouverture vers l’extérieur – 95°",
+      "left_out_180": "DIN gauche – ouverture vers l’extérieur – 180°",
+      "right_in_95": "DIN droite – ouverture vers l’intérieur – 95°",
+      "right_in_180": "DIN droite – ouverture vers l’intérieur – 180°",
+      "right_out_95": "DIN droite – ouverture vers l’extérieur – 95°",
+      "right_out_180": "DIN droite – ouverture vers l’extérieur – 180°"
+    },
+    "installation": {
+      "title": "Type d’installation",
+      "description": "Le portail peut être installé devant, derrière ou dans l’ouverture. Si vous ne savez pas quel type d’installation convient à votre bâtiment, aucun problème : cette question sera déterminée sur place par un installateur expérimenté.",
+      "behind": "Derrière l’ouverture",
+      "between": "Dans l’ouverture",
+      "front": "Devant l’ouverture"
+    },
+    "images": {
+      "inward": "Portail ouvrant vers l’intérieur à 95°",
+      "outward": "Portail ouvrant vers l’extérieur à 180°"
+    }
+  },
+  "step3": {
+    "title": "Couleur, matériau et ferrures du portail",
+    "color": {
+      "title": "Choisir une couleur",
+      "description": "Pour que votre portail AquaLOCK® s’intègre parfaitement à votre bâtiment, vous avez le choix parmi 216 couleurs RAL. Parmi celles-ci, sept couleurs standard, à savoir le blanc et six nuances de gris, sont disponibles sans supplément.",
+      "note": "Attention : les couleurs affichées sur le site Internet peuvent différer des couleurs réelles en raison des paramètres d’affichage de votre écran. Toutes les indications sont donc fournies sans garantie.",
+      "standard": "Cette couleur standard est disponible sans supplément.",
+      "custom": "La couleur sélectionnée n’est pas une couleur RAL standard et entraîne un supplément de €{price}."
+    },
+    "fittings": {
+      "title": "Ferrures du portail",
+      "description": "Souhaitez-vous équiper votre portail d’une poignée ? Choisissez l’une des options suivantes. En l’absence de sélection, le portail est livré sans serrure ni poignée.",
+      "aluminum_both": "Ensemble de poignées intérieur et extérieur – aluminium F1",
+      "stainless_both": "Ensemble de poignées intérieur et extérieur – acier inoxydable",
+      "aluminum_inside": "Poignée intérieure uniquement – aluminium F1",
+      "stainless_inside": "Poignée intérieure uniquement – acier inoxydable",
+      "aluminum_knob": "Poignée intérieure avec bouton fixe extérieur – aluminium F1",
+      "stainless_knob": "Poignée intérieure avec bouton fixe extérieur – acier inoxydable"
+    }
+  },
+  "step4": {
+    "title": "Système de verrouillage et accessoires",
+    "centralLocking": {
+      "title": "Verrouillage centralisé",
+      "note": "Uniquement pour les portails ouvrant vers l’intérieur, avec commande depuis l’intérieur",
+      "description": "Le verrouillage centralisé permet de commander tous les verrous individuels à l’aide d’un levier central.",
+      "with": {
+        "label": "Avec verrouillage centralisé",
+        "description": "Tous les verrous sont commandés à l’aide d’un levier central",
+        "price": "+ 547 €"
+      },
+      "without": {
+        "label": "Sans verrouillage centralisé",
+        "description": "Tous les verrous doivent être actionnés individuellement",
+        "price": ""
+      }
+    },
+    "accessories": {
+      "title": "Accessoires",
+      "optional": "Accessoires en option",
+      "gateStop": {
+        "label": "Arrêt de portail",
+        "description": "Permet de maintenir le vantail du portail contre le mur et d’empêcher toute ouverture involontaire",
+        "price": "+ 160 €"
+      },
+      "electricDoorOpener": {
+        "label": "Motorisation électrique du portail",
+        "description": "Motorisation électrique avec réglages jour et nuit",
+        "price": "+ 312 €"
+      },
+      "padlockPreparation": {
+        "label": "Préparation pour cadenas",
+        "description": "Préparé pour l’utilisation d’un cadenas (cadenas non inclus)",
+        "price": "+ 88 €"
+      },
+      "durchgriff": {
+        "label": "Poignée de passage avec verrouillage centralisé",
+        "description": "Permet l’ouverture du portail depuis l’extérieur. Disponible uniquement pour les portails ouvrant vers l’intérieur et équipés d’un verrouillage centralisé.",
+        "price": "+ 700 €"
+      },
+      "slopingBottom": {
+        "label": "Bord inférieur incliné",
+        "description": "Inclinaison de la partie inférieure du portail, avec le côté des charnières situé au point le plus bas du terrain",
+        "price": "+ 975 €"
+      }
+    },
+    "lattice": {
+      "title": "Barreaux",
+      "round_extruded": "Barreaux ronds extrudés",
+      "angular_extruded": "Barreaux carrés extrudés",
+      "round_forged": "Barreaux ronds forgés",
+      "angular_forged": "Barreaux carrés forgés",
+      "wood_paneling": "Habillage en bois",
+      "included": "Prix sur demande",
+      "unit": "{price} € / m²"
+    },
+    "imageCaption": "Portail avec poignée de passage et verrouillage centralisé, permettant une ouverture depuis l’extérieur"
+  }
+}

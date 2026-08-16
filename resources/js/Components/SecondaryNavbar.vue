@@ -257,6 +257,16 @@
             >
               🇩🇪 DE
             </button>
+
+            <button
+              @click="setLocale('fr')"
+              class="text-white hover:text-orange-100 transition-colors"
+              title="Français"
+              :class="{ 'font-bold underline': locale === 'fr' }"
+            >
+              🇫🇷 FR
+            </button>
+            
           </div>
 
           <!-- YouTube -->

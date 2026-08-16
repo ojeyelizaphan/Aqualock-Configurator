@@ -1,0 +1,167 @@
+{
+  "locking": {
+    "title": "Choix du système de verrouillage",
+    "description": "Selon les contraintes de votre bâtiment et vos besoins spécifiques, nous proposons quatre variantes de verrouillage pour votre porte AquaLOCK®. À l’exception de la version V2, dont la hauteur de protection atteint la poignée avec un maximum de 1 600 mm, toutes les variantes offrent une protection contre les inondations jusqu’à 5 000 mm.",
+    "options": {
+      "V1": "Extérieur : aucune ferrure de porte et aucun cylindre de serrure. Intérieur : cylindre de serrure, poignée de porte et crémone.",
+      "V2": "Extérieur : cylindre de serrure et poignée de porte. Intérieur : cylindre de serrure, poignée de porte et crémone.",
+      "V3": "Extérieur : cylindre de serrure avec cache étanche et bouton fixe. Intérieur : cylindre de serrure, poignée de porte et crémone.",
+      "V6": "Extérieur : cylindre de serrure, bouton fixe et crémone. Intérieur : cylindre de serrure, poignée de porte et crémone."
+    },
+    "details": {
+      "V1": "<strong>Protection contre l’effraction :</strong> RC1N, RC2 ou RC3 possible<br><strong>Vitrage :</strong> non disponible",
+      "V2": "<strong>Protection contre l’effraction :</strong> RC1N, RC2 ou RC3 possible<br><strong>Vitrage :</strong> possible uniquement avec la classe RC1N ; la crémone est visible depuis l’extérieur",
+      "V3": "<strong>Protection contre l’effraction :</strong> RC1N uniquement<br><strong>Vitrage :</strong> non disponible",
+      "V6": "<strong>Protection contre l’effraction :</strong> RC1N uniquement<br><strong>Vitrage :</strong> disponible ; la crémone est visible depuis l’extérieur"
+    }
+  },
+  "dimensions": {
+    "title": "Dimensions de la porte",
+    "description": "Veuillez respecter les dimensions autorisées de la porte :<br>Largeur : entre 500 et 1 210 mm<br>Hauteur : entre 1 200 et 2 300 mm",
+    "width": "Largeur (mm)",
+    "height": "Hauteur (mm)",
+    "widthPlaceholder": "500 - 1210",
+    "heightPlaceholder": "1200 - 2300",
+    "widthError": "La largeur doit être comprise entre 500 et 1 210 mm.",
+    "heightError": "La hauteur doit être comprise entre 1 200 et 2 300 mm.",
+    "extra": "Des largeurs supérieures sont disponibles sur demande."
+  },
+  "panels": {
+    "title": "Parties fixes en option",
+    "description": "Les ouvertures de porte plus larges ou plus hautes peuvent être compensées par des parties fixes montées à gauche, à droite, au-dessus ou au-dessous de la porte.",
+    "left": "Partie fixe latérale gauche",
+    "right": "Partie fixe latérale droite",
+    "top": "Partie fixe supérieure",
+    "bottom": "Partie fixe inférieure",
+    "width": "Largeur de la partie fixe",
+    "height": "Hauteur de la partie fixe",
+    "pricingNote": "Les parties fixes jusqu’à 400 mm sont facturées à un prix forfaitaire. Les parties fixes de 401 mm ou plus sont calculées en fonction de leur surface."
+  },
+  "installation": {
+    "title": "Type d’installation",
+    "description": "Si vous ne savez pas quel type d’installation convient à votre bâtiment, aucun problème : cette question sera déterminée sur place par un installateur expérimenté.<br><strong>Attention :</strong> selon le type d’installation, les portes à rupture de pont thermique ne sont pas toujours réalisables.",
+    "options": {
+      "between_reveal": {
+        "label": "Dans l’ouverture",
+        "desc": "Rupture de pont thermique possible"
+      },
+      "infront_reveal": {
+        "label": "Devant l’ouverture",
+        "desc": "Disponible uniquement sans rupture de pont thermique. Jet d’eau obligatoire !"
+      },
+      "interior_flush": {
+        "label": "Affleurant côté intérieur",
+        "desc": "Rupture de pont thermique possible"
+      },
+      "behind_reveal": {
+        "label": "Derrière l’ouverture",
+        "desc": "Disponible uniquement sans rupture de pont thermique"
+      }
+    }
+  },
+  "included": {
+    "title": "Inclus d’office",
+    "description": "Pour cette configuration de porte AquaLOCK®, le kit de montage est obligatoirement inclus et ajouté automatiquement.",
+    "item": "Kit de montage avec produit d’étanchéité",
+    "note": "Aucune sélection nécessaire – toujours inclus.",
+    "price": "398 € / pièce"
+  },
+  "insulation": {
+    "title": "Isolation thermique",
+    "description": "Portes AquaLOCK® à rupture de pont thermique – une protection efficace contre le froid et la chaleur.<br><br>La réglementation allemande sur la performance énergétique exige une valeur Ud maximale de 1,8 W/m²K pour les portes d’entrée.<br><br>Les portes AquaLOCK® à rupture de pont thermique atteignent une valeur Ud de 1,5 W/m²K, conservant efficacement la chaleur à l’intérieur tout en empêchant le froid d’y pénétrer.<br><br>Les portes sans rupture de pont thermique sont recommandées pour les accès secondaires, tels que les caves ou les garages.",
+    "options": {
+      "thermally_insulated": {
+        "label": "Porte à rupture de pont thermique",
+        "desc": ""
+      },
+      "non_thermally_insulated": {
+        "label": "Porte sans rupture de pont thermique",
+        "desc": ""
+      }
+    }
+  },
+  "windows": {
+    "title": "Fenêtre",
+    "description": "Une fenêtre fixe non ouvrante, d’une dimension maximale de 650 × 450 mm, peut être intégrée dans la partie supérieure de la porte.<br><br>• Portes à rupture de pont thermique → triple vitrage<br>• Portes sans rupture de pont thermique → double vitrage",
+    "warning": "Les fenêtres ne sont pas étanches aux inondations et ne conviennent donc pas aux portes nécessitant une protection contre les inondations sur toute leur hauteur.",
+    "without": "Sans fenêtre",
+    "with": "Avec fenêtre",
+    "samePrice": "Disponible en trois finitions, toutes proposées au même prix.",
+    "v3Warning": "Les fenêtres ne sont pas disponibles pour la version V3.",
+    "versionTitle": "Choisir le type de vitrage",
+    "versions": {
+      "clear": {
+        "label": "Verre transparent",
+        "desc": "Verre clair et transparent"
+      },
+      "mastercarree": {
+        "label": "Mastercarré",
+        "desc": "Surface texturée"
+      },
+      "satinato": {
+        "label": "Satinato (verre dépoli)",
+        "desc": "Surface satinée à finition mate"
+      }
+    }
+  },
+  "flood": {
+    "title": "Protection contre les inondations",
+    "description": "La version renforcée offre une protection contre les inondations jusqu’à une hauteur d’eau de 5 m.",
+    "option": "Version renforcée avec une hauteur de protection contre les inondations allant jusqu’à 5 m",
+    "note": "Non disponible pour les portes équipées d’une fenêtre.",
+    "disabledNote": "La protection contre les inondations n’est pas disponible pour les portes équipées d’une fenêtre."
+  },
+  "colors": {
+    "title": "Un large choix de couleurs",
+    "description": "Pour que votre porte AquaLOCK® s’intègre parfaitement à votre bâtiment, vous avez le choix parmi 216 couleurs RAL.<br>Sept couleurs standard, à savoir le blanc, le noir et plusieurs nuances de gris, sont disponibles sans supplément.<br><br>Attention : les couleurs affichées sur le site Internet peuvent différer des couleurs réelles en raison des paramètres d’affichage de votre écran. Toutes les indications sont donc fournies sans garantie.",
+    "standard": "Cette couleur standard est disponible sans supplément.",
+    "extra": "La couleur sélectionnée n’est pas une couleur RAL standard et entraîne un supplément de €{price}."
+  },
+  "fittings": {
+    "title": "Ferrures de porte",
+    "description": "Les ferrures disponibles dépendent du système de verrouillage sélectionné précédemment.",
+    "selected": "Système de verrouillage sélectionné",
+    "notSelected": "Non sélectionné",
+    "knobTitle": "Type de poignée",
+    "knob": {
+      "none": "-- Aucune poignée --",
+      "aluminium": "Bouton fixe en aluminium",
+      "stainless": "Bouton fixe en acier inoxydable"
+    },
+    "kaba": "Version KABA avec supplément (+92 €)"
+  },
+  "accessories": {
+    "title": "Choisir les accessoires",
+    "panic": {
+      "title": "Fonctions anti-panique",
+      "options": {
+        "panic_function_e": {
+          "label": "Serrure anti-panique – Fonction E",
+          "desc": "Pour les portes équipées d’un bouton fixe côté extérieur. Depuis l’extérieur, la porte ne peut être ouverte avec la clé que lorsque la crémone est déverrouillée."
+        },
+        "pushbar": {
+          "label": "Barre anti-panique",
+          "desc": "Permet une évacuation rapide du bâtiment grâce à une barre installée sur la face intérieure de la porte."
+        }
+      }
+    },
+    "drip": {
+      "title": "Profil de protection contre la pluie",
+      "option": "Profil de protection contre la pluie monté sur la partie supérieure du cadre"
+    },
+    "burglary": {
+      "title": "Protection contre l’effraction",
+      "restriction": "Les classes RC2 et RC3 sont disponibles uniquement pour les versions V1 et V2 sans fenêtre."
+    },
+    "drive": {
+      "title": "Plaque de franchissement",
+      "none": "Aucune",
+      "aluminium": "Aluminium 2 mm",
+      "stainless": "Acier inoxydable 2 mm"
+    },
+    "closer": {
+      "title": "Ferme-porte",
+      "option": "Ajouter un ferme-porte GEZE 5000"
+    }
+  }
+}

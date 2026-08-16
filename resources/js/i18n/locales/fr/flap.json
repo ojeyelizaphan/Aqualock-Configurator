@@ -1,0 +1,67 @@
+{
+  "step1": {
+    "title": "Dimensions et matériau",
+    "included": {
+      "title": "Inclus d’office",
+      "description": "Le kit de montage avec produit d’étanchéité est une option standard et est automatiquement ajouté au prix total.",
+      "item": "Kit de montage avec produit d’étanchéité",
+      "note": "Option standard – incluse automatiquement.",
+      "price": "131 € / pièce"
+    },
+    "dimensions": {
+      "title": "Dimensions de la trappe",
+      "description": {
+        "beforeProduct": "Veuillez noter que les dimensions maximales de l’ouverture murale pour la",
+        "product": "trappe AquaLOCK®",
+        "middle": "sont de",
+        "size": "1 100 × 1 100 mm"
+      },
+      "widthLabel": "Largeur de l’ouverture murale :",
+      "widthRange": "Entre 600 et 1 100 mm",
+      "heightLabel": "Hauteur de l’ouverture murale :",
+      "heightRange": "Entre 600 et 1 100 mm"
+    },
+    "inputs": {
+      "width": "Largeur (mm)",
+      "height": "Hauteur (mm)"
+    },
+    "validation": "Veuillez saisir une largeur et une hauteur valides comprises entre 600 et 1 100 mm.",
+    "material": {
+      "title": "Matériau",
+      "description": "En règle générale, l’acier galvanisé offre une protection anticorrosion suffisante. Toutefois, si la trappe est susceptible d’être en contact avec de l’eau salée ou du chlore, nous recommandons une fabrication en acier inoxydable.",
+      "galvanized": "Acier galvanisé",
+      "stainless": "Acier inoxydable"
+    }
+  },
+  "step2": {
+    "title": "Couleur, sens d’ouverture et habillage",
+    "color": {
+      "title": "Choix de la couleur",
+      "description": {
+        "beforeProduct": "Pour personnaliser la couleur de votre",
+        "product": "trappe AquaLOCK®",
+        "middle": "vous pouvez choisir parmi",
+        "ralColors": "216 couleurs RAL"
+      },
+      "freeColors": "Sept couleurs standard, à savoir le blanc et six nuances de gris, sont disponibles sans supplément.",
+      "note": "Attention : les couleurs affichées sur le site Internet peuvent différer des couleurs réelles en raison des paramètres d’affichage de votre écran. Toutes les indications sont donc fournies sans garantie."
+    },
+    "opening": {
+      "title": "Sens d’ouverture",
+      "description": "La trappe AquaLOCK® est toujours livrée avec des paumelles et peut être installée verticalement ou horizontalement.",
+      "left": "Ouverture à gauche vers l’intérieur",
+      "right": "Ouverture à droite vers l’intérieur",
+      "top": "Ouverture vers le haut"
+    },
+    "closing": {
+      "title": "Dispositif de verrouillage",
+      "lockable": "Trappe verrouillable (prééquipée pour poser un cadenas)",
+      "nonLockable": "Trappe non verrouillable"
+    },
+    "cladding": {
+      "title": "Habillage intérieur",
+      "with": "Avec tôle en aluminium de 2 mm",
+      "without": "Sans tôle en aluminium"
+    }
+  }
+}

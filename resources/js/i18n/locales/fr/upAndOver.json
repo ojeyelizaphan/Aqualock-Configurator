@@ -1,0 +1,140 @@
+{
+  "protection": {
+    "title": "Choisir la hauteur de protection contre les eaux",
+    "intro": {
+      "p1": "En cas de fortes pluies, une très grande quantité d’eau peut s’accumuler sur votre terrain en très peu de temps, mais le niveau d’eau dépasse rarement un demi-mètre. La situation est différente si votre garage est situé en sous-sol : la rampe d’accès agit comme un entonnoir et peut rapidement se remplir d’eau bien au-delà de 500 mm. La pression exercée dans ce cas ne peut être supportée durablement que par une porte de garage renforcée.",
+      "p2": "Selon la hauteur de la porte, les portes de garage basculantes AquaLOCK® peuvent garantir une protection contre les inondations allant jusqu’à 1 600 mm. Pour les portes d’une largeur comprise entre 3 100 mm et 5 200 mm, nous recommandons la version V500, dont la hauteur de protection est limitée à 500 mm."
+    },
+    "note500": "Pour les portes d’une largeur supérieure à 3 100 mm, les verrouillages manuels doivent être enclenchés afin de garantir une protection optimale. La largeur maximale est de 5 200 mm.",
+    "options": {
+      "upTo500": {
+        "label": "Hauteur de protection jusqu’à 500 mm",
+        "description": "Des dispositifs de verrouillage manuels complètent la pression de fonctionnement afin de garantir une hauteur de protection maximale de 500 mm."
+      },
+      "over500": {
+        "label": "Hauteur de protection supérieure à 500 mm",
+        "description": "Pour une hauteur de protection supérieure à 500 mm, la porte est maintenue fermement verrouillée par la pression exercée par la motorisation spéciale de la porte de garage."
+      }
+    }
+  },
+  "dimensions": {
+    "title": "Dimensions de la porte de garage",
+    "widthInfo": "Largeur de l’ouverture murale : entre 2 200 et 5 200 mm.",
+    "heightInfo": "Hauteur de l’ouverture murale : entre 1 920 et 2 520 mm.",
+    "widthLabel": "Largeur (mm)",
+    "heightLabel": "Hauteur (mm)",
+    "widthPlaceholder": "Saisir la largeur",
+    "heightPlaceholder": "Saisir la hauteur",
+    "widthRange": "Plage autorisée : 2 200 à {max} mm",
+    "heightRange": "Plage autorisée : 1 920 à 2 520 mm",
+    "invalid": "Veuillez saisir des dimensions comprises dans la plage autorisée."
+  },
+  "installation": {
+    "title": "Type d’installation",
+    "description": "Si vous ne savez pas quel type d’installation convient à votre bâtiment, aucun problème : cette question sera déterminée sur place par un installateur expérimenté.",
+    "options": {
+      "behind": {
+        "label": "Derrière l’ouverture",
+        "description": "Montage sur la face intérieure du mur."
+      },
+      "between": {
+        "label": "Dans l’ouverture",
+        "description": "Montage dans l’ouverture murale."
+      }
+    }
+  },
+  "color": {
+    "title": "Choisir une couleur",
+    "description": "Pour que votre porte de garage AquaLOCK® s’intègre parfaitement à votre bâtiment, vous avez le choix parmi 216 couleurs RAL. Parmi celles-ci, sept couleurs standard, à savoir le blanc et six nuances de gris, sont disponibles sans supplément. Attention : les couleurs affichées sur le site Internet peuvent différer des couleurs réelles en raison des paramètres d’affichage de votre écran. Toutes les indications sont donc fournies sans garantie.",
+    "standardNotice": "Cette couleur standard est disponible sans supplément.",
+    "customNotice": "La couleur sélectionnée n’est pas une couleur RAL standard et entraîne un supplément de €{amount}."
+  },
+  "material": {
+    "title": "Matériau",
+    "name": "Acier galvanisé",
+    "description": "L’acier galvanisé est actuellement le seul matériau disponible pour la porte de garage AquaLOCK®. En règle générale, la galvanisation offre une protection anticorrosion largement suffisante, d’autant plus que chaque porte est également apprêtée et laquée. Nous accordons une garantie de 5 ans contre la perforation due à la corrosion."
+  },
+  "included": {
+    "title": "Inclus d’office",
+    "description": "Pour cette configuration de porte, les éléments suivants sont obligatoirement inclus et ajoutés automatiquement au prix total.",
+    "motor": "Moteur",
+    "assembly": "Kit de montage avec produit d’étanchéité",
+    "always": "Aucune sélection nécessaire – toujours inclus.",
+    "total": "Montant ajouté automatiquement"
+  },
+  "insulation": {
+    "title": "Habillage intérieur et isolation",
+    "description": "La face intérieure de la porte peut être revêtue d’un habillage en tôle d’aluminium lisse.",
+    "none": {
+      "label": "Sans habillage intérieur",
+      "description": "Installation de base sans habillage intérieur."
+    },
+    "casingNoInsulation": {
+      "label": "Avec habillage intérieur, sans isolation",
+      "description": "Habillage intérieur installé sans isolation supplémentaire."
+    },
+    "full": {
+      "label": "Avec habillage intérieur et isolation",
+      "description": "Habillage intérieur complet avec isolation supplémentaire pour une efficacité thermique maximale."
+    },
+    "imageAlt": "Porte de garage basculante sans isolation"
+  },
+  "transmitters": {
+    "title": "Télécommandes",
+    "question": "De combien de télécommandes radio avez-vous besoin pour votre porte de garage AquaLOCK® ?",
+    "label": "Nombre de télécommandes",
+    "placeholder": "Saisir la quantité",
+    "doorImageAlt": "Porte de garage basculante AquaLOCK®",
+    "remoteImageAlt": "Télécommande radio TBS"
+  },
+  "drivePlate": {
+    "title": "Rampe de seuil",
+    "none": "Sans rampe de seuil",
+    "stainless": "Acier inoxydable",
+    "aluminium": "Aluminium",
+    "noCost": "Aucun coût supplémentaire",
+    "stainlessCost": "165 € par mètre linéaire",
+    "aluminiumCost": "125 € par mètre linéaire"
+  },
+  "glazing": {
+    "title": "Choisir le vitrage",
+    "addWindows": "Ajouter des fenêtres (650 × 450 mm)",
+    "addStripes": "Ajouter une bande vitrée d’une hauteur de 400 mm",
+    "quantity": "Nombre de fenêtres",
+    "stripeLength": "Longueur de la bande vitrée (mm)",
+    "autoNote": "La longueur est calculée automatiquement en soustrayant 370 mm de la largeur de la porte. Quantité : 1 pièce.",
+    "quantityPlaceholder": "Saisir la quantité",
+    "window": {
+      "transparent": {
+        "noInsulation": "Fenêtre (650 × 450 mm) – verre transparent",
+        "withInsulation": "Fenêtre (650 × 450 mm, ISO) – verre transparent"
+      },
+      "mastercarre": {
+        "noInsulation": "Fenêtre (650 × 450 mm) – verre Mastercarré",
+        "withInsulation": "Fenêtre (650 × 450 mm, ISO) – verre Mastercarré"
+      },
+      "satinato": {
+        "noInsulation": "Fenêtre (650 × 450 mm) – verre Satinato",
+        "withInsulation": "Fenêtre (650 × 450 mm, ISO) – verre Satinato"
+      }
+    },
+    "stripe": {
+      "transparent": {
+        "noInsulation": "Bande vitrée (400 mm) – verre transparent",
+        "withInsulation": "Bande vitrée (400 mm, ISO) – verre transparent"
+      },
+      "mastercarre": {
+        "noInsulation": "Bande vitrée (400 mm) – verre Mastercarré",
+        "withInsulation": "Bande vitrée (400 mm, ISO) – verre Mastercarré"
+      },
+      "satinato": {
+        "noInsulation": "Bande vitrée (400 mm) – verre Satinato",
+        "withInsulation": "Bande vitrée (400 mm, ISO) – verre Satinato"
+      }
+    }
+  },
+  "units": {
+    "piece": "pièce",
+    "sqm": "m²"
+  }
+}

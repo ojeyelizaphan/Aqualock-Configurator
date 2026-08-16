@@ -1,0 +1,51 @@
+{
+  "step1": {
+    "included": {
+      "title": "Inclus d’office",
+      "description": "Le kit de montage avec produit d’étanchéité est une option standard et est automatiquement ajouté au prix total.",
+      "name": "Kit de montage avec produit d’étanchéité",
+      "note": "Option standard – incluse automatiquement.",
+      "price": "246 € / pièce"
+    },
+    "title": "Dimensions et type de montage",
+    "dimensions": {
+      "title": "Dimensions du Windows Protector",
+      "description1": "Veuillez respecter les dimensions maximales de l’ouverture murale pour le Windows Protector, soit 1 800 × 1 800 mm.",
+      "width": "Largeur de l’ouverture murale :",
+      "widthRange": "Entre 400 et 1 800 mm",
+      "height": "Hauteur de l’ouverture murale :",
+      "heightRange": "Entre 400 et 1 800 mm",
+      "inputWidth": "Largeur (mm)",
+      "inputHeight": "Hauteur (mm)",
+      "invalidRange": "Veuillez saisir une largeur et une hauteur valides comprises entre 400 et 1 800 mm.",
+      "notManufacturable": "Ces dimensions ne sont pas disponibles pour la configuration sélectionnée."
+    },
+    "installation": {
+      "title": "Type de montage",
+      "description": "Le batardeau en acrylique, facile à installer ultérieurement, est la solution idéale pour assurer l’étanchéité des fenêtres de cave et des autres fenêtres du bâtiment. L’installation peut être réalisée sur le cadre de la fenêtre ou directement sur l’ouverture murale. Dans les deux cas, le batardeau en acrylique est simplement collé et étanchéifié à l’aide d’une colle spéciale pour acrylique.",
+      "frame": "Sur le cadre de la fenêtre",
+      "wall": "Sur l’ouverture murale"
+    }
+  },
+  "step2": {
+    "title": "Options de trappe",
+    "removable": {
+      "title": "Trappe amovible",
+      "description": "Veuillez sélectionner l’une des largeurs et hauteurs proposées. Le prix de la trappe sera ensuite ajouté automatiquement.",
+      "width": "Largeur",
+      "height": "Hauteur",
+      "selectWidth": "Sélectionner la largeur",
+      "selectHeight": "Sélectionner la hauteur",
+      "price": "Prix de la trappe"
+    },
+    "tiltUp": {
+      "title": "Trappe basculante",
+      "description": "Veuillez sélectionner l’une des largeurs et hauteurs proposées. Le prix de la trappe sera ensuite ajouté automatiquement.",
+      "width": "Largeur",
+      "height": "Hauteur",
+      "selectWidth": "Sélectionner la largeur",
+      "selectHeight": "Sélectionner la hauteur",
+      "price": "Prix de la trappe"
+    }
+  }
+}

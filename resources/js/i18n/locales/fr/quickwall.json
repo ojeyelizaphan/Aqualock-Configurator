@@ -1,0 +1,93 @@
+{
+  "stepProtection": {
+    "title": "Hauteur de protection et dimensions",
+    "intro": {
+      "title": "Choisir la hauteur de protection contre les inondations",
+      "p1": "Il existe des situations où la configuration du bâtiment ne permet pas d’installer une autre solution qu’une protection mobile contre les inondations. C’est précisément pour ces situations que le batardeau AquaLOCK® Quickwall a été conçu.",
+      "p2": "Il est composé de lames fixes et peut offrir, selon la largeur de l’ouverture, une hauteur de protection maximale de 1,6 m. Des solutions sur mesure sont également disponibles."
+    },
+    "width": {
+      "label": "Largeur de l’ouverture (mm)",
+      "placeholder": "Saisir la largeur de l’ouverture",
+      "error": "Veuillez saisir une largeur valide comprise entre 800 et 3 000 mm."
+    },
+    "height": {
+      "label": "Hauteur de protection (mm)",
+      "required": "Veuillez sélectionner une hauteur de protection avant de continuer.",
+      "none": "Aucune hauteur de protection n’est disponible pour cette largeur."
+    }
+  },
+  "stepInstallation": {
+    "title": "Type d’installation et levier de verrouillage",
+    "installation": {
+      "title": "Type d’installation",
+      "description": "Selon la configuration de votre bâtiment, le batardeau AquaLOCK® Quickwall peut être installé devant l’ouverture ou dans l’ouverture.",
+      "front": "Devant l’ouverture",
+      "between": "Dans l’ouverture"
+    },
+    "locking": {
+      "title": "Position du levier de verrouillage",
+      "description": "Le levier de verrouillage amovible peut être installé à droite ou à gauche, selon votre préférence, sans supplément.",
+      "view": "(vu de l’extérieur)",
+      "right": "À droite, vu de l’extérieur",
+      "left": "À gauche, vu de l’extérieur"
+    }
+  },
+  "stepMultiPanel": {
+    "title": "Système à plusieurs panneaux",
+    "intro": {
+      "highlight": "Solutions pour les grandes ouvertures avec poteau central ou installation en angle",
+      "p1": "Lorsqu’une hauteur de protection plus importante est nécessaire, par exemple pour une ouverture de 2,5 m de largeur et une hauteur de protection de 1 m, plusieurs panneaux AquaLOCK® Quickwall peuvent être assemblés à l’aide d’un poteau central fixe d’une largeur de 60 mm. Le poteau central est inséré dans une gaine en acier inoxydable scellée dans le béton, puis fixé à l’aide d’une vis intégrée. Un panneau Quickwall est ensuite installé de chaque côté du poteau afin de créer une barrière stable et sécurisée.",
+      "p2": "Pour les installations en angle, un poteau d’angle spécialement conçu permet de raccorder solidement deux panneaux AquaLOCK® Quickwall afin d’obtenir une installation en angle continue et résistante."
+    },
+    "example": {
+      "title": "Exemple de calcul de la largeur correcte des panneaux Quickwall",
+      "p": "Vous souhaitez protéger une porte de garage de 2 400 mm de largeur avec une hauteur de protection de 1 500 mm. À cette hauteur de protection, la largeur maximale de chaque panneau est de 1 100 mm, ce qui ne permet pas d’utiliser seulement deux panneaux. Vous aurez donc besoin de trois panneaux et de deux poteaux centraux.",
+      "calc1": "2 400 mm − 120 mm (2 poteaux centraux) = 2 280 mm",
+      "calc2": "2 280 mm ÷ 3 = 760 mm par panneau"
+    },
+    "inputs": {
+      "panels": {
+        "label": "Nombre de panneaux Quickwall requis",
+        "placeholder": "Nombre de panneaux"
+      },
+      "centerPosts": {
+        "label": "Nombre de poteaux centraux requis",
+        "placeholder": "Nombre de poteaux centraux"
+      },
+      "cornerPosts": {
+        "label": "Nombre de poteaux d’angle requis",
+        "placeholder": "Nombre de poteaux d’angle"
+      }
+    },
+    "images": {
+      "center": "Configuration avec poteau central",
+      "corner": "Configuration avec poteau d’angle"
+    }
+  },
+  "stepAccessories": {
+    "title": "Accessoires et options",
+    "included": {
+      "title": "Inclus sans supplément",
+      "description": "À l’occasion de notre offre anniversaire, le kit de montage est inclus gratuitement. Les profilés d’angle font partie de ce kit de montage. Seul le revêtement de couleur des profilés est proposé avec supplément."
+    },
+    "bottomPlate": {
+      "title": "Plaque de seuil",
+      "description": "La plaque de seuil est obligatoire et ajoutée automatiquement en fonction du nombre de panneaux Quickwall sélectionnés."
+    },
+    "cornerProfiles": {
+      "title": "Revêtement des profilés d’angle",
+      "description": "Les profilés d’angle sont inclus dans le kit de montage. Vous pouvez, en option et moyennant un supplément, ajouter un revêtement dans une couleur RAL.",
+      "without": "Sans revêtement de couleur (aluminium anodisé)",
+      "with": "Avec revêtement de couleur (RAL)"
+    },
+    "accessories": {
+      "title": "Accessoires en option",
+      "hooks": {
+        "title": "Crochets de suspension pour Quickwall",
+        "description": "Crochets permettant de suspendre et de ranger les panneaux Quickwall.",
+        "price": "11 €"
+      }
+    }
+  }
+}

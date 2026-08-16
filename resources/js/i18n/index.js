@@ -25,6 +25,18 @@ import deQuickwall from './locales/de/quickwall.json';
 import deWindowsProtector from './locales/de/windowsProtector.json';
 import deFlap from './locales/de/flap.json';
 
+import frCommon from './locales/fr/fr.json';
+import frSummary from './locales/fr/summary.json';
+import frNavbar from './locales/fr/navbar.json';
+import frFooter from './locales/fr/footer.json';
+import frUpAndOver from './locales/fr/upAndOver.json';
+import frSectionalDoor from './locales/fr/sectionalDoor.json';
+import frDoor from './locales/fr/door.json';
+import frGate from './locales/fr/gate.json';
+import frQuickwall from './locales/fr/quickwall.json';
+import frWindowsProtector from './locales/fr/windowsProtector.json';
+import frFlap from './locales/fr/flap.json';
+
 const messages = {
   en: {
     ...enCommon,
@@ -51,6 +63,19 @@ const messages = {
     quickwall: deQuickwall,
     windowsProtector: deWindowsProtector,
     flap: deFlap
+  },
+  fr: {
+    ...frCommon,
+    ...frSummary,
+    ...frNavbar,
+    ...frFooter,
+    upAndOver: frUpAndOver,
+    sectionalDoor: frSectionalDoor,
+    door: frDoor,
+    gate: frGate,
+    quickwall: frQuickwall,
+    windowsProtector: frWindowsProtector,
+    flap: frFlap
   }
 };
 

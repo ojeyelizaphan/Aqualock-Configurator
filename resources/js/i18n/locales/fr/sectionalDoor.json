@@ -1,0 +1,112 @@
+{
+  "step1": {
+    "title": "Dimensions de la porte et type d’installation",
+    "doorSize": {
+      "title": "Dimensions de la porte",
+      "description": "Veuillez respecter les dimensions maximales de l’ouverture murale pour la porte sectionnelle. Un espace intérieur d’au moins 90 mm est nécessaire de chaque côté de l’ouverture. Dans le cas contraire, des profilés tubulaires supplémentaires seront nécessaires.",
+      "widthLabel": "Largeur de l’ouverture murale",
+      "widthPlaceholder": "Saisir la largeur (mm)",
+      "heightLabel": "Hauteur de l’ouverture murale",
+      "heightPlaceholder": "Saisir la hauteur (mm)",
+      "validation": "Veuillez saisir une largeur valide comprise entre 2 000 et 6 000 mm et une hauteur valide comprise entre 2 000 et 3 000 mm."
+    },
+    "installation": {
+      "title": "Type d’installation",
+      "description": "La porte peut être installée derrière l’ouverture ou dans l’ouverture. Si vous ne savez pas quel type d’installation convient à votre bâtiment, aucun problème : cette question sera déterminée sur place par un installateur agréé.",
+      "behind": {
+        "title": "Derrière l’ouverture",
+        "description": "Montage sur la face intérieure du mur"
+      },
+      "between": {
+        "title": "Dans l’ouverture",
+        "description": "Montage dans l’ouverture murale",
+        "note": "Des profilés tubulaires peuvent être nécessaires"
+      }
+    }
+  },
+  "step2": {
+    "title": "Choix de la plaque de seuil",
+    "aluminum": {
+      "title": "Plaque de seuil en aluminium, collée au sol",
+      "description": "Pour une installation optimale, le sol doit être parfaitement plan et lisse. Comme ce n’est que rarement le cas, nous recommandons l’utilisation d’une plaque de seuil en aluminium anodisé afin de compenser les irrégularités et les différences de niveau, tout en garantissant le fonctionnement sûr et fiable de la porte sectionnelle AquaLOCK®.",
+      "option": "Avec plaque de seuil en aluminium"
+    },
+    "steel": {
+      "title": "Plaque de seuil en acier inoxydable, ancrée dans le béton",
+      "description1": "L’encastrement d’une plaque de seuil en acier inoxydable permet d’obtenir une surface parfaitement plane avant l’installation de la porte sectionnelle AquaLOCK®. Pour cela, une rainure de 40 mm de profondeur et de 200 mm de largeur doit être réalisée dans le sol en béton, puis remplie de béton frais. La plaque de seuil en acier inoxydable est ensuite insérée dans ce béton frais et parfaitement mise à niveau à l’aide d’un niveau à bulle.",
+      "description2": "Cette méthode de montage permet de commander la porte sectionnelle AquaLOCK® avec un kit d’étanchéité préinstallé, ce qui simplifie considérablement l’installation de la porte.",
+      "option": "Avec plaque de seuil en acier inoxydable"
+    },
+    "none": {
+      "option": "Sans plaque de seuil"
+    }
+  },
+  "step3": {
+    "title": "Couleur des panneaux",
+    "panel": {
+      "title": "Choisissez parmi 216 couleurs",
+      "description1": "Pour que votre porte sectionnelle AquaLOCK® s’intègre parfaitement à votre bâtiment, choisissez l’une des couleurs extérieures standard ou optez pour une couleur RAL personnalisée.",
+      "description2": "Deux couleurs standard sont disponibles sans supplément pour la face extérieure : RAL 9016 NZ – blanc signalisation et RAL 7016 NZ – gris anthracite. La face intérieure est disponible sans supplément dans la couleur standard RAL 9002 – blanc gris.",
+      "description3": "Les couleurs personnalisées sont disponibles uniquement pour la face extérieure. La couleur de la face intérieure est fixée à RAL 9002 et ne peut pas être modifiée.",
+      "note": "Attention : les couleurs affichées sur le site Internet peuvent différer des couleurs réelles en raison des paramètres d’affichage de votre écran. Toutes les indications sont donc fournies sans garantie.",
+      "selectorTitle": "Choisir la couleur extérieure des panneaux",
+      "standardSelected": "La couleur extérieure sélectionnée est une couleur standard disponible sans supplément.",
+      "customSelected": "La couleur extérieure sélectionnée n’est pas une couleur standard et entraîne un supplément de €{price}.",
+      "insideTitle": "Couleur de la face intérieure des panneaux",
+      "insideValue": "RAL 9002 (obligatoire)"
+    },
+    "profile": {
+      "title": "Équerres en acier et profilés en aluminium",
+      "description1": "Dans la configuration standard, les profilés de la lame inférieure sont en aluminium anodisé argenté, tandis que les équerres en acier sont thermolaquées en gris.",
+      "description2": "Moyennant un supplément, les profilés et les équerres peuvent être personnalisés dans la couleur de la porte sectionnelle AquaLOCK®, afin d’obtenir un aspect plus uniforme et plus harmonieux.",
+      "standardOption": "Sans couleur personnalisée assortie à la porte sectionnelle",
+      "customOption": "Avec couleur personnalisée (RAL)",
+      "inputLabel": "Saisir le code couleur RAL",
+      "inputPlaceholder": "p. ex. RAL 7016",
+      "inputHint": "Exemple : RAL 7016",
+      "extraCost": "Supplément pour la personnalisation des équerres en acier et des profilés en aluminium : 421 € / kit",
+      "warning": "Il est recommandé d’éviter les couleurs foncées sur la face extérieure des panneaux sandwich en acier à double paroi exposés au soleil, car la chaleur peut provoquer une déformation des lames et nuire au bon fonctionnement de la porte."
+    }
+  },
+  "step4": {
+    "title": "Accessoires",
+    "included": {
+      "title": "Inclus d’office",
+      "description": "Pour cette configuration de porte sectionnelle AquaLOCK®, le moteur et le kit de montage avec produit d’étanchéité sont obligatoirement inclus et ajoutés automatiquement au prix total.",
+      "motor": {
+        "title": "Moteur",
+        "note": "Aucune sélection nécessaire – toujours inclus.",
+        "price": "651 € / pièce"
+      },
+      "assembly": {
+        "title": "Kit de montage avec produit d’étanchéité",
+        "note": "Aucune sélection nécessaire – toujours inclus.",
+        "price": "334 € / pièce"
+      }
+    },
+    "upgradeKit": {
+      "title": "Kit d’étanchéité préinstallé",
+      "description": "Veuillez sélectionner le kit d’étanchéité correspondant à la largeur de votre porte.",
+      "upTo3m": {
+        "label": "Largeur jusqu’à 3 m",
+        "price": "272 € / pièce"
+      },
+      "upTo6m": {
+        "label": "Largeur jusqu’à 6 m",
+        "price": "348 € / pièce"
+      },
+      "validation": "Veuillez sélectionner un kit d’étanchéité."
+    },
+    "tracks": {
+      "label": "Rails de guidage en acier inoxydable",
+      "price": "282 € / kit"
+    },
+    "transmitters": {
+      "title": "Télécommandes",
+      "description": "Le moteur étant inclus d’office, vous pouvez ajouter ici les télécommandes dont vous avez besoin.",
+      "label": "Nombre de télécommandes",
+      "placeholder": "Saisir la quantité",
+      "price": "60 € / pièce"
+    }
+  }
+}
