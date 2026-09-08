@@ -7,7 +7,7 @@
         "description": "Assembly kit with sealing is a standard option and is automatically added to the total price.",
         "item": "Assembly kit with sealing",
         "note": "Standard option — automatically included.",
-        "price": "€131 / piece"
+        "price": "€135 / piece"
       },
 
       "dimensions": {
@@ -51,7 +51,9 @@
           "ralColors": "216 RAL colours"
         },
         "freeColors": "Seven standard colours (white and six shades of gray) are available at no extra cost.",
-        "note": "Note: The colour displayed may differ from the actual colour due to monitor settings. No guarantee can be given."
+        "note": "Note: The colour displayed may differ from the actual colour due to monitor settings. No guarantee can be given.",
+        "standardNotice": "This is a standard colour and carries no extra charge.",
+        "customNotice": "Selected colour is a non-standard RAL colour and incurs an extra charge of €{amount}."
       },
 
       "opening": {

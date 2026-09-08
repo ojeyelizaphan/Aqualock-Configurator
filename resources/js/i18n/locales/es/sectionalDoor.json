@@ -1,0 +1,112 @@
+{
+  "step1": {
+    "title": "Dimensiones de la puerta y tipo de instalación",
+    "doorSize": {
+      "title": "Dimensiones de la puerta",
+      "description": "Tenga en cuenta el tamaño máximo de la abertura en la pared para la puerta seccional. El tamaño mínimo del hueco interior es de 90 mm; de lo contrario, se requieren tubos adicionales.",
+      "widthLabel": "Anchura del hueco de obra",
+      "widthPlaceholder": "Introducir anchura (mm)",
+      "heightLabel": "Altura del hueco de obra",
+      "heightPlaceholder": "Introducir altura (mm)",
+      "validation": "Por favor ingrese un ancho válido entre 2000 y 6000 mm y una altura válida entre 2000 y 3000 mm."
+    },
+    "installation": {
+      "title": "Método de instalación",
+      "description": "Método de instalación: detrás o entre los huecos de la pared. Si tiene dudas sobre la opción adecuada, nuestros técnicos autorizados se lo aclararán in situ.",
+      "behind": {
+        "title": "Detrás del muro",
+        "description": "Montado en la pared interior"
+      },
+      "between": {
+        "title": "Entre muros",
+        "description": "Montado en la abertura",
+        "note": "(es posible que se requieran tubos)"
+      }
+    }
+  },
+  "step2": {
+    "title": "Elección de la placa base",
+    "aluminum": {
+      "title": "Placa base de aluminio adherida al suelo",
+      "description": "Para una instalación óptima, la superficie debe ser perfectamente lisa y uniforme. En caso contrario, recomendamos una placa base de aluminio para compensar irregularidades y desniveles, garantizando así el funcionamiento seguro y fiable de la puerta seccional AquaLOCK®.",
+      "option": "Con placa base de aluminio"
+    },
+    "steel": {
+      "title": "Placa base de acero inoxidable empotrada en hormigón",
+      "description1": "Al incrustar una placa base de acero inoxidable en el hormigón del umbral, se consigue una superficie perfectamente lisa antes de instalar la puerta seccional AquaLOCK®. Para ello, debe crearse en el suelo una ranura de 40 mm de profundidad y 200 mm de ancho, rellenarla con hormigón fresco y nivelar en ella la placa base.",
+      "description2": "Este tipo de instalación permite pedir la puerta seccional AquaLOCK® con un kit de actualización preinstalado, lo que facilita considerablemente la instalación.",
+      "option": "Con placa base de acero inoxidable"
+    },
+    "none": {
+      "option": "Sin placa base"
+    }
+  },
+  "step3": {
+    "title": "Color del panel",
+    "panel": {
+      "title": "Variedades de colores: 216 colores diferentes",
+      "description1": "Para garantizar que su puerta AquaLOCK® combine perfectamente con su edificio, elija entre colores exteriores estándar o ingrese un color RAL personalizado.",
+      "description2": "Hay dos colores estándar para el exterior (RAL 9016 NZ blanco tráfico, RAL 7016 NZ gris antracita) y un color estándar para el interior (RAL 9002) disponibles sin coste adicional.",
+      "description3": "El color personalizado solo está disponible para el exterior, no para el interior. El color interior se fija en RAL 9002.",
+      "note": "Tenga en cuenta: Los colores que se muestran en el sitio web pueden diferir del color real debido a la pantalla del monitor. Por lo tanto la elección del color no tiene garantía.",
+      "selectorTitle": "Elegir el color exterior de los paneles",
+      "standardSelected": "El color exterior seleccionado es estándar y no conlleva ningún cargo adicional.",
+      "customSelected": "El color exterior seleccionado no es estándar e incurre en un cargo adicional de €{price}.",
+      "insideTitle": "Color de la cara interior de los paneles",
+      "insideValue": "RAL 9002 (obligatorio)"
+    },
+    "profile": {
+      "title": "Esquinas de acero y perfiles de aluminio.",
+      "description1": "En la configuración estándar, los perfiles del listón inferior están construidos en aluminio anodizado plateado, mientras que las esquinas de acero están recubiertas de polvo gris.",
+      "description2": "Por una tarifa adicional, ambos se pueden personalizar para que coincidan con el color de la puerta seccional AquaLOCK®, mejorando la estética general y dándole a la puerta una apariencia más refinada y sin costuras.",
+      "standardOption": "Sin color personalizado a juego con puerta seccional",
+      "customOption": "Con color personalizado (RAL)",
+      "inputLabel": "Introducir código de color RAL",
+      "inputPlaceholder": "p.ej. RAL 7016",
+      "inputHint": "Ejemplo: RAL 7016",
+      "extraCost": "Suplemento por esquinas de acero y perfiles de aluminio personalizados: 421 € / set",
+      "warning": "En el exterior de las puertas de acero de doble pared orientadas al sol, se deben evitar los colores oscuros, ya que cualquier desviación de las lamas podría perjudicar la funcionalidad de la puerta."
+    }
+  },
+  "step4": {
+    "title": "Accesorios",
+    "included": {
+      "title": "Incluido de serie",
+      "description": "Motor y kit de montaje con junta son opciones estándar y se añaden automáticamente al precio total.",
+      "motor": {
+        "title": "Motor",
+        "note": "Opción estándar: incluida automáticamente.",
+        "price": "651 € / pieza"
+      },
+      "assembly": {
+        "title": "Kit de montaje con sellador",
+        "note": "Opción estándar: incluida automáticamente.",
+        "price": "238 € / pieza"
+      }
+    },
+    "upgradeKit": {
+      "title": "Kit de actualización premontado",
+      "description": "Seleccione el kit de actualización adecuado según la anchura de la puerta.",
+      "upTo3m": {
+        "label": "Anchura de hasta 3 m",
+        "price": "272 € / pieza"
+      },
+      "upTo6m": {
+        "label": "Anchura de hasta 6 m",
+        "price": "348 € / pieza"
+      },
+      "validation": "Seleccione un kit de actualización."
+    },
+    "tracks": {
+      "label": "Pistas de acero inoxidable",
+      "price": "298 € / juego"
+    },
+    "transmitters": {
+      "title": "Transmisores manuales",
+      "description": "Dado que el motor está incluido por defecto, puedes agregar transmisores manuales aquí.",
+      "label": "Emisor manual cantidad",
+      "placeholder": "Introducir cantidad",
+      "price": "62 € / pieza"
+    }
+  }
+}

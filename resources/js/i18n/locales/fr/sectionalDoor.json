@@ -81,7 +81,7 @@
       "assembly": {
         "title": "Kit de montage avec produit d’étanchéité",
         "note": "Aucune sélection nécessaire – toujours inclus.",
-        "price": "334 € / pièce"
+        "price": "238 € / pièce"
       }
     },
     "upgradeKit": {
@@ -99,14 +99,14 @@
     },
     "tracks": {
       "label": "Rails de guidage en acier inoxydable",
-      "price": "282 € / kit"
+      "price": "298 € / kit"
     },
     "transmitters": {
       "title": "Télécommandes",
       "description": "Le moteur étant inclus d’office, vous pouvez ajouter ici les télécommandes dont vous avez besoin.",
       "label": "Nombre de télécommandes",
       "placeholder": "Saisir la quantité",
-      "price": "60 € / pièce"
+      "price": "62 € / pièce"
     }
   }
 }

@@ -90,7 +90,7 @@ export function useSectionalDoorPriceCalculator(form) {
 
     // Stainless-steel tracks
     if (options.stainlessTracks) {
-      total += 282;
+      total += 298;
     }
 
     // Custom-coloured steel corners and profiles

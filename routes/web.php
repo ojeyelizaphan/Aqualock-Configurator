@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::prefix('{locale}')
-    ->where(['locale' => 'en|de|fr'])
+    ->where(['locale' => 'en|de|fr|es'])
     ->group(function () {
         Route::get('/configurations/create', [ConfigurationController::class, 'create'])
             ->name('localized.configurations.create');
@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/configurations/{configuration}', [ConfigurationController::class, 'show'])->name('configurations.show');
 
     Route::get('/{locale}/configurations/{configuration}/edit', [ConfigurationController::class, 'edit'])
-    ->whereIn('locale', ['en', 'de', 'fr'])
+    ->whereIn('locale', ['en', 'de', 'fr', 'es'])
     ->name('configurations.edit');
     Route::put('/configurations/{configuration}', [ConfigurationController::class, 'update'])->name('configurations.update');
 

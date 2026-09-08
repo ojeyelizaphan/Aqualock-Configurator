@@ -6,7 +6,7 @@
       "description": "Le kit de montage avec produit d’étanchéité est une option standard et est automatiquement ajouté au prix total.",
       "item": "Kit de montage avec produit d’étanchéité",
       "note": "Option standard – incluse automatiquement.",
-      "price": "131 € / pièce"
+      "price": "135 € / pièce"
     },
     "dimensions": {
       "title": "Dimensions de la trappe",
@@ -44,7 +44,9 @@
         "ralColors": "216 couleurs RAL"
       },
       "freeColors": "Sept couleurs standard, à savoir le blanc et six nuances de gris, sont disponibles sans supplément.",
-      "note": "Attention : les couleurs affichées sur le site Internet peuvent différer des couleurs réelles en raison des paramètres d’affichage de votre écran. Toutes les indications sont donc fournies sans garantie."
+      "note": "Attention : les couleurs affichées sur le site Internet peuvent différer des couleurs réelles en raison des paramètres d’affichage de votre écran. Toutes les indications sont donc fournies sans garantie.",
+      "standardNotice": "Cette couleur standard est disponible sans supplément.",
+      "customNotice": "La couleur sélectionnée n’est pas une couleur RAL standard et entraîne un supplément de €{amount}."
     },
     "opening": {
       "title": "Sens d’ouverture",

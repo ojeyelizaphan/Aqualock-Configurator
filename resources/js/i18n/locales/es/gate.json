@@ -1,0 +1,139 @@
+{
+  "step1": {
+    "title": "Selección de tamaño y nivel de protección contra el agua",
+    "description": "El portal AquaLOCK® ofrece una protección fiable con una anchura máxima de 5.000 mm y una altura de protección contra el agua de hasta 1.200 mm.",
+    "pricePerPiece": "€{price} / pieza",
+    "included": {
+      "title": "Incluido de serie",
+      "description": "El kit de montaje con precinto es obligatorio y se suma automáticamente al precio total.",
+      "item": "Kit de montaje con sellador",
+      "auto": "Incluido automáticamente dependiendo del ancho de la puerta",
+      "breakdownTitle": "Incluido por defecto dependiendo del ancho del portón:",
+      "upTo1500": "Hasta 1.500 mm de ancho: 131€",
+      "upTo5000": "1.501 – 5.000 mm ancho: 189€",
+      "industrial": "Versión industrial: 294€"
+    },
+    "upperDesign": {
+      "title": "Opciones de diseño de la parte superior",
+      "lattice": "Barras de celosía (redondas o angulares)",
+      "wood": "Paneles de madera"
+    },
+    "size": {
+      "title": "Dimensiones del portal",
+      "width": "Anchura deseada (800–5.000 mm)",
+      "height": "Altura de protección deseada (500–1.200 mm)",
+      "totalHeight": "Altura total deseada del portal (hasta 2.000 mm)"
+    },
+    "validation": "Ingrese un ancho válido (800–5000 mm), una altura de protección contra el agua (500–1200 mm) y una altura total de la puerta de hasta 2000 mm (debe ser mayor o igual a la altura de protección).",
+    "images": {
+      "wood": "Puerta con paneles de madera (precio a consultar)",
+      "access": "Puerta peatonal de apertura exterior",
+      "diagram": "Altura máxima de protección contra el agua: 1.200 mm"
+    }
+  },
+  "step2": {
+    "title": "Configuración del portal AquaLOCK®",
+    "opening": {
+      "title": "Dirección de apertura",
+      "description": "El portal AquaLOCK® se puede abrir hacia dentro o hacia fuera. Al abrirse hacia dentro, los cierres deben soportar la presión del agua. Al abrirse hacia fuera, presionan el portal para cerrarlo.",
+      "subtitle": "Sentido y ángulo de apertura",
+      "left_in_95": "DIN izquierda, apertura hacia el interior, 95°",
+      "left_in_180": "DIN izquierda, apertura hacia el interior, 180°",
+      "left_out_95": "DIN izquierda, apertura hacia el exterior, 95°",
+      "left_out_180": "DIN izquierda, apertura hacia el exterior, 180°",
+      "right_in_95": "DIN derecha, apertura hacia el interior, 95°",
+      "right_in_180": "DIN derecha, apertura hacia el interior, 180°",
+      "right_out_95": "DIN derecha, apertura hacia el exterior, 95°",
+      "right_out_180": "DIN derecha, apertura hacia el exterior, 180°"
+    },
+    "installation": {
+      "title": "Método de instalación",
+      "description": "Métodos de instalación: delante, detrás o entre los huecos de la pared. Si tiene dudas, nuestros técnicos se lo aclararán in situ.",
+      "behind": "Detrás del muro",
+      "between": "Entre muros",
+      "front": "Delante del muro"
+    },
+    "images": {
+      "inward": "La puerta se abre hacia adentro a 95°",
+      "outward": "La puerta se abre hacia afuera a 180°"
+    }
+  },
+  "step3": {
+    "title": "Color y material, Herrajes para puertas",
+    "color": {
+      "title": "Elegir color",
+      "description": "Para combinar perfectamente su puerta AquaLOCK® con su edificio, puede elegir entre 216 colores RAL. Siete colores estándar (blanco y seis tonos de gris) están disponibles sin coste adicional.",
+      "note": "Tenga en cuenta: Los colores mostrados pueden diferir debido a la configuración del monitor. No hay garantía de coincidencia exacta del color.",
+      "standard": "Este es un color estándar y no conlleva ningún cargo adicional.",
+      "custom": "El color seleccionado es un color RAL no estándar y conlleva un cargo adicional de €{price}."
+    },
+    "fittings": {
+      "title": "Herrajes para puertas",
+      "description": "¿Desea abrir y cerrar el portal con una manilla? Elija una de las opciones siguientes. Si no selecciona ninguna, el portal se entregará sin cerradura ni manilla.",
+      "aluminum_both": "Manilla interior y exterior – Aluminio F1",
+      "stainless_both": "Manilla interior y exterior – Acero inoxidable",
+      "aluminum_inside": "Manilla solo interior – Aluminio F1",
+      "stainless_inside": "Manilla solo interior – Acero inoxidable",
+      "aluminum_knob": "Manilla interior, pomo fijo exterior – Aluminio F1",
+      "stainless_knob": "Manilla interior, pomo fijo exterior – Acero inoxidable"
+    }
+  },
+  "step4": {
+    "title": "Sistema de cierre y accesorios",
+    "centralLocking": {
+      "title": "Cierre centralizado",
+      "note": "(Solo para puertas de apertura hacia adentro, operadas desde el interior)",
+      "description": "El sistema de cierre centralizado permite accionar todos los pestillos de cierre individuales mediante una palanca central.",
+      "with": {
+        "label": "Con sistema de cierre centralizado",
+        "description": "Todos los pernos de bloqueo se accionan mediante una palanca central",
+        "price": "+ 547€"
+      },
+      "without": {
+        "label": "Sin sistema de cierre centralizado",
+        "description": "Todos los pernos de bloqueo deben operarse individualmente",
+        "price": ""
+      }
+    },
+    "accessories": {
+      "title": "Accesorios",
+      "optional": "Complementos opcionales",
+      "gateStop": {
+        "label": "Parada de puerta",
+        "description": "Fija la hoja del portal a la pared e impide que se abra de forma involuntaria.",
+        "price": "+ 160€"
+      },
+      "electricDoorOpener": {
+        "label": "Abrepuertas eléctrico",
+        "description": "Abre-puertas eléctrico con programación diurna y nocturna.",
+        "price": "+ 312€"
+      },
+      "padlockPreparation": {
+        "label": "Preparación candado",
+        "description": "Preparado para usar un candado (candado no incluido).",
+        "price": "+ 88€"
+      },
+      "durchgriff": {
+        "label": "Acceso pasante con cierre centralizado",
+        "description": "Permite abrir el portal desde el exterior (solo para portales con apertura hacia el interior y cierre centralizado).",
+        "price": "+ 700€"
+      },
+      "slopingBottom": {
+        "label": "Borde inferior inclinado",
+        "description": "Inclinación de la parte inferior del portal, con el lado de las bisagras situado en el punto más bajo del terreno.",
+        "price": "+ 975€"
+      }
+    },
+    "lattice": {
+      "title": "Barras",
+      "round_extruded": "Barras de celosía redondas, extruidas.",
+      "angular_extruded": "Barras de celosía angulares, extruidas",
+      "round_forged": "Barras de celosía redondas, forjadas",
+      "angular_forged": "Barras de celosía angulares, forjadas",
+      "wood_paneling": "Paneles de madera",
+      "included": "Precio bajo consulta",
+      "unit": "€{price} / m²"
+    },
+    "imageCaption": "Puerta con acceso pasante y cierre centralizado, que permite apertura desde el exterior."
+  }
+}

@@ -266,6 +266,15 @@
             >
               🇫🇷 FR
             </button>
+
+            <button
+              @click="setLocale('es')"
+              class="text-white hover:text-orange-100 transition-colors"
+              title="Español"
+              :class="{ 'font-bold underline': locale === 'es' }"
+            >
+              🇪🇸 ES
+            </button>
             
           </div>
 

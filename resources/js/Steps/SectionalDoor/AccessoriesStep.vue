@@ -19,7 +19,7 @@
       <div class="space-y-4">
 
         <!-- Motor -->
-        <div class="flex justify-between">
+        <!-- <div class="flex justify-between">
           <div>
             <p class="font-medium">{{ $t('sectionalDoor.step4.included.motor.title') }}</p>
             <p class="text-sm text-gray-600">
@@ -29,7 +29,7 @@
           <p class="font-semibold">
             {{ $t('sectionalDoor.step4.included.motor.price') }}
           </p>
-        </div>
+        </div> -->
 
         <!-- Assembly -->
         <div class="flex justify-between">

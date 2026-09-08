@@ -1,0 +1,69 @@
+{
+  "step1": {
+    "title": "Dimensiones y material",
+    "included": {
+      "title": "Incluido de serie",
+      "description": "El kit de montaje con junta es una opción estándar y se añade automáticamente al precio total.",
+      "item": "Kit de montaje con sellador",
+      "note": "Opción estándar: incluida automáticamente.",
+      "price": "135 € / pieza"
+    },
+    "dimensions": {
+      "title": "Dimensiones de la trampilla",
+      "description": {
+        "beforeProduct": "Tenga en cuenta el tamaño máximo de la abertura de la pared para el",
+        "product": "AquaLOCK® trampilla",
+        "middle": "es",
+        "size": "1100 × 1100 mm"
+      },
+      "widthLabel": "Ancho de la abertura de la pared:",
+      "widthRange": "Entre 600 y 1.100 mm",
+      "heightLabel": "Altura de la abertura de la pared:",
+      "heightRange": "Entre 600 y 1.100 mm"
+    },
+    "inputs": {
+      "width": "Anchura (mm)",
+      "height": "Altura (mm)"
+    },
+    "validation": "Por favor ingrese un ancho y alto válidos entre 600 mm y 1100 mm.",
+    "material": {
+      "title": "Material",
+      "description": "Por lo general, el acero galvanizado ofrece una protección suficiente contra la corrosión. No obstante, si la trampilla va a estar en contacto con agua salada, recomendamos su fabricación en acero inoxidable.",
+      "galvanized": "Acero galvanizado",
+      "stainless": "Acero inoxidable"
+    }
+  },
+  "step2": {
+    "title": "Color, Dirección de Apertura y Revestimiento",
+    "color": {
+      "title": "Variedades de color",
+      "description": {
+        "beforeProduct": "Para personalizar el color de tu",
+        "product": "AquaLOCK® trampilla",
+        "middle": "puedes elegir entre",
+        "ralColors": "216 colores RAL"
+      },
+      "freeColors": "Siete colores estándar (blanco y seis tonos de gris) están disponibles sin costo adicional.",
+      "note": "Nota: El color mostrado puede diferir del color real debido a la configuración del monitor. No se puede dar ninguna garantía.",
+      "standardNotice": "Este es un color estándar y no conlleva ningún cargo adicional.",
+      "customNotice": "El color seleccionado es un color RAL no estándar y conlleva un cargo adicional de €{amount}."
+    },
+    "opening": {
+      "title": "Dirección de apertura",
+      "description": "La trampilla AquaLOCK® se suministra siempre con bisagras y se puede instalar vertical u horizontalmente.",
+      "left": "Apertura interior izquierda",
+      "right": "Apertura interior derecha",
+      "top": "Apertura hacia arriba"
+    },
+    "closing": {
+      "title": "Dispositivo de cierre",
+      "lockable": "Trampilla con dispositivo para candado",
+      "nonLockable": "Trampilla sin dispositivo para candado"
+    },
+    "cladding": {
+      "title": "Revestimiento interior",
+      "with": "Con chapa de aluminio de 2 mm",
+      "without": "Sin chapa de aluminio"
+    }
+  }
+}

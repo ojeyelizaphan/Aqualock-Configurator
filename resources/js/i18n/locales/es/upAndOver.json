@@ -1,0 +1,140 @@
+{
+  "protection": {
+    "title": "Seleccionar nivel de protección del agua",
+    "intro": {
+      "p1": "Las lluvias intensas pueden provocar una acumulación de agua en muy poco tiempo, pero rara vez supera el medio metro de altura. La situación es diferente si dispone de un garaje subterráneo: la calzada hundida actúa como un embudo y se inunda rápidamente por encima de 500 mm, generando una presión que solo una puerta reforzada puede soportar durante periodos prolongados.",
+      "p2": "Las puertas de garaje basculantes AquaLOCK® ofrecen protección hasta 1.600 mm, según la altura de la puerta. Si la puerta tiene entre 3.100 y 5.200 mm de ancho, recomendamos la versión V500, cuya altura de protección está limitada a 500 mm."
+    },
+    "note500": "Para puertas a partir de 3.100 mm de ancho, el bloqueo manual debe estar cerrado para lograr una protección total. El ancho máximo es de 5.200 mm.",
+    "options": {
+      "upTo500": {
+        "label": "Altura de protección hasta 500 mm",
+        "description": "Además de la presión de funcionamiento, se utilizan dispositivos de bloqueo manuales para una altura de seguridad de hasta 500 mm."
+      },
+      "over500": {
+        "label": "Altura de protección superior a 500 mm",
+        "description": "A una altura de seguridad de más de 500 mm, la puerta se mantiene firmemente cerrada mediante la presión del accionamiento especial para puerta de garaje."
+      }
+    }
+  },
+  "dimensions": {
+    "title": "Tamaño de puerta de garaje",
+    "widthInfo": "Ancho del hueco de la pared: entre 2.200 y 5.200 mm.",
+    "heightInfo": "Altura del hueco de la pared: entre 1.920 y 2.520 mm",
+    "widthLabel": "Anchura (mm)",
+    "heightLabel": "Altura (mm)",
+    "widthPlaceholder": "Introducir anchura",
+    "heightPlaceholder": "Introducir altura",
+    "widthRange": "Rango permitido: 2200 - {max} mm",
+    "heightRange": "Rango permitido: 1920 - 2520 mm",
+    "invalid": "Por favor ingresa un tamaño válido dentro del rango permitido."
+  },
+  "installation": {
+    "title": "Tipo de instalación",
+    "description": "Si no está seguro de qué tipo de instalación es adecuada para su edificio, un instalador experimentado lo aclarará in situ.",
+    "options": {
+      "behind": {
+        "label": "Detrás del muro",
+        "description": "Montado en la pared interior."
+      },
+      "between": {
+        "label": "Entre muros",
+        "description": "Instalado en la abertura de la pared."
+      }
+    }
+  },
+  "color": {
+    "title": "Elige Color",
+    "description": "Dispone de 216 colores RAL para que su puerta de garaje AquaLOCK® combine a la perfección con su edificio. Siete colores estándar (blanco y seis tonos de gris) están disponibles sin coste adicional. Nota: los colores mostrados en el sitio web pueden diferir del color real debido a la configuración del monitor. Por tanto, no se garantiza una coincidencia exacta.",
+    "standardNotice": "Este es un color estándar y no conlleva ningún cargo adicional.",
+    "customNotice": "El color seleccionado es un color RAL no estándar y conlleva un cargo adicional de €{amount}."
+  },
+  "material": {
+    "title": "Material",
+    "name": "Acero galvanizado",
+    "description": "Por el momento, el acero galvanizado es la única opción de material disponible para la puerta de garaje AquaLOCK®. Por lo general, el galvanizado ofrece una protección suficiente contra el óxido, especialmente porque cada puerta también viene imprimada y pintada. Ofrecemos una garantía de cinco años contra la corrosión."
+  },
+  "included": {
+    "title": "Incluido de serie",
+    "description": "Para esta configuración de puerta, los siguientes artículos se incluyen automáticamente y se agregan al precio total.",
+    "motor": "Motor",
+    "assembly": "Kit de montaje con sellador",
+    "always": "No se requiere ninguna opción, siempre incluida.",
+    "total": "Importe añadido automáticamente"
+  },
+  "insulation": {
+    "title": "Revestimientos y Aislamientos",
+    "description": "El interior de la puerta se puede revestir con chapa de aluminio lisa.",
+    "none": {
+      "label": "Sin revestimiento",
+      "description": "Instalación básica sin ningún tipo de carcasa."
+    },
+    "casingNoInsulation": {
+      "label": "Con revestimiento pero sin aislamiento",
+      "description": "Carcasa instalada pero sin aislamiento adicional."
+    },
+    "full": {
+      "label": "Con revestimiento y aislamiento",
+      "description": "Carcasa completa con aislamiento adicional para máxima eficiencia."
+    },
+    "imageAlt": "Puerta basculante sin aislamiento"
+  },
+  "transmitters": {
+    "title": "Transmisores de Mano",
+    "question": "¿Cuántos transmisores inalámbricos de mano necesitas para tu puerta de garaje AquaLOCK®?",
+    "label": "Número de mandos a distancia",
+    "placeholder": "Introducir cantidad",
+    "doorImageAlt": "Puerta basculante",
+    "remoteImageAlt": "Radiocontrol remoto TBS"
+  },
+  "drivePlate": {
+    "title": "Placa Pasable para Umbral",
+    "none": "Sin",
+    "stainless": "Acero inoxidable",
+    "aluminium": "Aluminio",
+    "noCost": "Sin coste adicional",
+    "stainlessCost": "170€ por RMT",
+    "aluminiumCost": "129€ por RMT"
+  },
+  "glazing": {
+    "title": "Elija Acristalamiento",
+    "addWindows": "Agregar ventanas (650 × 450 mm)",
+    "addStripes": "Agregar franja de vidrio (altura 400 mm)",
+    "quantity": "Número de ventanas",
+    "stripeLength": "Longitud de la franja de vidrio (mm)",
+    "autoNote": "El largo se calcula automáticamente restando 370 mm al ancho de la puerta. Cantidad: 1 pieza.",
+    "quantityPlaceholder": "Introducir cantidad",
+    "window": {
+      "transparent": {
+        "noInsulation": "Ventana (650 × 450 mm) – vidrio de seguridad laminado transparente de 6 mm",
+        "withInsulation": "Ventana aislada (650 × 450 mm) – vidrio de seguridad laminado ISO transparente, doble acristalamiento de 36 mm"
+      },
+      "mastercarre": {
+        "noInsulation": "Ventana (650 × 450 mm) – Vidrio laminado de seguridad Mastercarré 6 mm",
+        "withInsulation": "Ventana aislante (650 × 450 mm) – Vidrio laminado de seguridad Mastercarré ISO, doble acristalamiento de 36 mm"
+      },
+      "satinato": {
+        "noInsulation": "Ventana (650 × 450 mm) – Vidrio laminado de seguridad Satinato 6 mm",
+        "withInsulation": "Ventana aislada (650 × 450 mm) – Vidrio de seguridad laminado Satinato ISO, doble acristalamiento de 36 mm"
+      }
+    },
+    "stripe": {
+      "transparent": {
+        "noInsulation": "Banda de vidrio (altura 400 mm) – vidrio laminado de seguridad transparente de 6 mm",
+        "withInsulation": "Banda de vidrio aislante (altura 400 mm) – vidrio de seguridad laminado ISO transparente, doble acristalamiento de 36 mm"
+      },
+      "mastercarre": {
+        "noInsulation": "Banda de vidrio (alto 400 mm) – Vidrio de seguridad laminado Mastercarré de 6 mm",
+        "withInsulation": "Banda de vidrio aislante (altura 400 mm) – Vidrio de seguridad laminado Mastercarré ISO, doble acristalamiento de 36 mm"
+      },
+      "satinato": {
+        "noInsulation": "Banda de vidrio (alto 400 mm) – Vidrio de seguridad laminado Satinato 6 mm",
+        "withInsulation": "Banda de vidrio aislante (altura 400 mm) – Vidrio de seguridad laminado Satinato ISO, doble acristalamiento de 36 mm"
+      }
+    }
+  },
+  "units": {
+    "piece": "unidad",
+    "sqm": "m²"
+  }
+}

@@ -100,7 +100,7 @@
       "assembly": {
         "title": "Montageset mit Dichtmittel",
         "note": "Keine Auswahl nötig – immer inbegriffen.",
-        "price": "€334"
+        "price": "€238"
       }
     },
 
@@ -123,7 +123,7 @@
 
     "tracks": {
       "label": "Laufschienen in Edelstahl",
-      "price": "282 € / Set"
+      "price": "298 € / Set"
     },
 
     "transmitters": {
@@ -131,7 +131,7 @@
       "description": "Wie viele Funk-Handsender benötigen Sie für Ihr AquaLOCK® Sektionaltor?",
       "label": "Anzahl Handsender",
       "placeholder": "0",
-      "price": "60 € pro Stück"
+      "price": "62 € pro Stück"
     }
   }
 }

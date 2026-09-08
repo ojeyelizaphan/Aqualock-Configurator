@@ -65,6 +65,30 @@
             :options="colorOptions"
             v-model="form.config_options.color"
           />
+
+          <div
+            v-if="
+              form.config_options.color &&
+              standardColorCodes.includes(form.config_options.color)
+            "
+            class="mt-2 text-sm text-green-600 text-center"
+          >
+            {{ t('flap.step2.color.standardNotice') }}
+          </div>
+
+          <div
+            v-else-if="
+              form.config_options.color &&
+              colorExtraCost > 0
+            "
+            class="mt-2 text-sm text-red-500 text-center"
+          >
+            {{
+              t('flap.step2.color.customNotice', {
+                amount: colorExtraCost,
+              })
+            }}
+          </div>
         </div>
       </div>
 
@@ -143,12 +167,14 @@
 <script setup>
 import { useI18n } from 'vue-i18n'
 import ColorSelector from '@/Components/ColorSector.vue'
+import { standardColorCodes } from '@/Data/colorOptions';
 import img1 from '@/Assets/7-Flap/Step-2/flap-2.jpg'
 
 const { t } = useI18n()
 
 defineProps({
   form: Object,
-  colorOptions: Array
+  colorOptions: Array,
+  colorExtraCost: Number
 })
 </script>

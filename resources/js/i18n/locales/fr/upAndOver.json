@@ -93,43 +93,45 @@
     "stainless": "Acier inoxydable",
     "aluminium": "Aluminium",
     "noCost": "Aucun coût supplémentaire",
-    "stainlessCost": "165 € par mètre linéaire",
-    "aluminiumCost": "125 € par mètre linéaire"
+    "stainlessCost": "170 € par mètre linéaire",
+    "aluminiumCost": "129 € par mètre linéaire"
   },
   "glazing": {
     "title": "Choisir le vitrage",
     "addWindows": "Ajouter des fenêtres (650 × 450 mm)",
-    "addStripes": "Ajouter une bande vitrée d’une hauteur de 400 mm",
+    "addStripes": "Ajouter une bande vitrée (hauteur 400 mm)",
     "quantity": "Nombre de fenêtres",
     "stripeLength": "Longueur de la bande vitrée (mm)",
     "autoNote": "La longueur est calculée automatiquement en soustrayant 370 mm de la largeur de la porte. Quantité : 1 pièce.",
     "quantityPlaceholder": "Saisir la quantité",
+
     "window": {
       "transparent": {
-        "noInsulation": "Fenêtre (650 × 450 mm) – verre transparent",
-        "withInsulation": "Fenêtre (650 × 450 mm, ISO) – verre transparent"
+        "noInsulation": "Fenêtre (650 × 450 mm) – verre transparent feuilleté de sécurité de 6 mm",
+        "withInsulation": "Fenêtre isolée (650 × 450 mm) – verre transparent ISO feuilleté de sécurité, double vitrage de 36 mm"
       },
       "mastercarre": {
-        "noInsulation": "Fenêtre (650 × 450 mm) – verre Mastercarré",
-        "withInsulation": "Fenêtre (650 × 450 mm, ISO) – verre Mastercarré"
+        "noInsulation": "Fenêtre (650 × 450 mm) – verre Mastercarré feuilleté de sécurité de 6 mm",
+        "withInsulation": "Fenêtre isolée (650 × 450 mm) – verre Mastercarré ISO feuilleté de sécurité, double vitrage de 36 mm"
       },
       "satinato": {
-        "noInsulation": "Fenêtre (650 × 450 mm) – verre Satinato",
-        "withInsulation": "Fenêtre (650 × 450 mm, ISO) – verre Satinato"
+        "noInsulation": "Fenêtre (650 × 450 mm) – verre Satinato feuilleté de sécurité de 6 mm",
+        "withInsulation": "Fenêtre isolée (650 × 450 mm) – verre Satinato ISO feuilleté de sécurité, double vitrage de 36 mm"
       }
     },
+
     "stripe": {
       "transparent": {
-        "noInsulation": "Bande vitrée (400 mm) – verre transparent",
-        "withInsulation": "Bande vitrée (400 mm, ISO) – verre transparent"
+        "noInsulation": "Bande vitrée (hauteur 400 mm) – verre transparent feuilleté de sécurité de 6 mm",
+        "withInsulation": "Bande vitrée isolée (hauteur 400 mm) – verre transparent ISO feuilleté de sécurité, double vitrage de 36 mm"
       },
       "mastercarre": {
-        "noInsulation": "Bande vitrée (400 mm) – verre Mastercarré",
-        "withInsulation": "Bande vitrée (400 mm, ISO) – verre Mastercarré"
+        "noInsulation": "Bande vitrée (hauteur 400 mm) – verre Mastercarré feuilleté de sécurité de 6 mm",
+        "withInsulation": "Bande vitrée isolée (hauteur 400 mm) – verre Mastercarré ISO feuilleté de sécurité, double vitrage de 36 mm"
       },
       "satinato": {
-        "noInsulation": "Bande vitrée (400 mm) – verre Satinato",
-        "withInsulation": "Bande vitrée (400 mm, ISO) – verre Satinato"
+        "noInsulation": "Bande vitrée (hauteur 400 mm) – verre Satinato feuilleté de sécurité de 6 mm",
+        "withInsulation": "Bande vitrée isolée (hauteur 400 mm) – verre Satinato ISO feuilleté de sécurité, double vitrage de 36 mm"
       }
     }
   },

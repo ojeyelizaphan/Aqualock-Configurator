@@ -100,7 +100,7 @@
       "assembly": {
         "title": "Assembly kit with sealing",
         "note": "Standard option — automatically included.",
-        "price": "€334 / piece"
+        "price": "€238 / piece"
       }
     },
 
@@ -123,7 +123,7 @@
 
     "tracks": {
       "label": "Stainless steel tracks",
-      "price": "€282 / set"
+      "price": "€298 / set"
     },
 
     "transmitters": {
@@ -131,7 +131,7 @@
       "description": "Since the motor is included by default, you can add hand transmitters here.",
       "label": "Hand transmitter quantity",
       "placeholder": "Enter quantity",
-      "price": "€60 / piece"
+      "price": "€62 / piece"
     }
   }
 }

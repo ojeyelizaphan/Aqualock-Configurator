@@ -95,9 +95,15 @@ const progressWidth = computed(() => {
   return Math.min((props.currentStep / props.totalSteps) * 100, 100);
 });
 
+const localeMap = {
+  de: 'de-DE',
+  en: 'en-US',
+  fr: 'fr-FR',
+  es: 'es-ES',
+};
+
 const formattedPrice = computed(() => {
-  const currentLocale =
-    locale.value === 'de' ? 'de-DE' : 'en-US';
+  const currentLocale = localeMap[locale.value] ?? 'en-US';
 
   return new Intl.NumberFormat(currentLocale, {
     style: 'currency',

@@ -1,0 +1,51 @@
+{
+  "step1": {
+    "included": {
+      "title": "Incluido de serie",
+      "description": "El kit de montaje con junta es una opción estándar y se añade automáticamente al precio total.",
+      "name": "Kit de montaje con sellador",
+      "note": "Opción estándar: incluida automáticamente.",
+      "price": "246 € / pieza"
+    },
+    "title": "Dimensiones y método de instalación",
+    "dimensions": {
+      "title": "Dimensiones del protector de ventana",
+      "description1": "Tenga en cuenta que el tamaño máximo de la abertura en la pared para WindowsProtector es 1800 × 1800 mm.",
+      "width": "Ancho de la abertura de la pared:",
+      "widthRange": "Entre 400 y 1.800 mm",
+      "height": "Altura de la abertura de la pared:",
+      "heightRange": "Entre 400 y 1.800 mm",
+      "inputWidth": "Anchura (mm)",
+      "inputHeight": "Altura (mm)",
+      "invalidRange": "Por favor ingrese un ancho y alto válidos entre 400 mm y 1800 mm.",
+      "notManufacturable": "Este tamaño no está disponible para fabricación para la configuración seleccionada."
+    },
+    "installation": {
+      "title": "Método de instalación",
+      "description": "La barrera acrílica de fácil instalación es la solución perfecta para sellar ventanas de sótanos y edificios. La instalación puede realizarse tanto en el marco de la ventana como directamente en la pared. En ambos casos, la mampara acrílica se adhiere y sella con un adhesivo acrílico especial.",
+      "frame": "Sobre el marco de la ventana",
+      "wall": "Sobre la pared del hueco"
+    }
+  },
+  "step2": {
+    "title": "Opciones de trampilla",
+    "removable": {
+      "title": "Trampilla extraíble",
+      "description": "Seleccione la anchura y altura predefinidas. El precio de la trampilla se asignará automáticamente.",
+      "width": "Anchura",
+      "height": "Altura",
+      "selectWidth": "Seleccionar anchura",
+      "selectHeight": "Seleccionar altura",
+      "price": "Precio de la trampilla"
+    },
+    "tiltUp": {
+      "title": "Trampilla abatible",
+      "description": "Seleccione la anchura y altura predefinidas. El precio de la trampilla se asignará automáticamente.",
+      "width": "Anchura",
+      "height": "Altura",
+      "selectWidth": "Seleccionar anchura",
+      "selectHeight": "Seleccionar altura",
+      "price": "Precio de la trampilla"
+    }
+  }
+}

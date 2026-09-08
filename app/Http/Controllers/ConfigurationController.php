@@ -25,19 +25,26 @@ class ConfigurationController extends Controller
 
     public function create($locale = 'en')
     {
-        if (! in_array($locale, ['en', 'de'])) {
+        $supportedLocales = ['en', 'de', 'fr', 'es'];
+
+        if (! in_array($locale, $supportedLocales, true)) {
             $locale = 'en';
         }
 
         app()->setLocale($locale);
 
-        $products = Product::with(['productType.configurationSteps'])->get();
+        $products = Product::with([
+            'productType.configurationSteps',
+        ])->get();
 
-        return Inertia::render('Configurations/ConfigurationWizard', [
-            'products' => $products,
-            'existingConfiguration' => null,
-            'locale' => $locale,
-        ]);
+        return Inertia::render(
+            'Configurations/ConfigurationWizard',
+            [
+                'products' => $products,
+                'existingConfiguration' => null,
+                'locale' => $locale,
+            ],
+        );
     }
 
     public function store(StoreConfigurationRequest $request)

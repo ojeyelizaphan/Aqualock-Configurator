@@ -4,11 +4,7 @@
  * Matrix lookup format:
  * garageDoorPrices[version][height][width]
  *
- * Unsupported combinations from the supplied source are deliberately omitted:
- * - E: width 3100 has no supplied prices.
- * - V: width 5200 has no supplied prices.
- * - V500: widths 5100 and 5200 have no supplied prices; the 2520-height row
- *   also has no supplied price for width 5000.
+ *
  */
 
 const widths = {
@@ -70,26 +66,26 @@ export const garageDoorPrices = {
 };
 
 export const garageDoorExtraPrices = {
-  customColorPerM2: 39,
+  customColorPerM2: 40,
   panellingPerM2: {
-    uninsulated: 121,
-    insulated: 148,
+    uninsulated: 125,
+    insulated: 152,
   },
   glazing: {
     windowPerPiece: {
-      uninsulated: 418,
-      insulated: 545,
+      uninsulated: 431,
+      insulated: 561,
     },
     stripePerM2: {
-      uninsulated: 376,
-      insulated: 509,
+      uninsulated: 387,
+      insulated: 524,
     },
   },
   driveOverPlatePerRunningMeter: {
-    stainless: 165,
-    aluminium: 125,
+    stainless: 170,
+    aluminium: 129,
   },
-  motor: 651,
-  assemblyKit: 334,
-  handTransmitter: 60,
+  motor: 683,
+  assemblyKit: 344,
+  handTransmitter: 62,
 };

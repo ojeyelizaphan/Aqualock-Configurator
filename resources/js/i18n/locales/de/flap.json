@@ -7,7 +7,7 @@
         "description": "Bei dieser Tür-Konfiguration ist das Montage-Set zwingend inbegriffen und wird automatisch hinzugefügt.",
         "item": "Montageset mit Dichtmittel",
         "note": "Keine Auswahl nötig – immer inbegriffen.",
-        "price": "€131 / Stück"
+        "price": "€135 / Stück"
       },
 
       "dimensions": {
@@ -51,7 +51,9 @@
           "ralColors": "216 RAL-Farben"
         },
         "freeColors": "Dabei gibt es sieben Standard-Farben (weiß und 6 Grau-Töne), die ohne Aufpreis erhältlich sind.",
-        "note": "Achtung: Die Darstellung der Farben auf der Website kann aufgrund von Monitoreinstellungen von der tatsächlichen Farbe abweichen. Alle Angaben daher ohne Gewähr."
+        "note": "Achtung: Die Darstellung der Farben auf der Website kann aufgrund von Monitoreinstellungen von der tatsächlichen Farbe abweichen. Alle Angaben daher ohne Gewähr.",
+        "standardNotice": "Dies ist eine Standardfarbe und es fällt kein Aufpreis an.",
+        "customNotice": "Die gewählte Farbe ist eine nicht standardmäßige RAL-Farbe und verursacht einen Aufpreis von €{amount}."
       },
 
       "opening": {

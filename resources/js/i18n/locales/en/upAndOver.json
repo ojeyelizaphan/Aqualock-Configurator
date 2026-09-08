@@ -99,46 +99,46 @@
     "stainless": "Stainless Steel",
     "aluminium": "Aluminium",
     "noCost": "No extra cost",
-    "stainlessCost": "€165 per RMT",
-    "aluminiumCost": "€125 per RMT"
+    "stainlessCost": "€170 per RMT",
+    "aluminiumCost": "€129 per RMT"
   },
 
   "glazing": {
     "title": "Choose Glazing",
-    "addWindows": "Add Windows (650x450 mm)",
-    "addStripes": "Add Glass Stripes (height 400 mm)",
+    "addWindows": "Add windows (650 × 450 mm)",
+    "addStripes": "Add glass stripe (height 400 mm)",
     "quantity": "Number of windows",
-    "stripeLength": "Stripe Length (mm)",
-    "autoNote": "Automatically calculated as door width - 370 mm. Quantity: 1 piece.",
+    "stripeLength": "Glass stripe length (mm)",
+    "autoNote": "The length is calculated automatically by subtracting 370 mm from the door width. Quantity: 1 piece.",
     "quantityPlaceholder": "Enter quantity",
 
     "window": {
       "transparent": {
-        "noInsulation": "Window (650x450 mm) - Transparent Glass",
-        "withInsulation": "Window (650x450 mm, ISO) - Transparent Glass"
+        "noInsulation": "Window (650 × 450 mm) – transparent 6 mm laminated safety glass",
+        "withInsulation": "Insulated window (650 × 450 mm) – transparent ISO laminated safety glass, 36 mm double glazing"
       },
       "mastercarre": {
-        "noInsulation": "Window (650x450 mm) - Mastercarre Glass",
-        "withInsulation": "Window (650x450 mm, ISO) - Mastercarre Glass"
+        "noInsulation": "Window (650 × 450 mm) – Mastercarré 6 mm laminated safety glass",
+        "withInsulation": "Insulated window (650 × 450 mm) – Mastercarré ISO laminated safety glass, 36 mm double glazing"
       },
       "satinato": {
-        "noInsulation": "Window (650x450 mm) - Satinato Glass",
-        "withInsulation": "Window (650x450 mm, ISO) - Satinato Glass"
+        "noInsulation": "Window (650 × 450 mm) – Satinato 6 mm laminated safety glass",
+        "withInsulation": "Insulated window (650 × 450 mm) – Satinato ISO laminated safety glass, 36 mm double glazing"
       }
     },
 
     "stripe": {
       "transparent": {
-        "noInsulation": "Glass Stripe (400 mm) - Transparent Glass",
-        "withInsulation": "Glass Stripe (400 mm) - Transparent Glass"
+        "noInsulation": "Glass stripe (height 400 mm) – transparent 6 mm laminated safety glass",
+        "withInsulation": "Insulated glass stripe (height 400 mm) – transparent ISO laminated safety glass, 36 mm double glazing"
       },
       "mastercarre": {
-        "noInsulation": "Glass Stripe (400 mm) - Mastercarre Glass",
-        "withInsulation": "Glass Stripe (400 mm) - Mastercarre Glass"
+        "noInsulation": "Glass stripe (height 400 mm) – Mastercarré 6 mm laminated safety glass",
+        "withInsulation": "Insulated glass stripe (height 400 mm) – Mastercarré ISO laminated safety glass, 36 mm double glazing"
       },
       "satinato": {
-        "noInsulation": "Glass Stripe (400 mm) - Satinato Glass",
-        "withInsulation": "Glass Stripe (400 mm) - Satinato Glass"
+        "noInsulation": "Glass stripe (height 400 mm) – Satinato 6 mm laminated safety glass",
+        "withInsulation": "Insulated glass stripe (height 400 mm) – Satinato ISO laminated safety glass, 36 mm double glazing"
       }
     }
   },

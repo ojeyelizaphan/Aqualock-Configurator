@@ -9,7 +9,7 @@ import {
 } from '@/Data/quickwallPrices';
 
 const quickwallAccessoryPrices = {
-  assemblyKit: 136,
+  assemblyKit: 0,
   cornerProfileColourCoating: 89,
   bottomPlatePerRunningMeter: 73,
   hook: 11,

@@ -23,7 +23,7 @@
           </div>
 
           <p class="font-semibold text-gray-900 whitespace-nowrap">
-            €651 / {{ $t('upAndOver.units.piece') }}
+            €683 / {{ $t('upAndOver.units.piece') }}
           </p>
         </div>
 
@@ -38,7 +38,7 @@
           </div>
 
           <p class="font-semibold text-gray-900 whitespace-nowrap">
-            €334 / {{ $t('upAndOver.units.piece') }}
+            €344 / {{ $t('upAndOver.units.piece') }}
           </p>
         </div>
       </div>
@@ -49,7 +49,7 @@
         </p>
 
         <p class="text-lg font-bold text-amber-900">
-          €985
+          €1027
         </p>
       </div>
     </div>

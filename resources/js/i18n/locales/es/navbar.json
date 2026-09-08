@@ -1,0 +1,28 @@
+{
+  "navbar": {
+    "menu": "Menú",
+    "products": "Productos",
+    "fmApproved": "FM Aprobado",
+    "configurator": "Configurador",
+    "download": "Descargar",
+    "shop": "Tienda",
+    "about": "Acerca de",
+    "gallery": "Galería",
+    "contact": "Contacto",
+    "requestQuote": "Solicitar presupuesto",
+    "productLinks": {
+      "door": "Puerta AquaLOCK®",
+      "upAndOver": "AquaLOCK® Puerta De Garaje Basculante",
+      "sectional": "Puerta seccional AquaLOCK®",
+      "gate": "Portal AquaLOCK®",
+      "quickwall": "AquaLOCK® Quickwall",
+      "flap": "Trampilla AquaLOCK®",
+      "windowsProtector": "Protector de ventana AquaLOCK®",
+      "industrial": "AquaLOCK® Industriales"
+    },
+    "galleryLinks": {
+      "photos": "Galería de fotos",
+      "videos": "Vídeos"
+    }
+  }
+}

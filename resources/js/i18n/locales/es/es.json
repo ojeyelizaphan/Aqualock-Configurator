@@ -1,0 +1,100 @@
+{
+  "summaryGeneral": {
+    "title": "Datos de contacto",
+    "back": "Volver a la configuración",
+    "configSummary": "Resumen de la configuración",
+    "totalPrice": "Precio total",
+    "pricingNoteTitle": "Información importante sobre el precio:",
+    "pricingNote": "Todos los precios indicados incluyen el IVA alemán del 19 %. El transporte y la instalación no están incluidos.",
+    "configDetails": "Detalles de la configuración",
+    "accessories": "Accesorios",
+    "contactTitle": "Contactar",
+    "contactDescription": "Uno de nuestros empleados o socios de instalación estará encantado de hablar personalmente con usted. En cuanto recibamos sus datos de contacto, nos pondremos en contacto con usted lo antes posible para comentar los siguientes pasos.",
+    "fullName": "Nombre completo",
+    "email": "Dirección de correo electrónico",
+    "phone": "Número de teléfono",
+    "address": "Dirección",
+    "placeholders": {
+      "name": "Ingresa tu nombre completo",
+      "email": "Introduce tu correo electrónico",
+      "phone": "Introduce tu número de teléfono",
+      "address": "Introduce tu dirección de entrega"
+    },
+    "submit": "Enviar solicitud",
+    "success": {
+      "title": "¡Felicidades! 🎉",
+      "message": "Configuraste exitosamente tu producto AquaLOCK® personalizado. Nos pondremos en contacto.",
+      "cta": "Ir a la página de inicio"
+    }
+  },
+  "steps": {
+    "chooseProduct": "Seleccionar el producto",
+    "garage-door": {
+      "protectionHeight": "Altura de protección",
+      "sizeAndInstallation": "Dimensiones y tipo de instalación",
+      "colorAndMaterial": "Color y material",
+      "insulationAndTransmitter": "Aislamiento y mando a distancia"
+    },
+    "sectional-door": {
+      "doorSizeAndInstallationMethod": "Dimensiones de la puerta y tipo de instalación",
+      "basePlate": "Chapa de paso",
+      "panelAndProfileColour": "Color de los paneles y perfiles",
+      "accessories": "Accesorios"
+    },
+    "house-door": {
+      "lockingMechanism": "Sistema de cierre",
+      "doorDimensionsAndInstallation": "Dimensiones de la puerta y tipo de instalación",
+      "thermalInsulationAndWindow": "Aislamiento térmico y ventana",
+      "colorAndDoorFittings": "Color y herrajes de la puerta",
+      "accessories": "Accesorios"
+    },
+    "security-gate": {
+      "floodProtectionLevelAndGateSize": "Nivel de protección y dimensiones del portal",
+      "openingDirectionAndInstallation": "Dirección de apertura e instalación",
+      "colorAndMaterialGateFittings": "Color y material, herrajes del portal",
+      "lockingSystemAndAccessories": "Sistema de cierre y accesorios"
+    },
+    "quickwall": {
+      "protectionLevelAndMeasurements": "Nivel de protección y medidas",
+      "installationMethodLockingLever": "Método de instalación y palanca de cierre",
+      "multiPanelSystem": "Sistema multipanel",
+      "cornerProfilesBasePlateHangingHooks": "Perfiles de esquina, chapa de paso y ganchos"
+    },
+    "windows-protector": {
+      "dimensionsAndInstallationMethod": "Dimensiones y método de instalación",
+      "hatchOptions": "Opciones de trampilla"
+    },
+    "basement-flaps": {
+      "measurementAndMaterial": "Dimensiones y material",
+      "colourOpeningDirectionCladding": "Color, dirección de apertura y revestimiento"
+    }
+  },
+  "progress": {
+    "title": "Progreso de la configuración",
+    "step": "Etapa",
+    "of": "de",
+    "currentPrice": "Precio actual"
+  },
+  "products": {
+    "upAndOverGarageDoor": "Puerta de garaje basculante AquaLOCK®",
+    "sectionalGarageDoor": "Puerta seccional AquaLOCK®",
+    "door": "Puerta AquaLOCK®",
+    "gate": "Portal AquaLOCK®",
+    "quickwall": "AquaLOCK® Quickwall",
+    "windowProtector": "Protector de ventana AquaLOCK®",
+    "flap": "Trampilla AquaLOCK®"
+  },
+  "homepage": {
+    "chooseProductTitle": "Elige tu producto",
+    "chooseProductDescription": "Seleccione uno de los sistemas AquaLOCK disponibles para continuar."
+  },
+  "navigation": {
+    "back": "Atrás",
+    "next": "Siguiente",
+    "submit": "Enviar"
+  },
+  "colorSelector": {
+    "searchPlaceholder": "Buscar por código RAL...",
+    "noColoursFound": "No se encontraron colores."
+  }
+}

@@ -33,7 +33,6 @@ const form = useForm({
   accessories_summary: [],
 });
 
-const vatRate = 0.19;
 
 /*
 |--------------------------------------------------------------------------
@@ -132,11 +131,9 @@ const getTranslatedValue = (option) => {
 */
 
 const totalPriceInclVat = computed(() => {
-  const basePrice = Number(
-    configuration.value?.total_price || 0
+  return Number(
+    configuration.value?.total_price ?? 0
   );
-
-  return basePrice * (1 + vatRate);
 });
 
 /*

@@ -1,4 +1,5 @@
 import { computed } from 'vue';
+import { standardColorCodes } from '@/Data/colorOptions';
 
 export function useFlapPriceCalculator(
   form,
@@ -68,13 +69,13 @@ export function useFlapPriceCalculator(
   });
 
   const colorExtraCost = computed(() => {
-    const options = form.config_options ?? {};
+    const color = form.config_options?.color;
 
-    if (options.color !== 'custom') {
+    if (!color || standardColorCodes.includes(color)) {
       return 0;
     }
 
-    return Math.round(flapAreaM2.value * 80);
+    return Math.ceil(flapAreaM2.value * 80);
   });
 
   const accessoryExtraCost = computed(() => {

@@ -1,0 +1,167 @@
+{
+  "locking": {
+    "title": "Seleccionar mecanismo de cierre",
+    "description": "Existen cuatro variantes de mecanismo de cierre diferentes para elegir. Según las condiciones estructurales y las preferencias individuales, las puertas AquaLOCK® ofrecen múltiples configuraciones. A excepción de la versión V2 (altura de protección hasta la manilla, máx. 1.600 mm), todas las variantes ofrecen protección contra inundaciones de hasta 5.000 mm.",
+    "options": {
+      "V1": "Exterior: Sin herrajes de puerta ni cilindro de cierre. Interior: Cilindro de cierre, manilla y falleba.",
+      "V2": "Exterior: Cilindro de cierre y manilla. Interior: Cilindro de cierre, manilla y falleba.",
+      "V3": "Exterior: Cilindro de cierre con tapa estanca, pomo fijo. Interior: Cilindro de cierre, manilla y falleba.",
+      "V6": "Exterior: Cilindro de cierre, pomo fijo y falleba. Interior: Cilindro de cierre, manilla y falleba."
+    },
+    "details": {
+      "V1": "<strong>Protección antirrobo:</strong> RC1N, RC2, RC3 posible<br><strong>Corte de vidrio:</strong> No es posible",
+      "V2": "<strong>Protección antirrobo:</strong> RC1N, RC2, RC3 posible<br><strong>Recorte de cristal:</strong> Sólo posible con RC1N, falleba visible desde el exterior",
+      "V3": "<strong>Protección antirrobo:</strong> Sólo RC1N posible<br><strong>Corte de vidrio:</strong> No es posible",
+      "V6": "<strong>Protección antirrobo:</strong> Sólo RC1N posible<br><strong>Recorte de vidrio:</strong> Posible, falleba visible desde el exterior"
+    }
+  },
+  "dimensions": {
+    "title": "Dimensiones de la puerta",
+    "description": "Tenga en cuenta el ancho y alto permitidos de la puerta:<br>Ancho: entre 500 y 1.200 mm<br>Altura: entre 1.200 y 2.300 mm",
+    "width": "Anchura (mm)",
+    "height": "Altura (mm)",
+    "widthPlaceholder": "500 - 1210",
+    "heightPlaceholder": "1200 - 2300",
+    "widthError": "El ancho debe estar entre 500 y 1210 mm.",
+    "heightError": "La altura debe estar entre 1200 y 2300 mm.",
+    "extra": "Anchos mayores están disponibles bajo pedido."
+  },
+  "panels": {
+    "title": "Paneles fijos opcionales",
+    "description": "Las aberturas de puertas más anchas o más altas se pueden compensar con paneles fijos montados a la izquierda, derecha, encima o debajo de la puerta.",
+    "left": "Panel lateral fijo izquierdo",
+    "right": "Panel lateral fijo derecho",
+    "top": "Panel fijo encima de la puerta.",
+    "bottom": "Panel fijo debajo de la puerta",
+    "width": "Ancho del panel",
+    "height": "Altura del panel",
+    "pricingNote": "Los paneles de hasta 400 mm utilizan un precio fijo. Los paneles de 401 mm o más se calculan por área."
+  },
+  "installation": {
+    "title": "Tipo de instalación",
+    "description": "Si no está seguro de qué tipo de instalación es adecuada para su edificio, no hay problema: un técnico experimentado lo aclarará en el sitio.<br><strong>Atención:</strong> Dependiendo del tipo de instalación, es posible que no sea posible utilizar puertas con aislamiento térmico.",
+    "options": {
+      "between_reveal": {
+        "label": "Entre muros",
+        "desc": "Posible aislamiento térmico"
+      },
+      "infront_reveal": {
+        "label": "Delante del muro",
+        "desc": "No es posible aislar térmicamente. ¡Obligatorio tapón antigoteo!"
+      },
+      "interior_flush": {
+        "label": "Enrasada con la cara interior",
+        "desc": "Posibilidad de aislamiento térmico"
+      },
+      "behind_reveal": {
+        "label": "Detrás del muro",
+        "desc": "Aislamiento térmico no posible"
+      }
+    }
+  },
+  "included": {
+    "title": "Incluido de serie",
+    "description": "En esta configuración de puerta el kit de montaje es obligatorio y se añade automáticamente.",
+    "item": "Kit de montaje con sellador",
+    "note": "No requiere selección: siempre está incluido.",
+    "price": "398 € / pieza"
+  },
+  "insulation": {
+    "title": "Aislamiento térmico",
+    "description": "Puertas con aislamiento térmico AquaLOCK®: protección eficaz contra el calor y el frío.<br><br>La Ordenanza alemana sobre ahorro de energía (EnEV) exige que las puertas de entrada tengan un valor Ud máximo de 1,8 W/m²K.<br><br>AquaLOCK® Las puertas con aislamiento térmico alcanzan Ud 1,5 W/m²K, manteniendo el calor en el interior y el frío en el exterior.<br><br>Las puertas sin aislamiento térmico se recomiendan para puertas secundarias como sótanos o garajes.",
+    "options": {
+      "thermally_insulated": {
+        "label": "Puerta con rotura de puente térmico",
+        "desc": ""
+      },
+      "non_thermally_insulated": {
+        "label": "Puerta sin rotura de puente térmico",
+        "desc": ""
+      }
+    }
+  },
+  "windows": {
+    "title": "Ventanas",
+    "description": "Se puede integrar una ventana que no se abre (máximo 650 × 450 mm) en el área superior de la puerta.<br><br>• Puertas con aislamiento térmico → triple acristalamiento<br>• Puertas sin aislamiento → doble acristalamiento",
+    "warning": "Las ventanas no son resistentes a las inundaciones y no son adecuadas para puertas que requieren protección contra inundaciones de altura completa.",
+    "without": "Sin ventana",
+    "with": "Con ventana",
+    "samePrice": "Disponible en 3 variantes, todas al mismo precio.",
+    "v3Warning": "Las ventanas no están disponibles para V3.",
+    "versionTitle": "Elige el tipo de ventana",
+    "versions": {
+      "clear": {
+        "label": "Vidrio Transparente",
+        "desc": "Vidrio transparente simple"
+      },
+      "mastercarree": {
+        "label": "Mastercarrée",
+        "desc": "Superficie texturizada"
+      },
+      "satinato": {
+        "label": "Satinato (Vidrio esmerilado)",
+        "desc": "Acabado mate suave"
+      }
+    }
+  },
+  "flood": {
+    "title": "Protección contra inundaciones",
+    "description": "La versión reforzada proporciona protección hasta 5 m del nivel del agua.",
+    "option": "Versión reforzada con protección contra inundaciones hasta 5 m",
+    "note": "No disponible con ventanas.",
+    "disabledNote": "La protección contra inundaciones no está disponible con ventanas."
+  },
+  "colors": {
+    "title": "Muchos colores",
+    "description": "Para que su puerta AquaLOCK® combine perfectamente con su edificio, puede elegir entre 216 colores RAL.<br>Siete colores estándar (blanco, negro y varios tonos de gris) están disponibles sin costo adicional.<br><br>Tenga en cuenta: Los tonos de color en el sitio web pueden diferir del color real debido a la pantalla del monitor. y por lo tanto, no ofrecemos garantía de una coincidencia exacta.",
+    "standard": "Este es un color estándar y no conlleva ningún cargo adicional.",
+    "extra": "El color seleccionado es un color RAL no estándar e incurre en un cargo adicional de €{price}."
+  },
+  "fittings": {
+    "title": "Herrajes para puertas",
+    "description": "Los herrajes de las puertas se basan en el mecanismo de bloqueo seleccionado anteriormente.",
+    "selected": "Mecanismo de bloqueo seleccionado",
+    "notSelected": "No seleccionado",
+    "knobTitle": "Tipo de perilla",
+    "knob": {
+      "none": "-- Sin perilla --",
+      "aluminium": "Pomo Fijo Aluminio",
+      "stainless": "Pomo Fijo Acero Inoxidable"
+    },
+    "kaba": "Actualización versión KABA (+92€)"
+  },
+  "accessories": {
+    "title": "Seleccionar accesorios",
+    "panic": {
+      "title": "Función antipánico",
+      "options": {
+        "panic_function_e": {
+          "label": "Función Pánico E",
+          "desc": "Para pomo fijo exterior. Se abre sólo con llave cuando la falleba está abierta."
+        },
+        "pushbar": {
+          "label": "Barra de empuje",
+          "desc": "Permite salida rápida, mecanismo estilo barra en el interior."
+        }
+      }
+    },
+    "drip": {
+      "title": "Perfil vierteaguas",
+      "option": "Tapa antigoteo montada en la parte superior del marco"
+    },
+    "burglary": {
+      "title": "Protección antirrobo",
+      "restriction": "RC2 y RC3 solo están disponibles para V1 y V2 sin ventana."
+    },
+    "drive": {
+      "title": "Chapa de paso",
+      "none": "Ninguna",
+      "aluminium": "Aluminio 2 mm",
+      "stainless": "Acero Inoxidable 2mm"
+    },
+    "closer": {
+      "title": "Cierrapuertas superior",
+      "option": "Agregar cierrapuertas GEZE 5000"
+    }
+  }
+}

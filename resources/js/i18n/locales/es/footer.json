@@ -1,0 +1,38 @@
+{
+  "footer": {
+    "openingHours": {
+      "title": "Horario de apertura de la sala de exposición",
+      "weekdays": "Lunes – Viernes:",
+      "morning": "08:00 a. m. – 12:00 p. m.",
+      "afternoon": "13:00 – 17:00",
+      "saturday": "Cada primer sábado:",
+      "saturdayHours": "09:00 a.m. – 12:00 p.m."
+    },
+    "products": {
+      "title": "Productos",
+      "garageDoor": "Puerta de garaje",
+      "flap": "Trampilla",
+      "gate": "Portal",
+      "quickwall": "Muro rápido"
+    },
+    "company": {
+      "title": "Empresa",
+      "about": "Acerca de",
+      "gallery": "Galería",
+      "fmApproved": "FM Aprobado",
+      "contact": "Contacto"
+    },
+    "contact": {
+      "title": "Contacto",
+      "company": "Torbau Schwaben GmbH",
+      "street": "Enzianstraße 14",
+      "city": "D-88436 Oberessendorf"
+    },
+    "bottom": {
+      "copyright": "© 2026 AquaLOCK. Todos los derechos reservados.",
+      "privacy": "Privacidad",
+      "legal": "Información legal",
+      "shipping": "Gastos de envío"
+    }
+  }
+}

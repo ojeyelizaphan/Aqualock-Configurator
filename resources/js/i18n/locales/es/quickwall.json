@@ -1,0 +1,93 @@
+{
+  "stepProtection": {
+    "title": "Nivel de protección y medidas",
+    "intro": {
+      "title": "Seleccione el nivel de protección contra el agua",
+      "p1": "En ciertas situaciones estructurales es necesaria la instalación de sistemas móviles de protección contra inundaciones. El panel AquaLOCK® Quickwall fue diseñado precisamente para este fin.",
+      "p2": "Consta de lamas fijas y está disponible hasta una altura máxima de protección de 1,6 m, dependiendo de la anchura de la abertura."
+    },
+    "width": {
+      "label": "Anchura de la abertura (mm)",
+      "placeholder": "Introducir anchura de la abertura",
+      "error": "Por favor ingrese un ancho válido entre 800 mm y 3000 mm."
+    },
+    "height": {
+      "label": "Altura de protección (mm)",
+      "required": "Por favor seleccione una altura de protección antes de continuar.",
+      "none": "No hay alturas de protección disponibles para este ancho."
+    }
+  },
+  "stepInstallation": {
+    "title": "Método de instalación y palanca de cierre",
+    "installation": {
+      "title": "Tipo de instalación",
+      "description": "El panel AquaLOCK® Quickwall puede instalarse delante o entre los huecos de la pared, según la situación estructural.",
+      "front": "Delante del muro",
+      "between": "Entre muros"
+    },
+    "locking": {
+      "title": "Posición de la palanca de cierre",
+      "description": "La palanca de bloqueo extraíble se puede colocar en el lado izquierdo o derecho de la puerta sin costo adicional.",
+      "view": "(Vista desde el exterior)",
+      "right": "Derecha (desde el exterior)",
+      "left": "Izquierda (desde el exterior)"
+    }
+  },
+  "stepMultiPanel": {
+    "title": "Sistema multipanel",
+    "intro": {
+      "highlight": "Soluciones para aberturas amplias con poste central o montaje en esquina",
+      "p1": "Se pueden conectar varios paneles Quickwall AquaLOCK® utilizando un poste central fijo (ancho: 60 mm) donde se requiere un mayor nivel de protección, p. 2,5 m de ancho × 1 m de alto. El poste central se inserta en un manguito de acero inoxidable empotrado en hormigón y se fija con un tornillo integrado. Luego se montan paneles Quickwall a cada lado del poste para crear una barrera estable y segura.",
+      "p2": "Para aplicaciones en esquina puede utilizarse un poste especial que une dos paneles Quickwall en ángulo y proporciona una instalación sólida y sin fisuras."
+    },
+    "example": {
+      "title": "Ejemplo de cálculo de la anchura correcta de los paneles Quickwall",
+      "p": "Quiere proteger una puerta de garaje de 2.400 mm de ancho a una altura de 1.500 mm. El ancho máximo a esa altura de protección es de 1.100 mm, lo que no es suficiente para utilizar sólo 2 paneles, por lo que hay que llevar 3 paneles y 2 postes centrales.",
+      "calc1": "2.400 mm − 120 mm (2 postes centrales) = 2.280 mm",
+      "calc2": "2.280 ÷ 3 = 760 mm por panel"
+    },
+    "inputs": {
+      "panels": {
+        "label": "Paneles Quickwall requeridos",
+        "placeholder": "Número de paneles"
+      },
+      "centerPosts": {
+        "label": "Puestos centrales requeridos",
+        "placeholder": "Número de postes centrales"
+      },
+      "cornerPosts": {
+        "label": "Publicaciones de esquina requeridas",
+        "placeholder": "Número de postes de esquina"
+      }
+    },
+    "images": {
+      "center": "Configuración de poste central",
+      "corner": "Configuración de poste de esquina"
+    }
+  },
+  "stepAccessories": {
+    "title": "Accesorios y opciones adicionales",
+    "included": {
+      "title": "Incluido sin coste adicional",
+      "description": "Como oferta especial de aniversario, el kit de montaje está incluido sin coste adicional. Los perfiles de esquina forman parte del kit; únicamente su revestimiento de color conlleva un coste adicional."
+    },
+    "bottomPlate": {
+      "title": "Placa inferior",
+      "description": "La chapa de paso es obligatoria y se incluye automáticamente según el número de paneles Quickwall seleccionados."
+    },
+    "cornerProfiles": {
+      "title": "Recubrimiento de color para perfiles de esquina",
+      "description": "Los perfiles de esquina se incluyen como parte del kit de montaje. Opcionalmente se puede añadir revestimiento en color RAL con coste adicional.",
+      "without": "Sin revestimiento de color (aluminio anodizado)",
+      "with": "Con revestimiento de color (RAL)"
+    },
+    "accessories": {
+      "title": "Accesorios opcionales",
+      "hooks": {
+        "title": "Ganchos para colgar el panel Quickwall",
+        "description": "Ganchos para colgar y almacenar los paneles.",
+        "price": "11€"
+      }
+    }
+  }
+}
