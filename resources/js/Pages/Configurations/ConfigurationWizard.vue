@@ -101,9 +101,19 @@
             v-if="step === totalSteps"
             @click="submitConfiguration"
             type="button"
-            class="bg-brand-orange hover:bg-orange-600 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
+            :disabled="isShopSubmitting || form.processing"
+            class="text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
+            :class="
+              isShopSubmitting || form.processing
+                ? 'bg-gray-300 cursor-not-allowed'
+                : 'bg-brand-orange hover:bg-orange-600'
+            "
           >
-            {{ t('navigation.submit') }}
+            {{
+              isShopSubmitting
+                ? "Adding to cart..."
+                : t("navigation.submit")
+            }}
           </button>
         </div>
       </div>
@@ -123,11 +133,11 @@ import {
   nextTick,
   onMounted,
 } from "vue";
+import axios from "axios";
 import { useForm } from "@inertiajs/vue3";
 import { useI18n } from "vue-i18n";
 import { useDynamicPriceCalculator } from "@/Composables/useDynamicPriceCalculator";
 import { colorOptions } from "@/Data/colorOptions";
-
 import Navbar from "@/Components/Navbar.vue";
 import Footer from "@/Components/Footer.vue";
 import SecondaryNavbar from "@/Components/SecondaryNavbar.vue";
@@ -172,6 +182,7 @@ const configurationSteps = ref([]);
 const selectedWidth = ref(null);
 const selectedHeight = ref(null);
 const stepContainer = ref(null);
+const isShopSubmitting = ref(false);
 
 const isEditing = computed(() => !!props.existingConfiguration);
 
@@ -435,17 +446,79 @@ const prevStep = async () => {
   }
 };
 
-const submitConfiguration = () => {
+const submitConfiguration = async () => {
+  if (props.shopMode) {
+    isShopSubmitting.value = true;
+    form.clearErrors();
+
+    try {
+      const response = await axios.post(
+        route("configurations.store"),
+        form.data(),
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+
+      const redirectUrl =
+        response.data?.redirect_url;
+
+      if (!redirectUrl) {
+        throw new Error(
+          "The shop redirect URL was not returned."
+        );
+      }
+
+      window.location.assign(redirectUrl);
+    } catch (error) {
+      const validationErrors =
+        error.response?.data?.errors;
+
+      if (validationErrors) {
+        form.setError(validationErrors);
+      } else {
+        form.setError(
+          "configuration",
+          error.response?.data?.message ||
+            "Failed to add the configured product to the shop."
+        );
+      }
+
+      console.error(
+        "Failed to submit shop configuration:",
+        error
+      );
+    } finally {
+      isShopSubmitting.value = false;
+    }
+
+    return;
+  }
+
   const options = {
     onError: (errors) => {
-      console.error("Failed to save configuration:", errors);
+      console.error(
+        "Failed to save configuration:",
+        errors
+      );
     },
   };
 
   if (isEditing.value) {
-    form.put(route("configurations.update", props.existingConfiguration.id), options);
+    form.put(
+      route(
+        "configurations.update",
+        props.existingConfiguration.id
+      ),
+      options
+    );
   } else {
-    form.post(route("configurations.store"), options);
+    form.post(
+      route("configurations.store"),
+      options
+    );
   }
 };
 </script>

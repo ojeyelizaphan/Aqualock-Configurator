@@ -143,16 +143,19 @@ class ConfigurationController extends Controller
             ]);
 
             if ($isShopConfiguration) {
-                $shopUrl = config(
-                    'services.tbs_woocommerce.shop_url'
+                $shopUrl = rtrim(
+                    config('services.tbs_woocommerce.shop_url'),
+                    '/'
                 );
 
                 $handoffUrl = $shopUrl
-                    .'?'.http_build_query([
+                    .'/?'.http_build_query([
                         'tbs_config_token' => $handoffToken,
                     ]);
 
-                return Inertia::location($handoffUrl);
+                return response()->json([
+                    'redirect_url' => $handoffUrl,
+                ]);
             }
 
             return redirect()->route('orders.create', [
