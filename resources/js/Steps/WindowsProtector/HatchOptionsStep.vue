@@ -159,7 +159,9 @@ import removableImg from '@/Assets/8-Windows Protector/Step-2/removable.jpg';
 import tiltUpImg from '@/Assets/8-Windows Protector/Step-2/tilt-up.jpg';
 import {
   removableHatchPrices,
+  removableHatchWidths,
   tiltUpHatchPrices,
+  tiltUpHatchWidths,
 } from '@/Data/windowsProtectorPrices';
 
 const { t } = useI18n();
@@ -199,16 +201,67 @@ const filteredTiltUpHeights = computed(() =>
 );
 
 // PRICES
+
+function getHatchPrice(
+  priceTable,
+  widths,
+  width,
+  height
+) {
+  const heightRow = priceTable[height];
+
+  if (!heightRow) {
+    return 0;
+  }
+
+  const widthIndex = widths.indexOf(
+    Number(width)
+  );
+
+  if (widthIndex === -1) {
+    return 0;
+  }
+
+  return heightRow[widthIndex] ?? 0;
+}
+
+
 const removableSelectedPrice = computed(() => {
-  const w = form.config_options.removable_hatch_width;
-  const h = form.config_options.removable_hatch_height;
-  return w && h ? removableHatchPrices[w]?.[h] || 0 : 0;
+  const width =
+    form.config_options.removable_hatch_width;
+
+  const height =
+    form.config_options.removable_hatch_height;
+
+  if (!width || !height) {
+    return 0;
+  }
+
+  return getHatchPrice(
+    removableHatchPrices,
+    removableHatchWidths,
+    width,
+    height
+  );
 });
 
 const tiltUpSelectedPrice = computed(() => {
-  const w = form.config_options.tilt_up_hatch_width;
-  const h = form.config_options.tilt_up_hatch_height;
-  return w && h ? tiltUpHatchPrices[w]?.[h] || 0 : 0;
+  const width =
+    form.config_options.tilt_up_hatch_width;
+
+  const height =
+    form.config_options.tilt_up_hatch_height;
+
+  if (!width || !height) {
+    return 0;
+  }
+
+  return getHatchPrice(
+    tiltUpHatchPrices,
+    tiltUpHatchWidths,
+    width,
+    height
+  );
 });
 
 // TYPE AUTO

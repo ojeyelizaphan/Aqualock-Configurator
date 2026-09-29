@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\InvalidQuickwallConfigurationException;
 use App\Services\Pricing\QuickwallPriceCalculator;
+use App\Exceptions\InvalidWindowsProtectorConfigurationException;
+use App\Services\Pricing\WindowsProtectorPriceCalculator;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -19,7 +21,11 @@ use Illuminate\Http\Request;
 class ConfigurationController extends Controller
 {
     public function __construct(
-        private readonly QuickwallPriceCalculator $quickwallCalculator,
+        private readonly QuickwallPriceCalculator
+            $quickwallCalculator,
+
+        private readonly WindowsProtectorPriceCalculator
+            $windowsProtectorCalculator,
     ) {
     }
 
@@ -108,6 +114,23 @@ class ConfigurationController extends Controller
                     $pricingBreakdown['gross_price'];
             }
 
+            if ($productSlug === 'windows-protector') {
+                $pricingBreakdown =
+                    $this->windowsProtectorCalculator
+                        ->calculate(
+                            $validated['config_options']
+                        );
+
+                $totalPrice =
+                    $pricingBreakdown['gross_price'];
+
+                $validated['config_options']['width'] =
+                    $pricingBreakdown['product_width'];
+
+                $validated['config_options']['height'] =
+                    $pricingBreakdown['product_height'];
+            }
+
             $isShopConfiguration =
                 (bool) ($validated['shop_mode'] ?? false);
 
@@ -162,7 +185,9 @@ class ConfigurationController extends Controller
                 'configuration_id' => $configuration->id,
             ]);
         } catch (
-            InvalidQuickwallConfigurationException $exception
+            InvalidQuickwallConfigurationException |
+            InvalidWindowsProtectorConfigurationException
+            $exception
         ) {
             throw ValidationException::withMessages([
                 'config_options' => $exception->getMessage(),
