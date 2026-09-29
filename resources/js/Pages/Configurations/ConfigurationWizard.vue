@@ -326,16 +326,23 @@ watch(step, (newStep) => {
   }
 });
 
-const getProductSlug = (product) => {
-  return (
-    product?.product_type?.slug ||
-    product?.translation_key ||
-    ""
-  )
+const normalizeSlug = (value) => {
+  return String(value || "")
+    // Handles values such as windowsProtector.
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
     .toLowerCase()
     .trim()
-    .replace(/_/g, "-")
-    .replace(/\s+/g, "-");
+    .replace(/[_\s]+/g, "-")
+    .replace(/-+/g, "-");
+};
+
+const getProductSlug = (product) => {
+  return normalizeSlug(
+    product?.product_type?.slug ||
+    product?.product_type?.name ||
+    product?.translation_key ||
+    ""
+  );
 };
 
 onMounted(async () => {
@@ -376,16 +383,30 @@ onMounted(async () => {
   }
 
   if (props.shopMode && props.initialProductSlug) {
+    const requestedProductSlug =
+      normalizeSlug(props.initialProductSlug);
+
     const initialProduct = props.products.find(
       (product) =>
         getProductSlug(product) ===
-        props.initialProductSlug
-          .toLowerCase()
-          .replace(/_/g, "-")
+        requestedProductSlug
     );
 
     if (initialProduct) {
       await selectProduct(initialProduct);
+    } else {
+      console.error(
+        "Requested shop product was not found:",
+        requestedProductSlug,
+        props.products.map((product) => ({
+          id: product.id,
+          name: product.product_type?.name,
+          translationKey:
+            product.translation_key,
+          normalizedSlug:
+            getProductSlug(product),
+        }))
+      );
     }
   }
 });
