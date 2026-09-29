@@ -35,4 +35,20 @@ return [
         ],
     ],
 
+    'tbs_woocommerce' => [
+        'shop_url' => env(
+            'TBS_SHOP_URL',
+            'https://reconbranding.com/tbs-shop/',
+        ),
+
+        'integration_key' => env(
+            'TBS_WOOCOMMERCE_INTEGRATION_KEY',
+        ),
+
+        'handoff_lifetime' => (int) env(
+            'TBS_WOOCOMMERCE_HANDOFF_LIFETIME',
+            15,
+        ),
+    ],
+
 ];

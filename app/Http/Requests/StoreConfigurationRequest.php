@@ -25,6 +25,8 @@ class StoreConfigurationRequest extends FormRequest
             'product_id' => 'required|exists:products,id',
             'config_options' => 'required|array', // The full configuration captured step by step
             'total_price' => 'required|numeric|min:0',
+            'current_step' => 'nullable|integer|min:1',
+            'shop_mode' => 'nullable|boolean',
         ];
         
     }

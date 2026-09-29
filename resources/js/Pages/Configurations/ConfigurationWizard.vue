@@ -75,7 +75,7 @@
       <!-- Navigation -->
       <div class="mt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
         <button
-          v-if="step > 1"
+          v-if="step > (shopMode ? 2 : 1)"
           @click="prevStep"
           type="button"
           class="bg-gray-700 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-xl transition-all duration-300 w-full sm:w-auto"
@@ -139,6 +139,7 @@ const props = defineProps({
     type: Array,
     default: () => [],
   },
+
   existingConfiguration: {
     type: Object,
     default: null,
@@ -146,7 +147,17 @@ const props = defineProps({
 
   locale: {
     type: String,
-    default: 'en',
+    default: "en",
+  },
+
+  shopMode: {
+    type: Boolean,
+    default: false,
+  },
+
+  initialProductSlug: {
+    type: String,
+    default: null,
   },
 });
 
@@ -169,6 +180,7 @@ const form = useForm({
   config_options: {},
   total_price: 0,
   current_step: 1,
+  shop_mode: props.shopMode,
 });
 
 const scrollToStepTop = async () => {
@@ -303,31 +315,68 @@ watch(step, (newStep) => {
   }
 });
 
-onMounted(() => {
-  if (!props.existingConfiguration) return;
+const getProductSlug = (product) => {
+  return (
+    product?.product_type?.slug ||
+    product?.translation_key ||
+    ""
+  )
+    .toLowerCase()
+    .trim()
+    .replace(/_/g, "-")
+    .replace(/\s+/g, "-");
+};
 
-  const existing = props.existingConfiguration;
+onMounted(async () => {
+  if (props.existingConfiguration) {
+    const existing = props.existingConfiguration;
 
-  form.product_id = existing.product_id ?? "";
-  form.config_options = existing.config_options ?? {};
-  form.total_price = Number(existing.total_price ?? 0);
-  form.current_step = existing.current_step ?? 1;
+    form.product_id = existing.product_id ?? "";
+    form.config_options = existing.config_options ?? {};
+    form.total_price = Number(existing.total_price ?? 0);
+    form.current_step = existing.current_step ?? 1;
 
-  const matchedProduct =
-    props.products.find((product) => product.id === existing.product_id) || null;
+    const matchedProduct =
+      props.products.find(
+        (product) => product.id === existing.product_id
+      ) || null;
 
-  selectedProduct.value = matchedProduct || existing.product || null;
+    selectedProduct.value =
+      matchedProduct || existing.product || null;
 
-  if (selectedProduct.value?.product_type) {
-    configurationSteps.value =
-      selectedProduct.value.product_type.configuration_steps || [];
+    if (selectedProduct.value?.product_type) {
+      configurationSteps.value =
+        selectedProduct.value.product_type
+          .configuration_steps || [];
+    }
+
+    const totalAvailableSteps =
+      configurationSteps.value.length + 1;
+
+    const restoredStep = Math.min(
+      existing.current_step || totalAvailableSteps,
+      totalAvailableSteps
+    );
+
+    step.value = restoredStep;
+    maxVisitedStep.value = restoredStep;
+
+    return;
   }
 
-  const totalAvailableSteps = configurationSteps.value.length + 1;
-  const restoredStep = Math.min(existing.current_step || totalAvailableSteps, totalAvailableSteps);
+  if (props.shopMode && props.initialProductSlug) {
+    const initialProduct = props.products.find(
+      (product) =>
+        getProductSlug(product) ===
+        props.initialProductSlug
+          .toLowerCase()
+          .replace(/_/g, "-")
+    );
 
-  step.value = restoredStep;
-  maxVisitedStep.value = restoredStep;
+    if (initialProduct) {
+      await selectProduct(initialProduct);
+    }
+  }
 });
 
 const selectProduct = async (product) => {
@@ -352,10 +401,21 @@ const selectProduct = async (product) => {
 };
 
 const goToStep = async (targetStep) => {
-  if (targetStep < 1 || targetStep > totalSteps.value) return;
-  if (targetStep > maxVisitedStep.value) return;
+  const minimumStep = props.shopMode ? 2 : 1;
+
+  if (
+    targetStep < minimumStep ||
+    targetStep > totalSteps.value
+  ) {
+    return;
+  }
+
+  if (targetStep > maxVisitedStep.value) {
+    return;
+  }
 
   step.value = targetStep;
+
   await scrollToStepTop();
 };
 

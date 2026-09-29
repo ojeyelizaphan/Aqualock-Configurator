@@ -15,10 +15,22 @@ class Configuration extends Model
         'product_id',
         'config_options',
         'total_price',
+        'pricing_breakdown',
+        'source',
         'current_step',
+        'handoff_token_hash',
+        'handoff_expires_at',
     ];
-        protected $casts = [
+    
+    protected $casts = [
         'config_options' => 'array',
+        'pricing_breakdown' => 'array',
+        'total_price' => 'decimal:2',
+        'handoff_expires_at' => 'datetime',
+    ];
+
+    protected $hidden = [
+        'handoff_token_hash',
     ];
 
     // ✅ A configuration belongs to a product
