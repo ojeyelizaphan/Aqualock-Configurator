@@ -31,6 +31,7 @@ const form = useForm({
   phone: "",
   address: "",
   accessories_summary: [],
+  locale: locale.value,
 });
 
 
@@ -194,23 +195,19 @@ const closeModal = () => {
   router.visit("/configurations/create");
 };
 
-const submitOrder = async () => {
-  try {
-    form.accessories_summary =
-      accessoriesSummary.value;
+const submitOrder = () => {
+  form.locale = locale.value;
+  form.accessories_summary = accessoriesSummary.value;
 
-    await form.post(route("orders.store"), {
-      onSuccess: () => {
-        showSuccessModal.value = true;
-      },
+  form.post(route("orders.store"), {
+    onSuccess: () => {
+      showSuccessModal.value = true;
+    },
 
-      onError: () => {
-        alert(t("summary.errors.generic"));
-      },
-    });
-  } catch (error) {
-    alert(t("summary.errors.unexpected"));
-  }
+    onError: () => {
+      alert(t("summary.errors.generic"));
+    },
+  });
 };
 </script>
 

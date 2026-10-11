@@ -84,11 +84,12 @@ class OrderController extends Controller
             'phone' => 'required|string',
             'address' => 'required|string',
             'message' => 'nullable|string',
-            'accessories_summary' => 'array'
+            'accessories_summary' => 'sometimes|array',
+            'locale' => 'required|in:de,en,fr,es',
         ]);
 
         $order = Order::create([
-            'user_id' => auth()->id() ?? null,
+            'user_id' => auth()->id(),
             'configuration_id' => $validated['configuration_id'],
             'customer_name' => $validated['customer_name'],
             'email' => $validated['email'],
@@ -97,11 +98,13 @@ class OrderController extends Controller
             'message' => $validated['message'] ?? '',
         ]);
 
-        // Send email to admin or sales team
-        Mail::to('elizaphanojey@gmail.com')->send(new OrderSubmitted($order));
+        $recipient = $validated['locale'] === 'fr'
+            ? 'info@aqualock.fr'
+            : 'angebot@torbau-schwaben.de';
+
+        Mail::to($recipient)->send(new OrderSubmitted($order));
 
         return redirect()->back()->with('success', true);
-        // return redirect()->route('orders.confirmation', ['order_id' => $order->id]);
     }
 
 

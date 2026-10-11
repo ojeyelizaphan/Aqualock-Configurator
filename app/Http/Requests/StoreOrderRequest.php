@@ -28,6 +28,7 @@ class StoreOrderRequest extends FormRequest
             'phone' => 'required|string|max:20',
             'address' => 'required|string|max:500',
             'message' => 'nullable|string|max:1000',
+            'locale' => 'required|in:de,en,fr,es',
         ];
     }
 }
