@@ -56,15 +56,45 @@ class OrderController extends Controller
 
         $configOptions = $configuration->config_options ?? [];
 
-        $formattedOptions = collect($configOptions)->map(function ($value, $key) use ($labels) {
-            return [
-                'key' => $key,
-                'label' => $labels[$key] ?? ucwords(str_replace('_', ' ', $key)),
-                'value' => is_bool($value)
-                    ? $value
-                    : (is_numeric($value) ? number_format($value, 2) : $value),
-            ];
-        })->values()->all();
+        for ($attempt = 0; $attempt < 3 && is_string($configOptions); $attempt++) {
+            $decoded = json_decode($configOptions, true);
+
+            if (json_last_error() !== JSON_ERROR_NONE) {
+                break;
+            }
+
+            $configOptions = $decoded;
+        }
+
+        $configOptions = is_array($configOptions) ? $configOptions : [];
+
+        $formattedOptions = collect($configOptions)
+            ->map(function ($value, $key) use ($labels) {
+                $normalizedKey = preg_replace(
+                    '/([A-Z]+)([A-Z][a-z])/',
+                    '$1_$2',
+                    (string) $key
+                );
+
+                $normalizedKey = preg_replace(
+                    '/([a-z0-9])([A-Z])/',
+                    '$1_$2',
+                    $normalizedKey
+                );
+
+                $normalizedKey = strtolower(
+                    str_replace(['-', ' '], '_', $normalizedKey)
+                );
+
+                return [
+                    'key' => $key,
+                    'label' => $labels[$normalizedKey]
+                        ?? ucwords(str_replace('_', ' ', $normalizedKey)),
+                    'value' => $value,
+                ];
+            })
+            ->values()
+            ->all();
 
         return Inertia::render('Orders/Create', [
             'configuration' => $configuration,
