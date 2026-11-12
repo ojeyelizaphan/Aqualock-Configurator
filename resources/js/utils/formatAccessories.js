@@ -1,134 +1,185 @@
-function formatKey(key) {
-  return key
-    .replace(/([a-z])([A-Z])/g, '$1 $2')
-    .replace(/_/g, ' ')
-    .replace(/\b\w/g, l => l.toUpperCase());
+function normalizeKey(value) {
+  return String(value ?? "")
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1_$2")
+    .replace(/([a-z0-9])([A-Z])/g, "$1_$2")
+    .replace(/[-\s]+/g, "_")
+    .toLowerCase();
 }
 
-function flattenObject(obj, parentKey = '') {
-  const entries = [];
+function isUnselected(value) {
+  if (
+    value === null ||
+    value === undefined ||
+    value === false ||
+    value === "" ||
+    (Array.isArray(value) && value.length === 0)
+  ) {
+    return true;
+  }
 
-  for (const key in obj) {
-    const value = obj[key];
-    const fullKey = parentKey ? `${parentKey}.${key}` : key;
+  if (
+    (typeof value === "number" || typeof value === "string") &&
+    String(value).trim() !== "" &&
+    Number(value) === 0
+  ) {
+    return true;
+  }
 
-    if (
-      value === null ||
-      value === '' ||
-      value === false ||
-      (Array.isArray(value) && value.length === 0)
-    ) {
-      continue;
+  return (
+    typeof value === "string" &&
+    ["none", "without", "false", "null"].includes(
+      normalizeKey(value)
+    )
+  );
+}
+
+function normalizeObject(value) {
+  if (Array.isArray(value)) {
+    return value.map(normalizeObject);
+  }
+
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [
+        normalizeKey(key),
+        normalizeObject(item),
+      ])
+    );
+  }
+
+  return value;
+}
+
+export function formatAccessories(
+  accessories = {},
+  { t, te } = {}
+) {
+  if (typeof t !== "function" || typeof te !== "function") {
+    throw new Error(
+      "formatAccessories requires the Vue i18n t and te functions."
+    );
+  }
+
+  const data = normalizeObject(accessories);
+  const lines = [];
+
+  const translateLabel = (key) => {
+    for (const path of [
+      `summary.labels.${key}`,
+      `summary.groups.${key}`,
+    ]) {
+      if (te(path)) {
+        return t(path);
+      }
     }
 
-    if (typeof value === 'object' && !Array.isArray(value)) {
-      entries.push(...flattenObject(value, fullKey));
-    } else if (Array.isArray(value)) {
-      value.forEach((item, i) => {
-        if (typeof item === 'object') {
-          entries.push(...flattenObject(item, `${fullKey}[${i}]`));
-        } else {
-          entries.push([`${fullKey}[${i}]`, item]);
+    // Keep unknown technical references visible.
+    return key;
+  };
+
+  const translateValue = (field, value) => {
+    const lookup =
+      typeof value === "boolean"
+        ? String(value)
+        : normalizeKey(value);
+
+    const path = `summary.values.${field}.${lookup}`;
+
+    if (te(path)) {
+      return t(path);
+    }
+
+    if (typeof value === "boolean") {
+      return t(`summary.values.boolean.${String(value)}`);
+    }
+
+    // Preserve RAL codes, quantities, and unknown option codes.
+    return String(value);
+  };
+
+  const ignoredFields = new Set([
+    "value",
+    "price",
+    "unit",
+    "insulated",
+  ]);
+
+  function walk(node, parents = [], valueField = null) {
+    if (!node || typeof node !== "object") {
+      return;
+    }
+
+    for (const [key, value] of Object.entries(node)) {
+      if (ignoredFields.has(key) || isUnselected(value)) {
+        continue;
+      }
+
+      // Remove the entire glazing group when unselected.
+      if (
+        ["windows", "stripe"].includes(key) &&
+        value &&
+        typeof value === "object" &&
+        !Array.isArray(value)
+      ) {
+        const amountKey =
+          key === "windows" ? "quantity" : "length";
+
+        if (
+          isUnselected(value.type) ||
+          !(Number(value[amountKey]) > 0)
+        ) {
+          continue;
         }
-      });
-    } else {
-      entries.push([fullKey, value]);
+      }
+
+      if (Array.isArray(value)) {
+        for (const item of value) {
+          if (isUnselected(item)) {
+            continue;
+          }
+
+          if (typeof item === "object") {
+            walk(item, [...parents, key], key);
+          } else {
+            const label = [...parents, key]
+              .map(translateLabel)
+              .join(" / ");
+
+            lines.push(
+              `${label}: ${translateValue(key, item)}`
+            );
+          }
+        }
+
+        continue;
+      }
+
+      if (typeof value === "object") {
+        walk(value, [...parents, key], key);
+        continue;
+      }
+
+      // Glazing types are translated under windows or stripe.
+      const field =
+        key === "type" ? valueField ?? key : key;
+
+      // The parent already identifies the glazing type.
+      const labelKeys =
+        key === "type" && parents.length
+          ? parents
+          : [...parents, key];
+
+      const label = labelKeys
+        .map(translateLabel)
+        .join(" / ");
+
+      lines.push(
+        `${label}: ${translateValue(field, value)}`
+      );
     }
   }
 
-  return entries;
-}
+  walk(data);
 
-export function formatAccessories(accessories = {}) {
-  const flatEntries = flattenObject(accessories);
-
-  return flatEntries
-    .filter(([path, value]) => {
-      const lastKey = path.split('.').pop().replace(/\[\d+\]/g, '');
-
-      // Hide internal/helper fields everywhere
-      if (['value', 'price', 'unit', 'insulated'].includes(lastKey)) {
-        return false;
-      }
-
-      // Hide empty drive-over "none" if you don't want it shown in summary
-      if (path === 'driveOverPlate' && value === 'none') {
-        return false;
-      }
-
-      // Hide window quantity if no window selected
-      if (
-        path === 'glazing.windows.quantity' &&
-        !accessories?.glazing?.windows?.type
-      ) {
-        return false;
-      }
-
-      // Hide empty or zero window quantity
-      if (
-        path === 'glazing.windows.quantity' &&
-        (value === 0 || value === '0' || value === null || value === '')
-      ) {
-        return false;
-      }
-
-      // Hide stripe length if no stripe selected
-      if (
-        path === 'glazing.stripe.length' &&
-        !accessories?.glazing?.stripe?.type
-      ) {
-        return false;
-      }
-
-      // Hide empty or zero stripe length
-      if (
-        path === 'glazing.stripe.length' &&
-        (value === 0 || value === '0' || value === null || value === '')
-      ) {
-        return false;
-      }
-
-      return true;
-    })
-    .map(([path, value]) => {
-      let label = '';
-      let displayValue = value;
-
-      // Drive-over plate formatting
-      if (path === 'driveOverPlate') {
-        label = 'Drive-over Plate';
-        displayValue =
-          value === 'stainless'
-            ? 'Stainless Steel'
-            : value === 'aluminium'
-            ? 'Aluminium'
-            : value;
-      }
-
-      // Window formatting
-      else if (path === 'glazing.windows.type') {
-        label = 'Window';
-      } else if (path === 'glazing.windows.quantity') {
-        label = 'Number of Windows';
-      }
-
-      // Stripe formatting
-      else if (path === 'glazing.stripe.type') {
-        label = 'Glass Stripe';
-      } else if (path === 'glazing.stripe.length') {
-        label = 'Stripe Length';
-        displayValue = `${value} mm`;
-      }
-
-      // Generic fallback
-      else {
-        label = formatKey(path.split('.').pop().replace(/\[\d+\]/g, ''));
-      }
-
-      if (typeof displayValue === 'boolean') {
-        displayValue = displayValue ? 'Yes' : 'No';
-      }
-
-      return `${label}: ${displayValue}`;
-    });
+  return lines;
 }

@@ -132,7 +132,9 @@ class OrderController extends Controller
             ? 'info@aqualock.fr'
             : 'angebot@torbau-schwaben.de';
 
-        Mail::to($recipient)->send(new OrderSubmitted($order));
+        Mail::to($recipient)
+            ->locale($validated['locale'])
+            ->send(new OrderSubmitted($order));
 
         return redirect()->back()->with('success', true);
     }

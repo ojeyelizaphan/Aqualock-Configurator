@@ -144,18 +144,14 @@ const totalPriceInclVat = computed(() => {
 */
 
 const accessoriesSummary = computed(() => {
-  const accessoriesOption = props.config_options.find(
+  const accessoriesOption = (props.config_options ?? []).find(
     option => option.key === "accessories"
   );
 
-  if (
-    !accessoriesOption ||
-    typeof accessoriesOption.value !== "object"
-  ) {
-    return [];
-  }
-
-  return formatAccessories(accessoriesOption.value);
+  return formatAccessories(
+    accessoriesOption?.value ?? {},
+    { t, te }
+  );
 });
 
 /*

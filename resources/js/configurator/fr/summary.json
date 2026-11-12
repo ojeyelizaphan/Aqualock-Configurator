@@ -1,0 +1,382 @@
+{
+  "summary": {
+    "title": "Résumé de la configuration",
+    "back": "Retour à la configuration",
+    "configSummary": "Résumé de la configuration",
+    "configDetails": "Détails de la configuration",
+    "totalPrice": "Prix total",
+    "pricingNoteTitle": "Remarque importante concernant le prix :",
+    "pricingNote": "Tous les prix indiqués incluent la TVA allemande de 19 %. Les frais de transport et de montage ne sont pas inclus.",
+    "accessories": "Accessoires",
+    "contactTitle": "Coordonnées",
+    "contactDescription": "Veuillez saisir vos coordonnées afin que nous puissions traiter votre demande. Dès réception de vos informations, l’un de nos collaborateurs ou partenaires d’installation vous contactera dans les meilleurs délais.",
+    "fullName": "Nom et prénom",
+    "email": "Adresse e-mail",
+    "phone": "Numéro de téléphone",
+    "address": "Adresse",
+    "submit": "Envoyer la demande",
+    "placeholders": {
+      "name": "Saisir votre nom complet",
+      "email": "Saisir votre adresse e-mail",
+      "phone": "Saisir votre numéro de téléphone",
+      "address": "Saisir votre adresse"
+    },
+    "success": {
+      "title": "Demande envoyée avec succès",
+      "message": "Merci. Nous avons bien reçu votre demande de configuration.",
+      "cta": "Créer une nouvelle configuration"
+    },
+    "errors": {
+      "generic": "Une erreur s’est produite. Veuillez vérifier le formulaire et réessayer.",
+      "unexpected": "Une erreur inattendue s’est produite. Veuillez réessayer."
+    },
+    "labels": {
+      "protection_height": "Hauteur de protection",
+      "version": "Version",
+      "material": "Matériau",
+      "width": "Largeur",
+      "height": "Hauteur",
+      "Width (mm)": "Largeur (mm)",
+      "Height (mm)": "Hauteur (mm)",
+      "entered_width": "Largeur saisie",
+      "entered_height": "Hauteur saisie",
+      "installation_type": "Type d’installation",
+      "installation_method": "Type de montage",
+      "color": "Couleur",
+      "insulation": "Habillage et isolation",
+      "hand_transmitters": "Télécommandes",
+      "hand_transmitter_qty": "Nombre de télécommandes",
+      "drive_over_plate": "Rampe de seuil",
+      "windows": "Fenêtres",
+      "stripe": "Bande vitrée",
+      "quantity": "Quantité",
+      "length": "Longueur",
+      "base_plate": "Plaque de seuil",
+      "inside_colour": "Couleur intérieure",
+      "profile_colour": "Couleur des profilés",
+      "profile_ral": "Couleur RAL des profilés",
+      "upgrade_kit": "Kit d’étanchéité préinstallé",
+      "stainless_tracks": "Rails de guidage en acier inoxydable",
+      "assembly_kit": "Kit de montage",
+      "custom_colour_profiles": "Couleur personnalisée des profilés",
+      "locking_mechanism": "Système de verrouillage",
+      "thermal_insulation": "Isolation thermique",
+      "fixed_panel_left": "Partie fixe latérale gauche",
+      "fixed_panel_right": "Partie fixe latérale droite",
+      "fixed_panel_top": "Partie fixe supérieure",
+      "window_type": "Type de fenêtre",
+      "window_version": "Type de vitrage",
+      "heavy_duty": "Protection renforcée contre les inondations",
+      "knob_type": "Type de poignée",
+      "kaba_upgrade": "Version Kaba",
+      "panic_features": "Fonction anti-panique",
+      "burglary_protection": "Protection contre l’effraction",
+      "drive_plate": "Plaque de franchissement",
+      "door_closer": "Ferme-porte",
+      "upper_design": "Aménagement de la partie supérieure",
+      "total_gate_height": "Hauteur totale du portail",
+      "entered_total_gate_height": "Hauteur totale du portail saisie",
+      "gate_opening": "Sens et angle d’ouverture",
+      "fitting_method": "Type d’installation",
+      "gate_fittings": "Ferrures du portail",
+      "central_locking": "Verrouillage centralisé",
+      "lattice_bar": "Barreaux",
+      "gate_stop": "Arrêt de portail",
+      "padlock_preparation": "Préparation pour cadenas",
+      "durchgriff": "Poignée de passage avec verrouillage centralisé",
+      "quickwall_panels": "Panneaux Quickwall supplémentaires",
+      "center_posts": "Poteaux centraux",
+      "corner_posts": "Poteaux d’angle",
+      "locking_lever_position": "Position du levier de verrouillage",
+      "corner_profiles_coloring": "Revêtement des profilés de raccordement au bâtiment",
+      "accessory_quantities": "Accessoires",
+      "quickwall_hooks": "Crochets de suspension Quickwall",
+      "hatch_type": "Type de trappe",
+      "removable_hatch_width": "Largeur de la trappe amovible",
+      "removable_hatch_height": "Hauteur de la trappe amovible",
+      "tilt_up_hatch_width": "Largeur de la trappe basculante",
+      "tilt_up_hatch_height": "Hauteur de la trappe basculante",
+      "opening_direction": "Sens d’ouverture",
+      "closing_mechanism": "Dispositif de verrouillage",
+      "internal_cladding": "Habillage intérieur",
+      "internal_panelling": "Habillage intérieur"
+    },
+    "values": {
+      "boolean": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "protection_height": {
+        "up_to_500mm": "Jusqu’à 500 mm",
+        "over_500mm": "Supérieure à 500 mm"
+      },
+      "version": {
+        "v": "Version V",
+        "v500": "Version V500",
+        "e": "Version E"
+      },
+      "material": {
+        "galvanized_steel": "Acier galvanisé",
+        "galvanized": "Acier galvanisé",
+        "stainless": "Acier inoxydable",
+        "stainless_steel": "Acier inoxydable"
+      },
+      "installation_type": {
+        "behind_reveal": "Derrière l’ouverture",
+        "between_reveal": "Dans l’ouverture",
+        "infront_reveal": "Devant l’ouverture",
+        "in_front_reveal": "Devant l’ouverture",
+        "interior_flush": "Affleurant côté intérieur"
+      },
+      "installation_method": {
+        "behind": "Derrière l’ouverture",
+        "between": "Dans l’ouverture",
+        "behind_reveal": "Derrière l’ouverture",
+        "between_reveal": "Dans l’ouverture",
+        "front_reveal": "Devant l’ouverture",
+        "in_front_reveal": "Devant l’ouverture",
+        "on_window_frame": "Sur le cadre de la fenêtre",
+        "on_opening_wall": "Sur l’ouverture murale"
+      },
+      "insulation": {
+        "none": "Sans habillage",
+        "without_casing": "Sans habillage",
+        "with_casing_no_insulation": "Avec habillage intérieur, sans isolation",
+        "with_casing_and_insulation": "Avec habillage intérieur et isolation"
+      },
+      "drive_over_plate": {
+        "none": "Aucune",
+        "stainless": "Acier inoxydable",
+        "aluminium": "Aluminium",
+        "aluminum": "Aluminium"
+      },
+      "windows": {
+        "window_transparent_no_insulation": "Fenêtre en verre transparent (sans isolation)",
+        "window_mastercarre_no_insulation": "Fenêtre en verre Mastercarré (sans isolation)",
+        "window_satinato_no_insulation": "Fenêtre en verre Satinato (sans isolation)",
+        "window_transparent_with_insulation": "Fenêtre en verre transparent (avec isolation)",
+        "window_mastercarre_with_insulation": "Fenêtre en verre Mastercarré (avec isolation)",
+        "window_satinato_with_insulation": "Fenêtre en verre Satinato (avec isolation)"
+      },
+      "stripe": {
+        "stripe_transparent_no_insulation": "Bande vitrée en verre transparent (sans isolation)",
+        "stripe_mastercarre_no_insulation": "Bande vitrée en verre Mastercarré (sans isolation)",
+        "stripe_satinato_no_insulation": "Bande vitrée en verre Satinato (sans isolation)",
+        "stripe_transparent_with_insulation": "Bande vitrée en verre transparent (avec isolation)",
+        "stripe_mastercarre_with_insulation": "Bande vitrée en verre Mastercarré (avec isolation)",
+        "stripe_satinato_with_insulation": "Bande vitrée en verre Satinato (avec isolation)"
+      },
+      "base_plate": {
+        "none": "Sans plaque de seuil",
+        "aluminum": "Plaque de seuil en aluminium",
+        "aluminium": "Plaque de seuil en aluminium",
+        "stainless_steel": "Plaque de seuil en acier inoxydable"
+      },
+      "profile_colour": {
+        "standard": "Couleur standard",
+        "custom": "Couleur personnalisée"
+      },
+      "upgrade_kit": {
+        "upto3m": "Kit d’étanchéité jusqu’à 3 m",
+        "up_to_3m": "Kit d’étanchéité jusqu’à 3 m",
+        "upto6m": "Kit d’étanchéité jusqu’à 6 m",
+        "up_to_6m": "Kit d’étanchéité jusqu’à 6 m"
+      },
+      "stainless_tracks": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "motor": {
+        "true": "Inclus",
+        "false": "Non inclus"
+      },
+      "assembly_kit": {
+        "true": "Inclus",
+        "false": "Non inclus"
+      },
+      "locking_mechanism": {
+        "v1": "V1",
+        "v2": "V2",
+        "v3": "V3",
+        "v6": "V6"
+      },
+      "thermal_insulation": {
+        "thermally_insulated": "Avec rupture de pont thermique",
+        "non_thermally_insulated": "Sans rupture de pont thermique"
+      },
+      "fixed_panel_left": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "fixed_panel_right": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "fixed_panel_top": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "window_type": {
+        "with": "Avec fenêtre",
+        "without": "Sans fenêtre"
+      },
+      "window_version": {
+        "clear": "Verre transparent",
+        "mastercarree": "Verre Mastercarré",
+        "satinato": "Verre Satinato"
+      },
+      "heavy_duty": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "knob_type": {
+        "aluminium": "Bouton fixe en aluminium",
+        "aluminum": "Bouton fixe en aluminium",
+        "stainless": "Bouton fixe en acier inoxydable"
+      },
+      "kaba_upgrade": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "panic_features": {
+        "panic_function_e": "Serrure anti-panique – Fonction E",
+        "pushbar": "Barre anti-panique"
+      },
+      "burglary_protection": {
+        "rc1": "RC1",
+        "rc2": "RC2",
+        "rc3": "RC3"
+      },
+      "drive_plate": {
+        "aluminium": "Aluminium",
+        "aluminum": "Aluminium",
+        "stainless": "Acier inoxydable"
+      },
+      "door_closer": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "upper_design": {
+        "lattice": "Barreaux",
+        "wood": "Habillage en bois"
+      },
+      "gate_opening": {
+        "left_in_95": "DIN gauche – ouverture vers l’intérieur – 95°",
+        "left_in_180": "DIN gauche – ouverture vers l’intérieur – 180°",
+        "left_out_95": "DIN gauche – ouverture vers l’extérieur – 95°",
+        "left_out_180": "DIN gauche – ouverture vers l’extérieur – 180°",
+        "right_in_95": "DIN droite – ouverture vers l’intérieur – 95°",
+        "right_in_180": "DIN droite – ouverture vers l’intérieur – 180°",
+        "right_out_95": "DIN droite – ouverture vers l’extérieur – 95°",
+        "right_out_180": "DIN droite – ouverture vers l’extérieur – 180°"
+      },
+      "fitting_method": {
+        "behind_reveal": "Derrière l’ouverture",
+        "between_reveal": "Dans l’ouverture",
+        "in_front_reveal": "Devant l’ouverture"
+      },
+      "gate_fittings": {
+        "aluminum_both": "Ensemble de poignées intérieur et extérieur – aluminium F1",
+        "aluminium_both": "Ensemble de poignées intérieur et extérieur – aluminium F1",
+        "stainless_both": "Ensemble de poignées intérieur et extérieur – acier inoxydable",
+        "aluminum_inside": "Poignée intérieure uniquement – aluminium F1",
+        "aluminium_inside": "Poignée intérieure uniquement – aluminium F1",
+        "stainless_inside": "Poignée intérieure uniquement – acier inoxydable",
+        "aluminum_knob": "Poignée intérieure avec bouton fixe extérieur – aluminium F1",
+        "aluminium_knob": "Poignée intérieure avec bouton fixe extérieur – aluminium F1",
+        "stainless_knob": "Poignée intérieure avec bouton fixe extérieur – acier inoxydable"
+      },
+      "central_locking": {
+        "with": "Avec verrouillage centralisé",
+        "without": "Sans verrouillage centralisé",
+        "true": "Oui",
+        "false": "Non"
+      },
+      "lattice_bar": {
+        "round_extruded": "Barreaux ronds extrudés",
+        "angular_extruded": "Barreaux carrés extrudés",
+        "round_forged": "Barreaux ronds forgés",
+        "angular_forged": "Barreaux carrés forgés"
+      },
+      "gate_stop": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "padlock_preparation": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "durchgriff": {
+        "true": "Oui",
+        "false": "Non"
+      },
+      "locking_lever_position": {
+        "left": "À gauche",
+        "right": "À droite"
+      },
+      "corner_profiles_coloring": {
+        "with": "Avec revêtement de couleur",
+        "without": "Sans revêtement de couleur"
+      },
+      "hatch_type": {
+        "none": "Sans trappe",
+        "removable": "Trappe amovible",
+        "tilt_up": "Trappe basculante"
+      },
+      "opening_direction": {
+        "left_inward": "Ouverture à gauche vers l’intérieur",
+        "right_inward": "Ouverture à droite vers l’intérieur",
+        "top": "Ouverture vers le haut"
+      },
+      "closing_mechanism": {
+        "lockable": "Verrouillable",
+        "non_lockable": "Non verrouillable"
+      },
+      "internal_cladding": {
+        "with_aluminium": "Avec habillage en aluminium",
+        "without_aluminium": "Sans habillage en aluminium"
+      },
+      "internal_panelling": {
+        "with_panelling": "Avec habillage intérieur",
+        "without_panelling": "Sans habillage intérieur"
+      }
+    },
+    "units": {
+      "piece": "Pièce",
+      "sqm": "m²",
+      "mm": "mm"
+    },
+    "groups": {
+      "dimensions": "Dimensions",
+      "installation": "Installation",
+      "protection": "Protection",
+      "accessories": "Accessoires",
+      "glazing": "Vitrage",
+      "motor": "Moteur",
+      "assembly_kit": "Kit de montage",
+      "base_plate": "Plaque de seuil",
+      "profiles": "Profilés",
+      "transmitters": "Télécommandes",
+      "included": "Inclus d’office",
+      "locking": "Système de verrouillage",
+      "insulation": "Isolation",
+      "windows": "Fenêtres",
+      "fittings": "Ferrures",
+      "panic": "Fonction anti-panique",
+      "security": "Sécurité",
+      "flood_protection": "Protection contre les inondations",
+      "gate": "Portail",
+      "opening": "Ouverture",
+      "lattice": "Barreaux",
+      "central_locking": "Verrouillage centralisé",
+      "multi_panel": "Système à plusieurs panneaux",
+      "bottom_plate": "Plaque de seuil",
+      "hooks": "Crochets",
+      "window_protector": "Windows Protector",
+      "hatches": "Trappes",
+      "closing": "Verrouillage",
+      "cladding": "Habillage",
+      "panelling": "Habillage"
+    }
+  }
+}

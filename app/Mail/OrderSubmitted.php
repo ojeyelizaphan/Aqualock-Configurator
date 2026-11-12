@@ -33,7 +33,12 @@ class OrderSubmitted extends Mailable
     {
         return new Envelope(
             from: new Address($this->order['email'], $this->order['customer_name']),
-            subject: 'Order Submitted',
+            subject: match (app()->getLocale()) {
+                'de' => 'Neue Anfrage eingegangen',
+                'fr' => 'Nouvelle demande reçue',
+                'es' => 'Nueva solicitud recibida',
+                default => 'New Order Submitted',
+            },
         );
     }
 
