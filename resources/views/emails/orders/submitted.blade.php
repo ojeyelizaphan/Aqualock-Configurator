@@ -84,11 +84,11 @@
     };
 
     $summaryFile = $readJson(
-        resource_path("configurator/{$locale}/summary.json")
+        resource_path("js/configurator/{$locale}/summary.json")
     );
 
     $general = $readJson(
-        resource_path("configurator/{$locale}/general.json")
+        resource_path("js/configurator/{$locale}/general.json")
     );
 
     $summary = $summaryFile['summary'] ?? [];
